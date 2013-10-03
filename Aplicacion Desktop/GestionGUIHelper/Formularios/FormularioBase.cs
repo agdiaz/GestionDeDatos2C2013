@@ -17,6 +17,7 @@ namespace GestionGUIHelper.Formularios
         public FormularioBase()
         {
             Validaciones = new List<IValidador>();
+            this.StartPosition = FormStartPosition.CenterParent;
         }
         #endregion
 

@@ -63,6 +63,7 @@
     <Compile Include="Helpers\MensajePorPantalla.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validaciones\IValidador.cs" />
+    <Compile Include="Validaciones\ValidadorCombobox.cs" />
     <Compile Include="Validaciones\ValidadorDateTimeUntilFrom.cs" />
     <Compile Include="Validaciones\ValidadorDateTimeUntil.cs" />
     <Compile Include="Validaciones\ValidadorNumerico.cs" />

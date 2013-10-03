@@ -9,6 +9,12 @@ namespace GestionGUIHelper.Formularios
 {
     public class FormularioBaseListado<T> : FormularioBase
     {
+        public FormularioBaseListado()
+            :base()
+        {
+
+        }
+
         /// <summary>
         /// Permite indicar si se retornara un objeto de la grilla al salir
         /// del formulario.
