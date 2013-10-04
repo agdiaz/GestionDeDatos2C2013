@@ -382,9 +382,11 @@
             this.Controls.Add(this.tstBarraDebug);
             this.Controls.Add(this.stsBarraEstado);
             this.Controls.Add(this.mnuPrincipal);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnuPrincipal;
             this.Name = "FrmPrincipal";
             this.Text = "Clinica FRBA - Pantalla principal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPrincipal_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPrincipal_FormClosing);

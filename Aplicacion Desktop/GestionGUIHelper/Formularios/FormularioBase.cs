@@ -38,5 +38,18 @@ namespace GestionGUIHelper.Formularios
             return datosCorrectos;
         }
         #endregion
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FormularioBase
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "FormularioBase";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.ResumeLayout(false);
+
+        }
     }
 }

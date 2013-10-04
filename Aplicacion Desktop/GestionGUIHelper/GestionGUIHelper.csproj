@@ -79,6 +79,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\FormularioBase.resx">
+      <DependentUpon>FormularioBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FormularioBaseListado.resx">
       <DependentUpon>FormularioBaseListado.cs</DependentUpon>
     </EmbeddedResource>

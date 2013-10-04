@@ -104,10 +104,18 @@ namespace Clinica_Frba
         #region [estadísticasToolStripMenuItem]
         private void estadísticasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (FrmEstadisticas frm = new FrmEstadisticas())
-            {
-                frm.ShowDialog(this);
-            }
+            try 
+	        {
+                FrmEstadisticas frm = new FrmEstadisticas();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+    	    }
+	        catch (Exception ex)
+	        {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+	        }
         }
         #endregion
         #endregion
@@ -116,9 +124,17 @@ namespace Clinica_Frba
         #region [tsmUsuarios]
         private void tsmUsuarios_Click(object sender, EventArgs e)
         {
-            using (FrmUsuarioListado frm = new FrmUsuarioListado())
+            try
             {
-                frm.ShowDialog(this);
+                FrmUsuarioListado frm = new FrmUsuarioListado();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -126,10 +142,18 @@ namespace Clinica_Frba
         #region [tsmRoles]
         private void tsmRoles_Click(object sender, EventArgs e)
         {
-            using (FrmRolListado frm = new FrmRolListado())
+            try 
             {
-                frm.ShowDialog(this);
+                FrmRolListado frm = new FrmRolListado();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
             }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }        
         }
         #endregion
         #endregion
@@ -138,9 +162,17 @@ namespace Clinica_Frba
         #region [tsmAfiliados]
         private void tsmAfiliados_Click(object sender, EventArgs e)
         {
-            using (FrmAfiliadoListado frm = new FrmAfiliadoListado())
+            try
             {
-                frm.ShowDialog(this);
+                FrmAfiliadoListado frm = new FrmAfiliadoListado();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -148,9 +180,17 @@ namespace Clinica_Frba
         #region [tsmCompraDeBonos]
         private void tsmCompraDeBonos_Click(object sender, EventArgs e)
         {
-            using (FrmCompraBonos frm = new FrmCompraBonos())
+            try
             {
-                frm.ShowDialog(this);
+                FrmCompraBonos frm = new FrmCompraBonos();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -158,9 +198,17 @@ namespace Clinica_Frba
         #region [tsmPedirTurno]
         private void tsmPedirTurno_Click(object sender, EventArgs e)
         {
-            using (FrmPedidoDeTurno frm = new FrmPedidoDeTurno())
+            try
             {
-                frm.ShowDialog(this);
+                FrmPedidoDeTurno frm = new FrmPedidoDeTurno();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -168,9 +216,17 @@ namespace Clinica_Frba
         #region [tsmRegistroDeLlegada]
         private void tsmRegistroDeLlegada_Click(object sender, EventArgs e)
         {
-            using (FrmRegistroDeLlegada frm = new FrmRegistroDeLlegada())
+            try
             {
-                frm.ShowDialog(this);
+                FrmRegistroDeLlegada frm = new FrmRegistroDeLlegada();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -178,9 +234,17 @@ namespace Clinica_Frba
         #region [tsmRegistroDeResultados]
         private void tsmRegistroDeResultados_Click(object sender, EventArgs e)
         {
-            using (FrmRegistroDeResultado frm = new FrmRegistroDeResultado())
+            try
             {
-                frm.ShowDialog(this);
+                FrmRegistroDeResultado frm = new FrmRegistroDeResultado();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -188,9 +252,17 @@ namespace Clinica_Frba
         #region [tsmRecetar]
         private void tsmRecetar_Click(object sender, EventArgs e)
         {
-            using (FrmRecetaAlta frm = new FrmRecetaAlta())
+            try
             {
-                frm.ShowDialog();
+                FrmRecetaAlta frm = new FrmRecetaAlta();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -201,9 +273,17 @@ namespace Clinica_Frba
         #region [tsmProfesionales]
         private void tsmProfesionales_Click(object sender, EventArgs e)
         {
-            using (FrmProfesionalListado frm = new FrmProfesionalListado())
+            try
             {
-                frm.ShowDialog(this);
+                FrmProfesionalListado frm = new FrmProfesionalListado();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -211,9 +291,17 @@ namespace Clinica_Frba
         #region [tsmEspecialidades]
         private void tsmEspecialidades_Click(object sender, EventArgs e)
         {
-            using (FrmEspecialidadListado frm = new FrmEspecialidadListado())
+            try
             {
-                frm.ShowDialog(this);
+                FrmEspecialidadListado frm = new FrmEspecialidadListado();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -221,9 +309,17 @@ namespace Clinica_Frba
         #region [tsmAgenda_Registrar]
         private void tsmAgenda_Registrar_Click(object sender, EventArgs e)
         {
-            using (FrmAgendaAlta frm = new FrmAgendaAlta())
+            try
             {
-                frm.ShowDialog(this);
+                FrmAgendaAlta frm = new FrmAgendaAlta();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -231,9 +327,17 @@ namespace Clinica_Frba
         #region [tsmAgenda_Consultar]
         private void tsmAgenda_Consultar_Click(object sender, EventArgs e)
         {
-            using (FrmAgendaConsultar frm = new FrmAgendaConsultar())
+            try
             {
-                frm.ShowDialog(this);
+                FrmAgendaConsultar frm = new FrmAgendaConsultar();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -243,9 +347,17 @@ namespace Clinica_Frba
         #region [Gestión de planes]
         private void tsmPlanes_Click(object sender, EventArgs e)
         {
-            using (FrmPlanListado frm = new FrmPlanListado())
+            try
             {
-                frm.ShowDialog(this);
+                FrmPlanListado frm = new FrmPlanListado();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -255,9 +367,17 @@ namespace Clinica_Frba
         #region [tsmCancelacionAfiliado]
         private void tsmCancelacionAfiliado_Click(object sender, EventArgs e)
         {
-            using (FrmCancelarAfiliado frm = new FrmCancelarAfiliado())
+            try
             {
-                frm.ShowDialog(this);
+                FrmCancelarAfiliado frm = new FrmCancelarAfiliado();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
@@ -265,9 +385,17 @@ namespace Clinica_Frba
         #region [tsmCancelacionProfesional]
         private void tsmCancelacionProfesional_Click(object sender, EventArgs e)
         {
-            using (FrmCancelarProfesional frm = new FrmCancelarProfesional())
+            try
             {
-                frm.ShowDialog(this);
+                FrmCancelarProfesional frm = new FrmCancelarProfesional();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.MdiParent = this;
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
         #endregion
