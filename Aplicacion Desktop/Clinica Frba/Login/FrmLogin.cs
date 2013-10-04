@@ -25,22 +25,25 @@ namespace Clinica_Frba.Login
             this.AgregarValidacion(new ValidadorString(tbPassword, 1, 10));
             this.AgregarValidacion(new ValidadorCombobox(cbRol));
         }
-
+        
+        #region [btnAceptar]
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            base.Aceptar();
+        }
         protected override void AccionAceptar()
         {
             MensajePorPantalla.MensajeInformativo(this, "Iniciando sesión");
             this.Close();
         }
+        #endregion
 
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            base.Aceptar();
-        }
-
+        #region [btnCancelar]
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             base.Cancelar();
         }
+        #endregion
 
     }
 }

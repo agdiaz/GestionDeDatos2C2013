@@ -28,137 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gbFiltros = new System.Windows.Forms.GroupBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnFiltrar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.gbBusqueda = new System.Windows.Forms.GroupBox();
-            this.btnAlta = new System.Windows.Forms.Button();
-            this.gbAcciones = new System.Windows.Forms.GroupBox();
-            this.btnBaja = new System.Windows.Forms.Button();
-            this.btnModificacion = new System.Windows.Forms.Button();
-            this.gbFiltros.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.gbBusqueda.SuspendLayout();
+            this.lblRol = new System.Windows.Forms.Label();
+            this.tbRol = new System.Windows.Forms.TextBox();
+            this.lblFuncionalidad = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.gbAcciones.SuspendLayout();
+            this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbFiltros
             // 
-            this.gbFiltros.Controls.Add(this.btnCancelar);
-            this.gbFiltros.Controls.Add(this.btnFiltrar);
-            this.gbFiltros.Location = new System.Drawing.Point(13, 13);
-            this.gbFiltros.Name = "gbFiltros";
-            this.gbFiltros.Size = new System.Drawing.Size(519, 106);
-            this.gbFiltros.TabIndex = 0;
-            this.gbFiltros.TabStop = false;
-            this.gbFiltros.Text = "Filtros";
+            this.gbFiltros.Controls.Add(this.lblFuncionalidad);
+            this.gbFiltros.Controls.Add(this.tbRol);
+            this.gbFiltros.Controls.Add(this.textBox1);
+            this.gbFiltros.Controls.Add(this.lblRol);
+            this.gbFiltros.Controls.SetChildIndex(this.lblRol, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.textBox1, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.tbRol, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.lblFuncionalidad, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
             // 
-            // btnCancelar
+            // lblRol
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(438, 49);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 1;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.lblRol.AutoSize = true;
+            this.lblRol.Location = new System.Drawing.Point(75, 19);
+            this.lblRol.Name = "lblRol";
+            this.lblRol.Size = new System.Drawing.Size(26, 13);
+            this.lblRol.TabIndex = 2;
+            this.lblRol.Text = "Rol:";
             // 
-            // btnFiltrar
+            // tbRol
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(438, 19);
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
-            this.btnFiltrar.TabIndex = 0;
-            this.btnFiltrar.Text = "Filtrar";
-            this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.tbRol.Location = new System.Drawing.Point(107, 16);
+            this.tbRol.Name = "tbRol";
+            this.tbRol.Size = new System.Drawing.Size(181, 20);
+            this.tbRol.TabIndex = 3;
             // 
-            // dataGridView1
+            // lblFuncionalidad
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(508, 195);
-            this.dataGridView1.TabIndex = 1;
+            this.lblFuncionalidad.AutoSize = true;
+            this.lblFuncionalidad.Location = new System.Drawing.Point(27, 49);
+            this.lblFuncionalidad.Name = "lblFuncionalidad";
+            this.lblFuncionalidad.Size = new System.Drawing.Size(76, 13);
+            this.lblFuncionalidad.TabIndex = 4;
+            this.lblFuncionalidad.Text = "Funcionalidad:";
             // 
-            // gbBusqueda
+            // textBox1
             // 
-            this.gbBusqueda.Controls.Add(this.dataGridView1);
-            this.gbBusqueda.Location = new System.Drawing.Point(12, 126);
-            this.gbBusqueda.Name = "gbBusqueda";
-            this.gbBusqueda.Size = new System.Drawing.Size(520, 220);
-            this.gbBusqueda.TabIndex = 2;
-            this.gbBusqueda.TabStop = false;
-            this.gbBusqueda.Text = "Búsqueda";
-            // 
-            // btnAlta
-            // 
-            this.btnAlta.Location = new System.Drawing.Point(6, 18);
-            this.btnAlta.Name = "btnAlta";
-            this.btnAlta.Size = new System.Drawing.Size(75, 23);
-            this.btnAlta.TabIndex = 3;
-            this.btnAlta.Text = "Alta";
-            this.btnAlta.UseVisualStyleBackColor = true;
-            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
-            // 
-            // gbAcciones
-            // 
-            this.gbAcciones.Controls.Add(this.btnBaja);
-            this.gbAcciones.Controls.Add(this.btnModificacion);
-            this.gbAcciones.Controls.Add(this.btnAlta);
-            this.gbAcciones.Location = new System.Drawing.Point(18, 352);
-            this.gbAcciones.Name = "gbAcciones";
-            this.gbAcciones.Size = new System.Drawing.Size(514, 47);
-            this.gbAcciones.TabIndex = 4;
-            this.gbAcciones.TabStop = false;
-            this.gbAcciones.Text = "Acciones";
-            // 
-            // btnBaja
-            // 
-            this.btnBaja.Location = new System.Drawing.Point(169, 18);
-            this.btnBaja.Name = "btnBaja";
-            this.btnBaja.Size = new System.Drawing.Size(75, 23);
-            this.btnBaja.TabIndex = 5;
-            this.btnBaja.Text = "Baja";
-            this.btnBaja.UseVisualStyleBackColor = true;
-            // 
-            // btnModificacion
-            // 
-            this.btnModificacion.Location = new System.Drawing.Point(88, 18);
-            this.btnModificacion.Name = "btnModificacion";
-            this.btnModificacion.Size = new System.Drawing.Size(75, 23);
-            this.btnModificacion.TabIndex = 4;
-            this.btnModificacion.Text = "Modificación";
-            this.btnModificacion.UseVisualStyleBackColor = true;
-            this.btnModificacion.Click += new System.EventHandler(this.btnModificacion_Click);
+            this.textBox1.Location = new System.Drawing.Point(107, 46);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(181, 20);
+            this.textBox1.TabIndex = 5;
             // 
             // FrmRolListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 410);
-            this.Controls.Add(this.gbAcciones);
-            this.Controls.Add(this.gbBusqueda);
-            this.Controls.Add(this.gbFiltros);
+            this.ClientSize = new System.Drawing.Size(673, 450);
             this.Name = "FrmRolListado";
             this.Text = "Clinica FRBA - Roles de usuario - Listado";
-            this.gbFiltros.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.gbBusqueda.ResumeLayout(false);
             this.gbAcciones.ResumeLayout(false);
+            this.gbFiltros.ResumeLayout(false);
+            this.gbFiltros.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbFiltros;
-        private System.Windows.Forms.Button btnFiltrar;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.GroupBox gbBusqueda;
-        private System.Windows.Forms.Button btnAlta;
-        private System.Windows.Forms.GroupBox gbAcciones;
-        private System.Windows.Forms.Button btnBaja;
-        private System.Windows.Forms.Button btnModificacion;
+        private System.Windows.Forms.TextBox tbRol;
+        private System.Windows.Forms.Label lblRol;
+        private System.Windows.Forms.Label lblFuncionalidad;
+        private System.Windows.Forms.TextBox textBox1;
+
     }
 }

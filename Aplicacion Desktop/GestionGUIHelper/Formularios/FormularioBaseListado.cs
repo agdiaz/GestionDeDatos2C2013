@@ -1,91 +1,140 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using GestionGUIHelper.Helpers;
 using System.Windows.Forms;
+using GestionGUIHelper.Helpers;
 
 namespace GestionGUIHelper.Formularios
 {
-    public class FormularioBaseListado<T> : FormularioBase
+    public partial class FormularioBaseListado : FormularioBase
     {
         public FormularioBaseListado()
             :base()
         {
-
+            InitializeComponent();
         }
 
         /// <summary>
         /// Permite indicar si se retornara un objeto de la grilla al salir
         /// del formulario.
         /// </summary>
+        /// 
         public bool ModoSeleccion { get; set; }
-        public T EntidadSeleccionada { get; set; }
+        public object EntidadSeleccionada { get { return Seleccionar(); }}
 
-        /// <summary>
-        /// Devuelve la lista de objetos filtrados
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        protected virtual IList<T> Filtrar()
+        
+        protected virtual object Seleccionar()
         {
-            IList<T> resultado = null;
+            object seleccionado = null;
+            
+            if (dgvBusqueda.SelectedRows.Count > 0)
+            {
+                seleccionado = dgvBusqueda.SelectedRows[0].DataBoundItem;
+            }
+
+            return seleccionado;
+        }
+
+        #region [btnLimpiar]
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            this.AccionLimpiar();
+        }
+
+        protected void AccionLimpiar()
+        {
+            throw new NotImplementedException("Implementar acción del botón Limpiar");
+        }
+        #endregion
+
+        #region [btnFiltrar]
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            this.Filtrar();
+        }
+        protected virtual void Filtrar()
+        {
             if (base.Validar())
             {
-                resultado = this.AccionFiltrar();
-
-                Type tipoEntidad = typeof(T);
-                var properties = tipoEntidad.GetProperties(System.Reflection.BindingFlags.Public);
-
-                foreach (var prop in properties)
-                {
-                    ;
-                }
+                this.AccionFiltrar();
             }
-
-
-            return resultado;
         }
-
-        protected virtual IList<T> AccionFiltrar()
+        protected virtual void AccionFiltrar()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Implementar acción del botón Limpiar");
         }
-        protected virtual void AccionBorrar()
+        #endregion
+
+        #region [btnAlta]
+        private void btnAlta_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            this.AccionAlta();
         }
-
-        protected virtual void Seleccionar()
+        protected virtual void AccionAlta()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Implementar acción del botón Alta");
         }
-        protected void Borrar()
+        #endregion
+
+        #region [btnModificacion]
+        private void btnModificacion_Click(object sender, EventArgs e)
         {
-            base.Validar();
-            DialogResult dr = MensajePorPantalla.MensajeInformativo(this, "¿Está seguro que desea borrar el registro?", MessageBoxButtons.YesNo);
-
-            if (dr == DialogResult.Yes)
-            {
-                this.AccionBorrar();
-            }
-
+            this.Modificar();
         }
         protected void Modificar()
         {
-            base.Validar();
-            DialogResult dr = MensajePorPantalla.MensajeInformativo(this, "¿Está seguro que desea borrar el registro?", MessageBoxButtons.YesNo);
-
-            if (dr == DialogResult.Yes)
+            if (this.EntidadSeleccionada == null)
             {
-                this.AccionBorrar();
+                MensajePorPantalla.MensajeError(this, "Debe seleccionar un registro primero");
             }
+            else
+            {
+                DialogResult dr = MensajePorPantalla.MensajeInformativo(this, "¿Está seguro que desea borrar el registro?", MessageBoxButtons.YesNo);
 
+                if (dr == DialogResult.Yes)
+                {
+                    this.AccionModificar();
+                }
+            }
         }
 
-        protected void Alta()
+        protected virtual void AccionModificar()
         {
-            ;
+            throw new NotImplementedException("Implementar acción del botón Modificar");
         }
+        #endregion
+
+        #region [btnBaja]
+        private void btnBaja_Click(object sender, EventArgs e)
+        {
+            this.Borrar();
+        }
+        protected void Borrar()
+        {
+            if (this.EntidadSeleccionada == null)
+            {
+                MensajePorPantalla.MensajeError(this, "Debe seleccionar un registro primero");
+            }
+            else
+            {
+                DialogResult dr = MensajePorPantalla.MensajeInformativo(this, "¿Está seguro que desea borrar el registro?", MessageBoxButtons.YesNo);
+
+                if (dr == DialogResult.Yes)
+                {
+                    this.AccionBorrar();
+                }
+            }
+        }
+        protected virtual void AccionBorrar()
+        {
+            throw new NotImplementedException("Implementar acción del botón Borrar");
+        }
+        #endregion
+
+        
     }
 }

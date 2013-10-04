@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.gbAcciones.SuspendLayout();
+            this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
-            // frmEspecialidadListado
+            // FrmEspecialidadListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Name = "frmEspecialidadListado";
+            this.ClientSize = new System.Drawing.Size(678, 441);
+            this.Name = "FrmEspecialidadListado";
             this.Text = "Clinica FRBA - Especialidades médicas - Listado";
+            this.gbAcciones.ResumeLayout(false);
+            this.gbFiltros.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

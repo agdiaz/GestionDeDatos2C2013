@@ -139,7 +139,7 @@ namespace Clinica_Frba
         {
             using (FrmAfiliadoListado frm = new FrmAfiliadoListado())
             {
-                frm.Show();
+                frm.ShowDialog(this);
             }
         }
         #endregion
@@ -248,6 +248,7 @@ namespace Clinica_Frba
             }
         }
         #endregion
+
         #region [Cancelaciones]
 
         #region [tsmCancelacionAfiliado]

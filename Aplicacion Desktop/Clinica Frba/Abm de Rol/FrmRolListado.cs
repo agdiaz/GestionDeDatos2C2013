@@ -10,7 +10,7 @@ using GestionGUIHelper.Formularios;
 
 namespace Clinica_Frba.Roles
 {
-    public partial class FrmRolListado : Form
+    public partial class FrmRolListado : FormularioBaseListado
     {
         public FrmRolListado()
             :base()
@@ -18,7 +18,7 @@ namespace Clinica_Frba.Roles
             InitializeComponent();
         }
 
-        private void btnAlta_Click(object sender, EventArgs e)
+        protected override void AccionAlta()
         {
             using (FrmRolAlta frm = new FrmRolAlta())
             {
@@ -26,7 +26,7 @@ namespace Clinica_Frba.Roles
             }
         }
 
-        private void btnModificacion_Click(object sender, EventArgs e)
+        protected override void AccionModificar()
         {
             using (FrmRolModificar frm = new FrmRolModificar())
             {

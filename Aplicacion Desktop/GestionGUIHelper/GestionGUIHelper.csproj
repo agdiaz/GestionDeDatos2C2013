@@ -54,11 +54,14 @@
     <Compile Include="Formularios\FormularioBaseAlta.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\FormularioBaseModificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\FormularioBaseListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\FormularioBaseModificacion.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Formularios\FormularioBaseListado.Designer.cs">
+      <DependentUpon>FormularioBaseListado.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MensajePorPantalla.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +77,11 @@
       <Project>{FB2F57BA-F0F7-4CDF-9C56-404F9AB27961}</Project>
       <Name>GestionCommon</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Formularios\FormularioBaseListado.resx">
+      <DependentUpon>FormularioBaseListado.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

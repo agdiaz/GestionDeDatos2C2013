@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using GestionGUIHelper.Formularios;
 
 namespace Clinica_Frba.Especialidades
 {
-    public partial class FrmEspecialidadModificar : Form
+    public partial class FrmEspecialidadModificar : FormularioBaseModificacion
     {
         public FrmEspecialidadModificar()
+            :base()
         {
             InitializeComponent();
         }

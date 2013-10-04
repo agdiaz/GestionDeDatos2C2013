@@ -33,9 +33,10 @@
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbFuncionalidades = new System.Windows.Forms.GroupBox();
+            this.clsFuncionalidades = new System.Windows.Forms.CheckedListBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.clsFuncionalidades = new System.Windows.Forms.CheckedListBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.gbDetalles.SuspendLayout();
             this.gbFuncionalidades.SuspendLayout();
             this.SuspendLayout();
@@ -88,26 +89,6 @@
             this.gbFuncionalidades.TabStop = false;
             this.gbFuncionalidades.Text = "Funcionalidades asociadas";
             // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Location = new System.Drawing.Point(63, 400);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 2;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(145, 399);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 3;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // clsFuncionalidades
             // 
             this.clsFuncionalidades.FormattingEnabled = true;
@@ -116,11 +97,42 @@
             this.clsFuncionalidades.Size = new System.Drawing.Size(243, 259);
             this.clsFuncionalidades.TabIndex = 0;
             // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Location = new System.Drawing.Point(23, 400);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.TabIndex = 2;
+            this.btnAceptar.Text = "Guardar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(185, 400);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(104, 400);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 4;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // FrmRolAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 431);
+            this.ClientSize = new System.Drawing.Size(284, 432);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.gbFuncionalidades);
@@ -145,5 +157,6 @@
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.CheckedListBox clsFuncionalidades;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

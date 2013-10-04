@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.gbAcciones.SuspendLayout();
+            this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
-            // frmAfiliadoListado
+            // FrmAfiliadoListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Name = "frmAfiliadoListado";
+            this.ClientSize = new System.Drawing.Size(673, 440);
+            this.Name = "FrmAfiliadoListado";
             this.Text = "Clinica FRBA - Afiliados - Listado";
+            this.gbAcciones.ResumeLayout(false);
+            this.gbFiltros.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

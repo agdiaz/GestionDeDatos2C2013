@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using GestionGUIHelper.Formularios;
 
 namespace Clinica_Frba.Profesionales
 {
-    public partial class FrmProfesionalModificar : Form
+    public partial class FrmProfesionalModificar : FormularioBaseModificacion
     {
         public FrmProfesionalModificar()
         {

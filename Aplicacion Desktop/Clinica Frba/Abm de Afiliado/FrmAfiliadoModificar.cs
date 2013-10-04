@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using GestionGUIHelper.Formularios;
 
 namespace Clinica_Frba.Afiliados
 {
-    public partial class FrmAfiliadoModificar : Form
+    public partial class FrmAfiliadoModificar : FormularioBaseModificacion
     {
         public FrmAfiliadoModificar()
+            :base()
         {
             InitializeComponent();
         }
