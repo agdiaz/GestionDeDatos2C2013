@@ -43,6 +43,7 @@ namespace Clinica_Frba
         {
             this.lblLogPath.Text = "Almacenando log en: " + Program.ContextoActual.LogPath;
             this.lblFechaSistema.Text = "Fecha: " + FechaHelper.Format(Program.ContextoActual.FechaActual);
+            this.lblConnectionString.Text = "Conectado: " + AppConfigReader.Get("connection_string");
         }
 
         #endregion
@@ -260,7 +261,6 @@ namespace Clinica_Frba
             }
         }
         #endregion
-
         
         #region [tsmCancelacionProfesional]
         private void tsmCancelacionProfesional_Click(object sender, EventArgs e)

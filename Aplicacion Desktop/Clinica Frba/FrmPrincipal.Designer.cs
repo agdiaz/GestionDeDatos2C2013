@@ -62,10 +62,14 @@
             this.tsmCancelacionAfiliado = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCancelacionProfesional = new System.Windows.Forms.ToolStripMenuItem();
             this.stsBarraEstado = new System.Windows.Forms.StatusStrip();
-            this.lblLogPath = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFechaSistema = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tstBarraDebug = new System.Windows.Forms.StatusStrip();
+            this.lblConnectionString = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblLogPath = new System.Windows.Forms.ToolStripStatusLabel();
             this.mnuPrincipal.SuspendLayout();
             this.stsBarraEstado.SuspendLayout();
+            this.tstBarraDebug.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuPrincipal
@@ -101,7 +105,7 @@
             this.tsmSesion_IniciarSesion,
             this.tsmSesion_CerrarSesion});
             this.tsmSesion.Name = "tsmSesion";
-            this.tsmSesion.Size = new System.Drawing.Size(152, 22);
+            this.tsmSesion.Size = new System.Drawing.Size(134, 22);
             this.tsmSesion.Text = "Sesión";
             // 
             // tsmSesion_IniciarSesion
@@ -121,24 +125,24 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(131, 6);
             // 
             // estadísticasToolStripMenuItem
             // 
             this.estadísticasToolStripMenuItem.Name = "estadísticasToolStripMenuItem";
-            this.estadísticasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.estadísticasToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.estadísticasToolStripMenuItem.Text = "Estadísticas";
             this.estadísticasToolStripMenuItem.Click += new System.EventHandler(this.estadísticasToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(131, 6);
             // 
             // tsmSalir
             // 
             this.tsmSalir.Name = "tsmSalir";
-            this.tsmSalir.Size = new System.Drawing.Size(152, 22);
+            this.tsmSalir.Size = new System.Drawing.Size(134, 22);
             this.tsmSalir.Text = "Salir";
             this.tsmSalir.Click += new System.EventHandler(this.tsmSalir_Click);
             // 
@@ -154,14 +158,14 @@
             // tsmUsuarios
             // 
             this.tsmUsuarios.Name = "tsmUsuarios";
-            this.tsmUsuarios.Size = new System.Drawing.Size(152, 22);
+            this.tsmUsuarios.Size = new System.Drawing.Size(119, 22);
             this.tsmUsuarios.Text = "Usuarios";
             this.tsmUsuarios.Click += new System.EventHandler(this.tsmUsuarios_Click);
             // 
             // tsmRoles
             // 
             this.tsmRoles.Name = "tsmRoles";
-            this.tsmRoles.Size = new System.Drawing.Size(152, 22);
+            this.tsmRoles.Size = new System.Drawing.Size(119, 22);
             this.tsmRoles.Text = "Roles";
             this.tsmRoles.Click += new System.EventHandler(this.tsmRoles_Click);
             // 
@@ -274,14 +278,14 @@
             // tsmAgenda_Registrar
             // 
             this.tsmAgenda_Registrar.Name = "tsmAgenda_Registrar";
-            this.tsmAgenda_Registrar.Size = new System.Drawing.Size(152, 22);
+            this.tsmAgenda_Registrar.Size = new System.Drawing.Size(125, 22);
             this.tsmAgenda_Registrar.Text = "Registrar";
             this.tsmAgenda_Registrar.Click += new System.EventHandler(this.tsmAgenda_Registrar_Click);
             // 
             // tsmAgenda_Consultar
             // 
             this.tsmAgenda_Consultar.Name = "tsmAgenda_Consultar";
-            this.tsmAgenda_Consultar.Size = new System.Drawing.Size(152, 22);
+            this.tsmAgenda_Consultar.Size = new System.Drawing.Size(125, 22);
             this.tsmAgenda_Consultar.Text = "Consultar";
             this.tsmAgenda_Consultar.Click += new System.EventHandler(this.tsmAgenda_Consultar_Click);
             // 
@@ -296,7 +300,7 @@
             // tsmPlanes
             // 
             this.tsmPlanes.Name = "tsmPlanes";
-            this.tsmPlanes.Size = new System.Drawing.Size(152, 22);
+            this.tsmPlanes.Size = new System.Drawing.Size(108, 22);
             this.tsmPlanes.Text = "Planes";
             this.tsmPlanes.Click += new System.EventHandler(this.tsmPlanes_Click);
             // 
@@ -326,19 +330,13 @@
             // stsBarraEstado
             // 
             this.stsBarraEstado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblLogPath,
-            this.lblFechaSistema});
+            this.lblFechaSistema,
+            this.lblUsuario});
             this.stsBarraEstado.Location = new System.Drawing.Point(0, 467);
             this.stsBarraEstado.Name = "stsBarraEstado";
             this.stsBarraEstado.Size = new System.Drawing.Size(991, 22);
             this.stsBarraEstado.TabIndex = 1;
             this.stsBarraEstado.Text = "statusStrip1";
-            // 
-            // lblLogPath
-            // 
-            this.lblLogPath.Name = "lblLogPath";
-            this.lblLogPath.Size = new System.Drawing.Size(30, 17);
-            this.lblLogPath.Text = "Log:";
             // 
             // lblFechaSistema
             // 
@@ -347,11 +345,41 @@
             this.lblFechaSistema.Size = new System.Drawing.Size(41, 17);
             this.lblFechaSistema.Text = "Fecha:";
             // 
+            // lblUsuario
+            // 
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(61, 17);
+            this.lblUsuario.Text = "- Usuario: ";
+            // 
+            // tstBarraDebug
+            // 
+            this.tstBarraDebug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblConnectionString,
+            this.lblLogPath});
+            this.tstBarraDebug.Location = new System.Drawing.Point(0, 445);
+            this.tstBarraDebug.Name = "tstBarraDebug";
+            this.tstBarraDebug.Size = new System.Drawing.Size(991, 22);
+            this.tstBarraDebug.TabIndex = 2;
+            this.tstBarraDebug.Text = "statusStrip1";
+            // 
+            // lblConnectionString
+            // 
+            this.lblConnectionString.Name = "lblConnectionString";
+            this.lblConnectionString.Size = new System.Drawing.Size(71, 17);
+            this.lblConnectionString.Text = "Conectado: ";
+            // 
+            // lblLogPath
+            // 
+            this.lblLogPath.Name = "lblLogPath";
+            this.lblLogPath.Size = new System.Drawing.Size(41, 17);
+            this.lblLogPath.Text = " - Log:";
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 489);
+            this.Controls.Add(this.tstBarraDebug);
             this.Controls.Add(this.stsBarraEstado);
             this.Controls.Add(this.mnuPrincipal);
             this.MainMenuStrip = this.mnuPrincipal;
@@ -364,6 +392,8 @@
             this.mnuPrincipal.PerformLayout();
             this.stsBarraEstado.ResumeLayout(false);
             this.stsBarraEstado.PerformLayout();
+            this.tstBarraDebug.ResumeLayout(false);
+            this.tstBarraDebug.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -378,7 +408,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmSesion_CerrarSesion;
         private System.Windows.Forms.ToolStripMenuItem tsmSalir;
         private System.Windows.Forms.StatusStrip stsBarraEstado;
-        private System.Windows.Forms.ToolStripStatusLabel lblLogPath;
         private System.Windows.Forms.ToolStripMenuItem tsmGestionDeUsuarios;
         private System.Windows.Forms.ToolStripMenuItem tsmUsuarios;
         private System.Windows.Forms.ToolStripMenuItem tsmRoles;
@@ -407,6 +436,10 @@
         private System.Windows.Forms.ToolStripMenuItem estadísticasToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripStatusLabel lblFechaSistema;
+        private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
+        private System.Windows.Forms.StatusStrip tstBarraDebug;
+        private System.Windows.Forms.ToolStripStatusLabel lblConnectionString;
+        private System.Windows.Forms.ToolStripStatusLabel lblLogPath;
     }
 }
 
