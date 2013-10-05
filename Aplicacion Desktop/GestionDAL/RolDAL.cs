@@ -35,5 +35,15 @@ namespace GestionDAL
         {
             throw new NotImplementedException();
         }
+
+        public void AsociarRolFuncionalidad(int idRol, int idFuncionalidad)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LimpiarFuncionalidades(int idRol)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

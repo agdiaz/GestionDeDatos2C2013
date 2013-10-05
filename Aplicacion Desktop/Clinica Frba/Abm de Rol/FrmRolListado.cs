@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GestionGUIHelper.Formularios;
+using GestionCommon.Entidades;
 
 namespace Clinica_Frba.Roles
 {
@@ -28,7 +29,8 @@ namespace Clinica_Frba.Roles
 
         protected override void AccionModificar()
         {
-            using (FrmRolModificar frm = new FrmRolModificar())
+            Rol seleccionado = this.EntidadSeleccionada as Rol;
+            using (FrmRolModificar frm = new FrmRolModificar(seleccionado))
             {
                 frm.ShowDialog(this);
             }

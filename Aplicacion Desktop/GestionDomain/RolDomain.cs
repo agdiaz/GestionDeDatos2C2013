@@ -62,7 +62,54 @@ namespace GestionDomain
                 resultado.Mensajes.Add(ex.Message);
             }
             return resultado;
-            
+        }
+
+        public IResultado<Rol> Alta(Rol nuevoRol, IList<Funcionalidad> funcionalidades)
+        {
+            Resultado<Rol> resultado = new Resultado<Rol>();
+            try
+            {
+                Rol creado = _domain.Crear(nuevoRol);
+                nuevoRol.IdRol = creado.IdRol;
+
+                foreach (Funcionalidad func in funcionalidades)
+                {
+                    _dal.AsociarRolFuncionalidad(nuevoRol.IdRol, func.IdFuncionalidad);
+                }
+
+                resultado.Retorno = nuevoRol;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
+        }
+
+        public IResultado<Rol> Modificar(Rol rolModificado, IList<Funcionalidad> funcionalidades)
+        {
+            Resultado<Rol> resultado = new Resultado<Rol>();
+
+            try
+            {
+                _domain.Modificar(rolModificado);
+                _dal.LimpiarFuncionalidades(rolModificado.IdRol);
+
+                foreach (Funcionalidad func in funcionalidades)
+                {
+                    _dal.AsociarRolFuncionalidad(rolModificado.IdRol, func.IdFuncionalidad);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
         }
     }
 }

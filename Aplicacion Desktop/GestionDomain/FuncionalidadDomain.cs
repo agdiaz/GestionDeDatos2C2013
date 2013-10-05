@@ -79,5 +79,20 @@ namespace GestionDomain
             return resultado;
 
         }
+
+        public IResultado<IList<Funcionalidad>> ObtenerTodos()
+        {
+            Resultado<IList<Funcionalidad>> resultado = new Resultado<IList<Funcionalidad>>();
+            try
+            {
+                resultado.Retorno = _domain.ObtenerTodos();
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+        }
     }
 }

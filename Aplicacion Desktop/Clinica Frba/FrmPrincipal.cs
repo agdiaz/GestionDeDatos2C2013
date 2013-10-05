@@ -41,7 +41,8 @@ namespace Clinica_Frba
         {
             this.frmPrincipal_Load_CargarUsuarioGenerico();
             this.frmPrincipal_Load_MostrarLogin();
-            this.frmPrincipal_Load_CargarMenues();
+            //SOLO POR DEBUG            
+            //this.frmPrincipal_Load_CargarMenues();
             this.frmPrincipal_Load_CargarBarraEstado();
         }
 
@@ -95,9 +96,16 @@ namespace Clinica_Frba
 
         private void frmPrincipal_Load_MostrarLogin()
         {
+            Usuario usuario = null;
             using (FrmLogin frm = new FrmLogin())
             {
                 frm.ShowDialog(this);
+                usuario = frm.UsuarioIniciado;
+            }
+
+            if (usuario != null)
+            {
+                Program.ContextoActual.RegistrarUsuario(usuario);
             }
         }
 
@@ -141,10 +149,9 @@ namespace Clinica_Frba
         #region [tsmSesion_IniciarSesion]
         private void tsmSesion_IniciarSesion_Click(object sender, EventArgs e)
         {
-            using (FrmLogin frm = new FrmLogin())
-            {
-                frm.ShowDialog(this);
-            }
+            this.frmPrincipal_Load_MostrarLogin();
+            this.frmPrincipal_Load_CargarMenues();
+            this.frmPrincipal_Load_CargarBarraEstado();
         }
         #endregion
 
