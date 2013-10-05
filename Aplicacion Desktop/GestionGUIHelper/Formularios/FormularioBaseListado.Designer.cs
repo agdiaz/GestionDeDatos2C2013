@@ -97,9 +97,15 @@
             // 
             // dgvBusqueda
             // 
+            this.dgvBusqueda.AllowUserToAddRows = false;
+            this.dgvBusqueda.AllowUserToDeleteRows = false;
+            this.dgvBusqueda.AllowUserToOrderColumns = true;
+            this.dgvBusqueda.AllowUserToResizeRows = false;
             this.dgvBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBusqueda.Location = new System.Drawing.Point(6, 19);
+            this.dgvBusqueda.MultiSelect = false;
             this.dgvBusqueda.Name = "dgvBusqueda";
+            this.dgvBusqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBusqueda.Size = new System.Drawing.Size(640, 229);
             this.dgvBusqueda.TabIndex = 1;
             // 
@@ -143,7 +149,7 @@
             this.Controls.Add(this.gbBusqueda);
             this.Controls.Add(this.gbFiltros);
             this.Name = "FormularioBaseListado";
-            this.Text = "FormularioBaseModificar";
+            this.Text = "FormularioBaseListado";
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormularioBaseListado_KeyPress);
             this.gbAcciones.ResumeLayout(false);
             this.gbBusqueda.ResumeLayout(false);
