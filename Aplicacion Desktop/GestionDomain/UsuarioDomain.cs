@@ -6,6 +6,7 @@ using GestionCommon.Entidades;
 using GestionDAL;
 using GestionCommon.Helpers;
 using GestionDomain.Resultados;
+using GestionCommon.Enums;
 
 namespace GestionDomain
 {
@@ -49,6 +50,60 @@ namespace GestionDomain
             Usuario u = new Usuario() { Habilitado = true, IdUsuario = -1, Nombre = "Sin identificar"};
 
             return new Resultado<Usuario>() { Correcto = true, Retorno = u};
+        }
+
+        public IResultado<IdentificacionUsuario> RealizarIdentificacion(string nombre, string password)
+        {
+            Resultado<IdentificacionUsuario> resultado = new Resultado<IdentificacionUsuario>();
+
+            try
+            {
+                byte[] hashPassword = PasswordHelper.GetSHA256Value(password);
+                IdentificacionUsuario identificacion;
+
+                int codigoRetorno = _dal.RealizarIdentificacion(nombre, hashPassword);
+                switch (codigoRetorno)
+                {
+                    case -2:
+                        identificacion = IdentificacionUsuario.UsuarioInvalido;
+                        break;
+                    case -1:
+                        identificacion = IdentificacionUsuario.UsuarioBloqueado;
+                        break;
+                    case 0:
+                        identificacion = IdentificacionUsuario.UsuarioIdentificado;
+                        break;
+                    default:
+                        identificacion = IdentificacionUsuario.UsuarioInvalido;
+                        break;
+                }
+                resultado.Retorno = identificacion;
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
+        }
+
+        public IResultado<Usuario> ObtenerSegunNombreUsuario(string nombre)
+        {
+            Resultado<Usuario> resultado = new Resultado<Usuario>();
+
+            try
+            {
+                resultado.Correcto = _dal.ObtenerSegunNombreUsuario(nombre);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
         }
     }
 }

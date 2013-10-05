@@ -61,7 +61,7 @@ namespace GestionDAL
         /// Permite obtener todos los objetos de la tabla
         /// </summary>
         /// <returns></returns>
-        public IList<T> ObtenerTodos()
+        public virtual IList<T> ObtenerTodos()
         {
             IList<T> todos = new List<T>();
 

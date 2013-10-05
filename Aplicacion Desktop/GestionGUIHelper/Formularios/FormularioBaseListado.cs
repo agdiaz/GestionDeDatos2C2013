@@ -135,6 +135,19 @@ namespace GestionGUIHelper.Formularios
         }
         #endregion
 
+        protected virtual void Salir()
+        {
+            this.Close();
+        }
+
+        private void FormularioBaseListado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                this.Salir();
+            }
+        }
+
         
     }
 }

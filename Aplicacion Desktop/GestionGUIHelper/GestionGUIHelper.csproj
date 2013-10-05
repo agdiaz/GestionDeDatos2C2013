@@ -82,6 +82,9 @@
     <EmbeddedResource Include="Formularios\FormularioBase.resx">
       <DependentUpon>FormularioBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FormularioBaseAlta.resx">
+      <DependentUpon>FormularioBaseAlta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FormularioBaseListado.resx">
       <DependentUpon>FormularioBaseListado.cs</DependentUpon>
     </EmbeddedResource>

@@ -27,5 +27,15 @@ namespace GestionDAL
         {
             throw new NotImplementedException();
         }
+
+        public int RealizarIdentificacion(string nombre, byte[] hashPassword)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ObtenerSegunNombreUsuario(string nombre)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

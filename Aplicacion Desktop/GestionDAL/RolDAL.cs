@@ -16,6 +16,16 @@ namespace GestionDAL
         {
         }
 
+        public override IList<Rol> ObtenerTodos()
+        {
+            IList<Rol> lista = new List<Rol>();
+            lista.Add(new Rol() { IdRol = 0, Nombre = "Administrador", Habilitado = true });
+            lista.Add(new Rol() { IdRol = 1, Nombre = "Afiliado", Habilitado = true });
+            lista.Add(new Rol() { IdRol = 2, Nombre = "Profesional", Habilitado = true });
+
+            return lista;
+        }
+
         protected override IList<System.Data.SqlClient.SqlParameter> GenerarParametrosModificar(Rol entidad)
         {
             throw new NotImplementedException();

@@ -19,7 +19,11 @@ namespace GestionGUIHelper.Validaciones
 
         public bool Validar()
         {
-            if (_control.SelectedIndex > 0)
+            if (_control.DropDownStyle == ComboBoxStyle.DropDown && _control.SelectedIndex > 0)
+            {
+                return true;
+            }
+            else if (_control.DropDownStyle == ComboBoxStyle.DropDownList && _control.SelectedIndex >= 0)
             {
                 return true;
             }

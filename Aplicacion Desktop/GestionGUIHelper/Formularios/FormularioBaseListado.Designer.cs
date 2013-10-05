@@ -144,6 +144,7 @@
             this.Controls.Add(this.gbFiltros);
             this.Name = "FormularioBaseListado";
             this.Text = "FormularioBaseModificar";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormularioBaseListado_KeyPress);
             this.gbAcciones.ResumeLayout(false);
             this.gbBusqueda.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBusqueda)).EndInit();

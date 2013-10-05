@@ -48,5 +48,21 @@ namespace GestionDomain
             
             return resultado;
         }
+
+        public IResultado<IList<Rol>> ObtenerTodos()
+        {
+            Resultado<IList<Rol>> resultado = new Resultado<IList<Rol>>();
+            try
+            {
+                resultado.Retorno = _domain.ObtenerTodos();
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+            
+        }
     }
 }
