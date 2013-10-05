@@ -5,9 +5,10 @@ using System.Text;
 
 namespace GestionDomain.Resultados
 {
-    public interface IResultado
+    public interface IResultado<T>
     {
         bool Correcto { get; }
+        T Retorno { get; }
         IList<string> Mensajes { get; }
     }
 }

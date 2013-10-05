@@ -47,10 +47,14 @@
   <ItemGroup>
     <Compile Include="Ejemplo\EntidadEjemploDomain.cs" />
     <Compile Include="EntidadBaseDomain.cs" />
+    <Compile Include="FuncionalidadDomain.cs" />
     <Compile Include="IEntidadDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resultados\IResultado.cs" />
     <Compile Include="Resultados\Resultado.cs" />
+    <Compile Include="Resultados\ResultadoIncorrectoException.cs" />
+    <Compile Include="RolDomain.cs" />
+    <Compile Include="UsuarioDomain.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GestionCommon\GestionCommon.csproj">

@@ -23,6 +23,9 @@ using Clinica_Frba.Especialidades;
 using Clinica_Frba.Agenda;
 using Clinica_Frba.Planes;
 using Clinica_Frba.Cancelaciones;
+using GestionDomain;
+using GestionDomain.Resultados;
+using GestionCommon.Entidades;
 
 namespace Clinica_Frba
 {
@@ -36,11 +39,71 @@ namespace Clinica_Frba
         #region [frmPrincipal_Load]
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            this.frmPrincipal_Load_CargarUsuarioGenerico();
+            this.frmPrincipal_Load_MostrarLogin();
+            this.frmPrincipal_Load_CargarMenues();
             this.frmPrincipal_Load_CargarBarraEstado();
+        }
+
+        private void frmPrincipal_Load_CargarMenues()
+        {
+            //Obtengo el rol del usuario actual:
+            RolDomain rolDomain = new RolDomain(Program.ContextoActual.Logger);
+            IResultado<Rol> resultadoObtenerRol = rolDomain.Obtener(Program.ContextoActual.UsuarioActual.IdUsuario);
+
+            if (resultadoObtenerRol.Correcto)
+            {
+                //Obtengo las funcionalidades del rol:
+                FuncionalidadDomain funcionalidadDomain = new FuncionalidadDomain(Program.ContextoActual.Logger);
+                IResultado<IList<Funcionalidad>> resultadoObtenerFuncionalidades = funcionalidadDomain.ObtenerFuncionalidades(resultadoObtenerRol.Retorno.IdRol);
+
+                if (resultadoObtenerRol.Correcto)
+                {
+                    //Cargo las funcionalidades
+                    frmPrincipal_Load_CargarFuncionalidadesBase(resultadoObtenerFuncionalidades.Retorno);
+                }
+            }
+        }
+
+        private void frmPrincipal_Load_CargarFuncionalidadesBase(IList<Funcionalidad> funcionalidades)
+        {
+            var nombresFuncionalidad = funcionalidades.Select(f => f.Nombre);
+            frmPrincipal_Load_CargarFuncionalidades(mnuPrincipal.Items, nombresFuncionalidad);
+        }
+
+        private void frmPrincipal_Load_CargarFuncionalidades(ToolStripItemCollection items, IEnumerable<string> nombresFuncionalidad)
+        {
+            foreach (ToolStripItem item in items)
+            {
+                if (item is ToolStripMenuItem)
+                {
+                    item.Enabled = nombresFuncionalidad.Contains(item.Name);
+                    frmPrincipal_Load_CargarFuncionalidades(((ToolStripMenuItem)item).DropDown.Items, nombresFuncionalidad);
+                }
+            }
+        }
+
+        private void frmPrincipal_Load_CargarUsuarioGenerico()
+        {
+            UsuarioDomain usuarioDomain = new UsuarioDomain(Program.ContextoActual.Logger);
+            IResultado<Usuario> resultadoObtenerUsuario = usuarioDomain.ObtenerUsuarioGenerico();
+            if (resultadoObtenerUsuario.Correcto)
+            {
+                Program.ContextoActual.RegistrarUsuario(resultadoObtenerUsuario.Retorno);
+            }
+        }
+
+        private void frmPrincipal_Load_MostrarLogin()
+        {
+            using (FrmLogin frm = new FrmLogin())
+            {
+                frm.ShowDialog(this);
+            }
         }
 
         private void frmPrincipal_Load_CargarBarraEstado()
         {
+            this.lblUsuario.Text = "Usuario: " + Program.ContextoActual.UsuarioActual.Nombre;
             this.lblLogPath.Text = "Almacenando log en: " + Program.ContextoActual.LogPath;
             this.lblFechaSistema.Text = "Fecha: " + FechaHelper.Format(Program.ContextoActual.FechaActual);
             this.lblConnectionString.Text = "Conectado: " + AppConfigReader.Get("connection_string");

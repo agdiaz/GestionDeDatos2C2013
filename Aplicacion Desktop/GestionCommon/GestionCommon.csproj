@@ -50,6 +50,9 @@
     <Compile Include="Atributos\Visible.cs" />
     <Compile Include="Contexto.cs" />
     <Compile Include="Entidades\Ejemplo\EntidadEjemplo.cs" />
+    <Compile Include="Entidades\Funcionalidad.cs" />
+    <Compile Include="Entidades\Rol.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Helpers\AppConfigReader.cs" />
     <Compile Include="Entidades\EntidadBase.cs" />
     <Compile Include="Helpers\FechaHelper.cs" />

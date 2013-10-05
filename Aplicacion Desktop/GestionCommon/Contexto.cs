@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GestionCommon.Helpers;
+using GestionCommon.Entidades;
 
 namespace GestionCommon
 {
@@ -11,12 +12,12 @@ namespace GestionCommon
         private ILog _logger;
         private string _logPath;
         private DateTime _fechaActual;
-
+        private Usuario _usuario;
+        
         public Contexto(string path, DateTime fechaActual)
         {
             _logPath = path;
             _logger = new FileLog(path);
-
             _fechaActual = fechaActual;
         }
 
@@ -46,6 +47,16 @@ namespace GestionCommon
             }
         }
 
+        public Usuario UsuarioActual
+        {
+            get { return _usuario; }
+        }
+
         #endregion
+
+        public void RegistrarUsuario(Usuario usuario)
+        {
+            this._usuario = usuario;
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace Clinica_Frba
     static class Program
     {
         public static IContexto ContextoActual { get; private set; }
-
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
