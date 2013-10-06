@@ -5,7 +5,11 @@ using System.Text;
 
 namespace GestionCommon.Entidades
 {
-    class Agenda
+    public class Agenda
     {
+        public decimal IdProfesional { get; set; }
+        public DateTime FechaDesde { get; set; }
+        public DateTime FechaHasta { get; set; }
+        public bool Habilitado { get; set; }
     }
 }

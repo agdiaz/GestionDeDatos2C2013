@@ -5,7 +5,11 @@ using System.Text;
 
 namespace GestionCommon.Entidades
 {
-    class AfiliadoCambioPlan
+    public class AfiliadoCambioPlan
     {
+        public decimal IdAfiliado { get; set; }
+        public decimal IdPlan { get; set; }
+        public DateTime Fecha { get; set; }
+        public bool Habilitado { get; set; }
     }
 }
