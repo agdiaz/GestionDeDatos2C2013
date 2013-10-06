@@ -28,9 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.gbAcciones.SuspendLayout();
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // gbFiltros
+            // 
+            this.gbFiltros.Controls.Add(this.label1);
+            this.gbFiltros.Controls.Add(this.textBox1);
+            this.gbFiltros.Controls.SetChildIndex(this.textBox1, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Nombre del plan";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(109, 24);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(536, 20);
+            this.textBox1.TabIndex = 3;
             // 
             // FrmPlanListado
             // 
@@ -41,10 +68,14 @@
             this.Text = "Clinica FRBA - Planes - Listado";
             this.gbAcciones.ResumeLayout(false);
             this.gbFiltros.ResumeLayout(false);
+            this.gbFiltros.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -31,7 +31,7 @@
             this.lblRol = new System.Windows.Forms.Label();
             this.tbRol = new System.Windows.Forms.TextBox();
             this.lblFuncionalidad = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cbFuncionalidad = new System.Windows.Forms.ComboBox();
             this.gbAcciones.SuspendLayout();
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
@@ -44,10 +44,10 @@
             // 
             this.gbFiltros.Controls.Add(this.lblFuncionalidad);
             this.gbFiltros.Controls.Add(this.tbRol);
-            this.gbFiltros.Controls.Add(this.textBox1);
+            this.gbFiltros.Controls.Add(this.cbFuncionalidad);
             this.gbFiltros.Controls.Add(this.lblRol);
             this.gbFiltros.Controls.SetChildIndex(this.lblRol, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.textBox1, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.cbFuncionalidad, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbRol, 0);
             this.gbFiltros.Controls.SetChildIndex(this.lblFuncionalidad, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
@@ -78,12 +78,13 @@
             this.lblFuncionalidad.TabIndex = 4;
             this.lblFuncionalidad.Text = "Funcionalidad:";
             // 
-            // textBox1
+            // cbFuncionalidad
             // 
-            this.textBox1.Location = new System.Drawing.Point(107, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(181, 20);
-            this.textBox1.TabIndex = 5;
+            this.cbFuncionalidad.FormattingEnabled = true;
+            this.cbFuncionalidad.Location = new System.Drawing.Point(107, 49);
+            this.cbFuncionalidad.Name = "cbFuncionalidad";
+            this.cbFuncionalidad.Size = new System.Drawing.Size(181, 21);
+            this.cbFuncionalidad.TabIndex = 5;
             // 
             // FrmRolListado
             // 
@@ -104,7 +105,7 @@
         private System.Windows.Forms.TextBox tbRol;
         private System.Windows.Forms.Label lblRol;
         private System.Windows.Forms.Label lblFuncionalidad;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cbFuncionalidad;
 
     }
 }
