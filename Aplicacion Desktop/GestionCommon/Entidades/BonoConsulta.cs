@@ -5,7 +5,11 @@ using System.Text;
 
 namespace GestionCommon.Entidades
 {
-    class BonoConsulta
+    public class BonoConsulta
     {
+        public decimal IdCompra { get; set; }
+        public decimal IdTurno { get; set; }
+        public decimal IdPlan { get; set; }
+        public bool Habilitado { get; set; }
     }
 }

@@ -5,7 +5,12 @@ using System.Text;
 
 namespace GestionCommon.Entidades
 {
-    class Cancelacion
+    public class Cancelacion
     {
+        public decimal IdTipoCancelacion { get; set; }
+        public decimal IdTurno { get; set; }
+        public DateTime Fecha { get; set; }
+        public bool Habilitado { get; set; }
+
     }
 }
