@@ -16,7 +16,7 @@ namespace GestionDAL.Builder
             Afiliado a = new Afiliado();
 
             a.EstadoCivil = GestionCommon.Enums.EstadoCivil.Soltero;
-            a.Dni = Convert.ToDecimal(row["dni"]);
+            a.Documento = Convert.ToDecimal(row["documento"]);
             a.Apellido = Convert.ToString(row["apellido"]);
             a.CantidadHijos = Convert.ToInt32(row["cantidad_hijos"]);
             a.Direccion = Convert.ToString(row["direccion"]);
@@ -30,7 +30,7 @@ namespace GestionDAL.Builder
             a.NroSecundario = Convert.ToDecimal(row["nro_secundario"]);
             a.Sexo = GestionCommon.Enums.Sexo.Indefinido;
             a.Telefono = Convert.ToDecimal(row["telefono"]);
-            a.TipoDni = GestionCommon.Enums.TipoDocumento.DNI;
+            a.TipoDocumento = GestionCommon.Enums.TipoDocumento.DNI;
 
             return a;
         }
