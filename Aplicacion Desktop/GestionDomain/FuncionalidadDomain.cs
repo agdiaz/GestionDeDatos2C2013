@@ -50,7 +50,7 @@ namespace GestionDomain
             return resultado;
         }
 
-        public IResultado<IList<Funcionalidad>> ObtenerFuncionalidades(int idRol)
+        public IResultado<IList<Funcionalidad>> ObtenerFuncionalidades(decimal idRol)
         {
             Resultado<IList<Funcionalidad>> resultado = new Resultado<IList<Funcionalidad>>();
             if (idRol > 0)

@@ -47,7 +47,7 @@ namespace GestionDomain
 
         public IResultado<Usuario> ObtenerUsuarioGenerico()
         {
-            Usuario u = new Usuario() { Habilitado = true, IdUsuario = -1, Nombre = "Sin identificar"};
+            Usuario u = new Usuario() { Habilitado = true, IdUsuario = -1, Username = "Sin identificar"};
 
             return new Resultado<Usuario>() { Correcto = true, Retorno = u};
         }

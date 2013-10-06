@@ -28,7 +28,7 @@ namespace GestionDAL
             throw new NotImplementedException();
         }
 
-        public IList<Funcionalidad> ObtenerFuncionalidades(int idRol)
+        public IList<Funcionalidad> ObtenerFuncionalidades(decimal idRol)
         {
             throw new NotImplementedException();
         }

@@ -111,7 +111,7 @@ namespace Clinica_Frba
 
         private void frmPrincipal_Load_CargarBarraEstado()
         {
-            this.lblUsuario.Text = "Usuario: " + Program.ContextoActual.UsuarioActual.Nombre;
+            this.lblUsuario.Text = "Usuario: " + Program.ContextoActual.UsuarioActual.Username;
             this.lblLogPath.Text = "Almacenando log en: " + Program.ContextoActual.LogPath;
             this.lblFechaSistema.Text = "Fecha: " + FechaHelper.Format(Program.ContextoActual.FechaActual);
             this.lblConnectionString.Text = "Conectado: " + AppConfigReader.Get("connection_string");

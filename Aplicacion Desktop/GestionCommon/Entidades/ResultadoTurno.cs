@@ -5,7 +5,12 @@ using System.Text;
 
 namespace GestionCommon.Entidades
 {
-    class ResultadoTurno
+    public class ResultadoTurno
     {
+        public decimal IdResultadoTurno { get; set; }
+        public decimal IdTurno { get; set; }
+        public string Diagnostico { get; set; }
+        public string Sintoma { get; set; }
+        public DateTime FechaDiagnostico { get; set; }
     }
 }

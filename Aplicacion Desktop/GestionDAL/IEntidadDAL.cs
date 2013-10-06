@@ -7,9 +7,9 @@ namespace GestionDAL
 {
     public interface IEntidadDAL<T>
     {
-        T Obtener(int id);
+        T Obtener(decimal id);
         IList<T> ObtenerTodos();
-        void Borrar(int id);
+        void Borrar(decimal id);
         T Modificar(T entidad);
         T Crear(T entidad);
     }

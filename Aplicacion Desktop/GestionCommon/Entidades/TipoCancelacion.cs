@@ -5,7 +5,10 @@ using System.Text;
 
 namespace GestionCommon.Entidades
 {
-    class TipoCancelacion
+    public class TipoCancelacion
     {
+        public decimal IdTipoCancelacion { get; set; }
+        public string Categoria { get; set; }
+        public string Nombre { get; set; }
     }
 }

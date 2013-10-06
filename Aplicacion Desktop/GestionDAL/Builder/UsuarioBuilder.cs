@@ -12,6 +12,10 @@ namespace GestionDAL.Builder
 
         public Usuario Build(System.Data.DataRow row)
         {
+            Usuario u = new Usuario();
+            u.IdUsuario = (decimal)row["id_usuario"];
+            u.Username = row["username"].ToString();
+            u.Habilitado = Convert.ToBoolean(row["habilitado"]);
             return new Usuario();
         }
 

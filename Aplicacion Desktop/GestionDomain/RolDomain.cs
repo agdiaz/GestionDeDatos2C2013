@@ -20,7 +20,7 @@ namespace GestionDomain
             _domain = new EntidadBaseDomain<Rol>(_dal);
         }
 
-        public IResultado<Rol> Obtener(int id)
+        public IResultado<Rol> Obtener(decimal id)
         {
             Resultado<Rol> resultado = new Resultado<Rol>();
             if (id > 0)

@@ -22,7 +22,7 @@ namespace GestionDomain
             get { return _dal; }
         }
 
-        public T Obtener(int id)
+        public T Obtener(decimal id)
         {
             return _dal.Obtener(id);
         }
@@ -32,7 +32,7 @@ namespace GestionDomain
             return _dal.ObtenerTodos();
         }
 
-        public void Borrar(int id)
+        public void Borrar(decimal id)
         {
             _dal.Borrar(id);
         }

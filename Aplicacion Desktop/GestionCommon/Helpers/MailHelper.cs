@@ -8,7 +8,7 @@ namespace GestionCommon.Helpers
 {
     public static class MailHelper
     {
-        public bool Validar(string cadena)
+        public static bool Validar(string cadena)
         {
             string email = cadena;
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");

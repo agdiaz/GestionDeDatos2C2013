@@ -5,7 +5,11 @@ using System.Text;
 
 namespace GestionCommon.Entidades
 {
-    class Turno
+    public class Turno
     {
+        public decimal IdTurno { get; set; }
+        public decimal IdProfesional { get; set; }
+        public decimal IdAfiliado { get; set; }
+        public bool Habilitado { get; set; }
     }
 }

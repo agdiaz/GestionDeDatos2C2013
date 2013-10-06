@@ -42,7 +42,7 @@ namespace GestionDAL
         /// </summary>
         /// <param name="id">El identificador único del registro</param>
         /// <returns>La entidad que representa ese registro</returns>
-        public T Obtener(int id)
+        public T Obtener(decimal id)
         {
             //Configuro el parametro:
             IList<SqlParameter> parametros = GenerarParametrosObtener();
@@ -78,7 +78,7 @@ namespace GestionDAL
         /// Da de baja lógicamente al registro que corresponda al id.
         /// </summary>
         /// <param name="id">Id del registro a dar de baja logicamente</param>
-        public virtual void Borrar(int id)
+        public virtual void Borrar(decimal id)
         {
             //Configuro el parametro:
             IList<SqlParameter> parametros = GenerarParametrosBorrar();

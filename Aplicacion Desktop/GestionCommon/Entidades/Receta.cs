@@ -5,7 +5,10 @@ using System.Text;
 
 namespace GestionCommon.Entidades
 {
-    class Receta
+    public class Receta
     {
+        public decimal IdReceta { get; set; }
+        public decimal IdResultadoTurno { get; set; }
+        public bool Habilitado { get; set; }
     }
 }
