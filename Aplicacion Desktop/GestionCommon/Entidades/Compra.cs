@@ -5,7 +5,10 @@ using System.Text;
 
 namespace GestionCommon.Entidades
 {
-    class Compra
+    public class Compra
     {
+        public decimal IdCompra { get; set; }
+        public decimal IdAfiliado { get; set; }
+        public bool Habilitado { get; set; }
     }
 }

@@ -7,8 +7,8 @@ namespace GestionCommon.Entidades
 {
     public class Funcionalidad
     {
-        public int IdFuncionalidad { get; set; }
+        public decimal IdFuncionalidad { get; set; }
         public string Nombre { get; set; }
-
+        public bool Habilitado { get; set; }
     }
 }
