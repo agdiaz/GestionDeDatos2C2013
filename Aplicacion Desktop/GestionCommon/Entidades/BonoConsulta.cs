@@ -9,7 +9,7 @@ namespace GestionCommon.Entidades
     {
         public decimal IdCompra { get; set; }
         public decimal IdTurno { get; set; }
-        public decimal IdPlan { get; set; }
+        public decimal IdPlanMedico { get; set; }
         public bool Habilitado { get; set; }
     }
 }

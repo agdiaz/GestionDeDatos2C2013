@@ -11,7 +11,7 @@ namespace GestionCommon.Entidades
         public decimal IdAfiliado { get; set; }
         public decimal NroPrincipal { get; set; }
         public decimal NroSecundario { get; set; }
-        public decimal IdPlan { get; set; }
+        public decimal IdPlanMedico { get; set; }
         public TipoDocumento TipoDni { get; set; }
         public decimal Dni { get; set; }
         public string Nombre { get; set; }
