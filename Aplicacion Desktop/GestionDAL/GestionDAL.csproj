@@ -45,8 +45,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builder\AfiliadoBuilder.cs" />
+    <Compile Include="Builder\AfiliadoCambioBuilder.cs" />
+    <Compile Include="Builder\AgendaBuilder.cs" />
+    <Compile Include="Builder\BonoConsultaBuilder.cs" />
+    <Compile Include="Builder\BonoFarmaciaBuilder.cs" />
+    <Compile Include="Builder\CancelacionBuilder.cs" />
+    <Compile Include="Builder\CompraBuilder.cs" />
+    <Compile Include="Builder\DiaAgendaBuilder.cs" />
     <Compile Include="Builder\Ejemplo\EntidadEjemploBuilder.cs" />
+    <Compile Include="Builder\EspecialidadBuilder.cs" />
     <Compile Include="Builder\FuncionalidadBuilder.cs" />
+    <Compile Include="Builder\MedicamentoBuilder.cs" />
+    <Compile Include="Builder\PlanBuilder.cs" />
+    <Compile Include="Builder\PlanHistoricoAfiliadoBuilder.cs" />
+    <Compile Include="Builder\ProfesionalBuilder.cs" />
+    <Compile Include="Builder\RecetaBuilder.cs" />
+    <Compile Include="Builder\ResultadoTurnoBuilder.cs" />
+    <Compile Include="Builder\TipoCancelacionBuilder.cs" />
+    <Compile Include="Builder\TurnoBuilder.cs" />
     <Compile Include="FuncionalidadDAL.cs" />
     <Compile Include="Builder\IBuilder.cs" />
     <Compile Include="Builder\RolBuilder.cs" />
