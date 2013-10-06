@@ -140,4 +140,12 @@
     <None Include="Usuario\sp_Usuario_select_all.sql" />
     <None Include="Usuario\sp_Usuario_update.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GestionScripts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
 </Project>
