@@ -12,7 +12,11 @@ namespace GestionDAL.Builder
 
         public Funcionalidad Build(System.Data.DataRow row)
         {
-            return new Funcionalidad();
+            Funcionalidad funcionalidad = new Funcionalidad();
+            funcionalidad.IdFuncionalidad = Convert.ToDecimal(row["id_funcionalidad"]);
+            funcionalidad.Nombre = Convert.ToString(row["nombre"]);
+            funcionalidad.Habilitado = Convert.ToBoolean(row["habilitado"]);
+            return funcionalidad;
         }
 
         #endregion

@@ -5,7 +5,10 @@ using System.Text;
 
 namespace GestionCommon.Entidades
 {
-    class Especialidad
+    public class Especialidad
     {
+        public decimal IdEspecialidad { get; set; }
+        public decimal TipoEspecialidad { get; set; }
+        public string Nombre { get; set; }
     }
 }

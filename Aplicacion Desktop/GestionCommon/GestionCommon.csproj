@@ -61,7 +61,7 @@
     <Compile Include="Entidades\Especialidad.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Medicamento.cs" />
-    <Compile Include="Entidades\Plan.cs" />
+    <Compile Include="Entidades\PlanMedico.cs" />
     <Compile Include="Entidades\PlanHistoricoAfiliado.cs" />
     <Compile Include="Entidades\Profesional.cs" />
     <Compile Include="Entidades\Receta.cs" />
