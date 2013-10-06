@@ -43,6 +43,7 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmRoles = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUsuarios = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmCancelaciones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCancelaciones_Afiliado = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCancelaciones_Profesional = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,16 +60,15 @@
             this.tsmProfesionales = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEspecialidades = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmAgenda = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAgenda_Consultar = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAgenda_Registrar = new System.Windows.Forms.ToolStripMenuItem();
             this.stsBarraEstado = new System.Windows.Forms.StatusStrip();
             this.lblFechaSistema = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.tstBarraDebug = new System.Windows.Forms.StatusStrip();
             this.lblConnectionString = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblLogPath = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsmAgenda = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAgenda_Consultar = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAgenda_Registrar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuPrincipal.SuspendLayout();
             this.stsBarraEstado.SuspendLayout();
             this.tstBarraDebug.SuspendLayout();
@@ -171,6 +171,7 @@
             this.tsmPlanes.Name = "tsmPlanes";
             this.tsmPlanes.Size = new System.Drawing.Size(150, 22);
             this.tsmPlanes.Text = "Planes";
+            this.tsmPlanes.Click += new System.EventHandler(this.tsmPlanes_Click);
             // 
             // toolStripSeparator6
             // 
@@ -191,6 +192,11 @@
             this.tsmUsuarios.Text = "Usuarios";
             this.tsmUsuarios.Click += new System.EventHandler(this.tsmUsuarios_Click);
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(147, 6);
+            // 
             // tsmCancelaciones
             // 
             this.tsmCancelaciones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -205,12 +211,14 @@
             this.tsmCancelaciones_Afiliado.Name = "tsmCancelaciones_Afiliado";
             this.tsmCancelaciones_Afiliado.Size = new System.Drawing.Size(133, 22);
             this.tsmCancelaciones_Afiliado.Text = "Afiliado";
+            this.tsmCancelaciones_Afiliado.Click += new System.EventHandler(this.tsmCancelacionAfiliado_Click);
             // 
             // tsmCancelaciones_Profesional
             // 
             this.tsmCancelaciones_Profesional.Name = "tsmCancelaciones_Profesional";
             this.tsmCancelaciones_Profesional.Size = new System.Drawing.Size(133, 22);
             this.tsmCancelaciones_Profesional.Text = "Profesional";
+            this.tsmCancelaciones_Afiliado.Click += new System.EventHandler(this.tsmCancelacionAfiliado_Click);
             // 
             // tsmGestionDeAfiliados
             // 
@@ -314,6 +322,33 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
+            // tsmAgenda
+            // 
+            this.tsmAgenda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAgenda_Consultar,
+            this.tsmAgenda_Registrar});
+            this.tsmAgenda.Image = ((System.Drawing.Image)(resources.GetObject("tsmAgenda.Image")));
+            this.tsmAgenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tsmAgenda.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmAgenda.Name = "tsmAgenda";
+            this.tsmAgenda.Size = new System.Drawing.Size(188, 132);
+            this.tsmAgenda.Text = "Agenda";
+            // 
+            // tsmAgenda_Consultar
+            // 
+            this.tsmAgenda_Consultar.Name = "tsmAgenda_Consultar";
+            this.tsmAgenda_Consultar.Size = new System.Drawing.Size(152, 22);
+            this.tsmAgenda_Consultar.Text = "Consultar";
+            this.tsmAgenda_Consultar.Click += new System.EventHandler(tsmAgenda_Consultar_Click);
+            // 
+            // tsmAgenda_Registrar
+            // 
+            this.tsmAgenda_Registrar.Name = "tsmAgenda_Registrar";
+            this.tsmAgenda_Registrar.Size = new System.Drawing.Size(152, 22);
+            this.tsmAgenda_Registrar.Text = "Registrar";
+            this.tsmAgenda_Registrar.Click += new System.EventHandler(this.tsmAgenda_Registrar_Click);
+
+            // 
             // stsBarraEstado
             // 
             this.stsBarraEstado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -360,35 +395,6 @@
             this.lblLogPath.Name = "lblLogPath";
             this.lblLogPath.Size = new System.Drawing.Size(41, 17);
             this.lblLogPath.Text = " - Log:";
-            // 
-            // tsmAgenda
-            // 
-            this.tsmAgenda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmAgenda_Consultar,
-            this.tsmAgenda_Registrar});
-            this.tsmAgenda.Image = ((System.Drawing.Image)(resources.GetObject("tsmAgenda.Image")));
-            this.tsmAgenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tsmAgenda.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmAgenda.Name = "tsmAgenda";
-            this.tsmAgenda.Size = new System.Drawing.Size(188, 132);
-            this.tsmAgenda.Text = "Agenda";
-            // 
-            // tsmAgenda_Consultar
-            // 
-            this.tsmAgenda_Consultar.Name = "tsmAgenda_Consultar";
-            this.tsmAgenda_Consultar.Size = new System.Drawing.Size(152, 22);
-            this.tsmAgenda_Consultar.Text = "Consultar";
-            // 
-            // tsmAgenda_Registrar
-            // 
-            this.tsmAgenda_Registrar.Name = "tsmAgenda_Registrar";
-            this.tsmAgenda_Registrar.Size = new System.Drawing.Size(152, 22);
-            this.tsmAgenda_Registrar.Text = "Registrar";
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(149, 6);
             // 
             // FrmPrincipal
             // 
