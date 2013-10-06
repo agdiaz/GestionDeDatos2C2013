@@ -47,6 +47,11 @@ namespace GestionGUIHelper.Helpers
             return MessageBox.Show(string.Format("El valor ingresado en el campo {0} debe ser menor a la fecha {1}", controlName, FechaHelper.Format(until)), "Error al validar");
         }
 
+        public static DialogResult MensajeValidacionDateTimeFrom(string controlName, DateTime from)
+        {
+            return MessageBox.Show(string.Format("El valor ingresado en el campo {0} debe ser mayor a la fecha {1}", controlName, FechaHelper.Format(from)), "Error al validar");
+        }
+
         public static DialogResult MensajeValidacionDateTime(string controlName, DateTime from, DateTime until)
         {
             var sUntil = FechaHelper.Format(until);
