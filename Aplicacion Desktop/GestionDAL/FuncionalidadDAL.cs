@@ -5,8 +5,10 @@ using System.Text;
 using GestionCommon.Entidades;
 using GestionCommon.Helpers;
 using GestionConector;
+using GestionDAL.Builder;
+using System.Data.SqlClient;
 
-namespace GestionDAL.Builder
+namespace GestionDAL
 {
     public class FuncionalidadDAL : EntidadBaseDAL<Funcionalidad>
     {
@@ -16,12 +18,12 @@ namespace GestionDAL.Builder
 
         }
 
-        protected override IList<System.Data.SqlClient.SqlParameter> GenerarParametrosModificar(Funcionalidad entidad)
+        protected override IList<SqlParameter> GenerarParametrosModificar(Funcionalidad entidad)
         {
             throw new NotImplementedException();
         }
 
-        protected override IList<System.Data.SqlClient.SqlParameter> GenerarParametrosCrear(Funcionalidad entidad)
+        protected override IList<SqlParameter> GenerarParametrosCrear(Funcionalidad entidad)
         {
             throw new NotImplementedException();
         }

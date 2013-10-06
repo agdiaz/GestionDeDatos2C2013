@@ -111,5 +111,18 @@ namespace GestionDomain
 
             return resultado;
         }
+
+        public IResultado<bool> Borrar(Rol rolBorrado)
+        {
+            try
+            {
+                _domain.Borrar(rolBorrado.IdRol);
+                return new Resultado<bool>(true);
+            }
+            catch (Exception ex)
+            {
+                return new Resultado<bool>(ex.Message);
+            }
+        }
     }
 }

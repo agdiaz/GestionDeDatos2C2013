@@ -26,26 +26,24 @@ namespace GestionGUIHelper.Formularios
         public bool ModoSeleccion { get; set; }
         public object EntidadSeleccionada { get { return Seleccionar(); }}
 
-        
-        protected virtual object Seleccionar()
+        #region [FormularioBaseListado_Load]
+        private void FormularioBaseListado_Load(object sender, EventArgs e)
         {
-            object seleccionado = null;
-            
-            if (dgvBusqueda.SelectedRows.Count > 0)
-            {
-                seleccionado = dgvBusqueda.SelectedRows[0].DataBoundItem;
-            }
-
-            return seleccionado;
+            this.Filtrar();
         }
+        #endregion
 
         #region [btnLimpiar]
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            this.AccionLimpiar();
+            DialogResult result = MensajePorPantalla.MensajeInterrogativo(this, "¿Está seguro que desea limpiar los campos?", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                this.AccionLimpiar();
+            }
         }
 
-        protected void AccionLimpiar()
+        protected virtual void AccionLimpiar()
         {
             throw new NotImplementedException("Implementar acción del botón Limpiar");
         }
@@ -61,11 +59,19 @@ namespace GestionGUIHelper.Formularios
             if (base.Validar())
             {
                 this.AccionFiltrar();
+                //this.AgregarBotonSeleccionar();
             }
         }
+
+        
         protected virtual void AccionFiltrar()
         {
-            throw new NotImplementedException("Implementar acción del botón Limpiar");
+        }
+
+        private void AgregarBotonSeleccionar()
+        {
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            this.dgvBusqueda.Columns.Add(buttonColumn);
         }
         #endregion
 
@@ -83,17 +89,13 @@ namespace GestionGUIHelper.Formularios
         #region [btnModificacion]
         private void btnModificacion_Click(object sender, EventArgs e)
         {
-            this.Modificar();
-        }
-        protected void Modificar()
-        {
             if (this.EntidadSeleccionada == null)
             {
                 MensajePorPantalla.MensajeError(this, "Debe seleccionar un registro primero");
             }
             else
             {
-                DialogResult dr = MensajePorPantalla.MensajeInformativo(this, "¿Está seguro que desea borrar el registro?", MessageBoxButtons.YesNo);
+                DialogResult dr = MensajePorPantalla.MensajeInformativo(this, "¿Está seguro que desea modificar el registro?", MessageBoxButtons.YesNo);
 
                 if (dr == DialogResult.Yes)
                 {
@@ -101,7 +103,6 @@ namespace GestionGUIHelper.Formularios
                 }
             }
         }
-
         protected virtual void AccionModificar()
         {
             throw new NotImplementedException("Implementar acción del botón Modificar");
@@ -110,10 +111,6 @@ namespace GestionGUIHelper.Formularios
 
         #region [btnBaja]
         private void btnBaja_Click(object sender, EventArgs e)
-        {
-            this.Borrar();
-        }
-        protected void Borrar()
         {
             if (this.EntidadSeleccionada == null)
             {
@@ -135,8 +132,20 @@ namespace GestionGUIHelper.Formularios
         }
         #endregion
 
+        protected virtual object Seleccionar()
+        {
+            object seleccionado = null;
+
+            if (dgvBusqueda.SelectedRows.Count > 0)
+            {
+                seleccionado = dgvBusqueda.SelectedRows[0].DataBoundItem;
+            }
+
+            return seleccionado;
+        }
         protected virtual void Salir()
         {
+            Seleccionar();
             this.Close();
         }
 
@@ -147,7 +156,7 @@ namespace GestionGUIHelper.Formularios
                 this.Salir();
             }
         }
-
         
+
     }
 }

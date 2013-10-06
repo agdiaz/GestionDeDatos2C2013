@@ -36,6 +36,10 @@
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnBaja
+            // 
+            this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
+            // 
             // gbFiltros
             // 
             this.gbFiltros.Controls.Add(this.lblFuncionalidad);

@@ -45,12 +45,14 @@
             // 
             // gbAcciones
             // 
+            this.gbAcciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.gbAcciones.Controls.Add(this.btnBaja);
             this.gbAcciones.Controls.Add(this.btnModificacion);
             this.gbAcciones.Controls.Add(this.btnAlta);
-            this.gbAcciones.Location = new System.Drawing.Point(17, 385);
+            this.gbAcciones.Location = new System.Drawing.Point(11, 385);
             this.gbAcciones.Name = "gbAcciones";
-            this.gbAcciones.Size = new System.Drawing.Size(514, 47);
+            this.gbAcciones.Size = new System.Drawing.Size(652, 47);
             this.gbAcciones.TabIndex = 7;
             this.gbAcciones.TabStop = false;
             this.gbAcciones.Text = "Acciones";
@@ -87,6 +89,9 @@
             // 
             // gbBusqueda
             // 
+            this.gbBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.gbBusqueda.Controls.Add(this.dgvBusqueda);
             this.gbBusqueda.Location = new System.Drawing.Point(11, 125);
             this.gbBusqueda.Name = "gbBusqueda";
@@ -101,6 +106,9 @@
             this.dgvBusqueda.AllowUserToDeleteRows = false;
             this.dgvBusqueda.AllowUserToOrderColumns = true;
             this.dgvBusqueda.AllowUserToResizeRows = false;
+            this.dgvBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBusqueda.Location = new System.Drawing.Point(6, 19);
             this.dgvBusqueda.MultiSelect = false;
@@ -111,6 +119,8 @@
             // 
             // gbFiltros
             // 
+            this.gbFiltros.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.gbFiltros.Controls.Add(this.btnLimpiar);
             this.gbFiltros.Controls.Add(this.btnFiltrar);
             this.gbFiltros.Location = new System.Drawing.Point(12, 12);
@@ -122,6 +132,7 @@
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLimpiar.Location = new System.Drawing.Point(6, 77);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
@@ -132,6 +143,7 @@
             // 
             // btnFiltrar
             // 
+            this.btnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFiltrar.Location = new System.Drawing.Point(570, 77);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
@@ -148,8 +160,12 @@
             this.Controls.Add(this.gbAcciones);
             this.Controls.Add(this.gbBusqueda);
             this.Controls.Add(this.gbFiltros);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormularioBaseListado";
             this.Text = "FormularioBaseListado";
+            this.Load += new System.EventHandler(this.FormularioBaseListado_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormularioBaseListado_KeyPress);
             this.gbAcciones.ResumeLayout(false);
             this.gbBusqueda.ResumeLayout(false);

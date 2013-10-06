@@ -57,6 +57,9 @@
     <Compile Include="Formularios\FormularioBaseModificacion.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\FormularioBaseModificacion.Designer.cs">
+      <DependentUpon>FormularioBaseModificacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FormularioBaseListado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FormularioBaseListado.resx">
       <DependentUpon>FormularioBaseListado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FormularioBaseModificacion.resx">
+      <DependentUpon>FormularioBaseModificacion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

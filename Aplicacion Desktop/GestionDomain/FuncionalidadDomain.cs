@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GestionCommon.Helpers;
-using GestionDAL.Builder;
+using GestionDAL;
 using GestionCommon.Entidades;
 using GestionDomain.Resultados;
 
@@ -67,11 +67,7 @@ namespace GestionDomain
             }
             else
             {
-                IList<Funcionalidad> funcionalidades = new List<Funcionalidad>();
-                funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -1, Nombre = "tsmArchivo" });
-                funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -2, Nombre = "tsmSesion" });
-                funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -3, Nombre = "tsmSesion_IniciarSesion" });
-                funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -4, Nombre = "tsmSalir" });
+                IList<Funcionalidad> funcionalidades = FuncionalidadesDEBUG();
 
                 resultado.Retorno = funcionalidades;
             }
@@ -80,12 +76,25 @@ namespace GestionDomain
 
         }
 
+        private static IList<Funcionalidad> FuncionalidadesDEBUG()
+        {
+            IList<Funcionalidad> funcionalidades = new List<Funcionalidad>();
+            funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -1, Nombre = "tsmArchivo" });
+            funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -2, Nombre = "tsmSesion" });
+            funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -3, Nombre = "tsmSesion_IniciarSesion" });
+            funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -4, Nombre = "tsmSalir" });
+            return funcionalidades;
+        }
+
         public IResultado<IList<Funcionalidad>> ObtenerTodos()
         {
             Resultado<IList<Funcionalidad>> resultado = new Resultado<IList<Funcionalidad>>();
             try
             {
-                resultado.Retorno = _domain.ObtenerTodos();
+                //Solo DEBUG:
+                //resultado.Retorno = _domain.ObtenerTodos();
+                resultado.Retorno = FuncionalidadesDEBUG();
+
             }
             catch (Exception ex)
             {

@@ -37,7 +37,6 @@ namespace Clinica_Frba.Roles
         private void FrmRolModificar_Load(object sender, EventArgs e)
         {
             this.AgregarValidacion(new ValidadorString(tbNombre, 1, 50));
-            CargarListaFuncionalidades();
         }
 
         private void CargarListaFuncionalidades()
@@ -57,6 +56,37 @@ namespace Clinica_Frba.Roles
             {
                 MensajePorPantalla.MensajeError(this, ex.Message);
                 this.Close();
+            }
+        }
+        #endregion
+        
+        #region [CargaEntidad]
+        protected override void CargarEntidad()
+        {
+            tbNombre.Text = _rol.Nombre;
+            chkHabilitado.Checked = _rol.Habilitado;
+            
+            CargarListaFuncionalidades();
+            CargarFuncionalidadesDelRol();
+        }
+
+        private void CargarFuncionalidadesDelRol()
+        {
+            var obtenerFuncionalidades = _funcionalidadDomain.ObtenerFuncionalidades(_rol.IdRol);
+            if (!obtenerFuncionalidades.Correcto)
+                throw new ResultadoIncorrectoException<IList<Funcionalidad>>(obtenerFuncionalidades);
+
+            foreach (Funcionalidad func in obtenerFuncionalidades.Retorno)
+            {
+                for (int i = 0; i < clsFuncionalidades.Items.Count; i++)
+                {
+                    Funcionalidad item = (Funcionalidad)clsFuncionalidades.Items[i];
+                    if (func.Nombre.Equals(item.Nombre))
+                    {
+                        clsFuncionalidades.SetItemChecked(i, true);
+                        break;
+                    }
+                }
             }
         }
         #endregion
@@ -119,7 +149,7 @@ namespace Clinica_Frba.Roles
         #region [btnLimpiar]
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            this.LimpiarControles();
+            base.Limpiar();
         }
 
         private void LimpiarControles()
@@ -133,8 +163,6 @@ namespace Clinica_Frba.Roles
             }
         }
         #endregion
-
-
 
     }
 }

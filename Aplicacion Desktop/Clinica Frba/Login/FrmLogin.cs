@@ -58,7 +58,7 @@ namespace Clinica_Frba.Login
         #region [btnAceptar]
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            base.Aceptar();
+            this.AccionAceptar();
         }
         protected override void AccionAceptar()
         {
@@ -109,7 +109,12 @@ namespace Clinica_Frba.Login
         #region [btnCancelar]
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            base.Cancelar();
+            this.Cancelar();
+        }
+
+        protected override void Cancelar()
+        {
+            this.Close();
         }
         #endregion
 
