@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionDomain", "GestionDom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionGUIHelper", "GestionGUIHelper\GestionGUIHelper.csproj", "{3FC42AB4-3E73-4432-A8E5-1E57700BA2FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionScripts", "GestionScripts\GestionScripts.csproj", "{164329A7-5A20-483C-B0D2-AC1544A62447}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{3FC42AB4-3E73-4432-A8E5-1E57700BA2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FC42AB4-3E73-4432-A8E5-1E57700BA2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FC42AB4-3E73-4432-A8E5-1E57700BA2FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{164329A7-5A20-483C-B0D2-AC1544A62447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{164329A7-5A20-483C-B0D2-AC1544A62447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{164329A7-5A20-483C-B0D2-AC1544A62447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{164329A7-5A20-483C-B0D2-AC1544A62447}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
