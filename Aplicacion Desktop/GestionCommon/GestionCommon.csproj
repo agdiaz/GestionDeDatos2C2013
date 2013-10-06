@@ -53,12 +53,16 @@
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Enums\DiaSemana.cs" />
+    <Compile Include="Enums\EstadoCivil.cs" />
     <Compile Include="Enums\IdentificacionUsuario.cs" />
+    <Compile Include="Enums\TipoDocumento.cs" />
     <Compile Include="Helpers\AppConfigReader.cs" />
     <Compile Include="Entidades\EntidadBase.cs" />
     <Compile Include="Helpers\FechaHelper.cs" />
     <Compile Include="Helpers\FileLog.cs" />
     <Compile Include="Helpers\ILog.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="IContexto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
