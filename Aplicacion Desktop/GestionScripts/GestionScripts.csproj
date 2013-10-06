@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{164329A7-5A20-483C-B0D2-AC1544A62447}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GestionScripts</RootNamespace>
+    <AssemblyName>GestionScripts</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <None Include="Afiliado\sp_Afiliado_update.sql" />
+    <None Include="Afiliado\sp_Afiliado_insert.sql" />
+    <None Include="Afiliado\sp_Afiliado_select_all.sql" />
+    <None Include="Afiliado\sp_Afiliado_delete.sql" />
+    <None Include="Afiliado\sp_Afiliado_select.sql" />
+    <None Include="Afiliado_Cambio_Plan\sp_Afiliado_Cambio_Plan_delete.sql" />
+    <None Include="Afiliado_Cambio_Plan\sp_Afiliado_Cambio_Plan_insert.sql" />
+    <None Include="Afiliado_Cambio_Plan\sp_Afiliado_Cambio_Plan_select.sql" />
+    <None Include="Afiliado_Cambio_Plan\sp_Afiliado_Cambio_Plan_select_all.sql" />
+    <None Include="Afiliado_Cambio_Plan\sp_Afiliado_Cambio_Plan_update.sql" />
+    <None Include="Agenda\sp_Agenda_delete.sql" />
+    <None Include="Agenda\sp_Agenda_insert.sql" />
+    <None Include="Agenda\sp_Agenda_select.sql" />
+    <None Include="Agenda\sp_Agenda_select_all.sql" />
+    <None Include="Agenda\sp_Agenda_update.sql" />
+    <None Include="Bono_Consulta\sp_Bono_Consulta_delete.sql" />
+    <None Include="Bono_Consulta\sp_Bono_Consulta_insert.sql" />
+    <None Include="Bono_Consulta\sp_Bono_Consulta_select.sql" />
+    <None Include="Bono_Consulta\sp_Bono_Consulta_select_all.sql" />
+    <None Include="Bono_Consulta\sp_Bono_Consulta_update.sql" />
+    <None Include="Bono_Farmacia\sp_Bono_Farmacia_delete.sql" />
+    <None Include="Bono_Farmacia\sp_Bono_Farmacia_insert.sql" />
+    <None Include="Bono_Farmacia\sp_Bono_Farmacia_select.sql" />
+    <None Include="Bono_Farmacia\sp_Bono_Farmacia_select_all.sql" />
+    <None Include="Bono_Farmacia\sp_Bono_Farmacia_update.sql" />
+    <None Include="Cancelacion\sp_Cancelacion_delete.sql" />
+    <None Include="Cancelacion\sp_Cancelacion_insert.sql" />
+    <None Include="Cancelacion\sp_Cancelacion_select.sql" />
+    <None Include="Cancelacion\sp_Cancelacion_select_all.sql" />
+    <None Include="Cancelacion\sp_Cancelacion_update.sql" />
+    <None Include="Compra\sp_Compra_delete.sql" />
+    <None Include="Compra\sp_Compra_insert.sql" />
+    <None Include="Compra\sp_Compra_select.sql" />
+    <None Include="Compra\sp_Compra_select_all.sql" />
+    <None Include="Compra\sp_Compra_update.sql" />
+    <None Include="Dia_Agenda\sp_Dia_Agenda_delete.sql" />
+    <None Include="Dia_Agenda\sp_Dia_Agenda_insert.sql" />
+    <None Include="Dia_Agenda\sp_Dia_Agenda_select.sql" />
+    <None Include="Dia_Agenda\sp_Dia_Agenda_select_all.sql" />
+    <None Include="Dia_Agenda\sp_Dia_Agenda_update.sql" />
+    <None Include="Especialidad\sp_Especialidad_delete.sql" />
+    <None Include="Especialidad\sp_Especialidad_insert.sql" />
+    <None Include="Especialidad\sp_Especialidad_select.sql" />
+    <None Include="Especialidad\sp_Especialidad_select_all.sql" />
+    <None Include="Especialidad\sp_Especialidad_update.sql" />
+    <None Include="Funcionalidad\sp_Funcionalidad_delete.sql" />
+    <None Include="Funcionalidad\sp_Funcionalidad_insert.sql" />
+    <None Include="Funcionalidad\sp_Funcionalidad_select.sql" />
+    <None Include="Funcionalidad\sp_Funcionalidad_select_all.sql" />
+    <None Include="Funcionalidad\sp_Funcionalidad_update.sql" />
+    <None Include="Medicamento\sp_Medicamento_delete.sql" />
+    <None Include="Medicamento\sp_Medicamento_insert.sql" />
+    <None Include="Medicamento\sp_Medicamento_select.sql" />
+    <None Include="Medicamento\sp_Medicamento_select_all.sql" />
+    <None Include="Medicamento\sp_Medicamento_update.sql" />
+    <None Include="Plan_Historico_Afiliado\sp_Plan_Historico_Afiliado_delete.sql" />
+    <None Include="Plan_Historico_Afiliado\sp_Plan_Historico_Afiliado_insert.sql" />
+    <None Include="Plan_Historico_Afiliado\sp_Plan_Historico_Afiliado_select.sql" />
+    <None Include="Plan_Historico_Afiliado\sp_Plan_Historico_Afiliado_select_all.sql" />
+    <None Include="Plan_Historico_Afiliado\sp_Plan_Historico_Afiliado_update.sql" />
+    <None Include="Plan_Medico\sp_Plan_Medico_delete.sql" />
+    <None Include="Plan_Medico\sp_Plan_Medico_insert.sql" />
+    <None Include="Plan_Medico\sp_Plan_Medico_select.sql" />
+    <None Include="Plan_Medico\sp_Plan_Medico_select_all.sql" />
+    <None Include="Plan_Medico\sp_Plan_Medico_update.sql" />
+    <None Include="Profesional\sp_Profesional_delete.sql" />
+    <None Include="Profesional\sp_Profesional_insert.sql" />
+    <None Include="Profesional\sp_Profesional_select.sql" />
+    <None Include="Profesional\sp_Profesional_select_all.sql" />
+    <None Include="Profesional\sp_Profesional_update.sql" />
+    <None Include="Receta\sp_Resultado_Turno_delete.sql" />
+    <None Include="Receta\sp_Resultado_Turno_insert.sql" />
+    <None Include="Receta\sp_Resultado_Turno_select.sql" />
+    <None Include="Receta\sp_Resultado_Turno_select_all.sql" />
+    <None Include="Receta\sp_Resultado_Turno_update.sql" />
+    <None Include="Resultado_Turno\sp_Resultado_Turno_delete.sql" />
+    <None Include="Resultado_Turno\sp_Resultado_Turno_insert.sql" />
+    <None Include="Resultado_Turno\sp_Resultado_Turno_select.sql" />
+    <None Include="Resultado_Turno\sp_Resultado_Turno_select_all.sql" />
+    <None Include="Resultado_Turno\sp_Resultado_Turno_update.sql" />
+    <None Include="Rol\sp_Rol_delete.sql" />
+    <None Include="Rol\sp_Rol_insert.sql" />
+    <None Include="Rol\sp_Rol_select.sql" />
+    <None Include="Rol\sp_Rol_select_all.sql" />
+    <None Include="Rol\sp_Rol_update.sql" />
+    <None Include="Tipo_Cancelacion\sp_Tipo_Cancelacion_delete.sql" />
+    <None Include="Tipo_Cancelacion\sp_Tipo_Cancelacion_insert.sql" />
+    <None Include="Tipo_Cancelacion\sp_Tipo_Cancelacion_select.sql" />
+    <None Include="Tipo_Cancelacion\sp_Tipo_Cancelacion_select_all.sql" />
+    <None Include="Tipo_Cancelacion\sp_Tipo_Cancelacion_update.sql" />
+    <None Include="Turno\sp_Turno_delete.sql" />
+    <None Include="Turno\sp_Turno_insert.sql" />
+    <None Include="Turno\sp_Turno_select.sql" />
+    <None Include="Turno\sp_Turno_select_all.sql" />
+    <None Include="Turno\sp_Turno_update.sql" />
+    <None Include="Usuario\sp_Usuario_delete.sql" />
+    <None Include="Usuario\sp_Usuario_insert.sql" />
+    <None Include="Usuario\sp_Usuario_select.sql" />
+    <None Include="Usuario\sp_Usuario_select_all.sql" />
+    <None Include="Usuario\sp_Usuario_update.sql" />
+  </ItemGroup>
+</Project>
