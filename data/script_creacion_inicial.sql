@@ -178,3 +178,77 @@ insert into TOP_4.Profesional
 )
 
 DROP TABLE #TmpProfesional
+
+GO
+------------------------------------Tipo_especialidad---------------------------------------------
+
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Tipo_especialidad]    Script Date: 10/06/2013 18:03:27 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [TOP_4].[Tipo_especialidad](
+	[id_tipo_especialidad] [numeric](18, 0) NOT NULL,
+	[nombre] [varchar](255) NOT NULL,
+ CONSTRAINT [PK_Tipo_especialidad] PRIMARY KEY CLUSTERED 
+(
+	[id_tipo_especialidad] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+INSERT INTO TOP_4.Tipo_especialidad (id_tipo_especialidad, nombre)
+(
+	SELECT DISTINCT  m.Tipo_Especialidad_Codigo, m.Tipo_Especialidad_Descripcion 
+		FROM gd_esquema.Maestra m
+		WHERE Tipo_Especialidad_Codigo is not null	
+)
+---------------------------------------Especialidad--------------------------------------------------
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Especialidad]    Script Date: 10/06/2013 18:09:58 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [TOP_4].[Especialidad](
+	[id_especialidad] [numeric](18, 0) NOT NULL,
+	[id_tipo_especialidad] [numeric](18, 0) NOT NULL,
+	[nombre] [nvarchar](255) NOT NULL,
+ CONSTRAINT [PK_Especialidad] PRIMARY KEY CLUSTERED 
+(
+	[id_especialidad] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Especialidad]  WITH CHECK ADD  CONSTRAINT [FK_Especialidad_Tipo_especialidad] FOREIGN KEY([id_tipo_especialidad])
+REFERENCES [TOP_4].[Tipo_especialidad] ([id_tipo_especialidad])
+GO
+
+ALTER TABLE [TOP_4].[Especialidad] CHECK CONSTRAINT [FK_Especialidad_Tipo_especialidad]
+GO
+
+INSERT INTO TOP_4.Especialidad
+(id_especialidad, nombre, id_tipo_especialidad)
+(
+	SELECT DISTINCT  m.Especialidad_Codigo, m.Especialidad_Descripcion, m.Tipo_Especialidad_Codigo
+		FROM gd_esquema.Maestra m
+		WHERE m.Especialidad_Codigo IS NOT NULL
+)
