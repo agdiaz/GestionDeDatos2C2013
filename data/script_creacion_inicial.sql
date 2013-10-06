@@ -252,3 +252,47 @@ INSERT INTO TOP_4.Especialidad
 		FROM gd_esquema.Maestra m
 		WHERE m.Especialidad_Codigo IS NOT NULL
 )
+
+GO
+------------------------------------Profesional_especialidad-----------------------------------------------
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Profesional_Especialidad]    Script Date: 10/06/2013 18:18:13 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [TOP_4].[Profesional_Especialidad](
+	[id_especialidad] [numeric](18, 0) NOT NULL,
+	[id_profesional] [numeric](18, 0) NOT NULL
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Profesional_Especialidad]  WITH CHECK ADD  CONSTRAINT [FK_Profesional_Especialidad_Especialidad] FOREIGN KEY([id_especialidad])
+REFERENCES [TOP_4].[Especialidad] ([id_especialidad])
+GO
+
+ALTER TABLE [TOP_4].[Profesional_Especialidad] CHECK CONSTRAINT [FK_Profesional_Especialidad_Especialidad]
+GO
+
+ALTER TABLE [TOP_4].[Profesional_Especialidad]  WITH CHECK ADD  CONSTRAINT [FK_Profesional_Especialidad_Profesional] FOREIGN KEY([id_profesional])
+REFERENCES [TOP_4].[Profesional] ([id_profesional])
+GO
+
+ALTER TABLE [TOP_4].[Profesional_Especialidad] CHECK CONSTRAINT [FK_Profesional_Especialidad_Profesional]
+GO
+
+INSERT INTO TOP_4.Profesional_especialidad
+(id_profesional, id_especialidad)
+(
+	SELECT DISTINCT p.id_profesional, m.Especialidad_Codigo
+	FROM gd_esquema.Maestra m
+	INNER JOIN TOP_4.Profesional p
+		ON p.documento = m.Medico_Dni
+)
+
+GO
