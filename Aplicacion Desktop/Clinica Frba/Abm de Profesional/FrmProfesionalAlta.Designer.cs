@@ -49,13 +49,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.gbDatosDeContacto = new System.Windows.Forms.GroupBox();
             this.gbDatosPersonales = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.cbSexo = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.gbDatosMedicos = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.clbEspecialidades = new System.Windows.Forms.CheckedListBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.tbMatriculaProfesional = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.clbEspecialidades = new System.Windows.Forms.CheckedListBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.gbDatosDeContacto.SuspendLayout();
             this.gbDatosPersonales.SuspendLayout();
             this.gbDatosMedicos.SuspendLayout();
@@ -69,6 +69,7 @@
             this.btnCancelar.TabIndex = 29;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label1
             // 
@@ -94,6 +95,7 @@
             this.btnLimpiar.TabIndex = 28;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // tbTelefono
             // 
@@ -117,6 +119,7 @@
             this.btnGuardar.TabIndex = 27;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // dpFechaNacimiento
             // 
@@ -127,7 +130,12 @@
             // 
             // cbTipoDocumento
             // 
+            this.cbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDocumento.FormattingEnabled = true;
+            this.cbTipoDocumento.Items.AddRange(new object[] {
+            "DNI",
+            "LE",
+            "CUIT"});
             this.cbTipoDocumento.Location = new System.Drawing.Point(78, 91);
             this.cbTipoDocumento.Name = "cbTipoDocumento";
             this.cbTipoDocumento.Size = new System.Drawing.Size(121, 21);
@@ -254,6 +262,18 @@
             this.gbDatosPersonales.TabStop = false;
             this.gbDatosPersonales.Text = "Datos personales";
             // 
+            // cbSexo
+            // 
+            this.cbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSexo.FormattingEnabled = true;
+            this.cbSexo.Items.AddRange(new object[] {
+            "Hombre",
+            "Mujer"});
+            this.cbSexo.Location = new System.Drawing.Point(383, 170);
+            this.cbSexo.Name = "cbSexo";
+            this.cbSexo.Size = new System.Drawing.Size(121, 21);
+            this.cbSexo.TabIndex = 14;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -262,14 +282,6 @@
             this.label9.Size = new System.Drawing.Size(31, 13);
             this.label9.TabIndex = 13;
             this.label9.Text = "Sexo";
-            // 
-            // cbSexo
-            // 
-            this.cbSexo.FormattingEnabled = true;
-            this.cbSexo.Location = new System.Drawing.Point(383, 170);
-            this.cbSexo.Name = "cbSexo";
-            this.cbSexo.Size = new System.Drawing.Size(121, 21);
-            this.cbSexo.TabIndex = 14;
             // 
             // gbDatosMedicos
             // 
@@ -284,23 +296,12 @@
             this.gbDatosMedicos.TabStop = false;
             this.gbDatosMedicos.Text = "Datos profesionales";
             // 
-            // label10
+            // tbMatriculaProfesional
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 26);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(104, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Matricula profesional";
-            // 
-            // clbEspecialidades
-            // 
-            this.clbEspecialidades.FormattingEnabled = true;
-            this.clbEspecialidades.Location = new System.Drawing.Point(305, 26);
-            this.clbEspecialidades.MultiColumn = true;
-            this.clbEspecialidades.Name = "clbEspecialidades";
-            this.clbEspecialidades.Size = new System.Drawing.Size(380, 124);
-            this.clbEspecialidades.TabIndex = 1;
+            this.tbMatriculaProfesional.Location = new System.Drawing.Point(10, 42);
+            this.tbMatriculaProfesional.Name = "tbMatriculaProfesional";
+            this.tbMatriculaProfesional.Size = new System.Drawing.Size(189, 20);
+            this.tbMatriculaProfesional.TabIndex = 3;
             // 
             // label11
             // 
@@ -311,12 +312,23 @@
             this.label11.TabIndex = 2;
             this.label11.Text = "Especialidades";
             // 
-            // tbMatriculaProfesional
+            // clbEspecialidades
             // 
-            this.tbMatriculaProfesional.Location = new System.Drawing.Point(10, 42);
-            this.tbMatriculaProfesional.Name = "tbMatriculaProfesional";
-            this.tbMatriculaProfesional.Size = new System.Drawing.Size(189, 20);
-            this.tbMatriculaProfesional.TabIndex = 3;
+            this.clbEspecialidades.FormattingEnabled = true;
+            this.clbEspecialidades.Location = new System.Drawing.Point(305, 26);
+            this.clbEspecialidades.MultiColumn = true;
+            this.clbEspecialidades.Name = "clbEspecialidades";
+            this.clbEspecialidades.Size = new System.Drawing.Size(380, 124);
+            this.clbEspecialidades.TabIndex = 1;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 26);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(104, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Matricula profesional";
             // 
             // FrmProfesionalAlta
             // 
@@ -330,6 +342,7 @@
             this.Controls.Add(this.gbDatosPersonales);
             this.Name = "FrmProfesionalAlta";
             this.Text = "Clinica FRBA - Profesionales - Alta";
+            this.Load += new System.EventHandler(this.FrmProfesionalAlta_Load);
             this.gbDatosDeContacto.ResumeLayout(false);
             this.gbDatosDeContacto.PerformLayout();
             this.gbDatosPersonales.ResumeLayout(false);

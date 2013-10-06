@@ -169,6 +169,7 @@
             // 
             // tbNroAfiliado
             // 
+            this.tbNroAfiliado.Enabled = false;
             this.tbNroAfiliado.Location = new System.Drawing.Point(93, 6);
             this.tbNroAfiliado.Name = "tbNroAfiliado";
             this.tbNroAfiliado.Size = new System.Drawing.Size(147, 20);
@@ -325,6 +326,7 @@
             this.btnGuardar.TabIndex = 17;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnLimpiar
             // 
@@ -334,6 +336,7 @@
             this.btnLimpiar.TabIndex = 18;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnCancelar
             // 
@@ -343,6 +346,7 @@
             this.btnCancelar.TabIndex = 19;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // tbNombre
             // 
@@ -367,7 +371,12 @@
             // 
             // cbTipoDocumento
             // 
+            this.cbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDocumento.FormattingEnabled = true;
+            this.cbTipoDocumento.Items.AddRange(new object[] {
+            "DNI",
+            "LE",
+            "CUIT"});
             this.cbTipoDocumento.Location = new System.Drawing.Point(78, 91);
             this.cbTipoDocumento.Name = "cbTipoDocumento";
             this.cbTipoDocumento.Size = new System.Drawing.Size(121, 21);
@@ -382,7 +391,12 @@
             // 
             // cbPlanMedico
             // 
+            this.cbPlanMedico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPlanMedico.FormattingEnabled = true;
+            this.cbPlanMedico.Items.AddRange(new object[] {
+            "210",
+            "310",
+            "410"});
             this.cbPlanMedico.Location = new System.Drawing.Point(317, 5);
             this.cbPlanMedico.Name = "cbPlanMedico";
             this.cbPlanMedico.Size = new System.Drawing.Size(279, 21);
@@ -405,6 +419,7 @@
             this.Controls.Add(this.label10);
             this.Name = "FrmAfiliadoAlta";
             this.Text = "Clinica FRBA - Afiliados - Alta";
+            this.Load += new System.EventHandler(this.FrmAfiliadoAlta_Load);
             this.gbDatosPersonales.ResumeLayout(false);
             this.gbDatosPersonales.PerformLayout();
             this.gbDatosDeContacto.ResumeLayout(false);
