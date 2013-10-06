@@ -354,6 +354,21 @@
       <Name>GestionGUIHelper</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Recursos\decoracion-clinica.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Recursos\Card_file.png" />
+    <EmbeddedResource Include="Recursos\DefineControls.png" />
+    <EmbeddedResource Include="Recursos\Head_physician.png" />
+    <EmbeddedResource Include="Recursos\health.png" />
+    <EmbeddedResource Include="Recursos\Hospital.png" />
+    <EmbeddedResource Include="Recursos\hospital_icon.ico" />
+    <EmbeddedResource Include="Recursos\Login.png" />
+    <EmbeddedResource Include="Recursos\medical_pot_pills.png" />
+    <EmbeddedResource Include="Recursos\PatientFile.png" />
+    <EmbeddedResource Include="Recursos\reportorium.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
