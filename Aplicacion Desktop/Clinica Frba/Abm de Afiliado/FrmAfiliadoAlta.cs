@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using GestionGUIHelper.Formularios;
 using GestionGUIHelper.Helpers;
 using GestionCommon.Helpers;
+using GestionGUIHelper.Validaciones;
 
 namespace Clinica_Frba.Afiliados
 {
@@ -28,7 +29,7 @@ namespace Clinica_Frba.Afiliados
         protected override void AccionLimpiar()
         {
             tbApellido.Text = string.Empty;
-            tbCantHijos.Text = string.Empty;
+            ndCantHijos.Value = 0;
             tbDireccion.Text = string.Empty;
             tbMail.Text = string.Empty;
             tbNombre.Text = string.Empty;
@@ -38,6 +39,8 @@ namespace Clinica_Frba.Afiliados
 
             cbPlanMedico.SelectedIndex = 0;
             cbTipoDocumento.SelectedIndex = 0;
+
+            rbEstadoCivilSoltero.Checked = true;
 
             dpFechaNacimiento.Value = FechaHelper.Ahora();
         }
@@ -60,6 +63,16 @@ namespace Clinica_Frba.Afiliados
         private void FrmAfiliadoAlta_Load(object sender, EventArgs e)
         {
             AccionLimpiar();
+            this.AgregarValidacion(new ValidadorString(tbNombre, 1, 255));
+            this.AgregarValidacion(new ValidadorString(tbApellido, 1, 255));
+            this.AgregarValidacion(new ValidadorCombobox(cbTipoDocumento));
+            this.AgregarValidacion(new ValidadorNumerico(tbNroDocumento));
+            this.AgregarValidacion(new ValidadorDateTimeUntil(dpFechaNacimiento,FechaHelper.Ahora()));
+            this.AgregarValidacion(new ValidadorString(tbDireccion, 1, 255));
+            this.AgregarValidacion(new ValidadorNumerico(tbTelefono));
+            this.AgregarValidacion(new ValidadorString(tbMail,1 ,255));
+            this.AgregarValidacion(new ValidadorMail(tbMail));
+
         }
 
     }

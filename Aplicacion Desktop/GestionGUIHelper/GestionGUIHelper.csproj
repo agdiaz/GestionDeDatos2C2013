@@ -72,6 +72,7 @@
     <Compile Include="Validaciones\ValidadorCombobox.cs" />
     <Compile Include="Validaciones\ValidadorDateTimeUntilFrom.cs" />
     <Compile Include="Validaciones\ValidadorDateTimeUntil.cs" />
+    <Compile Include="Validaciones\ValidadorMail.cs" />
     <Compile Include="Validaciones\ValidadorNumerico.cs" />
     <Compile Include="Validaciones\ValidadorString.cs" />
   </ItemGroup>
