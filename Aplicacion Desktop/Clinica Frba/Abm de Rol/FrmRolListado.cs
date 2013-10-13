@@ -11,6 +11,7 @@ using GestionCommon.Entidades;
 using GestionDomain;
 using GestionDomain.Resultados;
 using GestionGUIHelper.Helpers;
+using GestionGUIHelper.Validaciones;
 
 namespace Clinica_Frba.Roles
 {
@@ -86,6 +87,18 @@ namespace Clinica_Frba.Roles
         private void btnBaja_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void gbFiltros_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmRolListado_Load(object sender, EventArgs e)
+        {
+            AccionLimpiar();
+            this.AgregarValidacion(new ValidadorString(tbRol, 1, 255));
+            this.AgregarValidacion(new ValidadorCombobox(cbFuncionalidad));
         }
     }
 }

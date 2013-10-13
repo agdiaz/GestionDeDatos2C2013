@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbNombrePlan = new System.Windows.Forms.TextBox();
             this.gbAcciones.SuspendLayout();
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
@@ -37,8 +37,8 @@
             // gbFiltros
             // 
             this.gbFiltros.Controls.Add(this.label1);
-            this.gbFiltros.Controls.Add(this.textBox1);
-            this.gbFiltros.Controls.SetChildIndex(this.textBox1, 0);
+            this.gbFiltros.Controls.Add(this.tbNombrePlan);
+            this.gbFiltros.Controls.SetChildIndex(this.tbNombrePlan, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
@@ -52,12 +52,12 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre del plan";
             // 
-            // textBox1
+            // tbNombrePlan
             // 
-            this.textBox1.Location = new System.Drawing.Point(109, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(536, 20);
-            this.textBox1.TabIndex = 3;
+            this.tbNombrePlan.Location = new System.Drawing.Point(109, 24);
+            this.tbNombrePlan.Name = "tbNombrePlan";
+            this.tbNombrePlan.Size = new System.Drawing.Size(536, 20);
+            this.tbNombrePlan.TabIndex = 3;
             // 
             // FrmPlanListado
             // 
@@ -66,6 +66,7 @@
             this.ClientSize = new System.Drawing.Size(684, 440);
             this.Name = "FrmPlanListado";
             this.Text = "Clinica FRBA - Planes - Listado";
+            this.Load += new System.EventHandler(this.FrmPlanListado_Load);
             this.gbAcciones.ResumeLayout(false);
             this.gbFiltros.ResumeLayout(false);
             this.gbFiltros.PerformLayout();
@@ -76,6 +77,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbNombrePlan;
     }
 }

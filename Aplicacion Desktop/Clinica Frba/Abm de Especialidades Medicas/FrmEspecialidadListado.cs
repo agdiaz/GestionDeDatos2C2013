@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using GestionGUIHelper.Formularios;
 using GestionGUIHelper.Helpers;
+using GestionGUIHelper.Validaciones;
 
 namespace Clinica_Frba.Especialidades
 {
@@ -38,6 +39,13 @@ namespace Clinica_Frba.Especialidades
         protected override void AccionBorrar()
         {
             MensajePorPantalla.MensajeInformativo(this, "No se implementa");
+        }
+
+        private void FrmEspecialidadListado_Load(object sender, EventArgs e)
+        {
+            AccionLimpiar();
+            this.AgregarValidacion(new ValidadorString(tbNombreEspecialidad, 1, 255));
+            this.AgregarValidacion(new ValidadorCombobox(cbTipoEspecialidad)); 
         }
     }
 }

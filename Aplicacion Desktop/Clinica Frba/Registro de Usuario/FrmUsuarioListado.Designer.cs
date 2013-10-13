@@ -30,8 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tbUsername = new System.Windows.Forms.TextBox();
+            this.cbRol = new System.Windows.Forms.ComboBox();
             this.gbAcciones.SuspendLayout();
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
@@ -40,10 +40,10 @@
             // 
             this.gbFiltros.Controls.Add(this.label1);
             this.gbFiltros.Controls.Add(this.label2);
-            this.gbFiltros.Controls.Add(this.comboBox1);
-            this.gbFiltros.Controls.Add(this.textBox1);
-            this.gbFiltros.Controls.SetChildIndex(this.textBox1, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.comboBox1, 0);
+            this.gbFiltros.Controls.Add(this.cbRol);
+            this.gbFiltros.Controls.Add(this.tbUsername);
+            this.gbFiltros.Controls.SetChildIndex(this.tbUsername, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.cbRol, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label2, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
@@ -67,20 +67,20 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Rol";
             // 
-            // textBox1
+            // tbUsername
             // 
-            this.textBox1.Location = new System.Drawing.Point(87, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(336, 20);
-            this.textBox1.TabIndex = 4;
+            this.tbUsername.Location = new System.Drawing.Point(87, 23);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(336, 20);
+            this.tbUsername.TabIndex = 4;
             // 
-            // comboBox1
+            // cbRol
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(87, 49);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(336, 21);
-            this.comboBox1.TabIndex = 5;
+            this.cbRol.FormattingEnabled = true;
+            this.cbRol.Location = new System.Drawing.Point(87, 49);
+            this.cbRol.Name = "cbRol";
+            this.cbRol.Size = new System.Drawing.Size(336, 21);
+            this.cbRol.TabIndex = 5;
             // 
             // FrmUsuarioListado
             // 
@@ -89,6 +89,7 @@
             this.ClientSize = new System.Drawing.Size(680, 440);
             this.Name = "FrmUsuarioListado";
             this.Text = "Clinica FRBA - Usuarios - Listado";
+            this.Load += new System.EventHandler(this.FrmUsuarioListado_Load);
             this.gbAcciones.ResumeLayout(false);
             this.gbFiltros.ResumeLayout(false);
             this.gbFiltros.PerformLayout();
@@ -100,7 +101,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cbRol;
+        private System.Windows.Forms.TextBox tbUsername;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using GestionGUIHelper.Formularios;
 using GestionGUIHelper.Helpers;
+using GestionGUIHelper.Validaciones;
 
 namespace Clinica_Frba.Planes
 {
@@ -38,6 +39,12 @@ namespace Clinica_Frba.Planes
         protected override void AccionBorrar()
         {
             MensajePorPantalla.MensajeInformativo(this, "No se implementa");
+        }
+
+        private void FrmPlanListado_Load(object sender, EventArgs e)
+        {
+            AccionLimpiar();
+            this.AgregarValidacion(new ValidadorNumerico(tbNombrePlan));
         }
     }
 }
