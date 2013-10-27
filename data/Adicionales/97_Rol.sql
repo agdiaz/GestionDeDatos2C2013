@@ -86,7 +86,6 @@ BEGIN
 SELECT f.[id_funcionalidad]
       ,f.[nombre]
       ,f.[habilitado]
-      ,f.[activo]
   FROM [TOP_4].[Funcionalidad] f
 INNER JOIN [TOP_4].Rol_Funcionalidad rf on rf.id_rol = @p_id_rol
 AND f.id_funcionalidad = rf.id_funcionalidad
