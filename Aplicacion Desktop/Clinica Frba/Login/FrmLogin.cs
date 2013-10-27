@@ -21,10 +21,15 @@ namespace Clinica_Frba.Login
     {
         #region [Atributos]
         private UsuarioDomain _usuarioDomain;
+
+        private Boolean control_mas_de_un_rol;
+        private Boolean elegir_un_rol;
+
         #endregion
         
         #region [Propiedades]
         public Usuario UsuarioIniciado { get; private set; }
+        public Rol RolUsuario { get; set; }
         #endregion
 
         public FrmLogin(): base()
@@ -50,8 +55,9 @@ namespace Clinica_Frba.Login
             this.cbRol.DataSource = roles;
             this.cbRol.DisplayMember = "Nombre";
             this.cbRol.ValueMember = "IdRol";
-            this.cbRol.SelectedIndex = 0;
 
+            this.control_mas_de_un_rol = true;
+            this.elegir_un_rol = true;
         }
         #endregion
         
@@ -64,7 +70,35 @@ namespace Clinica_Frba.Login
         {
             try
             {
-                IdentificarUsuario();
+                bool identificador = IdentificarUsuario();
+                IList<Rol> roles_usuario = _usuarioDomain.ObtenerRoles(tbUsuario.Text).Retorno;
+                if (identificador)
+                {
+                    if (roles_usuario.Count > 1 && elegir_un_rol)
+                    {
+                        this.tbUsuario.Enabled = false;
+                        this.tbPassword.Enabled = false;
+                        this.lblRol.Visible = true;
+                        this.cbRol.Visible = true;
+                        this.cbRol.DataSource = roles_usuario;
+                        this.cbRol.SelectedIndex = 0;
+                        control_mas_de_un_rol = false;
+                        this.Refresh();
+                        MensajePorPantalla.MensajeInformativo(this, "Seleccione un rol");
+                        elegir_un_rol = false;
+                    }
+                    else if (roles_usuario.Count > 1 && !elegir_un_rol)
+                    {
+                        this.RolUsuario = (Rol)this.cbRol.SelectedItem;
+                        this.ObtenerUsuario();
+                    } 
+                    else 
+                    {
+                        this.RolUsuario = roles_usuario.First();
+                        this.ObtenerUsuario();
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -73,7 +107,7 @@ namespace Clinica_Frba.Login
             }
         }
 
-        private void IdentificarUsuario()
+        private bool IdentificarUsuario()
         {
             IResultado<IdentificacionUsuario> resRealizarIdenticacion = _usuarioDomain.RealizarIdentificacion(tbUsuario.Text, tbPassword.Text);
             if (!resRealizarIdenticacion.Correcto)
@@ -83,12 +117,18 @@ namespace Clinica_Frba.Login
 
             if (PasswordHelper.IdentificacionExitosa(identificacion))
             {
-                this.ObtenerUsuario();
+                return true;
             }
             else
             {
-                this.LimpiarCampos();
+                if (identificacion == IdentificacionUsuario.UsuarioBloqueado)
+                {
+                    MensajePorPantalla.MensajeError("Usuario bloqueado");
+                    this.LimpiarCampos();
+                    return false;
+                }
             }
+            return false;
         }
 
         private void LimpiarCampos()
@@ -103,6 +143,7 @@ namespace Clinica_Frba.Login
                 throw new ResultadoIncorrectoException<Usuario>(resultado);
 
             this.UsuarioIniciado = resultado.Retorno;
+            this.Close();
         }
         #endregion
 
@@ -117,6 +158,11 @@ namespace Clinica_Frba.Login
             this.Close();
         }
         #endregion
+
+        private void tbUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
     }
 }

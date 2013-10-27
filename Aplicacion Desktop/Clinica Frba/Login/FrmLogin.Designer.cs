@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblRol = new System.Windows.Forms.Label();
             this.tbUsuario = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.cbRol = new System.Windows.Forms.ComboBox();
@@ -59,14 +59,15 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Password:";
             // 
-            // label3
+            // lblRol
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(156, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Rol:";
+            this.lblRol.AutoSize = true;
+            this.lblRol.Location = new System.Drawing.Point(156, 66);
+            this.lblRol.Name = "lblRol";
+            this.lblRol.Size = new System.Drawing.Size(26, 13);
+            this.lblRol.TabIndex = 2;
+            this.lblRol.Text = "Rol:";
+            this.lblRol.Visible = false;
             // 
             // tbUsuario
             // 
@@ -74,7 +75,8 @@
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.Size = new System.Drawing.Size(201, 20);
             this.tbUsuario.TabIndex = 3;
-            this.tbUsuario.Text = "admin";
+            this.tbUsuario.Text = "admin1";
+            this.tbUsuario.TextChanged += new System.EventHandler(this.tbUsuario_TextChanged);
             // 
             // tbPassword
             // 
@@ -83,7 +85,7 @@
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(201, 20);
             this.tbPassword.TabIndex = 4;
-            this.tbPassword.Text = "w23c";
+            this.tbPassword.Text = "w23e";
             // 
             // cbRol
             // 
@@ -93,6 +95,7 @@
             this.cbRol.Name = "cbRol";
             this.cbRol.Size = new System.Drawing.Size(201, 21);
             this.cbRol.TabIndex = 5;
+            this.cbRol.Visible = false;
             // 
             // btnAceptar
             // 
@@ -134,7 +137,7 @@
             this.Controls.Add(this.cbRol);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.tbUsuario);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblRol);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -153,7 +156,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblRol;
         private System.Windows.Forms.TextBox tbUsuario;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.ComboBox cbRol;

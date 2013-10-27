@@ -3,7 +3,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [TOP_4].[realizar_identificacion] 
+CREATE PROCEDURE [TOP_4].[realizar_identificacion]
 	-- Add the parameters for the stored procedure here
 	@userName nvarchar(50),
 	@passwordHash varbinary(32),
@@ -18,7 +18,7 @@ BEGIN
 	DECLARE @hashReal varbinary(32)
 	DECLARE @fallidos int
 	
-	SELECT @hashReal=us.hash_password, @fallidos=us.cant_intentos_fallidos
+	SELECT @hashReal=us.[password], @fallidos=us.cant_intentos_fallidos
 	FROM [TOP_4].Usuario us
 	WHERE us.username = @userName
 	
