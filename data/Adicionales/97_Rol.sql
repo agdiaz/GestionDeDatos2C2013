@@ -52,7 +52,7 @@ GO
 CREATE PROCEDURE [TOP_4].[sp_Rol_update](
 	@p_nombre varchar(255),
 	@p_activo bit,
-	@p_id_rol numeric(18)
+	@p_id numeric(18)
 )
 AS
 BEGIN
@@ -60,7 +60,7 @@ BEGIN
 UPDATE [TOP_4].[Rol]
    SET [nombre] = @p_nombre,
    [activo] = @p_activo
- WHERE id_rol = @p_id_rol
+ WHERE id_rol = @p_id
  AND habilitado = '1'
  
 END
@@ -76,3 +76,20 @@ BEGIN
 	WHERE id_rol = @p_id_rol
 END
 GO
+
+GO
+CREATE PROCEDURE [TOP_4].[sp_Funcionalidad_select_by_rol](
+	@p_id_rol numeric(18))
+
+AS
+BEGIN
+SELECT f.[id_funcionalidad]
+      ,f.[nombre]
+      ,f.[habilitado]
+  FROM [TOP_4].[Funcionalidad] f
+INNER JOIN [TOP_4].Rol_Funcionalidad rf on rf.id_rol = @p_id_rol
+AND f.id_funcionalidad = rf.id_funcionalidad
+WHERE f.habilitado = '1'
+END
+GO
+
