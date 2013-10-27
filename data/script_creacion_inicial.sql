@@ -85,6 +85,13 @@ GO
 ALTER TABLE [TOP_4].[Usuario] ADD  CONSTRAINT [DF_Usuario_cant_intentos_fallidos]  DEFAULT ((0)) FOR [cant_intentos_fallidos]
 GO
 
+INSERT INTO TOP_4.Usuario
+(username, password)
+(
+	SELECT DISTINCT m.Paciente_Dni, convert(varbinary,'1aeaeba4bdbf8907638434b60504b1037c01905bec294fb2cd5348724f2fa64f',2)
+	FROM gd_esquema.Maestra m
+)
+
 ---------------------------------Rol---------------------------------------
 
 CREATE TABLE [TOP_4].[Rol](
@@ -203,13 +210,13 @@ GO
 
 --- Creo los usuarios administradores
 GO
-INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin1', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin1', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7',1),1)
 INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
 
-INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin2', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin2', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7',1),1)
 INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
 
-INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin3', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin3', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7',1),1)
 INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
 
 INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin4', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
@@ -219,7 +226,6 @@ INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admi
 INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
 
 GO
-
 
 ---------------------------------Rol_Funcionalidad---------------------------------------
 SET ANSI_NULLS ON
