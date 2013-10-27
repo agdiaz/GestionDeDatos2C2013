@@ -86,7 +86,7 @@ namespace GestionGUIHelper.Formularios
 
         private void FormularioBaseModificacion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.Cancelar();
+            //this.Cancelar();
         }
     }
 }
