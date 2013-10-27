@@ -1,9 +1,7 @@
-
-DROP TABLE TOP_4.Rol
+DROP TABLE TOP_4.Rol_Funcionalidad
 DROP TABLE TOP_4.Funcionalidad
 DROP TABLE TOP_4.Usuario_Rol
-DROP TABLE TOP_4.Rol_Funcionalidad
-
+DROP TABLE TOP_4.Rol
 DROP TABLE TOP_4.Dia_Agenda
 DROP TABLE TOP_4.Agenda
 DROP TABLE TOP_4.Profesional_Especialidad
