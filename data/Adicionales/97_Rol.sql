@@ -100,7 +100,8 @@ CREATE PROCEDURE [TOP_4].[sp_Rol_delete](
 AS
 BEGIN
 
-DELETE FROM [TOP_4].Rol
+UPDATE [TOP_4].Rol
+SET habilitado = '0'
 WHERE id_rol = @p_id
 
 END
