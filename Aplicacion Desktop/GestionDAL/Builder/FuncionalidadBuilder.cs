@@ -16,6 +16,7 @@ namespace GestionDAL.Builder
             funcionalidad.IdFuncionalidad = Convert.ToDecimal(row["id_funcionalidad"]);
             funcionalidad.Nombre = Convert.ToString(row["nombre"]);
             funcionalidad.Habilitado = Convert.ToBoolean(row["habilitado"]);
+            funcionalidad.Descripcion = Convert.ToString(row["descripcion"]);
             return funcionalidad;
         }
 
