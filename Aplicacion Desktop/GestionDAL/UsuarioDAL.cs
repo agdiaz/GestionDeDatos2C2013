@@ -64,6 +64,7 @@ namespace GestionDAL
 
             var pNombre = new SqlParameter("@p_nombre", SqlDbType.VarChar, 255, "p_nombre");
             pNombre.Value = nombre;
+            parametros.Add(pNombre);
 
             var ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_Usuario_select_by_name]", parametros);
 
