@@ -296,3 +296,58 @@ INSERT INTO TOP_4.Profesional_especialidad
 )
 
 GO
+
+------------------------------------------Agenda--------------------------------------------------
+
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Agenda]    Script Date: 10/27/2013 12:46:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [TOP_4].[Agenda](
+	[id_agenda] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_profesional] [numeric](18, 0) NOT NULL,
+	[fecha_desde] [datetime] NOT NULL,
+	[fecha_hasta] [datetime] NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Agenda] PRIMARY KEY CLUSTERED 
+(
+	[id_agenda] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Agendas de los profesionales' , @level0type=N'SCHEMA',@level0name=N'TOP_4', @level1type=N'TABLE',@level1name=N'Agenda'
+GO
+
+ALTER TABLE [TOP_4].[Agenda]  WITH CHECK ADD  CONSTRAINT [FK_Agenda_Profesional] FOREIGN KEY([id_profesional])
+REFERENCES [TOP_4].[Profesional] ([id_profesional])
+GO
+
+ALTER TABLE [TOP_4].[Agenda] CHECK CONSTRAINT [FK_Agenda_Profesional]
+GO
+
+ALTER TABLE [TOP_4].[Agenda] ADD  CONSTRAINT [DF_Agenda_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+INSERT INTO TOP_4.Agenda
+(id_profesional, fecha_desde, fecha_hasta)
+(
+	SELECT DISTINCT p.id_profesional, MAX(m.Turno_Fecha) as 'maxturno' , 
+			MIN(m.turno_fecha) as 'minturno'
+	FROM gd_esquema.Maestra m
+	INNER JOIN TOP_4.Profesional p
+		ON p.documento = m.Medico_Dni
+	WHERE m.Medico_Dni IS NOT NULL
+	GROUP BY p.id_profesional, m.Medico_Dni, m.Medico_Nombre, m.Medico_Apellido
+)
+
+GO
+
+
