@@ -25,6 +25,23 @@ namespace Clinica_Frba.Roles
             _rolDomain = new RolDomain(Program.ContextoActual.Logger);
             InitializeComponent();
         }
+        protected override void AccionIniciar()
+        {
+            AccionLimpiar();
+            //this.AgregarValidacion(new ValidadorString(tbRol, 1, 255));
+            //this.AgregarValidacion(new ValidadorCombobox(cbFuncionalidad));
+            this.CargarFuncionalidades();
+        }
+
+        private void CargarFuncionalidades()
+        {
+            FuncionalidadDomain funDomain = new FuncionalidadDomain(Program.ContextoActual.Logger);
+            IResultado<IList<Funcionalidad>> funcionalidades = funDomain.ObtenerTodos();
+            
+            this.cbFuncionalidad.DataSource = funcionalidades.Retorno;
+            this.cbFuncionalidad.DisplayMember = "Nombre";
+            this.cbFuncionalidad.ValueMember = "IdFuncionalidad";
+        }
 
         protected override void AccionAlta()
         {
@@ -94,11 +111,6 @@ namespace Clinica_Frba.Roles
 
         }
 
-        private void FrmRolListado_Load(object sender, EventArgs e)
-        {
-            AccionLimpiar();
-            this.AgregarValidacion(new ValidadorString(tbRol, 1, 255));
-            this.AgregarValidacion(new ValidadorCombobox(cbFuncionalidad));
-        }
+        
     }
 }

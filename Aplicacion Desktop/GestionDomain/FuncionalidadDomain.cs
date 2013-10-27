@@ -67,23 +67,13 @@ namespace GestionDomain
             }
             else
             {
-                IList<Funcionalidad> funcionalidades = FuncionalidadesDEBUG();
+                IList<Funcionalidad> funcionalidades = new List<Funcionalidad>();
 
                 resultado.Retorno = funcionalidades;
             }
 
             return resultado;
 
-        }
-
-        private static IList<Funcionalidad> FuncionalidadesDEBUG()
-        {
-            IList<Funcionalidad> funcionalidades = new List<Funcionalidad>();
-            funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -1, Nombre = "tsmArchivo" });
-            funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -2, Nombre = "tsmSesion" });
-            funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -3, Nombre = "tsmSesion_IniciarSesion" });
-            funcionalidades.Add(new Funcionalidad() { IdFuncionalidad = -4, Nombre = "tsmSalir" });
-            return funcionalidades;
         }
 
         public IResultado<IList<Funcionalidad>> ObtenerTodos()
@@ -93,7 +83,7 @@ namespace GestionDomain
             {
                 //Solo DEBUG:
                 //resultado.Retorno = _domain.ObtenerTodos();
-                resultado.Retorno = FuncionalidadesDEBUG();
+                resultado.Retorno = _dal.ObtenerTodos();
 
             }
             catch (Exception ex)

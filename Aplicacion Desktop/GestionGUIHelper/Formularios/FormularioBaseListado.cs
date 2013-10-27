@@ -29,7 +29,8 @@ namespace GestionGUIHelper.Formularios
         #region [FormularioBaseListado_Load]
         private void FormularioBaseListado_Load(object sender, EventArgs e)
         {
-            this.Filtrar();
+            this.AccionIniciar();
+            //this.Filtrar();
         }
         #endregion
 
@@ -63,7 +64,10 @@ namespace GestionGUIHelper.Formularios
             }
         }
 
-        
+        protected virtual void AccionIniciar()
+        {
+
+        }
         protected virtual void AccionFiltrar()
         {
         }

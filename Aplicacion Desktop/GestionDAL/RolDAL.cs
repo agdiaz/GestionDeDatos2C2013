@@ -6,6 +6,7 @@ using GestionCommon.Entidades;
 using GestionCommon.Helpers;
 using GestionDAL.Builder;
 using GestionConector;
+using System.Data.SqlClient;
 
 namespace GestionDAL
 {
@@ -16,14 +17,15 @@ namespace GestionDAL
         {
         }
 
-        protected override IList<System.Data.SqlClient.SqlParameter> GenerarParametrosModificar(Rol entidad)
+        protected override IList<SqlParameter> GenerarParametrosModificar(Rol entidad)
         {
             throw new NotImplementedException();
         }
 
-        protected override IList<System.Data.SqlClient.SqlParameter> GenerarParametrosCrear(Rol entidad)
+        protected override IList<SqlParameter> GenerarParametrosCrear(Rol entidad)
         {
-            throw new NotImplementedException();
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
         }
 
         public void AsociarRolFuncionalidad(decimal idRol, decimal idFuncionalidad)

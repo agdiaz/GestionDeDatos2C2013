@@ -9,6 +9,7 @@ namespace GestionCommon.Entidades
     {
         public decimal IdRol { get; set; }
         public string Nombre { get; set; }
+        public bool Activo { get; set; }
         public bool Habilitado { get; set; }
     }
 }
