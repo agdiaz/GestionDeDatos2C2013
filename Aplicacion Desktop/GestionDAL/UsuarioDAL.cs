@@ -33,11 +33,11 @@ namespace GestionDAL
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             
-            var pUsername = new SqlParameter("@userName", SqlDbType.Int, 4, "userName");
+            var pUsername = new SqlParameter("@userName", SqlDbType.VarChar, 255, "userName");
             pUsername.Value = nombre;
             parametros.Add(pUsername);
 
-            var pPasswordHash = new SqlParameter("@passwordHash", SqlDbType.VarBinary, 4, "passwordHash");
+            var pPasswordHash = new SqlParameter("@passwordHash", SqlDbType.VarBinary, 32, "passwordHash");
             pPasswordHash.Value = hashPassword;
             parametros.Add(pPasswordHash);
 
@@ -50,12 +50,33 @@ namespace GestionDAL
             //Ejecuto el stored procedure
             DataSet ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[realizar_identificacion]", parametros);
 
-            return resultado;
+            return (int)pResultado.Value;
         }
 
         public bool ObtenerSegunNombreUsuario(string nombre)
         {
             throw new NotImplementedException();
+        }
+
+        public IList<Rol> ObtenerRoles(decimal idUsuario)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            var pUsuarioId= new SqlParameter("@p_usuario_id", SqlDbType.Decimal, 18, "p_usuario_id");
+            pUsuarioId.Value = idUsuario;
+            parametros.Add(pUsuarioId);
+
+            //Ejecuto el stored procedure
+            DataSet ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_usuario_select_roles]", parametros);
+
+            var roles = new List<Rol>();
+            IBuilder<Rol> rolBuilder = new Builder.RolBuilder();
+            foreach (DataRow fila in ds.Tables[0].Rows)
+            {
+                roles.Add(rolBuilder.Build(fila));
+            }
+
+            return roles;
         }
     }
 }

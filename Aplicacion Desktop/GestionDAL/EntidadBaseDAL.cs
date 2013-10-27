@@ -15,7 +15,7 @@ namespace GestionDAL
     {
         #region Atributos
         protected IConector _connector;
-        private IBuilder<T> _builder;
+        protected IBuilder<T> _builder;
         private string _nombreEntidad;
         
         protected string _sp_obtener;

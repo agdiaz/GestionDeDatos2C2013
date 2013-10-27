@@ -105,5 +105,25 @@ namespace GestionDomain
 
             return resultado;
         }
+
+        public IResultado<IList<Rol>> ObtenerRoles(decimal idUsuario)
+        {
+            Resultado<IList<Rol>> resultado = new Resultado<IList<Rol>>();
+
+            try
+            {
+                IList<Rol> roles = _dal.ObtenerRoles(idUsuario);
+                resultado.Retorno= roles;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
+
+            
+        }
     }
 }
