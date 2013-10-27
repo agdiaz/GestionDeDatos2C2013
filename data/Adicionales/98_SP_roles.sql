@@ -15,6 +15,7 @@ BEGIN
    SELECT R.[id_rol]
       ,R.[nombre]
       ,R.[habilitado]
+      ,R.[activo]
    FROM [TOP_4].[Rol] R
    INNER JOIN [TOP_4].[Usuario_Rol] UR
 	ON R.id_rol = UR.id_rol
