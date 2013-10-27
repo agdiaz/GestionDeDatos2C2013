@@ -19,18 +19,39 @@ namespace GestionDAL
 
         protected override IList<SqlParameter> GenerarParametrosModificar(Rol entidad)
         {
-            throw new NotImplementedException();
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
+            pId.Value = entidad.Id;
+            parametros.Add(pId);
+
+            SqlParameter pNombre = new SqlParameter("@p_nombre", System.Data.SqlDbType.VarChar, 255, "p_nombre");
+            pNombre.Value = entidad.Nombre;
+            parametros.Add(pNombre);
+
+            SqlParameter pActivo = new SqlParameter("@p_activo", System.Data.SqlDbType.Bit, 1, "p_activo");
+            pActivo.Value = entidad.Activo;
+            parametros.Add(pActivo);
+
+            return parametros;
         }
 
         protected override IList<SqlParameter> GenerarParametrosCrear(Rol entidad)
         {
             IList<SqlParameter> parametros = new List<SqlParameter>();
-            
+
+            SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
+            pId.Value = entidad.Id;
+            pId.Direction = System.Data.ParameterDirection.Output;
+            parametros.Add(pId);
+
             SqlParameter pNombre = new SqlParameter("@p_nombre", System.Data.SqlDbType.VarChar, 255, "p_nombre");
             pNombre.Value = entidad.Nombre;
+            parametros.Add(pNombre);
 
-            SqlParameter pActivo = new SqlParameter("@p_Activo", System.Data.SqlDbType.Bit, 1, "p_Activo");
+            SqlParameter pActivo = new SqlParameter("@p_activo", System.Data.SqlDbType.Bit, 1, "p_activo");
             pActivo.Value = entidad.Activo;
+            parametros.Add(pActivo);
 
             return parametros;
 
@@ -38,12 +59,28 @@ namespace GestionDAL
 
         public void AsociarRolFuncionalidad(decimal idRol, decimal idFuncionalidad)
         {
-            throw new NotImplementedException();
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+            
+            SqlParameter pIdRol = new SqlParameter("@p_id_rol", System.Data.SqlDbType.Decimal, 18, "p_id_rol");
+            pIdRol.Value = idRol;
+            parametros.Add(pIdRol);
+
+            SqlParameter pIdFuncionalidad = new SqlParameter("@p_id_funcionalidad", System.Data.SqlDbType.Decimal, 18, "p_id_funcionalidad");
+            pIdFuncionalidad.Value = idFuncionalidad;
+            parametros.Add(pIdFuncionalidad);
+
+            _connector.RealizarConsultaAlmacenada("[TOP_4].sp_asociar_rol_funcionalidad", parametros);
         }
 
         public void LimpiarFuncionalidades(decimal idRol)
         {
-            throw new NotImplementedException();
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pIdRol = new SqlParameter("@p_id_rol", System.Data.SqlDbType.Decimal, 18, "p_id_rol");
+            pIdRol.Value = idRol;
+            parametros.Add(pIdRol);
+
+            _connector.RealizarConsultaAlmacenada("[TOP_4].sp_limpiar_funcionalidades", parametros);
         }
 
     }

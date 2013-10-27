@@ -44,7 +44,7 @@ namespace GestionDomain
         public IResultado<Rol> ObtenerRolGenerico()
         {
             Resultado<Rol> resultado = new Resultado<Rol>();
-            resultado.Retorno = new Rol() { Habilitado = true, IdRol = -1, Nombre = "No identificado"};
+            resultado.Retorno = new Rol() { Habilitado = true, Id = -1, Nombre = "No identificado"};
             
             return resultado;
         }
@@ -70,11 +70,11 @@ namespace GestionDomain
             try
             {
                 Rol creado = _domain.Crear(nuevoRol);
-                nuevoRol.IdRol = creado.IdRol;
+                nuevoRol.Id = creado.Id;
 
                 foreach (Funcionalidad func in funcionalidades)
                 {
-                    _dal.AsociarRolFuncionalidad(nuevoRol.IdRol, func.IdFuncionalidad);
+                    _dal.AsociarRolFuncionalidad(nuevoRol.Id, func.IdFuncionalidad);
                 }
 
                 resultado.Retorno = nuevoRol;
@@ -95,11 +95,11 @@ namespace GestionDomain
             try
             {
                 _domain.Modificar(rolModificado);
-                _dal.LimpiarFuncionalidades(rolModificado.IdRol);
+                _dal.LimpiarFuncionalidades(rolModificado.Id);
 
                 foreach (Funcionalidad func in funcionalidades)
                 {
-                    _dal.AsociarRolFuncionalidad(rolModificado.IdRol, func.IdFuncionalidad);
+                    _dal.AsociarRolFuncionalidad(rolModificado.Id, func.IdFuncionalidad);
                 }
 
             }
@@ -116,7 +116,7 @@ namespace GestionDomain
         {
             try
             {
-                _domain.Borrar(rolBorrado.IdRol);
+                _domain.Borrar(rolBorrado.Id);
                 return new Resultado<bool>(true);
             }
             catch (Exception ex)

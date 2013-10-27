@@ -76,7 +76,7 @@ namespace Clinica_Frba.Roles
                 if (!resAlta.Correcto)
                     throw new ResultadoIncorrectoException<Rol>(resAlta);
 
-                MensajePorPantalla.MensajeInformativo(this, string.Format("Se dió de alta el rol: {0} (IdRol: {1})", nuevoRol.Nombre, nuevoRol.IdRol.ToString()));
+                MensajePorPantalla.MensajeInformativo(this, string.Format("Se dió de alta el rol: {0} (IdRol: {1})", nuevoRol.Nombre, nuevoRol.Id.ToString()));
                 this.Close();
             }
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace Clinica_Frba.Roles
             Rol nuevoRol = new Rol();
             
             nuevoRol.Nombre = tbNombre.Text;
-            nuevoRol.Habilitado = this.chkHabilitado.Checked;
+            nuevoRol.Activo = this.chkActivo.Checked;
             
             return nuevoRol;
         }
@@ -121,7 +121,7 @@ namespace Clinica_Frba.Roles
         private void LimpiarControles()
         {
             this.tbNombre.Text = string.Empty;
-            this.chkHabilitado.Checked = false;
+            this.chkActivo.Checked = false;
 
             foreach (int i in clsFuncionalidades.CheckedIndices)
             {

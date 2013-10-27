@@ -57,7 +57,6 @@
     <Compile Include="Entidades\Cancelacion.cs" />
     <Compile Include="Entidades\Compra.cs" />
     <Compile Include="Entidades\DiaAgenda.cs" />
-    <Compile Include="Entidades\Ejemplo\EntidadEjemplo.cs" />
     <Compile Include="Entidades\Especialidad.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Medicamento.cs" />

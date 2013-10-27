@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.gbDetalles = new System.Windows.Forms.GroupBox();
-            this.chkHabilitado = new System.Windows.Forms.CheckBox();
+            this.chkActivo = new System.Windows.Forms.CheckBox();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbFuncionalidades = new System.Windows.Forms.GroupBox();
@@ -43,7 +43,7 @@
             // 
             // gbDetalles
             // 
-            this.gbDetalles.Controls.Add(this.chkHabilitado);
+            this.gbDetalles.Controls.Add(this.chkActivo);
             this.gbDetalles.Controls.Add(this.tbNombre);
             this.gbDetalles.Controls.Add(this.label1);
             this.gbDetalles.Location = new System.Drawing.Point(13, 13);
@@ -53,15 +53,15 @@
             this.gbDetalles.TabStop = false;
             this.gbDetalles.Text = "Detalles del rol";
             // 
-            // chkHabilitado
+            // chkActivo
             // 
-            this.chkHabilitado.AutoSize = true;
-            this.chkHabilitado.Location = new System.Drawing.Point(60, 43);
-            this.chkHabilitado.Name = "chkHabilitado";
-            this.chkHabilitado.Size = new System.Drawing.Size(73, 17);
-            this.chkHabilitado.TabIndex = 2;
-            this.chkHabilitado.Text = "Habilitado";
-            this.chkHabilitado.UseVisualStyleBackColor = true;
+            this.chkActivo.AutoSize = true;
+            this.chkActivo.Location = new System.Drawing.Point(60, 43);
+            this.chkActivo.Name = "chkActivo";
+            this.chkActivo.Size = new System.Drawing.Size(56, 17);
+            this.chkActivo.TabIndex = 2;
+            this.chkActivo.Text = "Activo";
+            this.chkActivo.UseVisualStyleBackColor = true;
             // 
             // tbNombre
             // 
@@ -152,7 +152,7 @@
         private System.Windows.Forms.GroupBox gbDetalles;
         private System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox chkHabilitado;
+        private System.Windows.Forms.CheckBox chkActivo;
         private System.Windows.Forms.GroupBox gbFuncionalidades;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;

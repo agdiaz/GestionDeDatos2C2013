@@ -7,15 +7,6 @@ namespace GestionCommon.Entidades
 {
     public class EntidadBase
     {
-        public int Id { get; set; }
-        public static string NombreEntidad { get; set; }
-
-        public EntidadBase()
-        { }
-
-        public EntidadBase(string nombreEntidad)
-        {
-            NombreEntidad = nombreEntidad;
-        }
+        public decimal Id { get; set; }
     }
 }

@@ -39,6 +39,18 @@ namespace Clinica_Frba.Roles
             this.AgregarValidacion(new ValidadorString(tbNombre, 1, 50));
         }
 
+        
+        #endregion
+        
+        #region [CargaEntidad]
+        protected override void CargarEntidad()
+        {
+            tbNombre.Text = _rol.Nombre;
+            chkActivo.Checked = _rol.Activo;
+            
+            CargarListaFuncionalidades();
+            CargarFuncionalidadesDelRol();
+        }
         private void CargarListaFuncionalidades()
         {
             try
@@ -58,21 +70,9 @@ namespace Clinica_Frba.Roles
                 this.Close();
             }
         }
-        #endregion
-        
-        #region [CargaEntidad]
-        protected override void CargarEntidad()
-        {
-            tbNombre.Text = _rol.Nombre;
-            chkHabilitado.Checked = _rol.Habilitado;
-            
-            CargarListaFuncionalidades();
-            CargarFuncionalidadesDelRol();
-        }
-
         private void CargarFuncionalidadesDelRol()
         {
-            var obtenerFuncionalidades = _funcionalidadDomain.ObtenerFuncionalidades(_rol.IdRol);
+            var obtenerFuncionalidades = _funcionalidadDomain.ObtenerFuncionalidades(_rol.Id);
             if (!obtenerFuncionalidades.Correcto)
                 throw new ResultadoIncorrectoException<IList<Funcionalidad>>(obtenerFuncionalidades);
 
@@ -108,7 +108,7 @@ namespace Clinica_Frba.Roles
                 if (!resModificacion.Correcto)
                     throw new ResultadoIncorrectoException<Rol>(resModificacion);
 
-                MensajePorPantalla.MensajeInformativo(this, string.Format("Se modificó el rol: {0} (IdRol: {1})", _rol.Nombre, _rol.IdRol.ToString()));
+                MensajePorPantalla.MensajeInformativo(this, string.Format("Se modificó el rol: {0} (IdRol: {1})", _rol.Nombre, _rol.Id.ToString()));
                 this.Close();
             }
             catch (Exception ex)
@@ -130,9 +130,9 @@ namespace Clinica_Frba.Roles
         private Rol CrearRol()
         {
             Rol nuevoRol = new Rol();
-            nuevoRol.IdRol = _rol.IdRol;
+            nuevoRol.Id = _rol.Id;
             nuevoRol.Nombre = tbNombre.Text;
-            nuevoRol.Habilitado = this.chkHabilitado.Checked;
+            nuevoRol.Activo = this.chkActivo.Checked;
 
             return nuevoRol;
         }
@@ -155,7 +155,7 @@ namespace Clinica_Frba.Roles
         private void LimpiarControles()
         {
             this.tbNombre.Text = string.Empty;
-            this.chkHabilitado.Checked = false;
+            this.chkActivo.Checked = false;
 
             foreach (int i in clsFuncionalidades.CheckedIndices)
             {

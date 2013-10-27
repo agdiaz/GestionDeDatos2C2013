@@ -83,6 +83,7 @@ namespace GestionGUIHelper.Formularios
         private void btnAlta_Click(object sender, EventArgs e)
         {
             this.AccionAlta();
+            this.Filtrar();
         }
         protected virtual void AccionAlta()
         {
@@ -104,6 +105,7 @@ namespace GestionGUIHelper.Formularios
                 if (dr == DialogResult.Yes)
                 {
                     this.AccionModificar();
+                    this.Filtrar();
                 }
             }
         }
@@ -127,6 +129,8 @@ namespace GestionGUIHelper.Formularios
                 if (dr == DialogResult.Yes)
                 {
                     this.AccionBorrar();
+                    MensajePorPantalla.MensajeInformativo(this, "El registro ha sido borrado");
+                    this.Filtrar();
                 }
             }
         }

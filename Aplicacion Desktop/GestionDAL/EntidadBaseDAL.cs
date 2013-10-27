@@ -81,7 +81,7 @@ namespace GestionDAL
         public virtual void Borrar(decimal id)
         {
             //Configuro el parametro:
-            IList<SqlParameter> parametros = GenerarParametrosBorrar();
+            IList<SqlParameter> parametros = GenerarParametrosBorrar(id);
 
             //Ejecuto el stored procedure
             _connector.EjecutarComando(_sp_borrar, parametros);
@@ -111,16 +111,19 @@ namespace GestionDAL
             _connector.EjecutarComando(_sp_crear, parametros);
             EntidadBase entidadBase = entidad as EntidadBase;
 
-            entidadBase.Id = Convert.ToInt32(parametros[0]);
+            var parametroId = parametros.Where(p => p.ParameterName == "@p_id").FirstOrDefault();
+            entidadBase.Id = Convert.ToInt32(parametroId.Value);
             return entidad;
         }
         #endregion
 
         #region Sobrecargas
-        protected virtual IList<SqlParameter> GenerarParametrosBorrar()
+        protected virtual IList<SqlParameter> GenerarParametrosBorrar(decimal id)
         {
             IList<SqlParameter> parametros = new List<SqlParameter>(1);
-            parametros.Add(new SqlParameter("@p_id", SqlDbType.Int, 4, "p_id"));
+            var param = new SqlParameter("@p_id", SqlDbType.Decimal, 18, "p_id");
+            param.Value = id;
+            parametros.Add(param);
             return parametros;
         }
         protected virtual IList<SqlParameter> GenerarParametrosObtener()

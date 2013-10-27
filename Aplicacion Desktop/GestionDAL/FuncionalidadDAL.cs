@@ -7,6 +7,7 @@ using GestionCommon.Helpers;
 using GestionConector;
 using GestionDAL.Builder;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace GestionDAL
 {
@@ -30,7 +31,21 @@ namespace GestionDAL
 
         public IList<Funcionalidad> ObtenerFuncionalidades(decimal idRol)
         {
-            throw new NotImplementedException();
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+            SqlParameter pIdRol = new SqlParameter("@p_id_rol", System.Data.SqlDbType.Decimal, 18, "p_id_rol");
+            pIdRol.Value = idRol;
+            parametros.Add(pIdRol);
+
+
+            DataSet ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_Funcionalidad_select_by_rol]",  parametros);
+
+            List<Funcionalidad> retorno = new List<Funcionalidad>();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                retorno.Add(this._builder.Build(row));
+            }
+
+            return retorno;
         }
     }
 }

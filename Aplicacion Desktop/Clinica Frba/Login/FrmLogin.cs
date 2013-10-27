@@ -54,7 +54,7 @@ namespace Clinica_Frba.Login
             IList<Rol> roles = rolDomain.ObtenerTodos().Retorno;
             this.cbRol.DataSource = roles;
             this.cbRol.DisplayMember = "Nombre";
-            this.cbRol.ValueMember = "IdRol";
+            this.cbRol.ValueMember = "Id";
 
             this.control_mas_de_un_rol = true;
             this.elegir_un_rol = true;

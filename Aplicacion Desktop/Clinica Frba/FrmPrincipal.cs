@@ -56,7 +56,7 @@ namespace Clinica_Frba
             {
                 //Obtengo las funcionalidades del rol:
                 FuncionalidadDomain funcionalidadDomain = new FuncionalidadDomain(Program.ContextoActual.Logger);
-                IResultado<IList<Funcionalidad>> resultadoObtenerFuncionalidades = funcionalidadDomain.ObtenerFuncionalidades(resultadoObtenerRol.Retorno.IdRol);
+                IResultado<IList<Funcionalidad>> resultadoObtenerFuncionalidades = funcionalidadDomain.ObtenerFuncionalidades(resultadoObtenerRol.Retorno.Id);
 
                 if (resultadoObtenerRol.Correcto)
                 {

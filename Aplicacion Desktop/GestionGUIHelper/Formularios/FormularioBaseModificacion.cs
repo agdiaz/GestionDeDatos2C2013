@@ -58,11 +58,13 @@ namespace GestionGUIHelper.Formularios
         #region [Cancelar]
         protected virtual void Cancelar()
         {
-            DialogResult result = MensajePorPantalla.MensajeInterrogativo(this, "Sus cambios no han sido guardados ¿Está seguro que desea cancelar?", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            //DialogResult result = MensajePorPantalla.MensajeInterrogativo(this, "Sus cambios no han sido guardados ¿Está seguro que desea cancelar?", MessageBoxButtons.YesNo);
+            //if (result == DialogResult.Yes)
+            //{
+            //    this.Close();
+            //}
+
+            this.Close();
         }
         #endregion
 

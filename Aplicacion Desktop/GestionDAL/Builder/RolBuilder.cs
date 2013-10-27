@@ -13,7 +13,7 @@ namespace GestionDAL.Builder
         public Rol Build(System.Data.DataRow row)
         {
             Rol rol = new Rol();
-            rol.IdRol = Convert.ToDecimal(row["id_rol"]);
+            rol.Id = Convert.ToDecimal(row["id_rol"]);
             rol.Nombre = Convert.ToString(row["nombre"]);
             rol.Habilitado = Convert.ToBoolean(row["habilitado"]);
             rol.Activo = Convert.ToBoolean(row["activo"]);

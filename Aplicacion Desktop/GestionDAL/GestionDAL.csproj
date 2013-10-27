@@ -53,7 +53,6 @@
     <Compile Include="Builder\CancelacionBuilder.cs" />
     <Compile Include="Builder\CompraBuilder.cs" />
     <Compile Include="Builder\DiaAgendaBuilder.cs" />
-    <Compile Include="Builder\Ejemplo\EntidadEjemploBuilder.cs" />
     <Compile Include="Builder\EspecialidadBuilder.cs" />
     <Compile Include="Builder\FuncionalidadBuilder.cs" />
     <Compile Include="Builder\MedicamentoBuilder.cs" />
@@ -68,7 +67,6 @@
     <Compile Include="Builder\IBuilder.cs" />
     <Compile Include="Builder\RolBuilder.cs" />
     <Compile Include="Builder\UsuarioBuilder.cs" />
-    <Compile Include="Ejemplo\EntidadEjemploDAL.cs" />
     <Compile Include="EntidadBaseDAL.cs" />
     <Compile Include="IEntidadDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

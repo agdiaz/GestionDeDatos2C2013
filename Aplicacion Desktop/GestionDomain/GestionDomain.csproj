@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ejemplo\EntidadEjemploDomain.cs" />
     <Compile Include="EntidadBaseDomain.cs" />
     <Compile Include="FuncionalidadDomain.cs" />
     <Compile Include="IEntidadDomain.cs" />
