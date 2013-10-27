@@ -95,7 +95,7 @@ namespace GestionDomain
 
             try
             {
-                resultado.Correcto = _dal.ObtenerSegunNombreUsuario(nombre);
+                resultado.Retorno= _dal.ObtenerPorNombre(nombre);
             }
             catch (Exception ex)
             {
