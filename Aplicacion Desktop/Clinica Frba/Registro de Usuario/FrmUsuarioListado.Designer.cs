@@ -76,6 +76,7 @@
             // 
             // cbRol
             // 
+            this.cbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRol.FormattingEnabled = true;
             this.cbRol.Location = new System.Drawing.Point(87, 49);
             this.cbRol.Name = "cbRol";
@@ -89,7 +90,6 @@
             this.ClientSize = new System.Drawing.Size(680, 440);
             this.Name = "FrmUsuarioListado";
             this.Text = "Clinica FRBA - Usuarios - Listado";
-            this.Load += new System.EventHandler(this.FrmUsuarioListado_Load);
             this.gbAcciones.ResumeLayout(false);
             this.gbFiltros.ResumeLayout(false);
             this.gbFiltros.PerformLayout();

@@ -16,7 +16,7 @@ namespace GestionDAL.Builder
             u.IdUsuario = (decimal)row["id_usuario"];
             u.Username = row["username"].ToString();
             u.Habilitado = Convert.ToBoolean(row["habilitado"]);
-            return new Usuario();
+            return u;
         }
 
         #endregion

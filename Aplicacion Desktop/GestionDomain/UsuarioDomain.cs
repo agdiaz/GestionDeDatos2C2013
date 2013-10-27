@@ -125,5 +125,25 @@ namespace GestionDomain
 
             
         }
+
+        public IResultado<IList<Usuario>> ObtenerTodos()
+        {
+
+            Resultado<IList<Usuario>> resultado = new Resultado<IList<Usuario>>();
+
+            try
+            {
+                var usuarios = _dal.ObtenerTodos();
+                resultado.Retorno = usuarios;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
+           
+        }
     }
 }
