@@ -58,13 +58,13 @@ namespace GestionDAL
             throw new NotImplementedException();
         }
 
-        public IList<Rol> ObtenerRoles(decimal idUsuario)
+        public IList<Rol> ObtenerRoles(string nombre)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
-            var pUsuarioId= new SqlParameter("@p_usuario_id", SqlDbType.Decimal, 18, "p_usuario_id");
-            pUsuarioId.Value = idUsuario;
-            parametros.Add(pUsuarioId);
+            var pUsuario = new SqlParameter("@p_usuario_nombre", SqlDbType.VarChar, 255, "p_usuario_nombre");
+            pUsuario.Value = nombre;
+            parametros.Add(pUsuario);
 
             //Ejecuto el stored procedure
             DataSet ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_usuario_select_roles]", parametros);
