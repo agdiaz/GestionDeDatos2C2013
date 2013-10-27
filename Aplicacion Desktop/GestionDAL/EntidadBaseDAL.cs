@@ -14,7 +14,7 @@ namespace GestionDAL
     public abstract class EntidadBaseDAL<T> : IEntidadDAL<T>
     {
         #region Atributos
-        private IConector _connector;
+        protected IConector _connector;
         private IBuilder<T> _builder;
         private string _nombreEntidad;
         
