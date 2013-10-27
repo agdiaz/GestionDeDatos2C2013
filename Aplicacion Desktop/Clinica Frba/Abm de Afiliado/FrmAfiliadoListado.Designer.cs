@@ -54,14 +54,14 @@
             this.gbFiltros.Controls.Add(this.tbApellido);
             this.gbFiltros.Controls.Add(this.tbNroAfiliado);
             this.gbFiltros.Controls.Add(this.label4);
-            this.gbFiltros.Controls.Add(this.tbNombre);
             this.gbFiltros.Controls.Add(this.label5);
             this.gbFiltros.Controls.Add(this.tbDocumento);
+            this.gbFiltros.Controls.Add(this.tbNombre);
             this.gbFiltros.Controls.Add(this.label3);
             this.gbFiltros.Controls.SetChildIndex(this.label3, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.tbNombre, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbDocumento, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label5, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.tbNombre, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label4, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbNroAfiliado, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbApellido, 0);
@@ -108,7 +108,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(257, 51);
+            this.label3.Location = new System.Drawing.Point(257, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 6;
@@ -141,7 +141,7 @@
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(307, 51);
+            this.tbNombre.Location = new System.Drawing.Point(307, 52);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(219, 20);
             this.tbNombre.TabIndex = 11;
