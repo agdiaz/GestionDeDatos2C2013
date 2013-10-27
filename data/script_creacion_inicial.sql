@@ -63,6 +63,7 @@ CREATE TABLE [TOP_4].[Usuario](
 	[id_usuario] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[username] [varchar](255) NOT NULL,
 	[password] [varbinary](32) NOT NULL,
+	[cant_intentos_fallidos] int NOT NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
 (
@@ -81,7 +82,11 @@ GO
 ALTER TABLE [TOP_4].[Usuario] ADD  CONSTRAINT [DF_Usuario_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
 
+ALTER TABLE [TOP_4].[Usuario] ADD  CONSTRAINT [DF_Usuario_cant_intentos_fallidos]  DEFAULT ((0)) FOR [cant_intentos_fallidos]
+GO
+
 ---------------------------------Rol---------------------------------------
+
 CREATE TABLE [TOP_4].[Rol](
 	[id_rol] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[nombre] [varchar](255) NOT NULL,
@@ -101,6 +106,10 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+ALTER TABLE [TOP_4].[Rol] ADD  CONSTRAINT [DF_Rol_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
 
 -- Creo los roles por defecto --
 GO
@@ -124,6 +133,10 @@ CREATE TABLE [TOP_4].[Funcionalidad](
 GO
 SET ANSI_PADDING OFF
 GO
+
+ALTER TABLE [TOP_4].[Funcionalidad] ADD  CONSTRAINT [DF_Funcionalidad_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
 
 -- Creo las funcionalidades existentes 
 GO
