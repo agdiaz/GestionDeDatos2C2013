@@ -16,7 +16,7 @@ namespace GestionDAL.Builder
             rol.IdRol = Convert.ToDecimal(row["id_rol"]);
             rol.Nombre = Convert.ToString(row["nombre"]);
             rol.Habilitado = Convert.ToBoolean(row["habilitado"]);
-            
+            rol.Activo = Convert.ToBoolean(row["activo"]);
             return rol;
         }
 

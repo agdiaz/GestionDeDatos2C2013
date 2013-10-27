@@ -55,7 +55,19 @@ namespace GestionDAL
 
         public bool ObtenerSegunNombreUsuario(string nombre)
         {
-            throw new NotImplementedException();
+            return false;
+        }
+
+        public Usuario ObtenerPorNombre(string nombre)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            var pNombre = new SqlParameter("@p_nombre", SqlDbType.VarChar, 255, "p_nombre");
+            pNombre.Value = nombre;
+
+            var ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_Usuario_select_by_name]", parametros);
+
+            return this._builder.Build(ds.Tables[0].Rows[0]);
         }
 
         public IList<Rol> ObtenerRoles(string nombre)
