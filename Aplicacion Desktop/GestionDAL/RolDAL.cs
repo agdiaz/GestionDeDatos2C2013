@@ -25,6 +25,14 @@ namespace GestionDAL
         protected override IList<SqlParameter> GenerarParametrosCrear(Rol entidad)
         {
             IList<SqlParameter> parametros = new List<SqlParameter>();
+            
+            SqlParameter pNombre = new SqlParameter("@p_nombre", System.Data.SqlDbType.VarChar, 255, "p_nombre");
+            pNombre.Value = entidad.Nombre;
+
+            SqlParameter pActivo = new SqlParameter("@p_Activo", System.Data.SqlDbType.Bit, 1, "p_Activo");
+            pActivo.Value = entidad.Activo;
+
+            return parametros;
 
         }
 
