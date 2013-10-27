@@ -106,13 +106,13 @@ namespace GestionDomain
             return resultado;
         }
 
-        public IResultado<IList<Rol>> ObtenerRoles(decimal idUsuario)
+        public IResultado<IList<Rol>> ObtenerRoles(string nombre)
         {
             Resultado<IList<Rol>> resultado = new Resultado<IList<Rol>>();
 
             try
             {
-                IList<Rol> roles = _dal.ObtenerRoles(idUsuario);
+                IList<Rol> roles = _dal.ObtenerRoles(nombre);
                 resultado.Retorno= roles;
             }
             catch (Exception ex)
