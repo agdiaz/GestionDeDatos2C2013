@@ -60,7 +60,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [TOP_4].[Usuario](
-	[id_usuario] [numeric](18, 0) NOT NULL,
+	[id_usuario] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[username] [varchar](255) NOT NULL,
 	[password] [varbinary](32) NOT NULL,
 	[habilitado] [bit] NOT NULL,
@@ -81,8 +81,219 @@ GO
 ALTER TABLE [TOP_4].[Usuario] ADD  CONSTRAINT [DF_Usuario_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
 
+---------------------------------Rol---------------------------------------
+CREATE TABLE [TOP_4].[Rol](
+	[id_rol] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](255) NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Rol] PRIMARY KEY CLUSTERED 
+(
+	[id_rol] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
 
---aca inserts
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+
+-- Creo los roles por defecto --
+GO
+
+INSERT INTO [TOP_4].[Rol] ([nombre],[habilitado]) VALUES ('Afiliado', 1)
+INSERT INTO [TOP_4].[Rol] ([nombre],[habilitado]) VALUES ('Administrativo', 1)
+INSERT INTO [TOP_4].[Rol] ([nombre],[habilitado]) VALUES ('Profesional', 1)
+
+GO
+
+---------------------------------Funcionalidad---------------------------------------
+CREATE TABLE [TOP_4].[Funcionalidad](
+	[id_funcionalidad] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](255) NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Funcionalidad] PRIMARY KEY CLUSTERED 
+(
+	[id_funcionalidad] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
+-- Creo las funcionalidades existentes 
+GO
+-- Menu archivo:
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmArchivo' ,1) -- 1
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmSesion' ,1) -- 2
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmSesion_IniciarSesion' ,1) -- 3  
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmSesion_CerrarSesion' ,1) -- 4
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('estadísticasToolStripMenuItem' ,1) --5 
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmSalir' ,1) -- 6
+-- Menu Gestión de clínica
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmGestionDeClinica',1) --7
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmPlanes' ,1) -- 8
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmRoles' ,1) --9 
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmUsuarios' ,1) -- 10
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmCancelaciones' ,1) --11
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmCancelaciones_Afiliado' ,1) --12
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmCancelaciones_Profesional' ,1) --13
+-- Menu Gestión de afiliados
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmAfiliados' ,1) --14
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmCompraDeBonos' ,1) --15
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmPedirTurno' ,1) --16
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmRegistroDeLlegada' ,1) --17
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmRegistroDeResultados' ,1) --18
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmRecetar' ,1) --19
+-- Menu Gestión de profesionales
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmGestionDeProfesionales' ,1) --20
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmProfesionales' ,1) --21
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmEspecialidades' ,1) --22 
+-- Menu Agenda
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmAgenda' ,1) --23
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmAgenda_Consultar' ,1) --24
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre],[habilitado])VALUES ('tsmAgenda_Registrar' ,1) --25
+
+GO
+
+---------------------------------Usuario_Rol---------------------------------------
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [TOP_4].[Usuario_Rol](
+	[id_usuario] [numeric](18, 0) NOT NULL,
+	[id_rol] [numeric](18, 0) NOT NULL,
+ CONSTRAINT [PK_Usuario_Rol] PRIMARY KEY CLUSTERED 
+(
+	[id_usuario] ASC,
+	[id_rol] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [TOP_4].[Usuario_Rol]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_Rol_Rol] FOREIGN KEY([id_rol])
+REFERENCES [TOP_4].[Rol] ([id_rol])
+GO
+ALTER TABLE [TOP_4].[Usuario_Rol] CHECK CONSTRAINT [FK_Usuario_Rol_Rol]
+GO
+
+ALTER TABLE [TOP_4].[Usuario_Rol]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_Rol_Usuario] FOREIGN KEY([id_usuario])
+REFERENCES [TOP_4].[Usuario] ([id_usuario])
+GO
+ALTER TABLE [TOP_4].[Usuario_Rol] CHECK CONSTRAINT [FK_Usuario_Rol_Usuario]
+GO
+
+--- Creo los usuarios administradores
+GO
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin1', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
+
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin2', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
+
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin3', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
+
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin4', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
+
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin5', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
+
+GO
+
+
+---------------------------------Rol_Funcionalidad---------------------------------------
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [TOP_4].[Rol_Funcionalidad](
+	[id_rol] [numeric](18, 0) NOT NULL,
+	[id_funcionalidad] [numeric](18, 0) NOT NULL,
+ CONSTRAINT [PK_Rol_Funcionalidad] PRIMARY KEY CLUSTERED 
+(
+	[id_rol] ASC,
+	[id_funcionalidad] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [TOP_4].[Rol_Funcionalidad]  WITH CHECK ADD  CONSTRAINT [FK_Rol_Funcionalidad_Funcionalidad] FOREIGN KEY([id_funcionalidad])
+REFERENCES [TOP_4].[Funcionalidad] ([id_funcionalidad])
+GO
+ALTER TABLE [TOP_4].[Rol_Funcionalidad] CHECK CONSTRAINT [FK_Rol_Funcionalidad_Funcionalidad]
+GO
+
+ALTER TABLE [TOP_4].[Rol_Funcionalidad]  WITH CHECK ADD  CONSTRAINT [FK_Rol_Funcionalidad_Rol] FOREIGN KEY([id_rol])
+REFERENCES [TOP_4].[Rol] ([id_rol])
+GO
+ALTER TABLE [TOP_4].[Rol_Funcionalidad] CHECK CONSTRAINT [FK_Rol_Funcionalidad_Rol]
+GO
+
+-------------------- Roles y sus funcionalidades ----------------
+--Rol Afiliado
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 1)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 2)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 3)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 4)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 6)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 7)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 11)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 12)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 14)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 15)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 16)
+
+--Rol Administrativo
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 1)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 2)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 3)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 4)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 5)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 6)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 7)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 8)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 9)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 10)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 11)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 12)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 13)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 14)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 15)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 16)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 17)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 18)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 19)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 20)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 21)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 22)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 23)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 24)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 25)
+
+--Rol Profesional
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 1)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 2)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 3)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 4)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 5)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 6)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 7)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 11)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 13)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 14)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 18)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 19)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 23)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 24)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 25)
+GO
 
 ------------------------------------Profesional------------------------------------------------
 
@@ -350,4 +561,39 @@ INSERT INTO TOP_4.Agenda
 
 GO
 
+------------------------------------------Dia_Agenda--------------------------------------------------
 
+USE [GD2C2013]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [TOP_4].[Dia_Agenda](
+	[id_dia_agenda] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_agenda] [numeric](18, 0) NOT NULL,
+	[nro_dia_semana] [numeric](18, 0) NOT NULL,
+	[nombre_dia_semana] [nvarchar](255) NOT NULL,
+	[hora_desde] [time](7) NOT NULL,
+	[hora_hasta] [time](7) NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Dia_Agenda] PRIMARY KEY CLUSTERED 
+(
+	[id_dia_agenda] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Dia_Agenda]  WITH CHECK ADD  CONSTRAINT [FK_Dia_Agenda_Agenda] FOREIGN KEY([id_agenda])
+REFERENCES [TOP_4].[Agenda] ([id_agenda])
+GO
+
+ALTER TABLE [TOP_4].[Dia_Agenda] CHECK CONSTRAINT [FK_Dia_Agenda_Agenda]
+GO
+
+ALTER TABLE [TOP_4].[Dia_Agenda] ADD  CONSTRAINT [DF_Dia_Agenda_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
