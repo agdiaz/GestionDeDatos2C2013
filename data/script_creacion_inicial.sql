@@ -93,29 +93,42 @@ INSERT INTO TOP_4.Usuario
 )
 
 ---------------------------------Rol---------------------------------------
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Rol]    Script Date: 10/27/2013 17:46:03 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
 
 CREATE TABLE [TOP_4].[Rol](
 	[id_rol] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[nombre] [varchar](255) NOT NULL,
+	[activo] [bit] NOT NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Rol] PRIMARY KEY CLUSTERED 
 (
 	[id_rol] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
 GO
+
 SET ANSI_PADDING OFF
 GO
 
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
+ALTER TABLE [TOP_4].[Rol] ADD  CONSTRAINT [DF_Rol_activo]  DEFAULT ((1)) FOR [activo]
 GO
 
 ALTER TABLE [TOP_4].[Rol] ADD  CONSTRAINT [DF_Rol_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
+
+
 
 
 -- Creo los roles por defecto --
@@ -616,3 +629,79 @@ GO
 
 ALTER TABLE [TOP_4].[Dia_Agenda] ADD  CONSTRAINT [DF_Dia_Agenda_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
+
+---------------------------------Afiliado----------------------------------------------
+
+
+USE [GD2C2013]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [TOP_4].[Afiliado](
+	[id_afiliado] [numeric](18, 0) NOT NULL,
+	[nro_principal] [numeric](18, 0) NOT NULL,
+	[nro_secundario] [numeric](18, 0) NOT NULL,
+	[id_usuario] [numeric](18, 0) NOT NULL,
+	[id_plan_medico] [numeric](18, 0) NOT NULL,
+	[tipo_documento] [int] NOT NULL,
+	[documento] [numeric](18, 0) NOT NULL,
+	[nombre] [varchar](255) NOT NULL,
+	[apellido] [varchar](255) NOT NULL,
+	[direccion] [varchar](255) NOT NULL,
+	[telefono] [numeric](18, 0) NOT NULL,
+	[mail] [varchar](255) NOT NULL,
+	[fecha_nacimiento] [datetime] NOT NULL,
+	[sexo] [int] NOT NULL,
+	[estado_civil] [int] NOT NULL,
+	[cantidad_familiares] [int] NOT NULL,
+	[fecha_baja] [datetime] NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Afiliado] PRIMARY KEY CLUSTERED 
+(
+	[id_afiliado] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [TOP_4].[Afiliado]  WITH CHECK ADD  CONSTRAINT [FK_Afiliado_Plan_medico] FOREIGN KEY([id_plan_medico])
+REFERENCES [TOP_4].[Plan_medico] ([id_plan_medico])
+GO
+
+ALTER TABLE [TOP_4].[Afiliado] CHECK CONSTRAINT [FK_Afiliado_Plan_medico]
+GO
+
+ALTER TABLE [TOP_4].[Afiliado]  WITH CHECK ADD  CONSTRAINT [FK_Afiliado_Usuario] FOREIGN KEY([id_usuario])
+REFERENCES [TOP_4].[Usuario] ([id_usuario])
+GO
+
+ALTER TABLE [TOP_4].[Afiliado] CHECK CONSTRAINT [FK_Afiliado_Usuario]
+GO
+
+ALTER TABLE [TOP_4].[Afiliado] ADD  CONSTRAINT [DF_Afiliado_tipo_documento]  DEFAULT ((0)) FOR [tipo_documento]
+GO
+
+ALTER TABLE [TOP_4].[Afiliado] ADD  CONSTRAINT [DF_Afiliado_sexo]  DEFAULT ((0)) FOR [sexo]
+GO
+
+ALTER TABLE [TOP_4].[Afiliado] ADD  CONSTRAINT [DF_Afiliado_estado_civil]  DEFAULT ((0)) FOR [estado_civil]
+GO
+
+ALTER TABLE [TOP_4].[Afiliado] ADD  CONSTRAINT [DF_Afiliado_cantidad_familiares]  DEFAULT ((0)) FOR [cantidad_familiares]
+GO
+
+ALTER TABLE [TOP_4].[Afiliado] ADD  CONSTRAINT [DF_Afiliado_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+
