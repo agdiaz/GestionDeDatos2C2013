@@ -93,3 +93,15 @@ WHERE f.habilitado = '1'
 END
 GO
 
+GO
+CREATE PROCEDURE [TOP_4].[sp_Rol_delete](
+	@p_id numeric(18))
+
+AS
+BEGIN
+
+DELETE FROM [TOP_4].Rol
+WHERE id_rol = @p_id
+
+END
+GO
