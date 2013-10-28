@@ -6,18 +6,19 @@ using GestionDAL;
 using GestionCommon.Entidades;
 using GestionCommon.Helpers;
 using GestionDomain.Resultados;
+using GestionCommon.Filtros;
 
 namespace GestionDomain
 {
     public class RolDomain
     {
         private RolDAL _dal;
-        private EntidadBaseDomain<Rol> _domain;
+        private EntidadBaseDomain<Rol, FiltroRol> _domain;
 
         public RolDomain(ILog log)
         {
             _dal = new RolDAL(log);
-            _domain = new EntidadBaseDomain<Rol>(_dal);
+            _domain = new EntidadBaseDomain<Rol, FiltroRol>(_dal);
         }
 
         public IResultado<Rol> Obtener(decimal id)
@@ -124,5 +125,21 @@ namespace GestionDomain
                 return new Resultado<bool>(ex.Message);
             }
         }
+
+        public IResultado<IList<Rol>> Filtrar(FiltroRol filtro)
+        {
+            Resultado<IList<Rol>> resultado = new Resultado<IList<Rol>>();
+            try
+            {
+                resultado.Retorno = _domain.Filtrar(filtro);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+        }
+        
     }
 }

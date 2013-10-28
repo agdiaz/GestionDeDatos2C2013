@@ -8,10 +8,11 @@ using GestionConector;
 using GestionDAL.Builder;
 using GestionCommon.Helpers;
 using System.Data;
+using GestionCommon.Filtros;
 
 namespace GestionDAL
 {
-    public class UsuarioDAL : EntidadBaseDAL<Usuario>
+    public class UsuarioDAL : EntidadBaseDAL<Usuario, FiltroUsuario>
     {
         public UsuarioDAL(ILog log)
         :base(new SqlServerConector(log), new UsuarioBuilder(), "Usuario")
@@ -27,6 +28,21 @@ namespace GestionDAL
         protected override IList<SqlParameter> GenerarParametrosCrear(Usuario entidad)
         {
             throw new NotImplementedException();
+        }
+
+        protected override IList<SqlParameter> GenerarParametrosFiltrar(FiltroUsuario filtro)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pNombre = new SqlParameter("@p_username", System.Data.SqlDbType.VarChar, 255, "p_username");
+            pNombre.Value = filtro.Username;
+            parametros.Add(pNombre);
+
+            SqlParameter pIdFuncionalidad = new SqlParameter("@p_id_rol", System.Data.SqlDbType.Decimal, 18, "p_id_rol");
+            pIdFuncionalidad.Value = filtro.IdRol;
+            parametros.Add(pIdFuncionalidad);
+
+            return parametros;
         }
 
         public int RealizarIdentificacion(string nombre, byte[] hashPassword)
@@ -91,5 +107,7 @@ namespace GestionDAL
 
             return roles;
         }
+
+        
     }
 }

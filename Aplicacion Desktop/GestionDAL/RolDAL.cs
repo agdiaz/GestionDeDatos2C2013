@@ -7,10 +7,11 @@ using GestionCommon.Helpers;
 using GestionDAL.Builder;
 using GestionConector;
 using System.Data.SqlClient;
+using GestionCommon.Filtros;
 
 namespace GestionDAL
 {
-    public class RolDAL : EntidadBaseDAL<Rol>
+    public class RolDAL : EntidadBaseDAL<Rol, FiltroRol>
     {
         public RolDAL(ILog log)
             :base(new SqlServerConector(log), new RolBuilder(), "Rol")
@@ -55,6 +56,21 @@ namespace GestionDAL
 
             return parametros;
 
+        }
+
+        protected override IList<SqlParameter> GenerarParametrosFiltrar(FiltroRol filtro)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+            
+            SqlParameter pNombre = new SqlParameter("@p_nombre", System.Data.SqlDbType.VarChar, 255, "p_nombre");
+            pNombre.Value = filtro.Nombre;
+            parametros.Add(pNombre);
+
+            SqlParameter pIdFuncionalidad = new SqlParameter("@p_id_funcionalidad", System.Data.SqlDbType.Decimal, 18, "p_id_funcionalidad");
+            pIdFuncionalidad.Value = filtro.IdFuncionalidad;
+            parametros.Add(pIdFuncionalidad);
+
+            return parametros;
         }
 
         public void AsociarRolFuncionalidad(decimal idRol, decimal idFuncionalidad)

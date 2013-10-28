@@ -11,7 +11,7 @@ using System.Data;
 
 namespace GestionDAL
 {
-    public class FuncionalidadDAL : EntidadBaseDAL<Funcionalidad>
+    public class FuncionalidadDAL : EntidadBaseDAL<Funcionalidad, Funcionalidad>
     {
         public FuncionalidadDAL(ILog log)
             :base( new SqlServerConector(log), new FuncionalidadBuilder(), "Funcionalidad")
@@ -25,6 +25,11 @@ namespace GestionDAL
         }
 
         protected override IList<SqlParameter> GenerarParametrosCrear(Funcionalidad entidad)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IList<SqlParameter> GenerarParametrosFiltrar(Funcionalidad entidad)
         {
             throw new NotImplementedException();
         }
@@ -47,5 +52,7 @@ namespace GestionDAL
 
             return retorno;
         }
+
+        
     }
 }

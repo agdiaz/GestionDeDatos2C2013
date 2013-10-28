@@ -12,6 +12,7 @@ using GestionDomain;
 using GestionDomain.Resultados;
 using GestionGUIHelper.Helpers;
 using GestionGUIHelper.Validaciones;
+using GestionCommon.Filtros;
 
 namespace Clinica_Frba.Roles
 {
@@ -64,7 +65,13 @@ namespace Clinica_Frba.Roles
         {
             try
             {
-                IResultado<IList<Rol>> obtenerTodos = _rolDomain.ObtenerTodos();
+                var filtro = new FiltroRol();
+                var funcionalidad = cbFuncionalidad.SelectedItem as Funcionalidad;
+                if (funcionalidad != null)
+                    filtro.IdFuncionalidad = funcionalidad.IdFuncionalidad;
+                filtro.Nombre = tbRol.Text;
+
+                IResultado<IList<Rol>> obtenerTodos = _rolDomain.Filtrar(filtro);
                 if (!obtenerTodos.Correcto)
                     throw new ResultadoIncorrectoException<IList<Rol>>(obtenerTodos);
 

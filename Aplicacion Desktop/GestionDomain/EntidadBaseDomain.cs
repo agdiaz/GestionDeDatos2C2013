@@ -6,18 +6,18 @@ using GestionDAL;
 
 namespace GestionDomain
 {
-    public class EntidadBaseDomain<T> : IEntidadDomain<T>
+    public class EntidadBaseDomain<T, W> : IEntidadDomain<T, W>
     {
-        private IEntidadDAL<T> _dal;
+        private IEntidadDAL<T, W> _dal;
 
-        public EntidadBaseDomain(IEntidadDAL<T> dal)
+        public EntidadBaseDomain(IEntidadDAL<T, W> dal)
         {
             _dal = dal;
         }
 
-        #region IEntidadDomain<T>
+        #region IEntidadDomain<T, W>
 
-        public IEntidadDAL<T> DAL
+        public IEntidadDAL<T, W> DAL
         {
             get { return _dal; }
         }
@@ -45,6 +45,11 @@ namespace GestionDomain
         public T Crear(T entidad)
         {
             return _dal.Crear(entidad);
+        }
+
+        public IList<T> Filtrar(W filtro)
+        {
+            return _dal.Filtrar(filtro);
         }
 
         #endregion

@@ -11,7 +11,7 @@ using GestionCommon.Helpers;
 
 namespace GestionDAL
 {
-    public abstract class EntidadBaseDAL<T> : IEntidadDAL<T>
+    public abstract class EntidadBaseDAL<T, W> : IEntidadDAL<T, W>
     {
         #region Atributos
         protected IConector _connector;
@@ -23,6 +23,7 @@ namespace GestionDAL
         protected string _sp_borrar;
         protected string _sp_modificar;
         protected string _sp_crear;
+        protected string _sp_filtrar;
         #endregion
         
         #region Constructor
@@ -115,6 +116,23 @@ namespace GestionDAL
             entidadBase.Id = Convert.ToInt32(parametroId.Value);
             return entidad;
         }
+        
+        public IList<T> Filtrar(W filtro)
+        {
+            //Configuro el parametro:
+            IList<SqlParameter> parametros = GenerarParametrosFiltrar(filtro);
+
+            //Ejecuto el stored procedure
+            DataSet ds = _connector.RealizarConsultaAlmacenada(_sp_filtrar, parametros);
+
+            IList<T> todos = new List<T>(ds.Tables[0].Rows.Count);
+            foreach (DataRow fila in ds.Tables[0].Rows)
+            {
+                todos.Add(this._builder.Build(fila));
+            }
+            return todos;
+        }
+
         #endregion
 
         #region Sobrecargas
@@ -132,8 +150,10 @@ namespace GestionDAL
             parametros.Add(new SqlParameter("@p_id", SqlDbType.Int, 4, "p_id"));
             return parametros;
         }
+        protected abstract IList<SqlParameter> GenerarParametrosFiltrar(W entidad);
         protected abstract IList<SqlParameter> GenerarParametrosModificar(T entidad);
         protected abstract IList<SqlParameter> GenerarParametrosCrear(T entidad);
+        
         #endregion
 
         #region Métodos privados
@@ -146,6 +166,7 @@ namespace GestionDAL
             _sp_borrar = string.Format(AppConfigReader.Get("SP_Borrar"), esquema, _nombreEntidad);
             _sp_modificar = string.Format(AppConfigReader.Get("SP_Actualizar"), esquema, _nombreEntidad);
             _sp_crear = string.Format(AppConfigReader.Get("SP_Insertar"), esquema, _nombreEntidad);
+            _sp_filtrar = string.Format(AppConfigReader.Get("SP_Filtrar"), esquema, _nombreEntidad);
         }
         #endregion
     }

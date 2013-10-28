@@ -74,6 +74,9 @@
     <Compile Include="Enums\EstadoCivil.cs" />
     <Compile Include="Enums\IdentificacionUsuario.cs" />
     <Compile Include="Enums\TipoDocumento.cs" />
+    <Compile Include="Filtros\FiltroPlanMedico.cs" />
+    <Compile Include="Filtros\FiltroRol.cs" />
+    <Compile Include="Filtros\FiltroUsuario.cs" />
     <Compile Include="Helpers\AppConfigReader.cs" />
     <Compile Include="Entidades\EntidadBase.cs" />
     <Compile Include="Helpers\FechaHelper.cs" />

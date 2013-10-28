@@ -6,14 +6,15 @@ using GestionDAL;
 
 namespace GestionDomain
 {
-    public interface IEntidadDomain<T>
+    public interface IEntidadDomain<T, W>
     {
-        IEntidadDAL<T> DAL { get; }
+        IEntidadDAL<T, W> DAL { get; }
 
         T Obtener(decimal id);
         IList<T> ObtenerTodos();
         void Borrar(decimal id);
         T Modificar(T entidad);
         T Crear(T entidad);
+        IList<T> Filtrar(W filtro);
     }
 }

@@ -12,12 +12,12 @@ namespace GestionDomain
     public class FuncionalidadDomain
     {
         private FuncionalidadDAL _dal;
-        private EntidadBaseDomain<Funcionalidad> _domain;
+        private EntidadBaseDomain<Funcionalidad, Funcionalidad> _domain;
 
         public FuncionalidadDomain(ILog log)
         {
             _dal = new FuncionalidadDAL(log);
-            _domain = new EntidadBaseDomain<Funcionalidad>(_dal);
+            _domain = new EntidadBaseDomain<Funcionalidad, Funcionalidad>(_dal);
         }
 
         public IResultado<Funcionalidad> Obtener(int id)

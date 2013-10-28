@@ -7,18 +7,19 @@ using GestionDAL;
 using GestionCommon.Helpers;
 using GestionDomain.Resultados;
 using GestionCommon.Enums;
+using GestionCommon.Filtros;
 
 namespace GestionDomain
 {
     public class UsuarioDomain 
     {
         private UsuarioDAL _dal;
-        private EntidadBaseDomain<Usuario> _domain;
+        private EntidadBaseDomain<Usuario, FiltroUsuario> _domain;
 
         public UsuarioDomain(ILog log)
         {
             _dal = new UsuarioDAL(log);
-            _domain = new EntidadBaseDomain<Usuario>(_dal);
+            _domain = new EntidadBaseDomain<Usuario, FiltroUsuario>(_dal);
         }
 
         public IResultado<Usuario> Obtener(int id)
