@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tbNroAfiliado = new System.Windows.Forms.TextBox();
-            this.tbPlanMedico = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -40,15 +39,18 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tbApellido = new System.Windows.Forms.TextBox();
             this.cbTipoDoc = new System.Windows.Forms.ComboBox();
+            this.tbPlanMedico = new System.Windows.Forms.TextBox();
+            this.btnBuscarPlanMedico = new System.Windows.Forms.Button();
             this.gbAcciones.SuspendLayout();
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbFiltros
             // 
-            this.gbFiltros.Controls.Add(this.tbPlanMedico);
+            this.gbFiltros.Controls.Add(this.btnBuscarPlanMedico);
             this.gbFiltros.Controls.Add(this.label1);
             this.gbFiltros.Controls.Add(this.label2);
+            this.gbFiltros.Controls.Add(this.tbPlanMedico);
             this.gbFiltros.Controls.Add(this.cbTipoDoc);
             this.gbFiltros.Controls.Add(this.label6);
             this.gbFiltros.Controls.Add(this.tbApellido);
@@ -67,9 +69,10 @@
             this.gbFiltros.Controls.SetChildIndex(this.tbApellido, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label6, 0);
             this.gbFiltros.Controls.SetChildIndex(this.cbTipoDoc, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.tbPlanMedico, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label2, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.tbPlanMedico, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.btnBuscarPlanMedico, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
             // 
@@ -95,15 +98,8 @@
             // 
             this.tbNroAfiliado.Location = new System.Drawing.Point(80, 20);
             this.tbNroAfiliado.Name = "tbNroAfiliado";
-            this.tbNroAfiliado.Size = new System.Drawing.Size(100, 20);
+            this.tbNroAfiliado.Size = new System.Drawing.Size(171, 20);
             this.tbNroAfiliado.TabIndex = 4;
-            // 
-            // tbPlanMedico
-            // 
-            this.tbPlanMedico.Location = new System.Drawing.Point(80, 44);
-            this.tbPlanMedico.Name = "tbPlanMedico";
-            this.tbPlanMedico.Size = new System.Drawing.Size(100, 20);
-            this.tbPlanMedico.TabIndex = 5;
             // 
             // label3
             // 
@@ -170,6 +166,23 @@
             this.cbTipoDoc.Size = new System.Drawing.Size(75, 21);
             this.cbTipoDoc.TabIndex = 14;
             // 
+            // tbPlanMedico
+            // 
+            this.tbPlanMedico.Location = new System.Drawing.Point(78, 48);
+            this.tbPlanMedico.Name = "tbPlanMedico";
+            this.tbPlanMedico.Size = new System.Drawing.Size(100, 20);
+            this.tbPlanMedico.TabIndex = 15;
+            // 
+            // btnBuscarPlanMedico
+            // 
+            this.btnBuscarPlanMedico.Location = new System.Drawing.Point(185, 48);
+            this.btnBuscarPlanMedico.Name = "btnBuscarPlanMedico";
+            this.btnBuscarPlanMedico.Size = new System.Drawing.Size(58, 23);
+            this.btnBuscarPlanMedico.TabIndex = 16;
+            this.btnBuscarPlanMedico.Text = "Buscar";
+            this.btnBuscarPlanMedico.UseVisualStyleBackColor = true;
+            this.btnBuscarPlanMedico.Click += new System.EventHandler(this.btnBuscarPlanMedico_Click);
+            // 
             // FrmAfiliadoListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -188,7 +201,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tbPlanMedico;
         private System.Windows.Forms.TextBox tbApellido;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
@@ -198,5 +210,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbDocumento;
         private System.Windows.Forms.ComboBox cbTipoDoc;
+        private System.Windows.Forms.Button btnBuscarPlanMedico;
+        private System.Windows.Forms.TextBox tbPlanMedico;
     }
 }

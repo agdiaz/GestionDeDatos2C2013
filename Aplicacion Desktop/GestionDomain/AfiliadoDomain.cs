@@ -2,28 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GestionDAL;
 using GestionCommon.Entidades;
 using GestionCommon.Filtros;
-using GestionDAL;
 using GestionCommon.Helpers;
 using GestionDomain.Resultados;
 
 namespace GestionDomain
 {
-    public class PlanMedicoDomain
+    public class AfiliadoDomain
     {
-        PlanMedicoDAL _dal;
-        EntidadBaseDomain<PlanMedico, FiltroPlanMedico> _domain;
+        private AfiliadoDAL _dal;
+        private IEntidadDomain<Afiliado, FiltroAfiliado> _domain;
 
-        public PlanMedicoDomain(ILog log)
+        public AfiliadoDomain(ILog log)
         {
-            _dal = new PlanMedicoDAL(log);
-            _domain = new EntidadBaseDomain<PlanMedico, FiltroPlanMedico>(_dal);
+            _dal = new AfiliadoDAL(log);
+            _domain = new EntidadBaseDomain<Afiliado, FiltroAfiliado>(_dal);
         }
 
-        public IResultado<IList<PlanMedico>> Filtrar(FiltroPlanMedico filtro)
+        public IResultado<IList<Afiliado>> Filtrar(FiltroAfiliado filtro)
         {
-            Resultado<IList<PlanMedico>> resultado = new Resultado<IList<PlanMedico>>();
+            Resultado<IList<Afiliado>> resultado = new Resultado<IList<Afiliado>>();
+
             try
             {
                 resultado.Retorno = _domain.Filtrar(filtro);
@@ -35,5 +36,6 @@ namespace GestionDomain
             }
             return resultado;
         }
+
     }
 }

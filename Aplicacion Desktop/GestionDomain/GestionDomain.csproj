@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AfiliadoDomain.cs" />
     <Compile Include="EntidadBaseDomain.cs" />
     <Compile Include="FuncionalidadDomain.cs" />
     <Compile Include="IEntidadDomain.cs" />

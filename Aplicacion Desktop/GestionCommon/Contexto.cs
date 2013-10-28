@@ -20,6 +20,8 @@ namespace GestionCommon
             _logPath = path;
             _logger = new FileLog(path);
             _fechaActual = fechaActual;
+            _usuario = new Usuario();
+            _rol = new Rol();
         }
 
         #region IContexto

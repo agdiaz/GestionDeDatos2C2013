@@ -146,5 +146,25 @@ namespace GestionDomain
             return resultado;
            
         }
+
+        public IResultado<IList<Usuario>> Filtrar(FiltroUsuario filtro)
+        {
+
+            Resultado<IList<Usuario>> resultado = new Resultado<IList<Usuario>>();
+
+            try
+            {
+                var usuarios = _dal.Filtrar(filtro);
+                resultado.Retorno = usuarios;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
+
+        }
     }
 }

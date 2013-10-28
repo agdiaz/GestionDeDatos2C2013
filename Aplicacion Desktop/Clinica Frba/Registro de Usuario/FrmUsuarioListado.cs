@@ -12,6 +12,7 @@ using GestionGUIHelper.Validaciones;
 using GestionDomain;
 using GestionCommon.Entidades;
 using GestionDomain.Resultados;
+using GestionCommon.Filtros;
 
 namespace Clinica_Frba.Usuarios
 {
@@ -47,13 +48,19 @@ namespace Clinica_Frba.Usuarios
 
         protected override void AccionFiltrar()
         {
-            IResultado<IList<Usuario>> resultadoUsuarios = _usuarioDomain.ObtenerTodos();
+            var filtro = new FiltroUsuario();
+            filtro.Username = tbUsername.Text;
+
+            Rol rol = cbRol.SelectedItem as Rol;
+            if (rol != null)
+                filtro.IdRol = rol.Id;
+
+            IResultado<IList<Usuario>> resultadoUsuarios = _usuarioDomain.Filtrar(filtro);
 
             if (!resultadoUsuarios.Correcto)
                 throw new ResultadoIncorrectoException<IList<Usuario>>(resultadoUsuarios);
 
             this.dgvBusqueda.DataSource = resultadoUsuarios.Retorno;
-
         }
 
         protected override void AccionIniciar()

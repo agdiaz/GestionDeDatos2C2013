@@ -9,14 +9,21 @@ using System.Windows.Forms;
 using GestionGUIHelper.Formularios;
 using GestionGUIHelper.Helpers;
 using GestionGUIHelper.Validaciones;
+using GestionDomain;
+using GestionCommon.Entidades;
+using GestionDomain.Resultados;
+using GestionCommon.Filtros;
 
 namespace Clinica_Frba.Planes
 {
     public partial class FrmPlanListado : FormularioBaseListado
     {
+        private PlanMedicoDomain _domain;
+
         public FrmPlanListado()
             :base()
         {
+            _domain = new PlanMedicoDomain(Program.ContextoActual.Logger);
             InitializeComponent();
         }
 
@@ -39,6 +46,34 @@ namespace Clinica_Frba.Planes
         protected override void AccionBorrar()
         {
             MensajePorPantalla.MensajeInformativo(this, "No se implementa");
+        }
+
+        protected override void AccionFiltrar()
+        {
+            FiltroPlanMedico filtro = new FiltroPlanMedico();
+
+            filtro.Nombre = tbNombrePlan.Text;
+            filtro.BonoConsulta = Convert.ToDecimal(tbBonoConsulta.Text);
+            filtro.BonoFarmacia = Convert.ToDecimal(tbBonoFarmacia.Text);
+
+            IResultado<IList<PlanMedico>> resultado = _domain.Filtrar(filtro);
+
+            if (!resultado.Correcto)
+                throw new ResultadoIncorrectoException<IList<PlanMedico>>(resultado);
+
+            this.dgvBusqueda.DataSource = resultado.Retorno;
+        }
+
+        protected override void AccionIniciar()
+        {
+            
+        }
+
+        protected override void AccionLimpiar()
+        {
+            this.tbNombrePlan.Text = string.Empty;
+            this.tbBonoConsulta.Text = string.Empty;
+            this.tbBonoFarmacia.Text = string.Empty;
         }
 
         private void FrmPlanListado_Load(object sender, EventArgs e)

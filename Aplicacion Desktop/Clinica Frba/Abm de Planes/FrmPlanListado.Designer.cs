@@ -32,26 +32,26 @@
             this.tbNombrePlan = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbBonoFarmacia = new System.Windows.Forms.TextBox();
+            this.tbBonoConsulta = new System.Windows.Forms.TextBox();
             this.gbAcciones.SuspendLayout();
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbFiltros
             // 
-            this.gbFiltros.Controls.Add(this.textBox2);
+            this.gbFiltros.Controls.Add(this.tbBonoConsulta);
             this.gbFiltros.Controls.Add(this.label1);
             this.gbFiltros.Controls.Add(this.label3);
-            this.gbFiltros.Controls.Add(this.textBox1);
+            this.gbFiltros.Controls.Add(this.tbBonoFarmacia);
             this.gbFiltros.Controls.Add(this.label2);
             this.gbFiltros.Controls.Add(this.tbNombrePlan);
             this.gbFiltros.Controls.SetChildIndex(this.tbNombrePlan, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label2, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.textBox1, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.tbBonoFarmacia, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label3, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.textBox2, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.tbBonoConsulta, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
             // 
@@ -89,19 +89,19 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Precio bono consulta";
             // 
-            // textBox1
+            // tbBonoFarmacia
             // 
-            this.textBox1.Location = new System.Drawing.Point(222, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
+            this.tbBonoFarmacia.Location = new System.Drawing.Point(222, 50);
+            this.tbBonoFarmacia.Name = "tbBonoFarmacia";
+            this.tbBonoFarmacia.Size = new System.Drawing.Size(100, 20);
+            this.tbBonoFarmacia.TabIndex = 6;
             // 
-            // textBox2
+            // tbBonoConsulta
             // 
-            this.textBox2.Location = new System.Drawing.Point(223, 77);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 7;
+            this.tbBonoConsulta.Location = new System.Drawing.Point(223, 77);
+            this.tbBonoConsulta.Name = "tbBonoConsulta";
+            this.tbBonoConsulta.Size = new System.Drawing.Size(100, 20);
+            this.tbBonoConsulta.TabIndex = 7;
             // 
             // FrmPlanListado
             // 
@@ -122,9 +122,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbNombrePlan;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbBonoConsulta;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbBonoFarmacia;
         private System.Windows.Forms.Label label2;
     }
 }

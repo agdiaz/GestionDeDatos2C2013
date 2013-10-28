@@ -12,6 +12,6 @@ namespace GestionDAL
         void Borrar(decimal id);
         T Modificar(T entidad);
         T Crear(T entidad);
-        IList<T> Filtrar(W entidad);
+        IList<T> Filtrar(W filtro);
     }
 }

@@ -7,10 +7,11 @@ using System.Data.SqlClient;
 using GestionConector;
 using GestionDAL.Builder;
 using GestionCommon.Helpers;
+using GestionCommon.Filtros;
 
 namespace GestionDAL
 {
-    public class PlanMedicoDAL : EntidadBaseDAL<PlanMedico, PlanMedico>
+    public class PlanMedicoDAL : EntidadBaseDAL<PlanMedico, FiltroPlanMedico>
     {
         public PlanMedicoDAL(ILog log)
         :base(new SqlServerConector(log), new PlanBuilder(), "PlanMedico")
@@ -28,9 +29,23 @@ namespace GestionDAL
             throw new NotImplementedException();
         }
 
-        protected override IList<SqlParameter> GenerarParametrosFiltrar(PlanMedico entidad)
+        protected override IList<SqlParameter> GenerarParametrosFiltrar(FiltroPlanMedico filtro)
         {
-            throw new NotImplementedException();
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            var pDescripcion = new SqlParameter("@p_descripcion", System.Data.SqlDbType.VarChar, 255, "p_descripcion");
+            pDescripcion.Value = filtro.Nombre;
+            parametros.Add(pDescripcion);
+
+            var pFarmacia = new SqlParameter("@p_precio_farmacia", System.Data.SqlDbType.Decimal, 18, "p_precio_farmacia");
+            pFarmacia.Value = filtro.BonoFarmacia;
+            parametros.Add(pFarmacia);
+
+            var pConsulta = new SqlParameter("@p_precio_consulta", System.Data.SqlDbType.Decimal, 18, "p_precio_consulta");
+            pConsulta.Value = filtro.BonoConsulta;
+            parametros.Add(pConsulta);
+
+            return parametros;
         }
     }
 }

@@ -39,10 +39,10 @@ namespace Clinica_Frba
         #region [frmPrincipal_Load]
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            this.frmPrincipal_Load_CargarUsuarioGenerico();
+            //this.frmPrincipal_Load_CargarUsuarioGenerico();
             this.frmPrincipal_Load_MostrarLogin();
             //SOLO POR DEBUG            
-            this.frmPrincipal_Load_CargarMenues();
+            //this.frmPrincipal_Load_CargarMenues();
             this.frmPrincipal_Load_CargarBarraEstado();
         }
 

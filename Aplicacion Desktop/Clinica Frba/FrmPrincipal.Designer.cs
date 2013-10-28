@@ -218,7 +218,6 @@
             this.tsmCancelaciones_Profesional.Name = "tsmCancelaciones_Profesional";
             this.tsmCancelaciones_Profesional.Size = new System.Drawing.Size(133, 22);
             this.tsmCancelaciones_Profesional.Text = "Profesional";
-            this.tsmCancelaciones_Afiliado.Click += new System.EventHandler(this.tsmCancelacionAfiliado_Click);
             // 
             // tsmGestionDeAfiliados
             // 
@@ -337,17 +336,16 @@
             // tsmAgenda_Consultar
             // 
             this.tsmAgenda_Consultar.Name = "tsmAgenda_Consultar";
-            this.tsmAgenda_Consultar.Size = new System.Drawing.Size(152, 22);
+            this.tsmAgenda_Consultar.Size = new System.Drawing.Size(125, 22);
             this.tsmAgenda_Consultar.Text = "Consultar";
-            this.tsmAgenda_Consultar.Click += new System.EventHandler(tsmAgenda_Consultar_Click);
+            this.tsmAgenda_Consultar.Click += new System.EventHandler(this.tsmAgenda_Consultar_Click);
             // 
             // tsmAgenda_Registrar
             // 
             this.tsmAgenda_Registrar.Name = "tsmAgenda_Registrar";
-            this.tsmAgenda_Registrar.Size = new System.Drawing.Size(152, 22);
+            this.tsmAgenda_Registrar.Size = new System.Drawing.Size(125, 22);
             this.tsmAgenda_Registrar.Text = "Registrar";
             this.tsmAgenda_Registrar.Click += new System.EventHandler(this.tsmAgenda_Registrar_Click);
-
             // 
             // stsBarraEstado
             // 

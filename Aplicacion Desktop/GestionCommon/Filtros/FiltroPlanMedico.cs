@@ -7,5 +7,8 @@ namespace GestionCommon.Filtros
 {
     public class FiltroPlanMedico
     {
+        public string Nombre { get; set; }
+        public decimal BonoFarmacia { get; set; }
+        public decimal BonoConsulta { get; set; }
     }
 }

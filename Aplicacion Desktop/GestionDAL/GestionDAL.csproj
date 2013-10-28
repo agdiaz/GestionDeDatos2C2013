@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AfiliadoDAL.cs" />
     <Compile Include="Builder\AfiliadoBuilder.cs" />
     <Compile Include="Builder\AfiliadoCambioBuilder.cs" />
     <Compile Include="Builder\AgendaBuilder.cs" />
