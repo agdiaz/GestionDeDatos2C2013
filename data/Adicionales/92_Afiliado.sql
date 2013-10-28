@@ -34,8 +34,8 @@ SELECT a.[id_afiliado]
   AND ((@p_id_plan_medico IS NULL) OR (@p_id_plan_medico = a.id_plan_medico ))
   AND ((@p_tipo_documento IS NULL) OR (@p_tipo_documento = a.tipo_documento))
   AND ((@p_documento IS NULL) OR (@p_documento = a.documento))
-  AND ((@p_nombre IS NULL) OR (@p_nombre like '%'+ a.nombre +'%'))
-  AND ((@p_apellido IS NULL) OR (@p_apellido like '%'+ a.apellido +'%'))
+  AND ((@p_nombre IS NULL) OR (a.nombre like '%'+ @p_nombre +'%'))
+  AND ((@p_apellido IS NULL) OR (a.apellido like '%'+ @p_apellido +'%'))
 
 END
 GO

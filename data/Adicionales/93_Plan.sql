@@ -29,7 +29,7 @@ SELECT [id_plan_medico]
       ,[precio_bono_consulta]
       ,[habilitado]
   FROM [TOP_4].[Plan_medico]
-  WHERE ((@p_descripcion IS NULL) OR (@p_descripcion like '%' + descripcion + '%'))
+  WHERE ((@p_descripcion IS NULL) OR (descripcion like '%' + @p_descripcion + '%'))
   AND ((@p_precio_consulta IS NULL) OR (@p_precio_consulta = precio_bono_consulta ))
   AND ((@p_precio_farmacia IS NULL) OR ((@p_precio_farmacia = precio_bono_farmacia)))
 END

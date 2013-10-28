@@ -20,7 +20,7 @@ BEGIN
 SELECT te.[id_tipo_especialidad]
       ,te.[nombre]
   FROM [TOP_4].[Tipo_especialidad] te
-  WHERE ((@p_nombre IS NULL) OR (@p_nombre like '%' + te.nombre))
+  WHERE ((@p_nombre IS NULL) OR (te.nombre like '%' + @p_nombre + '%'))
   AND ((@p_id_tipo_especialidad IS NULL) OR (@p_id_tipo_especialidad = id_tipo_especialidad))
 END
 GO

@@ -51,8 +51,8 @@ SELECT p.[id_profesional]
   FROM [TOP_4].[Profesional] p
   LEFT JOIN [TOP_4].Profesional_Especialidad pe on p.id_profesional = pe.id_profesional
   LEFT JOIN [TOP_4].Especialidad e on pe.id_especialidad = e.id_especialidad 
-  WHERE ((@p_nombre IS NULL) OR (@p_nombre like '%' + p.nombre + '%'))
-  AND ((@p_apellido IS NULL) OR (@p_apellido like '%' + p.apellido + '%'))
+  WHERE ((@p_nombre IS NULL) OR (p.nombre like '%' + @p_nombre + '%'))
+  AND ((@p_apellido IS NULL) OR (p.apellido like '%' + @p_apellido + '%'))
   AND ((@p_documento IS NULL) OR (@p_documento = p.documento))
   AND ((@p_matricula IS NULL) OR (@p_matricula = p.matricula))
   AND ((@p_id_especialidad IS NULL) OR (@p_id_especialidad = e.id_especialidad))
