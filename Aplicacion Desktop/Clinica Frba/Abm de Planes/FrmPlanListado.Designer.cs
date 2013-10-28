@@ -95,6 +95,7 @@
             this.tbBonoFarmacia.Name = "tbBonoFarmacia";
             this.tbBonoFarmacia.Size = new System.Drawing.Size(100, 20);
             this.tbBonoFarmacia.TabIndex = 6;
+            this.tbBonoFarmacia.Text = "0";
             // 
             // tbBonoConsulta
             // 
@@ -102,6 +103,7 @@
             this.tbBonoConsulta.Name = "tbBonoConsulta";
             this.tbBonoConsulta.Size = new System.Drawing.Size(100, 20);
             this.tbBonoConsulta.TabIndex = 7;
+            this.tbBonoConsulta.Text = "0";
             // 
             // FrmPlanListado
             // 

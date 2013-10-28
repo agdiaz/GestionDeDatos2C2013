@@ -14,10 +14,11 @@ END
 GO
 
 GO
+
 CREATE PROCEDURE [TOP_4].[sp_Plan_medico_filter](
-	@p_descripcion varchar(255),
-	@p_precio_farmacia numeric(18),
-	@p_precio_consulta numeric(18)
+	@p_descripcion varchar(255) = NULL,
+	@p_precio_farmacia numeric(18)  = NULL,
+	@p_precio_consulta numeric(18) = NULL
 )
 
 AS

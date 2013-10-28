@@ -13,7 +13,7 @@ namespace GestionDAL.Builder
         public PlanMedico Build(System.Data.DataRow row)
         {
             PlanMedico plan = new PlanMedico();
-            plan.IdPlan = Convert.ToDecimal(row["id_plan"]);
+            plan.IdPlan = Convert.ToDecimal(row["id_plan_medico"]);
             plan.Descripcion = Convert.ToString(row["descripcion"]);
             plan.PrecioBonoConsulta = Convert.ToDecimal(row["precio_bono_consulta"]);
             plan.PrecioBonoFarmacia = Convert.ToDecimal(row["precio_bono_farmacia"]);

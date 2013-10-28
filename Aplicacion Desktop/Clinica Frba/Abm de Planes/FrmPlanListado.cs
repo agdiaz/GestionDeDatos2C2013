@@ -53,8 +53,11 @@ namespace Clinica_Frba.Planes
             FiltroPlanMedico filtro = new FiltroPlanMedico();
 
             filtro.Nombre = tbNombrePlan.Text;
-            filtro.BonoConsulta = Convert.ToDecimal(tbBonoConsulta.Text);
-            filtro.BonoFarmacia = Convert.ToDecimal(tbBonoFarmacia.Text);
+            if (!string.IsNullOrEmpty(tbBonoConsulta.Text))
+                filtro.BonoConsulta = Convert.ToDecimal(tbBonoConsulta.Text);
+            
+            if (!string.IsNullOrEmpty(tbBonoFarmacia.Text))
+                filtro.BonoFarmacia = Convert.ToDecimal(tbBonoFarmacia.Text);
 
             IResultado<IList<PlanMedico>> resultado = _domain.Filtrar(filtro);
 
@@ -79,7 +82,7 @@ namespace Clinica_Frba.Planes
         private void FrmPlanListado_Load(object sender, EventArgs e)
         {
             AccionLimpiar();
-            this.AgregarValidacion(new ValidadorNumerico(tbNombrePlan));
+            //this.AgregarValidacion(new ValidadorNumerico(tbNombrePlan));
         }
     }
 }
