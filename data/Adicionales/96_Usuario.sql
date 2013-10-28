@@ -51,6 +51,29 @@ BEGIN
 END
 GO
 
+GO
+CREATE PROCEDURE [TOP_4].[sp_Usuario_filter](
+	@p_username varchar(255),
+	@p_id_rol numeric(18))
+AS
+BEGIN
+
+SELECT [id_usuario]
+      ,[username]
+      ,[password]
+      ,[cant_intentos_fallidos]
+      ,[habilitado]
+  FROM [TOP_4].[Usuario] u
+  LEFT JOIN [TOP_4].[Usuario_Rol] ur on ur.id_usuario = u.id_usuario
+  LEFT JOIN [TOP_4].[Rol] r on r.id_rol = ur.id_rol
+  WHERE ((@p_username IS NULL) OR (u.username like '%'+@p_username+'%'))
+  AND ((@p_id_rol IS NULL) OR (r.id_rol = @p_id_rol))
+  AND u.habilitado = '1'
+  AND r.habilitado = '1'
+END
+GO
+
+
 
 
 
