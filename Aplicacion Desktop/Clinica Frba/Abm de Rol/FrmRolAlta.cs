@@ -45,7 +45,7 @@ namespace Clinica_Frba.Roles
                 
                 IList<Funcionalidad> roles = resObtenerTodos.Retorno;
                 this.clsFuncionalidades.DataSource = roles;
-                this.clsFuncionalidades.DisplayMember = "Nombre";
+                this.clsFuncionalidades.DisplayMember = "Descripcion";
                 this.clsFuncionalidades.ValueMember = "IdFuncionalidad";
 
             }
