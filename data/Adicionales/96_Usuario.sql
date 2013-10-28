@@ -58,11 +58,11 @@ CREATE PROCEDURE [TOP_4].[sp_Usuario_filter](
 AS
 BEGIN
 
-SELECT [id_usuario]
-      ,[username]
-      ,[password]
-      ,[cant_intentos_fallidos]
-      ,[habilitado]
+SELECT u.[id_usuario]
+      ,u.[username]
+      ,u.[password]
+      ,u.[cant_intentos_fallidos]
+      ,u.[habilitado]
   FROM [TOP_4].[Usuario] u
   LEFT JOIN [TOP_4].[Usuario_Rol] ur on ur.id_usuario = u.id_usuario
   LEFT JOIN [TOP_4].[Rol] r on r.id_rol = ur.id_rol
