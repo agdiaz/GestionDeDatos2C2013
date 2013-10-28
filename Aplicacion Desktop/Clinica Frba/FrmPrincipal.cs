@@ -42,23 +42,22 @@ namespace Clinica_Frba
             this.frmPrincipal_Load_CargarUsuarioGenerico();
             this.frmPrincipal_Load_MostrarLogin();
             //SOLO POR DEBUG            
-            //this.frmPrincipal_Load_CargarMenues();
+            this.frmPrincipal_Load_CargarMenues();
             this.frmPrincipal_Load_CargarBarraEstado();
         }
 
         private void frmPrincipal_Load_CargarMenues()
         {
             //Obtengo el rol del usuario actual:
-            RolDomain rolDomain = new RolDomain(Program.ContextoActual.Logger);
-            IResultado<Rol> resultadoObtenerRol = rolDomain.Obtener(Program.ContextoActual.UsuarioActual.IdUsuario);
-
-            if (resultadoObtenerRol.Correcto)
+            
+            
+            if (true)
             {
                 //Obtengo las funcionalidades del rol:
                 FuncionalidadDomain funcionalidadDomain = new FuncionalidadDomain(Program.ContextoActual.Logger);
-                IResultado<IList<Funcionalidad>> resultadoObtenerFuncionalidades = funcionalidadDomain.ObtenerFuncionalidades(resultadoObtenerRol.Retorno.Id);
+                IResultado<IList<Funcionalidad>> resultadoObtenerFuncionalidades = funcionalidadDomain.ObtenerFuncionalidades(Program.ContextoActual.RolActual.Id);
 
-                if (resultadoObtenerRol.Correcto)
+                if (resultadoObtenerFuncionalidades.Correcto)
                 {
                     //Cargo las funcionalidades
                     frmPrincipal_Load_CargarFuncionalidadesBase(resultadoObtenerFuncionalidades.Retorno);
@@ -97,15 +96,21 @@ namespace Clinica_Frba
         private void frmPrincipal_Load_MostrarLogin()
         {
             Usuario usuario = null;
+            Rol rol = null;
             using (FrmLogin frm = new FrmLogin())
             {
                 frm.ShowDialog(this);
                 usuario = frm.UsuarioIniciado;
+                rol = frm.RolUsuario;
             }
 
             if (usuario != null)
             {
                 Program.ContextoActual.RegistrarUsuario(usuario);
+            }
+            if (rol != null)
+            {
+                Program.ContextoActual.RegistrarRol(rol);
             }
         }
 

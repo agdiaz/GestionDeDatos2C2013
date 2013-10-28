@@ -13,6 +13,7 @@ namespace GestionCommon
         private string _logPath;
         private DateTime _fechaActual;
         private Usuario _usuario;
+        private Rol _rol;
         
         public Contexto(string path, DateTime fechaActual)
         {
@@ -52,11 +53,21 @@ namespace GestionCommon
             get { return _usuario; }
         }
 
+        public Rol RolActual
+        {
+            get { return _rol; }
+        }
+
         #endregion
 
         public void RegistrarUsuario(Usuario usuario)
         {
             this._usuario = usuario;
+        }
+
+        public void RegistrarRol(Rol rol)
+        {
+            this._rol = rol;
         }
     }
 }
