@@ -17,13 +17,13 @@ namespace GestionCommon.Helpers
             return hashValue;
         }
 
-        public static bool IdentificacionExitosa(IdentificacionUsuario res)
+        public static bool IdentificacionExitosa(IdentificacionUsuario resultadoIdentificacion)
         {
-            return res.CompareTo(IdentificacionUsuario.UsuarioIdentificado) == 0;
+            return resultadoIdentificacion.CompareTo(IdentificacionUsuario.UsuarioIdentificado) == 0;
         }
-        public static string Mensaje(IdentificacionUsuario res)
+        public static string Mensaje(IdentificacionUsuario resultadoIdentificacion)
         {
-            switch (res)
+            switch (resultadoIdentificacion)
             {
                 case IdentificacionUsuario.UsuarioIdentificado:
                     return "Usuario identificado correctamente";
@@ -32,7 +32,7 @@ namespace GestionCommon.Helpers
                 case IdentificacionUsuario.UsuarioInvalido:
                     return "El usuario, el rol o la contraseña son inválidos";
                 default:
-                    return "Error";
+                    return "Error al querer identificar";
             }
         }
     }

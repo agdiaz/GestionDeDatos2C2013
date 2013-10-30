@@ -40,17 +40,14 @@ namespace Clinica_Frba
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             //this.frmPrincipal_Load_CargarUsuarioGenerico();
-            this.frmPrincipal_Load_MostrarLogin();
-            //SOLO POR DEBUG            
-            //this.frmPrincipal_Load_CargarMenues();
+            this.frmPrincipal_Load_MostrarLogin();           
+            this.frmPrincipal_Load_CargarMenues();
             this.frmPrincipal_Load_CargarBarraEstado();
         }
 
         private void frmPrincipal_Load_CargarMenues()
         {
             //Obtengo el rol del usuario actual:
-            
-            
             if (true)
             {
                 //Obtengo las funcionalidades del rol:
@@ -67,8 +64,34 @@ namespace Clinica_Frba
 
         private void frmPrincipal_Load_CargarFuncionalidadesBase(IList<Funcionalidad> funcionalidades)
         {
-            var nombresFuncionalidad = funcionalidades.Select(f => f.Nombre);
-            frmPrincipal_Load_CargarFuncionalidades(mnuPrincipal.Items, nombresFuncionalidad);
+            foreach (ToolStripItem item in mnuPrincipal.Items)
+            {
+                if (item is ToolStripMenuItem)
+                {
+                    item.Enabled = false;
+                }
+                estadísticasToolStripMenuItem.Enabled = false;
+            }
+
+            if (funcionalidades != null)
+            {
+                var nombresFuncionalidad = funcionalidades.Select(f => f.Nombre);
+                frmPrincipal_Load_CargarFuncionalidades(mnuPrincipal.Items, nombresFuncionalidad);
+            }
+
+            this.tsmArchivo.Enabled = true;
+            this.tsmSesion.Enabled = true;
+            this.tsmSalir.Enabled = true;
+            if (Program.ContextoActual.SesionIniciada)
+            {
+                this.tsmSesion_CerrarSesion.Enabled = true;
+                this.tsmSesion_IniciarSesion.Enabled = false;
+            }
+            else
+            {
+                this.tsmSesion_CerrarSesion.Enabled = false;
+                this.tsmSesion_IniciarSesion.Enabled = true;
+            }
         }
 
         private void frmPrincipal_Load_CargarFuncionalidades(ToolStripItemCollection items, IEnumerable<string> nombresFuncionalidad)
@@ -172,7 +195,11 @@ namespace Clinica_Frba
 
         private void tsmSesion_CerrarSesion_Aceptado()
         {
-            MensajePorPantalla.MensajeInformativo(this, "Sesión cerrada con éxito");
+            Program.ContextoActual.DesregistrarUsuario();
+            Program.ContextoActual.DesregistrarRol();
+
+            this.frmPrincipal_Load_CargarFuncionalidadesBase(null);
+            this.frmPrincipal_Load_CargarBarraEstado();
         }
         #endregion
 

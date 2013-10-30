@@ -12,16 +12,12 @@ namespace GestionCommon
         private ILog _logger;
         private string _logPath;
         private DateTime _fechaActual;
-        private Usuario _usuario;
-        private Rol _rol;
-        
+
         public Contexto(string path, DateTime fechaActual)
         {
             _logPath = path;
             _logger = new FileLog(path);
             _fechaActual = fechaActual;
-            _usuario = new Usuario();
-            _rol = new Rol();
         }
 
         #region IContexto
@@ -50,26 +46,34 @@ namespace GestionCommon
             }
         }
 
-        public Usuario UsuarioActual
+        public Usuario UsuarioActual { get; private set; }
+
+        public Rol RolActual { get; private set; }
+
+        public bool SesionIniciada { get; private set; }
+
+        public void RegistrarUsuario(Usuario usuario)
         {
-            get { return _usuario; }
+            this.UsuarioActual = usuario;
+            this.SesionIniciada = true;
+        }
+        public void RegistrarRol(Rol rol)
+        {
+            this.RolActual = rol;
         }
 
-        public Rol RolActual
+        public void DesregistrarUsuario()
+        { 
+            this.UsuarioActual = new Usuario();
+            this.SesionIniciada = false;
+        }
+        public void DesregistrarRol()
         {
-            get { return _rol; }
+            this.RolActual = new Rol();
         }
 
         #endregion
 
-        public void RegistrarUsuario(Usuario usuario)
-        {
-            this._usuario = usuario;
-        }
-
-        public void RegistrarRol(Rol rol)
-        {
-            this._rol = rol;
-        }
+        
     }
 }

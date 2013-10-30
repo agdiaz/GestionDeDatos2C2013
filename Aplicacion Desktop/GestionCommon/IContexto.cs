@@ -12,11 +12,16 @@ namespace GestionCommon
         string LogPath { get; }
         ILog Logger { get; }
         DateTime FechaActual {get;}
+        
         Usuario UsuarioActual { get; }
         Rol RolActual { get; }
 
         void RegistrarUsuario(Usuario usuario);
-
         void RegistrarRol(Rol rol);
+
+        void DesregistrarUsuario();
+        void DesregistrarRol();
+
+        bool SesionIniciada { get;}
     }
 }

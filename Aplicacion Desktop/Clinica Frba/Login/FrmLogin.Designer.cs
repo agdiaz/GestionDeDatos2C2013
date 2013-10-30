@@ -76,7 +76,6 @@
             this.tbUsuario.Size = new System.Drawing.Size(201, 20);
             this.tbUsuario.TabIndex = 3;
             this.tbUsuario.Text = "admin1";
-            this.tbUsuario.TextChanged += new System.EventHandler(this.tbUsuario_TextChanged);
             // 
             // tbPassword
             // 
