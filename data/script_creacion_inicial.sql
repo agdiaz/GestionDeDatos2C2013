@@ -85,13 +85,6 @@ GO
 ALTER TABLE [TOP_4].[Usuario] ADD  CONSTRAINT [DF_Usuario_cant_intentos_fallidos]  DEFAULT ((0)) FOR [cant_intentos_fallidos]
 GO
 
-INSERT INTO TOP_4.Usuario
-(username, password)
-(
-	SELECT DISTINCT m.Paciente_Dni, convert(varbinary,'1aeaeba4bdbf8907638434b60504b1037c01905bec294fb2cd5348724f2fa64f',2)
-	FROM gd_esquema.Maestra m
-)
-
 ---------------------------------Rol---------------------------------------
 USE [GD2C2013]
 GO
@@ -139,6 +132,7 @@ INSERT INTO [TOP_4].[Rol] ([nombre],[habilitado]) VALUES ('Administrativo', 1)
 INSERT INTO [TOP_4].[Rol] ([nombre],[habilitado]) VALUES ('Profesional', 1)
 
 GO
+
 
 ---------------------------------Funcionalidad---------------------------------------
 CREATE TABLE [TOP_4].[Funcionalidad](
@@ -222,24 +216,7 @@ GO
 ALTER TABLE [TOP_4].[Usuario_Rol] CHECK CONSTRAINT [FK_Usuario_Rol_Usuario]
 GO
 
---- Creo los usuarios administradores
-GO
-INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin1', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7',1),1)
-INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
 
-INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin2', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7',1),1)
-INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
-
-INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin3', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7',1),1)
-INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
-
-INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin4', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
-INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
-
-INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin5', CONVERT(varbinary,'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7'),1)
-INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
-
-GO
 
 ---------------------------------Rol_Funcionalidad---------------------------------------
 SET ANSI_NULLS ON
@@ -328,6 +305,66 @@ INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3,
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 25)
 GO
 
+
+---------------------------------------CREACION DE USUARIOS CON SUS ROLES----------------------------------
+--Creo usuarios y sus roles
+
+CREATE TABLE #TmpUsuariosPacientes (
+	[id_usuario] numeric(18,0) IDENTITY(1,1) NOT NULL,
+	username numeric(18,0) NOT NULL,
+	password varbinary(32) NOT NULL
+)
+INSERT INTO #TmpUsuariosPacientes
+(username, password)
+(
+	SELECT DISTINCT m.Paciente_Dni, CONVERT(varbinary(32),'0x1AEAEBA4BDBF8907638434B60504B1037C01905BEC294FB2CD5348724F2FA64F', 1)
+	FROM gd_esquema.Maestra m
+)
+
+SET IDENTITY_INSERT TOP_4.Usuario ON
+
+INSERT INTO TOP_4.Usuario
+(id_usuario, username, password)
+(
+	SELECT id_usuario, username, password
+	FROM #TmpUsuariosPacientes
+)
+
+SET IDENTITY_INSERT TOP_4.Usuario OFF
+
+INSERT INTO TOP_4.Usuario_Rol
+(id_usuario, id_rol)
+(
+	SELECT id_usuario, 1
+	FROM #TmpUsuariosPacientes
+)
+
+DROP TABLE #tmpUsuariosPacientes
+
+--- Creo los usuarios administradores
+GO
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin1', CONVERT(varbinary(32),'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1),1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
+
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin2', CONVERT(varbinary(32),'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1),1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
+
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin3', CONVERT(varbinary(32),'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1),1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
+
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin4', CONVERT(varbinary(32),'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1),1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
+
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin5', CONVERT(varbinary(32),'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1),1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
+
+GO
+
+
+
+
+
+
 ------------------------------------Profesional------------------------------------------------
 
 USE [GD2C2013]
@@ -396,7 +433,7 @@ CREATE TABLE #TmpProfesional (
 	[mail] [varchar](255) NOT NULL,
 	[fecha_nacimiento] [datetime] NOT NULL,
 	[matricula] [numeric](18, 0) IDENTITY(924,13) NOT NULL,
- CONSTRAINT [PK_Profesionales] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_Prof] PRIMARY KEY CLUSTERED 
 (
 	[documento] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
@@ -414,6 +451,8 @@ insert into #TmpProfesional
 		WHERE m.Medico_Nombre IS NOT NULL
  )
  
+--inserto los profesionales y creo sus usuarios
+
 insert into TOP_4.Profesional
 	(nombre, apellido, documento, direccion, telefono, mail, fecha_nacimiento, matricula)
 (
@@ -421,8 +460,30 @@ insert into TOP_4.Profesional
 		FROM #TmpProfesional
 )
 
-DROP TABLE #TmpProfesional
+DECLARE @ultimaIdent NUMERIC(18,0)
+SET @ultimaIdent = IDENT_CURRENT('TOP_4.Usuario')
 
+INSERT INTO [TOP_4].[Usuario] 
+	(username, password)
+(
+	SELECT documento, CONVERT(varbinary(32),'0x24AFE47D0BD302AE42643C5848D99B683264026CD12CC998E05E100BBF2DC30D', 1)
+	FROM TOP_4.Profesional
+)
+
+UPDATE TOP_4.Profesional 
+SET TOP_4.Profesional.id_usuario  = u.id_usuario
+FROM TOP_4.Profesional
+INNER JOIN	TOP_4.Usuario u
+ON	u.username = convert(varchar(255), documento)
+
+INSERT INTO [TOP_4].Usuario_Rol
+(id_usuario, id_rol)
+(
+	SELECT id_usuario, 3
+	FROM TOP_4.Profesional
+)
+
+DROP TABLE #TmpProfesional
 GO
 ------------------------------------Tipo_especialidad---------------------------------------------
 
