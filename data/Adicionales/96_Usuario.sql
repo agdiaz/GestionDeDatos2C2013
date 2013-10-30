@@ -1,3 +1,4 @@
+-----------------------------------------------------
 CREATE PROCEDURE [TOP_4].[sp_Usuario_select_by_name](
 	@p_nombre varchar(255))
 AS
@@ -13,6 +14,7 @@ SELECT [id_usuario]
  END
 GO
 
+-----------------------------------------------------
 CREATE PROCEDURE [TOP_4].[sp_Usuario_select_all]
 
 AS
@@ -51,7 +53,7 @@ BEGIN
 END
 GO
 
-GO
+-----------------------------------------------------
 CREATE PROCEDURE [TOP_4].[sp_Usuario_filter](
 	@p_username varchar(255),
 	@p_id_rol numeric(18))
@@ -73,8 +75,84 @@ SELECT u.[id_usuario]
 END
 GO
 
+-----------------------------------------------------
+CREATE PROCEDURE [TOP_4].[sp_Usuario_Insert](
+	@p_username varchar(255),
+	@p_password varbinary(32),
+	@p_id numeric(18) output
+)
+AS
+BEGIN
+INSERT INTO [GD2C2013].[TOP_4].[Usuario]
+           ([username]
+           ,[password]
+           ,[cant_intentos_fallidos]
+           ,[habilitado])
+     VALUES
+           (@p_username
+           ,@p_password
+           ,'0'
+           ,'1')
 
+SET @p_id = SCOPE_IDENTITY()
 
+END
+GO
 
-
-
+-----------------------------------------------------
+CREATE PROCEDURE [TOP_4].[realizar_identificacion](
+	@userName nvarchar(50),
+	@passwordHash varbinary(32),
+	@resultado int OUTPUT
+	)
+AS
+BEGIN
+	--  0 Exito
+	--  1 Bloqueado
+	--  2 Usuario invalido o contrasena falsa
+	SET NOCOUNT ON;
+	
+	DECLARE @hashReal varbinary(32)
+	DECLARE @fallidos int
+	
+	SELECT @hashReal=us.[password], @fallidos=us.cant_intentos_fallidos
+	FROM [TOP_4].Usuario us
+	WHERE us.username = @userName
+	
+	IF @@ROWCOUNT = 0
+	BEGIN
+		--Usuario invalido
+		SET @resultado = -2
+		RETURN
+	END
+	
+	IF @fallidos >= 3
+	BEGIN
+		--Usuario bloqueado
+		SET @resultado = -1
+		RETURN
+	END
+	
+	IF @hashReal = @passwordHash
+	BEGIN
+		--Exito
+		UPDATE [TOP_4].Usuario
+		SET cant_intentos_fallidos = 0
+		WHERE username = @userName
+		
+		SET @resultado = 0
+		
+		RETURN
+	END
+	
+	--Password incorrecto
+	UPDATE [TOP_4].Usuario
+	SET cant_intentos_fallidos = (cant_intentos_fallidos + 1)
+	WHERE username = @userName
+	
+	SET @resultado = -2
+	RETURN
+		
+END
+GO
+-----------------------------------------------------
