@@ -14,7 +14,7 @@ namespace GestionDAL
     public class PlanMedicoDAL : EntidadBaseDAL<PlanMedico, FiltroPlanMedico>
     {
         public PlanMedicoDAL(ILog log)
-        :base(new SqlServerConector(log), new PlanBuilder(), "PlanMedico")
+        :base(new SqlServerConector(log), new PlanBuilder(), "Plan_Medico")
         {
 
         }
@@ -34,17 +34,25 @@ namespace GestionDAL
             IList<SqlParameter> parametros = new List<SqlParameter>();
 
             var pDescripcion = new SqlParameter("@p_descripcion", System.Data.SqlDbType.VarChar, 255, "p_descripcion");
-            pDescripcion.Value = filtro.Nombre;
-            parametros.Add(pDescripcion);
+            if (!string.IsNullOrEmpty(filtro.Nombre))
+            {
+                pDescripcion.Value = filtro.Nombre;
+                parametros.Add(pDescripcion);
+            }
 
             var pFarmacia = new SqlParameter("@p_precio_farmacia", System.Data.SqlDbType.Decimal, 18, "p_precio_farmacia");
-            pFarmacia.Value = filtro.BonoFarmacia;
-            parametros.Add(pFarmacia);
+            if (filtro.BonoFarmacia.HasValue)
+            {
+                pFarmacia.Value = filtro.BonoFarmacia.Value;
+                parametros.Add(pFarmacia);
+            }
 
             var pConsulta = new SqlParameter("@p_precio_consulta", System.Data.SqlDbType.Decimal, 18, "p_precio_consulta");
-            pConsulta.Value = filtro.BonoConsulta;
-            parametros.Add(pConsulta);
-
+            if (filtro.BonoConsulta.HasValue)
+            {
+                pConsulta.Value = filtro.BonoConsulta.Value;
+                parametros.Add(pConsulta);
+            }
             return parametros;
         }
     }

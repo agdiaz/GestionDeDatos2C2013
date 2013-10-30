@@ -44,8 +44,8 @@ namespace Clinica_Frba.Especialidades
         private void FrmEspecialidadListado_Load(object sender, EventArgs e)
         {
             AccionLimpiar();
-            this.AgregarValidacion(new ValidadorString(tbNombreEspecialidad, 1, 255));
-            this.AgregarValidacion(new ValidadorCombobox(cbTipoEspecialidad)); 
+            //this.AgregarValidacion(new ValidadorString(tbNombreEspecialidad, 1, 255));
+            //this.AgregarValidacion(new ValidadorCombobox(cbTipoEspecialidad)); 
         }
     }
 }
