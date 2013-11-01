@@ -12,10 +12,16 @@ namespace GestionGUIHelper.Formularios
 {
     public partial class FormularioBaseListado : FormularioBase
     {
-        public FormularioBaseListado()
+        public FormularioBaseListado(bool modoSeleccion)
             :base()
         {
+            ModoSeleccion = modoSeleccion;       
             InitializeComponent();
+        }
+        public FormularioBaseListado()
+            :this(false)
+        {
+            
         }
 
         /// <summary>
@@ -29,6 +35,8 @@ namespace GestionGUIHelper.Formularios
         #region [FormularioBaseListado_Load]
         private void FormularioBaseListado_Load(object sender, EventArgs e)
         {
+            this.btnSeleccionar.Visible = ModoSeleccion;
+
             this.AccionIniciar();
             //this.Filtrar();
         }
@@ -163,6 +171,12 @@ namespace GestionGUIHelper.Formularios
             {
                 this.Salir();
             }
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            this.Seleccionar();
+            this.Close();
         }
         
 

@@ -37,6 +37,7 @@
             this.gbFiltros = new System.Windows.Forms.GroupBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnFiltrar = new System.Windows.Forms.Button();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
             this.gbAcciones.SuspendLayout();
             this.gbBusqueda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBusqueda)).BeginInit();
@@ -47,6 +48,7 @@
             // 
             this.gbAcciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbAcciones.Controls.Add(this.btnSeleccionar);
             this.gbAcciones.Controls.Add(this.btnBaja);
             this.gbAcciones.Controls.Add(this.btnModificacion);
             this.gbAcciones.Controls.Add(this.btnAlta);
@@ -152,6 +154,16 @@
             this.btnFiltrar.UseVisualStyleBackColor = true;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Location = new System.Drawing.Point(571, 18);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(75, 23);
+            this.btnSeleccionar.TabIndex = 6;
+            this.btnSeleccionar.Text = "Seleccionar";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
             // FormularioBaseListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,5 +198,6 @@
         protected System.Windows.Forms.GroupBox gbFiltros;
         protected System.Windows.Forms.Button btnLimpiar;
         protected System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.Button btnSeleccionar;
     }
 }

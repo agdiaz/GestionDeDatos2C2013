@@ -107,7 +107,6 @@ namespace Clinica_Frba.Especialidades
             catch (ResultadoIncorrectoException<IList<TipoEspecialidad>> ex)
             {
                 MensajePorPantalla.MensajeError(this, ex.Message);
-                this.Close();
             }
         }
 
