@@ -63,7 +63,9 @@
     <Compile Include="Builder\RecetaBuilder.cs" />
     <Compile Include="Builder\ResultadoTurnoBuilder.cs" />
     <Compile Include="Builder\TipoCancelacionBuilder.cs" />
+    <Compile Include="Builder\TipoEspecialidadBuilder.cs" />
     <Compile Include="Builder\TurnoBuilder.cs" />
+    <Compile Include="EspecialidadDAL.cs" />
     <Compile Include="FuncionalidadDAL.cs" />
     <Compile Include="Builder\IBuilder.cs" />
     <Compile Include="Builder\RolBuilder.cs" />
@@ -71,8 +73,10 @@
     <Compile Include="EntidadBaseDAL.cs" />
     <Compile Include="IEntidadDAL.cs" />
     <Compile Include="PlanMedicoDAL.cs" />
+    <Compile Include="ProfesionalDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolDAL.cs" />
+    <Compile Include="TipoEspecialidadDAL.cs" />
     <Compile Include="UsuarioDAL.cs" />
   </ItemGroup>
   <ItemGroup>

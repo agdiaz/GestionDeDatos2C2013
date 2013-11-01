@@ -47,14 +47,17 @@
   <ItemGroup>
     <Compile Include="AfiliadoDomain.cs" />
     <Compile Include="EntidadBaseDomain.cs" />
+    <Compile Include="EspecialidadDomain.cs" />
     <Compile Include="FuncionalidadDomain.cs" />
     <Compile Include="IEntidadDomain.cs" />
     <Compile Include="PlanMedicoDomain.cs" />
+    <Compile Include="ProfesionalDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resultados\IResultado.cs" />
     <Compile Include="Resultados\Resultado.cs" />
     <Compile Include="Resultados\ResultadoIncorrectoException.cs" />
     <Compile Include="RolDomain.cs" />
+    <Compile Include="TipoEspecialidadDomain.cs" />
     <Compile Include="UsuarioDomain.cs" />
   </ItemGroup>
   <ItemGroup>

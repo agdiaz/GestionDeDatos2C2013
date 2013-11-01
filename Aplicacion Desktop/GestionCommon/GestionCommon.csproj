@@ -67,6 +67,7 @@
     <Compile Include="Entidades\ResultadoTurno.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\TipoCancelacion.cs" />
+    <Compile Include="Entidades\TipoEspecialidad.cs" />
     <Compile Include="Entidades\Turno.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Enums\Sexo.cs" />
@@ -75,8 +76,11 @@
     <Compile Include="Enums\IdentificacionUsuario.cs" />
     <Compile Include="Enums\TipoDocumento.cs" />
     <Compile Include="Filtros\FiltroAfiliado.cs" />
+    <Compile Include="Filtros\FiltroEspecialidad.cs" />
     <Compile Include="Filtros\FiltroPlanMedico.cs" />
+    <Compile Include="Filtros\FiltroProfesional.cs" />
     <Compile Include="Filtros\FiltroRol.cs" />
+    <Compile Include="Filtros\FiltroTipoEspecialidad.cs" />
     <Compile Include="Filtros\FiltroUsuario.cs" />
     <Compile Include="Helpers\AppConfigReader.cs" />
     <Compile Include="Entidades\EntidadBase.cs" />

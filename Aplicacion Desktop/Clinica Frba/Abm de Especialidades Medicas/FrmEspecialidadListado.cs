@@ -9,14 +9,24 @@ using System.Windows.Forms;
 using GestionGUIHelper.Formularios;
 using GestionGUIHelper.Helpers;
 using GestionGUIHelper.Validaciones;
+using GestionDomain;
+using GestionCommon.Entidades;
+using GestionDomain.Resultados;
+using GestionCommon.Filtros;
 
 namespace Clinica_Frba.Especialidades
 {
     public partial class FrmEspecialidadListado : FormularioBaseListado
     {
+        private EspecialidadDomain _domain;
+        private TipoEspecialidadDomain _tipoEspecialidadDomain;
+
         public FrmEspecialidadListado()
             :base()
         {
+            _domain = new EspecialidadDomain(Program.ContextoActual.Logger);
+            _tipoEspecialidadDomain = new TipoEspecialidadDomain(Program.ContextoActual.Logger);
+
             InitializeComponent();
         }
 
@@ -46,6 +56,64 @@ namespace Clinica_Frba.Especialidades
             AccionLimpiar();
             //this.AgregarValidacion(new ValidadorString(tbNombreEspecialidad, 1, 255));
             //this.AgregarValidacion(new ValidadorCombobox(cbTipoEspecialidad)); 
+        }
+
+        protected override void AccionFiltrar()
+        {
+            FiltroEspecialidad filtro = CrearFiltro();
+
+            try
+            {
+                IResultado<IList<Especialidad>> filtrar = _domain.Filtrar(filtro);
+                if (!filtrar.Correcto)
+                    throw new ResultadoIncorrectoException<IList<Especialidad>>(filtrar);
+
+                this.dgvBusqueda.DataSource = filtrar.Retorno;
+            }
+            catch (ResultadoIncorrectoException<IList<Especialidad>> ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
+        }
+
+        private FiltroEspecialidad CrearFiltro()
+        {
+            FiltroEspecialidad filtro = new FiltroEspecialidad();
+            var tipo = cbTipoEspecialidad.SelectedItem as TipoEspecialidad;
+            if (tipo != null)
+            {
+                filtro.IdTipoEspecialidad = tipo.Id;
+            }
+
+            if (!string.IsNullOrEmpty(tbNombreEspecialidad.Text))
+            {
+                filtro.Nombre = tbNombreEspecialidad.Text;
+            }
+            return filtro;
+        }
+
+        protected override void AccionIniciar()
+        {
+            try
+            {
+                IResultado<IList<TipoEspecialidad>> obtenerTodos = _tipoEspecialidadDomain.ObtenerTodos();
+                if (!obtenerTodos.Correcto)
+                    throw new ResultadoIncorrectoException<IList<TipoEspecialidad>>(obtenerTodos);
+
+                this.cbTipoEspecialidad.DataSource = obtenerTodos.Retorno;
+                this.cbTipoEspecialidad.DisplayMember = "Nombre";
+                this.cbTipoEspecialidad.ValueMember = "Id";
+            }
+            catch (ResultadoIncorrectoException<IList<TipoEspecialidad>> ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+                this.Close();
+            }
+        }
+
+        protected override void AccionLimpiar()
+        {
+            this.tbNombreEspecialidad.Text = string.Empty;
         }
     }
 }
