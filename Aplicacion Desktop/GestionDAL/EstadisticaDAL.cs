@@ -20,7 +20,7 @@ namespace GestionDAL
         private const string SP_TOPCANCELACIONESPROFESIONALES = "top_4.sp_topcancelacionesprofesionales";
         private const string SP_TOPCANCELACIONESAFILIADOS = "sp_topcancelacionesafiliados";
         private const string SP_TOPBONOSFARMACIAVENCIDOSPORAFILIADO = "top_4.sp_topbonosfarmaciavencidosporafiliado";
-        private const string SP_TOPESPECIALIDADESBONOSFARMACIAVENCIDOS = "top_4.sp_topespecialidadesbonosfarmaciavencidos";
+        private const string SP_TOPESPECIALIDADESBONOSFARMACIARECETADOS = "top_4.sp_topespecialidadesbonosfarmaciarecetados";
         private const string SP_TOPAFILIADOSCONBONOSSINCOMPRARPORELLOS = "top_4.sp_topafiliadosconbonossincomprarporellos";
         #endregion
 
@@ -83,18 +83,18 @@ namespace GestionDAL
             return filas;
         }
 
-        public IList<TopEspecialidadesBonosFarmaciaVencidos> ObtenerTopEspecialidadesBonosFarmaciaVencidos(FiltroEstadistica filtro)
+        public IList<TopEspecialidadesBonosFarmaciaRecetados> ObtenerTopEspecialidadesBonosFarmaciaRecetados(FiltroEstadistica filtro)
         {
             IList<SqlParameter> parametros = ArmarFiltro(filtro);
 
-            DataSet ds = _conector.RealizarConsultaAlmacenada(SP_TOPESPECIALIDADESBONOSFARMACIAVENCIDOS, parametros);
-            IList<TopEspecialidadesBonosFarmaciaVencidos> filas = new List<TopEspecialidadesBonosFarmaciaVencidos>(5);
+            DataSet ds = _conector.RealizarConsultaAlmacenada(SP_TOPESPECIALIDADESBONOSFARMACIARECETADOS, parametros);
+            IList<TopEspecialidadesBonosFarmaciaRecetados> filas = new List<TopEspecialidadesBonosFarmaciaRecetados>(5);
             
-            TopEspecialidadesBonosFarmaciaVencidosBuilder builder = new TopEspecialidadesBonosFarmaciaVencidosBuilder();
+            TopEspecialidadesBonosFarmaciaRecetadosBuilder builder = new TopEspecialidadesBonosFarmaciaRecetadosBuilder();
 
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                filas.Add(builder.Build(row));    
+                filas.Add(builder.Build(row));
             }
 
             return filas;

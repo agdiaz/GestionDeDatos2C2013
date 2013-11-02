@@ -40,7 +40,7 @@ namespace GestionCommon.Entidades
 
     public class TopBonosFarmaciaVencidosPorAfiliado : Estadistica
     {
-        public int IdAfiliado { get; set; }
+        public decimal IdAfiliado { get; set; }
         public int BonosVencidosFarmacia { get; set; }
 
         public TopBonosFarmaciaVencidosPorAfiliado()
@@ -50,12 +50,12 @@ namespace GestionCommon.Entidades
         }
     }
 
-    public class TopEspecialidadesBonosFarmaciaVencidos : Estadistica
+    public class TopEspecialidadesBonosFarmaciaRecetados : Estadistica
     {
         public string Especialidad { get; set; }
         public int BonosFarmaciaRecetados { get; set; }
 
-        public TopEspecialidadesBonosFarmaciaVencidos()
+        public TopEspecialidadesBonosFarmaciaRecetados()
             :base(3, "Top 5 de las especialidades de médicos con más bonos de farmacia recetados")
         {
 
@@ -64,8 +64,8 @@ namespace GestionCommon.Entidades
 
     public class TopAfiliadosConBonosSinComprarPorEllos : Estadistica
     {
-        public int IdAfiliado { get; set; }
-        public int BonosUtilizados { get; private set; }
+        public decimal IdAfiliado { get; set; }
+        public int BonosUtilizados { get; set; }
 
         public TopAfiliadosConBonosSinComprarPorEllos()
             :base(4, "Top 10 de los afiliados que utilizaron bonos que ellos mismos no compraron")
