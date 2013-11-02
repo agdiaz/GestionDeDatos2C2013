@@ -9,13 +9,22 @@ using System.Windows.Forms;
 using GestionGUIHelper.Formularios;
 using GestionCommon.Helpers;
 using GestionGUIHelper.Validaciones;
+using GestionDomain;
+using GestionCommon.Entidades;
+using GestionDomain.Resultados;
 
 namespace Clinica_Frba.Profesionales
 {
     public partial class FrmProfesionalAlta : FormularioBaseAlta
     {
+        private EspecialidadDomain _especialidadDomain;
+        private ProfesionalDomain _profesionalDomain;
+
         public FrmProfesionalAlta()
         {
+            _especialidadDomain = new EspecialidadDomain(Program.ContextoActual.Logger);
+            _profesionalDomain = new ProfesionalDomain(Program.ContextoActual.Logger);
+
             InitializeComponent();
         }
 
@@ -73,6 +82,21 @@ namespace Clinica_Frba.Profesionales
             this.AgregarValidacion(new ValidadorDateTimeUntil(dpFechaNacimiento, FechaHelper.Ahora()));
             this.AgregarValidacion(new ValidadorCombobox(cbSexo));
             this.AgregarValidacion(new ValidadorNumerico(tbMatriculaProfesional));
+
+            this.CargarEspecialidades();
+        }
+
+        private void CargarEspecialidades()
+        {
+            IResultado<IList<Especialidad>> resultado = _especialidadDomain.ObtenerTodos();
+
+            if (!resultado.Correcto)
+                throw new ResultadoIncorrectoException<IList<Especialidad>>(resultado);
+
+            clbEspecialidades.DataSource = resultado.Retorno;
+            clbEspecialidades.DisplayMember = "Nombre";
+            clbEspecialidades.ValueMember = "IdEspecialidad";
+            
         }
     }
 }
