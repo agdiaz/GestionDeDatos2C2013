@@ -13,7 +13,10 @@ namespace GestionDAL.Builder
 
         public TopCancelacionesProfesionales Build(System.Data.DataRow row)
         {
-            throw new NotImplementedException();
+            TopCancelacionesProfesionales topCancelacionesProfesionales = new TopCancelacionesProfesionales();
+            topCancelacionesProfesionales.Especialidad = row["especialidad"].ToString();
+            topCancelacionesProfesionales.CantidadCancelaciones = Convert.ToInt32(row["cantidad_cancelaciones"].ToString());
+            return topCancelacionesProfesionales;
         }
 
         #endregion
