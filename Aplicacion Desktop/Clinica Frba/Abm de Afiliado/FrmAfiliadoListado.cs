@@ -94,7 +94,7 @@ namespace Clinica_Frba.Afiliados
 
         private void btnBuscarPlanMedico_Click(object sender, EventArgs e)
         {
-            using (FrmPlanListado frm = new FrmPlanListado() )
+            using (FrmPlanListado frm = new FrmPlanListado(true) )
             {
                 frm.ShowDialog(this);
                 PlanMedico plan = frm.EntidadSeleccionada as PlanMedico;

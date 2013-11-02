@@ -170,6 +170,7 @@
             // 
             this.tbPlanMedico.Location = new System.Drawing.Point(78, 48);
             this.tbPlanMedico.Name = "tbPlanMedico";
+            this.tbPlanMedico.ReadOnly = true;
             this.tbPlanMedico.Size = new System.Drawing.Size(100, 20);
             this.tbPlanMedico.TabIndex = 15;
             // 

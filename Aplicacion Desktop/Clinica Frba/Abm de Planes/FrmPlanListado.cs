@@ -20,12 +20,19 @@ namespace Clinica_Frba.Planes
     {
         private PlanMedicoDomain _domain;
 
-        public FrmPlanListado()
-            :base()
+        public FrmPlanListado(bool modoSeleccion)
+            : base(modoSeleccion)
         {
             _domain = new PlanMedicoDomain(Program.ContextoActual.Logger);
             InitializeComponent();
         }
+
+        public FrmPlanListado()
+            : this(false)
+        {
+        }
+
+
 
         protected override void AccionAlta()
         {
