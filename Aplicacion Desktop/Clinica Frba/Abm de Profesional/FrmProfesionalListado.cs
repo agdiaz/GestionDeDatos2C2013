@@ -74,6 +74,29 @@ namespace Clinica_Frba.Profesionales
             this.cbSexo.DataSource = sexos.Todos;
             this.cbSexo.DisplayMember = "Nombre";
             this.cbSexo.ValueMember = "Id";
+
+            ListaTipoDocumento documentos = new ListaTipoDocumento();
+            this.cbTipoDoc.DataSource = documentos.Todos;
+            this.cbTipoDoc.DisplayMember = "Nombre";
+            this.cbTipoDoc.ValueMember = "Id";
+
+            this.CargarTodosLosProfesionales();
+        }
+
+        private void CargarTodosLosProfesionales()
+        {
+            try
+            {
+                IResultado<IList<Profesional>> resultado = _domain.ObtenerTodos();
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<IList<Profesional>>(resultado);
+
+                this.dgvBusqueda.DataSource = resultado.Retorno;
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(ex.Message);
+            }
         }
         
         private FiltroProfesional ObtenerFiltro()
@@ -121,11 +144,6 @@ namespace Clinica_Frba.Profesionales
                 tbEspecialidad.Text = especialidad.Nombre;
                 tbEspecialidad.Tag = especialidad;
             }
-        }
-
-        private void FrmProfesionalListado_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

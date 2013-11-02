@@ -323,7 +323,6 @@
             this.ClientSize = new System.Drawing.Size(883, 509);
             this.Name = "FrmProfesionalListado";
             this.Text = "Clinica FRBA - Profesionales - Listado";
-            this.Load += new System.EventHandler(this.FrmProfesionalListado_Load);
             this.gbAcciones.ResumeLayout(false);
             this.gbFiltros.ResumeLayout(false);
             this.gbFiltros.PerformLayout();
