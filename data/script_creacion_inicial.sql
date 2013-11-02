@@ -185,7 +185,8 @@ INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALU
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmAgenda', 'Agenda' ,1) --23
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmAgenda_Consultar', 'Consultar agenda' ,1) --24
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmAgenda_Registrar', 'Registrar agenda', 1) --25
-
+-- ADRIAN:
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmGestionDeAfiliados', 'Gestión de afiliados' ,1) --26 
 GO
 
 ---------------------------------Usuario_Rol---------------------------------------
@@ -259,6 +260,7 @@ INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1,
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 14)
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 15)
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (1, 16)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 26)
 
 --Rol Administrativo
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 1)
@@ -286,6 +288,7 @@ INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2,
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 23)
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 24)
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 25)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 26)
 
 --Rol Profesional
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 1)
@@ -303,6 +306,7 @@ INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3,
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 23)
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 24)
 INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (3, 25)
+INSERT INTO [TOP_4].[Rol_Funcionalidad] ([id_rol],[id_funcionalidad]) VALUES (2, 26)
 GO
 
 
