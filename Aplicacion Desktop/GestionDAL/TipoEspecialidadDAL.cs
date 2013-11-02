@@ -14,7 +14,7 @@ namespace GestionDAL
     public class TipoEspecialidadDAL : EntidadBaseDAL<TipoEspecialidad, FiltroTipoEspecialidad>
     {
         public TipoEspecialidadDAL(ILog log)
-            : base(new SqlServerConector(log), new TipoEspecialidadBuilder(), "TipoEspecialidad")
+            : base(new SqlServerConector(log), new TipoEspecialidadBuilder(), "Tipo_Especialidad")
         {
 
         }
