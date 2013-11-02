@@ -19,17 +19,20 @@ namespace GestionCommon.Entidades
 
     public class TopCancelacionesProfesionales : Estadistica
     {
+        public string Especialidad { get; set; }
+        public int CantidadCancelaciones { get; set; }
+
         public TopCancelacionesProfesionales()
             : base(1, "Top 5 de las especialidades que más registraron cancelaciones de profesionales")
         {
-
+            
         }
     }
 
     public class TopCancelacionesAfiliados : Estadistica
     {
         public TopCancelacionesAfiliados()
-            : base(2, "Top 5 de las especialidades que más registraron cancelaciones de pacientes")
+            : base(99, "Top 5 de las especialidades que más registraron cancelaciones de pacientes")
         {
 
         }
@@ -37,8 +40,11 @@ namespace GestionCommon.Entidades
 
     public class TopBonosFarmaciaVencidosPorAfiliado : Estadistica
     {
+        public int IdAfiliado { get; set; }
+        public int BonosVencidosFarmacia { get; set; }
+
         public TopBonosFarmaciaVencidosPorAfiliado()
-            : base(3, "Top 5 de la cantridad total de bonos farmacia vencidos por afiliado")
+            : base(2, "Top 5 de la cantridad total de bonos farmacia vencidos por afiliado")
         {
 
         }
@@ -46,8 +52,11 @@ namespace GestionCommon.Entidades
 
     public class TopEspecialidadesBonosFarmaciaVencidos : Estadistica
     {
+        public string Especialidad { get; set; }
+        public int BonosFarmaciaRecetados { get; set; }
+
         public TopEspecialidadesBonosFarmaciaVencidos()
-            :base(4, "Top 5 de las especialidades de médicos con más bonos de farmacia recetados")
+            :base(3, "Top 5 de las especialidades de médicos con más bonos de farmacia recetados")
         {
 
         }
@@ -55,8 +64,11 @@ namespace GestionCommon.Entidades
 
     public class TopAfiliadosConBonosSinComprarPorEllos : Estadistica
     {
+        public int IdAfiliado { get; set; }
+        public int BonosUtilizados { get; private set; }
+
         public TopAfiliadosConBonosSinComprarPorEllos()
-            :base(5, "Top 10 de los afiliados que utilizaron bonos que ellos mismos no compraron")
+            :base(4, "Top 10 de los afiliados que utilizaron bonos que ellos mismos no compraron")
         {
 
         }

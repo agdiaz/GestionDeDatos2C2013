@@ -17,11 +17,11 @@ namespace GestionDAL
         #region Atributos
         private SqlServerConector _conector;
 
-        private const string SP_TOPCANCELACIONESPROFESIONALES = "sp_topcancelacionesprofesionales";
+        private const string SP_TOPCANCELACIONESPROFESIONALES = "top_4.sp_topcancelacionesprofesionales";
         private const string SP_TOPCANCELACIONESAFILIADOS = "sp_topcancelacionesafiliados";
-        private const string SP_TOPBONOSFARMACIAVENCIDOSPORAFILIADO = "sp_topbonosfarmaciavencidosporafiliado";
-        private const string SP_TOPESPECIALIDADESBONOSFARMACIAVENCIDOS = "sp_topespecialidadesbonosfarmaciavencidos";
-        private const string SP_TOPAFILIADOSCONBONOSSINCOMPRARPORELLOS = "sp_topafiliadosconbonossincomprarporellos";
+        private const string SP_TOPBONOSFARMACIAVENCIDOSPORAFILIADO = "top_4.sp_topbonosfarmaciavencidosporafiliado";
+        private const string SP_TOPESPECIALIDADESBONOSFARMACIAVENCIDOS = "top_4.sp_topespecialidadesbonosfarmaciavencidos";
+        private const string SP_TOPAFILIADOSCONBONOSSINCOMPRARPORELLOS = "top_4.sp_topafiliadosconbonossincomprarporellos";
         #endregion
 
         #region Constructor
