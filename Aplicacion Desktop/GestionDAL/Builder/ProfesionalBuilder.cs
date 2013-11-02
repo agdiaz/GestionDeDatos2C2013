@@ -23,7 +23,7 @@ namespace GestionDAL.Builder
             profesional.Telefono = Convert.ToDecimal(row["telefono"]);
             profesional.Mail = Convert.ToString(row["mail"]);
             profesional.FechaNacimiento = Convert.ToDateTime(row["fecha_nacimiento"]);
-            profesional.Sexo = (Sexo)Convert.ToInt32(row["sexo"]);
+            profesional.Sexo = new ListaSexo().Obtener(Convert.ToInt32(row["sexo"]));
             profesional.Matricula = Convert.ToDecimal(row["matricula"]);
             profesional.Habilitado = Convert.ToBoolean(row["habilitado"]);
             return profesional;

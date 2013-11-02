@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GestionCommon.Entidades;
+using GestionCommon.Enums;
 
 namespace GestionDAL.Builder
 {
@@ -28,7 +29,7 @@ namespace GestionDAL.Builder
             a.Nombre = Convert.ToString(row["nombre"]);
             a.NroPrincipal = Convert.ToDecimal(row["nro_principal"]);
             a.NroSecundario = Convert.ToDecimal(row["nro_secundario"]);
-            a.Sexo = GestionCommon.Enums.Sexo.Indefinido;
+            a.Sexo = new ListaSexo().Obtener("Indefinido");
             a.Telefono = Convert.ToDecimal(row["telefono"]);
             a.TipoDocumento = GestionCommon.Enums.TipoDocumento.DNI;
 
