@@ -27,7 +27,7 @@ namespace GestionDomain
             estadisticas.Add(new TopAfiliadosConBonosSinComprarPorEllos());
             estadisticas.Add(new TopBonosFarmaciaVencidosPorAfiliado());
             estadisticas.Add(new TopCancelacionesProfesionales());
-            estadisticas.Add(new TopEspecialidadesBonosFarmaciaVencidos());
+            estadisticas.Add(new TopEspecialidadesBonosFarmaciaRecetados());
 
             resultado.Retorno = estadisticas;
 
@@ -64,12 +64,12 @@ namespace GestionDomain
             return resultado;
         }
 
-        public IResultado<IList<TopEspecialidadesBonosFarmaciaVencidos>> ObtenerTopEspecialidadesBonosFarmaciaVencidos(FiltroEstadistica filtro)
+        public IResultado<IList<TopEspecialidadesBonosFarmaciaRecetados>> ObtenerTopEspecialidadesBonosFarmaciaVencidos(FiltroEstadistica filtro)
         {
-            Resultado<IList<TopEspecialidadesBonosFarmaciaVencidos>> resultado = new Resultado<IList<TopEspecialidadesBonosFarmaciaVencidos>>();
+            Resultado<IList<TopEspecialidadesBonosFarmaciaRecetados>> resultado = new Resultado<IList<TopEspecialidadesBonosFarmaciaRecetados>>();
             try
             {
-                resultado.Retorno = _dal.ObtenerTopEspecialidadesBonosFarmaciaVencidos(filtro);
+                resultado.Retorno = _dal.ObtenerTopEspecialidadesBonosFarmaciaRecetados(filtro);
             }
             catch (Exception ex)
             {

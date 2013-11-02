@@ -42,20 +42,26 @@ namespace GestionDAL.Builder
 
         public TopBonosFarmaciaVencidosPorAfiliado Build(System.Data.DataRow row)
         {
-            throw new NotImplementedException();
+            TopBonosFarmaciaVencidosPorAfiliado topBonosFarmaciaVencidasPorAfiliado = new TopBonosFarmaciaVencidosPorAfiliado();
+            topBonosFarmaciaVencidasPorAfiliado.IdAfiliado = Convert.ToDecimal(row["id_afiliado"].ToString());
+            topBonosFarmaciaVencidasPorAfiliado.BonosVencidosFarmacia = Convert.ToInt32(row["bonos_vencidos"].ToString());
+            return topBonosFarmaciaVencidasPorAfiliado;
         }
 
         #endregion
     }
 
-    public class TopEspecialidadesBonosFarmaciaVencidosBuilder : IBuilder<TopEspecialidadesBonosFarmaciaVencidos>
+    public class TopEspecialidadesBonosFarmaciaRecetadosBuilder : IBuilder<TopEspecialidadesBonosFarmaciaRecetados>
     {
 
         #region Miembros de IBuilder<TopEspecialidadesBonosFarmaciaVencidos>
 
-        public TopEspecialidadesBonosFarmaciaVencidos Build(System.Data.DataRow row)
+        public TopEspecialidadesBonosFarmaciaRecetados Build(System.Data.DataRow row)
         {
-            throw new NotImplementedException();
+            TopEspecialidadesBonosFarmaciaRecetados topEspecialidadesBonosFarmaciaRecetados = new TopEspecialidadesBonosFarmaciaRecetados();
+            topEspecialidadesBonosFarmaciaRecetados.Especialidad = row["especialidad"].ToString();
+            topEspecialidadesBonosFarmaciaRecetados.BonosFarmaciaRecetados = Convert.ToInt32(row["bonos_farmacia_recetados"].ToString());
+            return topEspecialidadesBonosFarmaciaRecetados;
         }
 
         #endregion
@@ -68,7 +74,10 @@ namespace GestionDAL.Builder
 
         public TopAfiliadosConBonosSinComprarPorEllos Build(System.Data.DataRow row)
         {
-            throw new NotImplementedException();
+            TopAfiliadosConBonosSinComprarPorEllos topAfiliadosConBonosSinComprarPorEllos = new TopAfiliadosConBonosSinComprarPorEllos();
+            topAfiliadosConBonosSinComprarPorEllos.IdAfiliado = Convert.ToDecimal(row["id_afiliado"].ToString());
+            topAfiliadosConBonosSinComprarPorEllos.BonosUtilizados = Convert.ToInt32(row["bonos_utilizados"].ToString());
+            return topAfiliadosConBonosSinComprarPorEllos;
         }
 
         #endregion

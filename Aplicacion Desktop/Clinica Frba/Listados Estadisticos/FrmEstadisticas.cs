@@ -66,9 +66,9 @@ namespace Clinica_Frba.Estadisticas
                 }
                 else if (estadisticaSeleccionada.IdEstadistica == 3)
                 {
-                    IResultado<IList<TopEspecialidadesBonosFarmaciaVencidos>> resultado = _domain.ObtenerTopEspecialidadesBonosFarmaciaVencidos(filtro);
+                    IResultado<IList<TopEspecialidadesBonosFarmaciaRecetados>> resultado = _domain.ObtenerTopEspecialidadesBonosFarmaciaVencidos(filtro);
                     if (!resultado.Correcto)
-                        throw new ResultadoIncorrectoException<IList<TopEspecialidadesBonosFarmaciaVencidos>>(resultado);
+                        throw new ResultadoIncorrectoException<IList<TopEspecialidadesBonosFarmaciaRecetados>>(resultado);
 
                     dgvResultado.DataSource = resultado.Retorno;
 
