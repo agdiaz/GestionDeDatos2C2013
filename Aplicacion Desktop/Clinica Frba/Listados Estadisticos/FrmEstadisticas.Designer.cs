@@ -29,24 +29,26 @@
         private void InitializeComponent()
         {
             this.gbOpciones = new System.Windows.Forms.GroupBox();
+            this.lblSemestre = new System.Windows.Forms.Label();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cbVista = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbResultado = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cbFecha = new System.Windows.Forms.ComboBox();
+            this.dgvResultado = new System.Windows.Forms.DataGridView();
             this.gbOpciones.SuspendLayout();
             this.gbResultado.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResultado)).BeginInit();
             this.SuspendLayout();
             // 
             // gbOpciones
             // 
             this.gbOpciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbOpciones.Controls.Add(this.cbFecha);
+            this.gbOpciones.Controls.Add(this.lblSemestre);
+            this.gbOpciones.Controls.Add(this.dtpFecha);
             this.gbOpciones.Controls.Add(this.btnConsultar);
             this.gbOpciones.Controls.Add(this.label3);
             this.gbOpciones.Controls.Add(this.cbVista);
@@ -59,6 +61,27 @@
             this.gbOpciones.TabStop = false;
             this.gbOpciones.Text = "Opciones de estadísticas";
             // 
+            // lblSemestre
+            // 
+            this.lblSemestre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSemestre.AutoSize = true;
+            this.lblSemestre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSemestre.Location = new System.Drawing.Point(321, 63);
+            this.lblSemestre.Name = "lblSemestre";
+            this.lblSemestre.Size = new System.Drawing.Size(88, 13);
+            this.lblSemestre.TabIndex = 7;
+            this.lblSemestre.Text = "Desde - Hasta";
+            // 
+            // dtpFecha
+            // 
+            this.dtpFecha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpFecha.Location = new System.Drawing.Point(58, 33);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(254, 20);
+            this.dtpFecha.TabIndex = 6;
+            this.dtpFecha.ValueChanged += new System.EventHandler(this.dtpFecha_ValueChanged);
+            // 
             // btnConsultar
             // 
             this.btnConsultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -68,18 +91,22 @@
             this.btnConsultar.TabIndex = 5;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Location = new System.Drawing.Point(318, 27);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(291, 33);
+            this.label3.Size = new System.Drawing.Size(344, 33);
             this.label3.TabIndex = 4;
             this.label3.Text = "Recuerde que los datos mostrados corresponden al semestre desde la fecha seleccio" +
-                "nada.";
+                "nada:";
             // 
             // cbVista
             // 
+            this.cbVista.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cbVista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVista.FormattingEnabled = true;
             this.cbVista.Location = new System.Drawing.Point(58, 60);
@@ -107,9 +134,10 @@
             // 
             // gbResultado
             // 
-            this.gbResultado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.gbResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbResultado.Controls.Add(this.dataGridView1);
+            this.gbResultado.Controls.Add(this.dgvResultado);
             this.gbResultado.Location = new System.Drawing.Point(12, 118);
             this.gbResultado.Name = "gbResultado";
             this.gbResultado.Size = new System.Drawing.Size(668, 259);
@@ -117,22 +145,16 @@
             this.gbResultado.TabStop = false;
             this.gbResultado.Text = "Resultados";
             // 
-            // dataGridView1
+            // dgvResultado
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(653, 234);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // cbFecha
-            // 
-            this.cbFecha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFecha.FormattingEnabled = true;
-            this.cbFecha.Location = new System.Drawing.Point(58, 33);
-            this.cbFecha.Name = "cbFecha";
-            this.cbFecha.Size = new System.Drawing.Size(254, 21);
-            this.cbFecha.TabIndex = 6;
+            this.dgvResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvResultado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResultado.Location = new System.Drawing.Point(9, 19);
+            this.dgvResultado.Name = "dgvResultado";
+            this.dgvResultado.Size = new System.Drawing.Size(653, 234);
+            this.dgvResultado.TabIndex = 0;
             // 
             // FrmEstadisticas
             // 
@@ -143,10 +165,11 @@
             this.Controls.Add(this.gbOpciones);
             this.Name = "FrmEstadisticas";
             this.Text = "Clinica FRBA - Listados estadísticos";
+            this.Load += new System.EventHandler(this.FrmEstadisticas_Load);
             this.gbOpciones.ResumeLayout(false);
             this.gbOpciones.PerformLayout();
             this.gbResultado.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResultado)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -159,8 +182,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvResultado;
         private System.Windows.Forms.Button btnConsultar;
-        private System.Windows.Forms.ComboBox cbFecha;
+        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.Label lblSemestre;
     }
 }
