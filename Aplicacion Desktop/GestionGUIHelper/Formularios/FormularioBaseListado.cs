@@ -18,6 +18,7 @@ namespace GestionGUIHelper.Formularios
             ModoSeleccion = modoSeleccion;       
             InitializeComponent();
         }
+
         public FormularioBaseListado()
             :this(false)
         {

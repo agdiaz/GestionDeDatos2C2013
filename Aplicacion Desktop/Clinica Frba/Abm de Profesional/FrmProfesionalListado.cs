@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GestionGUIHelper.Formularios;
+using Clinica_Frba.Especialidades;
+using GestionCommon.Entidades;
 
 namespace Clinica_Frba.Profesionales
 {
@@ -14,6 +16,12 @@ namespace Clinica_Frba.Profesionales
     {
         public FrmProfesionalListado()
             :base()
+        {
+            InitializeComponent();
+        }
+
+        public FrmProfesionalListado(bool modoSeleccion)
+            : base(modoSeleccion)
         {
             InitializeComponent();
         }
@@ -31,6 +39,22 @@ namespace Clinica_Frba.Profesionales
             using (FrmProfesionalModificar frm = new FrmProfesionalModificar())
             {
                 frm.ShowDialog(this);
+            }
+        }
+
+        private void btnBuscarEspecialidad_Click(object sender, EventArgs e)
+        {
+            Especialidad especialidad = null;
+            using (FrmEspecialidadListado frm = new FrmEspecialidadListado(true))
+            {
+                frm.ShowDialog(this);
+                especialidad = frm.EntidadSeleccionada as Especialidad;
+            }
+
+            if (especialidad != null)
+            {
+                tbEspecialidad.Text = especialidad.Nombre;
+                tbEspecialidad.Tag = especialidad;
             }
         }
     }

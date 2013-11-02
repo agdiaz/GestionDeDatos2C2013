@@ -21,13 +21,18 @@ namespace Clinica_Frba.Especialidades
         private EspecialidadDomain _domain;
         private TipoEspecialidadDomain _tipoEspecialidadDomain;
 
-        public FrmEspecialidadListado()
-            :base()
+        public FrmEspecialidadListado(bool modoSeleccion)
+            : base(modoSeleccion)
         {
             _domain = new EspecialidadDomain(Program.ContextoActual.Logger);
             _tipoEspecialidadDomain = new TipoEspecialidadDomain(Program.ContextoActual.Logger);
 
             InitializeComponent();
+        }
+
+        public FrmEspecialidadListado()
+            : this(false)
+        {
         }
 
         protected override void AccionAlta()

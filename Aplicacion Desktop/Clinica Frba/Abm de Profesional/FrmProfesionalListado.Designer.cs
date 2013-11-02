@@ -32,38 +32,41 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbApellido = new System.Windows.Forms.TextBox();
+            this.tbNombre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tbEspecialidad = new System.Windows.Forms.TextBox();
+            this.btnBuscarEspecialidad = new System.Windows.Forms.Button();
             this.gbAcciones.SuspendLayout();
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbFiltros
             // 
+            this.gbFiltros.Controls.Add(this.btnBuscarEspecialidad);
+            this.gbFiltros.Controls.Add(this.tbEspecialidad);
             this.gbFiltros.Controls.Add(this.textBox4);
-            this.gbFiltros.Controls.Add(this.textBox2);
+            this.gbFiltros.Controls.Add(this.tbApellido);
             this.gbFiltros.Controls.Add(this.label1);
             this.gbFiltros.Controls.Add(this.label2);
             this.gbFiltros.Controls.Add(this.label5);
-            this.gbFiltros.Controls.Add(this.comboBox1);
             this.gbFiltros.Controls.Add(this.label3);
-            this.gbFiltros.Controls.Add(this.textBox3);
+            this.gbFiltros.Controls.Add(this.tbNombre);
             this.gbFiltros.Controls.Add(this.textBox1);
             this.gbFiltros.Controls.Add(this.label4);
             this.gbFiltros.Controls.SetChildIndex(this.label4, 0);
             this.gbFiltros.Controls.SetChildIndex(this.textBox1, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.textBox3, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.tbNombre, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label3, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.comboBox1, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label5, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label2, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.textBox2, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.tbApellido, 0);
             this.gbFiltros.Controls.SetChildIndex(this.textBox4, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.tbEspecialidad, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.btnBuscarEspecialidad, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
             // 
@@ -101,36 +104,28 @@
             this.textBox1.Size = new System.Drawing.Size(179, 20);
             this.textBox1.TabIndex = 5;
             // 
-            // textBox2
+            // tbApellido
             // 
-            this.textBox2.Location = new System.Drawing.Point(70, 44);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(178, 20);
-            this.textBox2.TabIndex = 6;
+            this.tbApellido.Location = new System.Drawing.Point(70, 44);
+            this.tbApellido.Name = "tbApellido";
+            this.tbApellido.Size = new System.Drawing.Size(178, 20);
+            this.tbApellido.TabIndex = 6;
             // 
-            // textBox3
+            // tbNombre
             // 
-            this.textBox3.Location = new System.Drawing.Point(69, 18);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(179, 20);
-            this.textBox3.TabIndex = 7;
+            this.tbNombre.Location = new System.Drawing.Point(69, 18);
+            this.tbNombre.Name = "tbNombre";
+            this.tbNombre.Size = new System.Drawing.Size(179, 20);
+            this.tbNombre.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(274, 80);
+            this.label4.Location = new System.Drawing.Point(181, 80);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 13);
             this.label4.TabIndex = 8;
             this.label4.Text = "Especialidad";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(347, 77);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(179, 21);
-            this.comboBox1.TabIndex = 9;
             // 
             // label5
             // 
@@ -148,6 +143,24 @@
             this.textBox4.Size = new System.Drawing.Size(179, 20);
             this.textBox4.TabIndex = 11;
             // 
+            // tbEspecialidad
+            // 
+            this.tbEspecialidad.Location = new System.Drawing.Point(255, 80);
+            this.tbEspecialidad.Name = "tbEspecialidad";
+            this.tbEspecialidad.ReadOnly = true;
+            this.tbEspecialidad.Size = new System.Drawing.Size(211, 20);
+            this.tbEspecialidad.TabIndex = 12;
+            // 
+            // btnBuscarEspecialidad
+            // 
+            this.btnBuscarEspecialidad.Location = new System.Drawing.Point(473, 80);
+            this.btnBuscarEspecialidad.Name = "btnBuscarEspecialidad";
+            this.btnBuscarEspecialidad.Size = new System.Drawing.Size(53, 23);
+            this.btnBuscarEspecialidad.TabIndex = 13;
+            this.btnBuscarEspecialidad.Text = "Buscar";
+            this.btnBuscarEspecialidad.UseVisualStyleBackColor = true;
+            this.btnBuscarEspecialidad.Click += new System.EventHandler(this.btnBuscarEspecialidad_Click);
+            // 
             // FrmProfesionalListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,15 +177,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbApellido;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnBuscarEspecialidad;
+        private System.Windows.Forms.TextBox tbEspecialidad;
     }
 }
