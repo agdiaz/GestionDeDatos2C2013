@@ -122,11 +122,11 @@ namespace GestionDAL
         private IList<SqlParameter> ArmarFiltro(FiltroEstadistica filtro)
         {
             IList<SqlParameter> parametros = new List<SqlParameter>(2);
-            SqlParameter pDesde = new SqlParameter("@p_desde", System.Data.SqlDbType.DateTime, 4, "p_desde");
+            SqlParameter pDesde = new SqlParameter("@p_desde", System.Data.SqlDbType.DateTime, 8, "p_desde");
             pDesde.Value = filtro.Periodo.Inicio;
             parametros.Add(pDesde);
 
-            SqlParameter pFin = new SqlParameter("@p_fin", System.Data.SqlDbType.DateTime, 4, "p_fin");
+            SqlParameter pFin = new SqlParameter("@p_fin", System.Data.SqlDbType.DateTime, 8, "p_fin");
             pFin.Value = filtro.Periodo.Fin;
             parametros.Add(pFin);
             

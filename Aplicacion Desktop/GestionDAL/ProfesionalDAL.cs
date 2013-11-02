@@ -51,7 +51,7 @@ namespace GestionDAL
             pMail.Value = entidad.Mail;
             parametros.Add(pMail);
 
-            SqlParameter pFechaNacimiento = new SqlParameter("@p_fecha_nacimiento", System.Data.SqlDbType.Date, 4, "p_fecha_nacimiento");
+            SqlParameter pFechaNacimiento = new SqlParameter("@p_fecha_nacimiento", System.Data.SqlDbType.DateTime, 8, "p_fecha_nacimiento");
             pFechaNacimiento.Value = entidad.FechaNacimiento;
             parametros.Add(pFechaNacimiento);
 
@@ -102,7 +102,7 @@ namespace GestionDAL
             pMail.Value = entidad.Mail;
             parametros.Add(pMail);
 
-            SqlParameter pFechaNacimiento = new SqlParameter("@p_fecha_nacimiento", System.Data.SqlDbType.Date, 4, "p_fecha_nacimiento");
+            SqlParameter pFechaNacimiento = new SqlParameter("@p_fecha_nacimiento", System.Data.SqlDbType.DateTime, 8, "p_fecha_nacimiento");
             pFechaNacimiento.Value = entidad.FechaNacimiento;
             parametros.Add(pFechaNacimiento);
 
