@@ -58,6 +58,7 @@
     <Compile Include="Entidades\Compra.cs" />
     <Compile Include="Entidades\DiaAgenda.cs" />
     <Compile Include="Entidades\Especialidad.cs" />
+    <Compile Include="Entidades\Estadistica.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Medicamento.cs" />
     <Compile Include="Entidades\PlanMedico.cs" />
@@ -77,11 +78,13 @@
     <Compile Include="Enums\TipoDocumento.cs" />
     <Compile Include="Filtros\FiltroAfiliado.cs" />
     <Compile Include="Filtros\FiltroEspecialidad.cs" />
+    <Compile Include="Filtros\FiltroEstadistica.cs" />
     <Compile Include="Filtros\FiltroPlanMedico.cs" />
     <Compile Include="Filtros\FiltroProfesional.cs" />
     <Compile Include="Filtros\FiltroRol.cs" />
     <Compile Include="Filtros\FiltroTipoEspecialidad.cs" />
     <Compile Include="Filtros\FiltroUsuario.cs" />
+    <Compile Include="Filtros\Semestre.cs" />
     <Compile Include="Helpers\AppConfigReader.cs" />
     <Compile Include="Entidades\EntidadBase.cs" />
     <Compile Include="Helpers\FechaHelper.cs" />

@@ -31,12 +31,12 @@
             this.gbOpciones = new System.Windows.Forms.GroupBox();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cbVista = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbResultado = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cbFecha = new System.Windows.Forms.ComboBox();
             this.gbOpciones.SuspendLayout();
             this.gbResultado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -46,10 +46,10 @@
             // 
             this.gbOpciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbOpciones.Controls.Add(this.cbFecha);
             this.gbOpciones.Controls.Add(this.btnConsultar);
             this.gbOpciones.Controls.Add(this.label3);
-            this.gbOpciones.Controls.Add(this.comboBox1);
-            this.gbOpciones.Controls.Add(this.dateTimePicker1);
+            this.gbOpciones.Controls.Add(this.cbVista);
             this.gbOpciones.Controls.Add(this.label2);
             this.gbOpciones.Controls.Add(this.label1);
             this.gbOpciones.Location = new System.Drawing.Point(12, 12);
@@ -78,21 +78,14 @@
             this.label3.Text = "Recuerde que los datos mostrados corresponden al semestre desde la fecha seleccio" +
                 "nada.";
             // 
-            // comboBox1
+            // cbVista
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(58, 60);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(254, 21);
-            this.comboBox1.TabIndex = 3;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(58, 27);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(254, 20);
-            this.dateTimePicker1.TabIndex = 2;
+            this.cbVista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVista.FormattingEnabled = true;
+            this.cbVista.Location = new System.Drawing.Point(58, 60);
+            this.cbVista.Name = "cbVista";
+            this.cbVista.Size = new System.Drawing.Size(254, 21);
+            this.cbVista.TabIndex = 3;
             // 
             // label2
             // 
@@ -132,6 +125,15 @@
             this.dataGridView1.Size = new System.Drawing.Size(653, 234);
             this.dataGridView1.TabIndex = 0;
             // 
+            // cbFecha
+            // 
+            this.cbFecha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFecha.FormattingEnabled = true;
+            this.cbFecha.Location = new System.Drawing.Point(58, 33);
+            this.cbFecha.Name = "cbFecha";
+            this.cbFecha.Size = new System.Drawing.Size(254, 21);
+            this.cbFecha.TabIndex = 6;
+            // 
             // FrmEstadisticas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,12 +155,12 @@
 
         private System.Windows.Forms.GroupBox gbOpciones;
         private System.Windows.Forms.GroupBox gbResultado;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox cbVista;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnConsultar;
+        private System.Windows.Forms.ComboBox cbFecha;
     }
 }

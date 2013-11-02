@@ -48,6 +48,7 @@
     <Compile Include="AfiliadoDomain.cs" />
     <Compile Include="EntidadBaseDomain.cs" />
     <Compile Include="EspecialidadDomain.cs" />
+    <Compile Include="EstadisticaDomain.cs" />
     <Compile Include="FuncionalidadDomain.cs" />
     <Compile Include="IEntidadDomain.cs" />
     <Compile Include="PlanMedicoDomain.cs" />
