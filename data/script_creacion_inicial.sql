@@ -654,6 +654,7 @@ INSERT INTO TOP_4.Agenda
 	INNER JOIN TOP_4.Profesional p
 		ON p.documento = m.Medico_Dni
 	WHERE m.Medico_Dni IS NOT NULL
+	AND m.Turno_Fecha IS NOT NULL
 	GROUP BY p.id_profesional, m.Medico_Dni, m.Medico_Nombre, m.Medico_Apellido
 )
 
@@ -713,6 +714,7 @@ INSERT INTO TOP_4.Dia_Agenda
 			ON m.Medico_Dni = p.documento
 		INNER JOIN TOP_4.Agenda ag
 			ON ag.id_profesional = p.id_profesional
+		WHERE m.Turno_Fecha IS NOT NULL
 		GROUP BY p.id_profesional, datepart(weekday,m.Turno_Fecha), datename(weekday, m.Turno_Fecha), ag.id_agenda
 	) agen
 )
@@ -924,6 +926,7 @@ INSERT INTO TOP_4.Afiliado
 		ON m.Paciente_Dni=np.documento
 	JOIN TOP_4.Usuario usu
 		ON usu.username = CONVERT(varchar(255),m.Paciente_Dni)
+	WHERE m.Paciente_Dni IS NOT NULL
 	
 )
 DROP TABLE #nrosPrinc
@@ -1033,5 +1036,59 @@ INSERT INTO TOP_4.Medicamento
 	WHERE Bono_Farmacia_Medicamento IS NOT NULL
 )
 GO
+
+-------------------------------------RESULTADO_TURNO--------------------------------------------
+
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Resultado_Turno]    Script Date: 11/03/2013 18:40:01 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [TOP_4].[Resultado_Turno](
+	[id_resultado_turno] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_turno] [numeric](18, 0) NOT NULL,
+	[sintoma] [varchar](255) NOT NULL,
+	[diagnostico] [varchar](255) NOT NULL,
+	[fecha_diagnostico] [datetime] NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Resultado_Turno] PRIMARY KEY CLUSTERED 
+(
+	[id_resultado_turno] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [TOP_4].[Resultado_Turno]  WITH CHECK ADD  CONSTRAINT [FK_Resultado_Turno_Turno] FOREIGN KEY([id_turno])
+REFERENCES [TOP_4].[Turno] ([id_turno])
+GO
+
+ALTER TABLE [TOP_4].[Resultado_Turno] CHECK CONSTRAINT [FK_Resultado_Turno_Turno]
+GO
+
+ALTER TABLE [TOP_4].[Resultado_Turno] ADD  CONSTRAINT [DF_Resultado_Turno_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+INSERT INTO TOP_4.Resultado_Turno
+(id_turno, fecha_diagnostico, sintoma, diagnostico)
+(
+	SELECT DISTINCT m.Turno_Numero, m.Turno_Fecha, m.Consulta_Enfermedades, m.Consulta_Sintomas
+	FROM gd_esquema.Maestra m
+	WHERE Consulta_Enfermedades IS NOT NULL
+)
+
+
+
 
 
