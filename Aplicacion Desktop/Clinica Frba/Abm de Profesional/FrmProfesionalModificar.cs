@@ -166,7 +166,13 @@ namespace Clinica_Frba.Profesionales
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
+            Especialidad esp = null;
 
+            esp = lstEspecialidades.SelectedItem as Especialidad;
+            if (esp != null)
+            {
+                lstEspecialidades.Items.Remove(esp);
+            }
         }
     }
 }
