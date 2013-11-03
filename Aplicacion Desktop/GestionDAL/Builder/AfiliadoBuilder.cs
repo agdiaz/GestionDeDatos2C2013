@@ -19,7 +19,7 @@ namespace GestionDAL.Builder
             a.EstadoCivil = new ListaEstadoCivil().Obtener(Convert.ToInt32(row["estado_civil"]));
             a.Documento = Convert.ToDecimal(row["documento"]);
             a.Apellido = Convert.ToString(row["apellido"]);
-            a.CantidadHijos = Convert.ToInt32(row["cantidad_hijos"]);
+            //a.CantidadHijos = Convert.ToInt32(row["cantidad_hijos"]);
             a.Direccion = Convert.ToString(row["direccion"]);
             a.FechaNacimiento = Convert.ToDateTime(row["fecha_nacimiento"]);
             a.Habilitado = Convert.ToBoolean(row["habilitado"]);

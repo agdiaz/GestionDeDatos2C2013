@@ -22,7 +22,6 @@ namespace GestionCommon.Entidades
         public DateTime FechaNacimiento { get; set; }
         public Sexo Sexo { get; set; }
         public EstadoCivil EstadoCivil { get; set; }
-        public int CantidadHijos { get; set; }
         public bool Habilitado { get; set; }
 
         public string NombreCompleto { get { return string.Format("{0} {1}", Nombre, Apellido); } }

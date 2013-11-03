@@ -1,11 +1,18 @@
 GO
 CREATE PROCEDURE [TOP_4].[sp_Afiliado_filter](
-	@p_numero_afiliado numeric(18),
-	@p_id_plan_medico numeric(18),
-	@p_tipo_documento int,
-	@p_nombre varchar(255),
-	@p_apellido varchar(255),
-	@p_documento numeric(18)
+	@p_nro_principal numeric(18)=NULL,
+	@p_nro_secundario numeric(18)=NULL,
+	@p_id_plan_medico numeric(18)=NULL,
+	@p_tipo_documento int=NULL,
+	@p_nombre varchar(255)=NULL,
+	@p_apellido varchar(255)=NULL,
+	@p_documento numeric(18)=NULL,
+	@p_direccion varchar(255)=NULL,
+	@p_telefono numeric(18)=NULL,
+	@p_mail varchar(255)=NULL,
+	@p_fecha_nac datetime=NULL,
+	@p_sexo int=NULL,
+	@p_estado_civil int=NULL
 )
 
 AS
@@ -28,13 +35,20 @@ SELECT a.[id_afiliado]
       ,a.[estado_civil]
       ,a.[fecha_baja]
       ,a.[habilitado]
-  FROM [TOP_4].[Afiliado] a
-  WHERE ((@p_numero_afiliado IS NULL) OR (@p_numero_afiliado = a.nro_principal))
-  AND ((@p_id_plan_medico IS NULL) OR (@p_id_plan_medico = a.id_plan_medico ))
-  AND ((@p_tipo_documento IS NULL) OR (@p_tipo_documento = a.tipo_documento))
-  AND ((@p_documento IS NULL) OR (@p_documento = a.documento))
+  FROM [Afiliado] a
+  WHERE ((@p_nro_principal IS NULL) OR (a.nro_principal = @p_nro_principal))
+  AND ((@p_nro_secundario IS NULL) OR (a.nro_secundario = @p_nro_secundario))
+  AND ((@p_id_plan_medico IS NULL) OR (a.id_plan_medico = @p_id_plan_medico ))
+  AND ((@p_tipo_documento IS NULL) OR (a.tipo_documento = @p_tipo_documento ))
+  AND ((@p_documento IS NULL) OR (a.documento = @p_documento))
   AND ((@p_nombre IS NULL) OR (a.nombre like '%'+ @p_nombre +'%'))
   AND ((@p_apellido IS NULL) OR (a.apellido like '%'+ @p_apellido +'%'))
+  AND ((@p_direccion IS NULL) OR (a.direccion like '%'+ @p_direccion +'%' ))
+  AND ((@p_telefono IS NULL) OR (a.telefono = @p_telefono))
+  AND ((@p_fecha_nac IS NULL) OR (a.fecha_nacimiento = @p_fecha_nac))
+  AND ((@p_sexo IS NULL) OR (a.sexo = @p_sexo))
+  AND ((@p_estado_civil IS NULL) OR (a.estado_civil = @p_estado_civil))
+  AND ((@p_mail IS NULL) OR (a.mail like '%'+@p_mail+'%'))
 
 END
 GO
@@ -118,3 +132,6 @@ BEGIN TRY
 	END CATCH
 
 END
+
+------------------------------------------------------------
+

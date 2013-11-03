@@ -13,6 +13,8 @@ using GestionCommon.Entidades;
 using GestionCommon.Filtros;
 using GestionDomain.Resultados;
 using GestionDomain;
+using GestionCommon.Enums;
+using GestionGUIHelper.Helpers;
 
 namespace Clinica_Frba.Afiliados
 {
@@ -49,21 +51,69 @@ namespace Clinica_Frba.Afiliados
 
         protected override void AccionFiltrar()
         {
-            FiltroAfiliado filtro = new FiltroAfiliado();
+            try
+            {
+                FiltroAfiliado filtro = ObtenerFiltro();
 
+                IResultado<IList<Afiliado>> resultado = _domain.Filtrar(filtro);
+
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<IList<Afiliado>>(resultado);
+
+                this.dgvBusqueda.DataSource = resultado.Retorno;
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+               
+            }
+        }
+
+        private FiltroAfiliado ObtenerFiltro()
+        {
+            FiltroAfiliado filtro = new FiltroAfiliado();
+            if(!string.IsNullOrEmpty(tbNroPrincipal.Text))
+                filtro.NroPrincipal = Convert.ToDecimal(tbNroPrincipal.Text);
+
+            if (!string.IsNullOrEmpty(tbNroSecundario.Text))
+                filtro.NroSecundario = Convert.ToDecimal(tbNroSecundario.Text);
+            
             filtro.Nombre = tbNombre.Text;
             filtro.Apellido = tbApellido.Text;
-            filtro.IdPlanMedico = (tbPlanMedico.Tag as PlanMedico).IdPlan;
-            filtro.NroAfiliado = Convert.ToDecimal(tbNroAfiliado);
-            //filtro.IdTipoDocumento = 
-            filtro.Documento = Convert.ToDecimal(tbDocumento);
+            filtro.Direccion = tbDireccion.Text;
 
-            IResultado<IList<Afiliado>> resultado = _domain.Filtrar(filtro);
+            if (!string.IsNullOrEmpty(tbTelefono.Text))
+                filtro.Telefono = Convert.ToDecimal(tbTelefono.Text);
+            
+            filtro.Mail = tbMail.Text;
 
-            if (!resultado.Correcto)
-                throw new ResultadoIncorrectoException<IList<Afiliado>>(resultado);
+            if (!string.IsNullOrEmpty(tbPlanMedico.Text))
+                filtro.IdPlanMedico = (tbPlanMedico.Tag as PlanMedico).IdPlan;
 
-            this.dgvBusqueda.DataSource = resultado.Retorno;
+            if (!string.IsNullOrEmpty(tbDocumento.Text))
+                filtro.Documento = Convert.ToDecimal(tbDocumento.Text);
+
+            if (chSexo.Checked)
+            {
+                filtro.IdSexo = (Sexo)cbSexo.SelectedItem;
+            }
+
+            if (chEstadoCivil.Checked)
+            {
+                filtro.IdEstadoCivil = (EstadoCivil)cbEstadoCivil.SelectedItem;
+            }
+
+            if (chFechaNac.Checked)
+            {
+                filtro.FechaNacimiento = dtpFechaNac.Value;
+            }
+
+            if (chTipoDoc.Checked)
+            {
+                filtro.IdTipoDocumento = (TipoDocumento)cbTipoDoc.SelectedItem;
+            }
+
+            return filtro;
         }
 
         protected override void AccionIniciar()
@@ -73,7 +123,7 @@ namespace Clinica_Frba.Afiliados
 
         protected override void AccionLimpiar()
         {
-            tbNroAfiliado.Text = string.Empty;
+            tbNroPrincipal.Text = string.Empty;
             tbPlanMedico.Tag = null;
             tbPlanMedico.Text = string.Empty;
             cbTipoDoc.SelectedIndex = 0;
@@ -85,7 +135,7 @@ namespace Clinica_Frba.Afiliados
         private void FrmAfiliadoListado_Load(object sender, EventArgs e)
         {
             AccionLimpiar();
-            this.AgregarValidacion(new ValidadorNumerico(tbNroAfiliado));
+            this.AgregarValidacion(new ValidadorNumerico(tbNroPrincipal));
             this.AgregarValidacion(new ValidadorCombobox(cbTipoDoc));
             this.AgregarValidacion(new ValidadorNumerico(tbPlanMedico));
             this.AgregarValidacion(new ValidadorString(tbNombre, 1, 255));
@@ -104,6 +154,16 @@ namespace Clinica_Frba.Afiliados
                     tbPlanMedico.Text = plan.Descripcion;
                 }
             }
+        }
+
+        private void gbBusqueda_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbTipoDoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }
