@@ -180,7 +180,10 @@ BEGIN
 		WHERE id_profesional = @p_id
 
 		-- Cancelar los turnos!
-
+		UPDATE [TOP_4].[Turno] 
+		SET habilitado = '0'
+		WHERE id_profesional = @p_id
+		
 		COMMIT TRAN	
 	END TRY
 	BEGIN CATCH
@@ -240,8 +243,7 @@ BEGIN TRY
 	-- Creo el registro del profesional
 	
 	UPDATE [TOP_4].[Profesional]
-	SET [id_usuario] = @p_id_usuario
-			   ,[nombre] = @p_nombre
+	SET			[nombre] = @p_nombre
 			   ,[apellido] = @p_apellido
 			   ,[tipo_documento] = @p_tipo_documento
 			   ,[documento] = @p_documento
