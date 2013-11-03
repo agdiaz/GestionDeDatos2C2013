@@ -734,7 +734,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [TOP_4].[Afiliado](
-	[id_afiliado] [numeric](18, 0) NOT NULL,
+	[id_afiliado] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[nro_principal] [numeric](18, 0) NOT NULL,
 	[nro_secundario] [numeric](18, 0) NOT NULL,
 	[id_usuario] [numeric](18, 0) NOT NULL,
@@ -749,7 +749,7 @@ CREATE TABLE [TOP_4].[Afiliado](
 	[fecha_nacimiento] [datetime] NOT NULL,
 	[sexo] [int] NOT NULL,
 	[estado_civil] [int] NOT NULL,
-	[cantidad_familiares] [int] NOT NULL,
+--	[cantidad_familiares] [int] NOT NULL,
 	[fecha_baja] [datetime] NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Afiliado] PRIMARY KEY CLUSTERED 
@@ -786,11 +786,153 @@ GO
 ALTER TABLE [TOP_4].[Afiliado] ADD  CONSTRAINT [DF_Afiliado_estado_civil]  DEFAULT ((0)) FOR [estado_civil]
 GO
 
-ALTER TABLE [TOP_4].[Afiliado] ADD  CONSTRAINT [DF_Afiliado_cantidad_familiares]  DEFAULT ((0)) FOR [cantidad_familiares]
-GO
-
 ALTER TABLE [TOP_4].[Afiliado] ADD  CONSTRAINT [DF_Afiliado_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
+
+
+--Primero inserto los usuarios con grupos familiares
+
+
+CREATE TABLE #TmpPacientesGruposAntes (
+	documento numeric(18,0) NOT NULL,
+	direccion varchar(255) NOT NULL
+)
+
+CREATE TABLE #TmpPacientesGruposDespues (
+	documento numeric(18,0) NOT NULL,
+	direccion varchar(255) NOT NULL,
+	num_principal numeric(18,0) NOT NULL,
+	num_secundario numeric(18,0) NOT NULL
+)
+
+INSERT INTO #TmpPacientesGruposAntes
+(documento, direccion)
+(
+	SELECT DISTINCT m.Paciente_Dni, m.Paciente_Direccion
+	FROM gd_esquema.Maestra m
+	WHERE exists(
+		SELECT * FROM gd_esquema.Maestra m2
+		WHERE m2.Paciente_Direccion = m.Paciente_Direccion
+		AND m2.Paciente_Dni != m.Paciente_Dni
+		)
+)
+
+DECLARE @docu_act numeric(18,0)
+DECLARE @dire_act varchar(255)
+
+DECLARE @num_princ_grupo numeric(18,0)
+DECLARE @num_secu_grupo numeric(18,0)
+
+DECLARE CUR_GRUPOS CURSOR FOR
+	SELECT documento, direccion
+	FROM #TmpPacientesGruposAntes
+
+SET NOCOUNT ON	
+OPEN CUR_GRUPOS
+
+FETCH NEXT FROM CUR_GRUPOS
+INTO @docu_act, @dire_act
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	SET @num_princ_grupo = null
+	SET @num_secu_grupo = null
+	
+	SELECT  @num_princ_grupo=pgd.num_principal,
+			@num_secu_grupo=ISNULL(MAX(pgd.num_secundario),0)
+	FROM #TmpPacientesGruposDespues pgd
+	WHERE pgd.direccion=@dire_act
+	GROUP BY pgd.num_principal
+	
+	IF @num_princ_grupo IS NULL
+	BEGIN
+		DECLARE @max_num NUMERIC(18,0)
+		SELECT @max_num=ISNULL(MAX(num_principal),0)
+		FROM #TmpPacientesGruposDespues
+		
+		SET @max_num = @max_num + 100
+
+		INSERT INTO #TmpPacientesGruposDespues
+			(documento, direccion, num_principal, num_secundario)
+		VALUES
+			(@docu_act, @dire_act, @max_num , 1)
+	END
+	ELSE
+	BEGIN
+		SET @num_secu_grupo = @num_secu_grupo + 1
+		INSERT INTO #TmpPacientesGruposDespues
+			(documento, direccion, num_principal, num_secundario)
+		VALUES
+			(@docu_act, @dire_act, @num_princ_grupo, @num_secu_grupo )
+	END
+		
+	FETCH NEXT FROM CUR_GRUPOS
+	INTO @docu_act, @dire_act
+END
+
+CLOSE CUR_GRUPOS
+DEALLOCATE CUR_GRUPOS
+
+INSERT INTO TOP_4.Afiliado
+(nro_principal, nro_secundario, id_usuario, id_plan_medico, 
+	tipo_documento,	documento, nombre, apellido, direccion, 
+	telefono, mail, fecha_nacimiento, sexo,	estado_civil)
+(
+	SELECT DISTINCT pgd.num_principal, pgd.num_secundario, usu.id_usuario, m.Plan_Med_Codigo, 0 as tipoDocu,
+		m.Paciente_Dni, m.Paciente_Nombre, m.Paciente_Apellido, m.Paciente_Direccion, m.Paciente_Telefono,
+		m.Paciente_Mail, m.Paciente_Fecha_Nac, 0 as sexo, 0 as estadoCivil 
+	FROM #TmpPacientesGruposDespues pgd
+	JOIN gd_esquema.Maestra m
+		ON m.Paciente_Dni = pgd.documento
+	JOIN TOP_4.Usuario usu
+		ON usu.username = CONVERT(varchar(255),m.Paciente_Dni)
+)
+
+
+--Luego inserto los usuarios sin grupo familiar
+
+
+CREATE TABLE #nrosPrinc (
+	nro_principal numeric(18,0) IDENTITY(0, 100) NOT NULL,
+	documento numeric(18,0) NOT NULL
+)
+
+INSERT INTO #nrosPrinc
+	(documento)
+(
+	SELECT DISTINCT m.Paciente_Dni
+	FROM gd_esquema.Maestra m
+	WHERE m.Paciente_Dni NOT IN (SELECT documento from #TmpPacientesGruposAntes)
+)
+
+DECLARE @ident int
+SELECT @ident=ISNULL(MAX(num_principal),0)
+	FROM #TmpPacientesGruposDespues
+
+
+INSERT INTO TOP_4.Afiliado
+(nro_principal, nro_secundario, id_usuario, id_plan_medico, 
+	tipo_documento,	documento, nombre, apellido, direccion, 
+	telefono, mail, fecha_nacimiento, sexo,	estado_civil)
+(
+	SELECT DISTINCT np.nro_principal + @ident, 1, usu.id_usuario, m.Plan_Med_Codigo, 
+		0 as tipoDocu, m.Paciente_Dni, m.Paciente_Nombre, m.Paciente_Apellido,
+		m.Paciente_Direccion, m.Paciente_Telefono, m.Paciente_Mail,
+		m.Paciente_Fecha_Nac, 0 as sexo, 0 as estadoCivil	
+	FROM #nrosPrinc np
+	JOIN gd_esquema.Maestra m
+		ON m.Paciente_Dni=np.documento
+	JOIN TOP_4.Usuario usu
+		ON usu.username = CONVERT(varchar(255),m.Paciente_Dni)
+	
+)
+
+
+
+DROP TABLE #nrosPrinc
+DROP TABLE #TmpPacientesGruposAntes
+DROP TABLE #TmpPacientesGruposDespues
+
 
 
 
