@@ -21,5 +21,12 @@ namespace GestionCommon.Entidades
         public Sexo Sexo { get; set; }
         public decimal Matricula { get; set; }
         public bool Habilitado { get; set; }
+
+        public string NombreCompleto { get { return string.Format("Dr. {0} {1}", Nombre, Apellido); } }
+
+        public override string ToString()
+        {
+            return NombreCompleto;
+        }
     }
 }

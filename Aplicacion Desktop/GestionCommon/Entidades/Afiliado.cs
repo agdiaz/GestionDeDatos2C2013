@@ -24,5 +24,12 @@ namespace GestionCommon.Entidades
         public EstadoCivil EstadoCivil { get; set; }
         public int CantidadHijos { get; set; }
         public bool Habilitado { get; set; }
+
+        public string NombreCompleto { get { return string.Format("{0} {1}", Nombre, Apellido); } }
+
+        public override string ToString()
+        {
+            return NombreCompleto;
+        }
     }
 }
