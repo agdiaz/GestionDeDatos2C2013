@@ -120,7 +120,7 @@ namespace Clinica_Frba.Profesionales
                 filtro.FechaNacimiento = dtpFechaNacimiento.Value;
 
             if (!string.IsNullOrEmpty(tbEspecialidad.Text))
-                filtro.IdEspecialidad = ((TipoEspecialidad)tbEspecialidad.Tag).Id;
+                filtro.IdEspecialidad = ((Especialidad)tbEspecialidad.Tag).IdEspecialidad;
             
             if (!string.IsNullOrEmpty(tbMail.Text))
                 filtro.Mail = tbMail.Text;
