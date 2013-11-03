@@ -30,33 +30,33 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.tbProfesional = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dpFechaHasta = new System.Windows.Forms.DateTimePicker();
+            this.dpFechaDesde = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnQuitarDia = new System.Windows.Forms.Button();
+            this.btnAgregarDia = new System.Windows.Forms.Button();
             this.tbHorasSemanales = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudHasta = new System.Windows.Forms.NumericUpDown();
+            this.nudDesde = new System.Windows.Forms.NumericUpDown();
             this.cbDia = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listCronograma = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.dpFechaDesde = new System.Windows.Forms.DateTimePicker();
-            this.dpFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHasta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDesde)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -72,17 +72,19 @@
             // 
             this.tbProfesional.Location = new System.Drawing.Point(81, 29);
             this.tbProfesional.Name = "tbProfesional";
+            this.tbProfesional.ReadOnly = true;
             this.tbProfesional.Size = new System.Drawing.Size(353, 20);
             this.tbProfesional.TabIndex = 1;
             // 
-            // button1
+            // btnBuscar
             // 
-            this.button1.Location = new System.Drawing.Point(440, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBuscar.Location = new System.Drawing.Point(440, 27);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(85, 23);
+            this.btnBuscar.TabIndex = 2;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // groupBox1
             // 
@@ -91,7 +93,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.tbProfesional);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -99,6 +101,20 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la agenda";
+            // 
+            // dpFechaHasta
+            // 
+            this.dpFechaHasta.Location = new System.Drawing.Point(393, 59);
+            this.dpFechaHasta.Name = "dpFechaHasta";
+            this.dpFechaHasta.Size = new System.Drawing.Size(200, 20);
+            this.dpFechaHasta.TabIndex = 7;
+            // 
+            // dpFechaDesde
+            // 
+            this.dpFechaDesde.Location = new System.Drawing.Point(81, 59);
+            this.dpFechaDesde.Name = "dpFechaDesde";
+            this.dpFechaDesde.Size = new System.Drawing.Size(200, 20);
+            this.dpFechaDesde.TabIndex = 6;
             // 
             // label3
             // 
@@ -120,12 +136,12 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Controls.Add(this.button5);
+            this.groupBox2.Controls.Add(this.btnQuitarDia);
+            this.groupBox2.Controls.Add(this.btnAgregarDia);
             this.groupBox2.Controls.Add(this.tbHorasSemanales);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.listBox1);
+            this.groupBox2.Controls.Add(this.listCronograma);
             this.groupBox2.Location = new System.Drawing.Point(12, 260);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(677, 178);
@@ -133,23 +149,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cronograma semanal";
             // 
-            // button6
+            // btnQuitarDia
             // 
-            this.button6.Location = new System.Drawing.Point(244, 50);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Quitar día";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnQuitarDia.Location = new System.Drawing.Point(244, 50);
+            this.btnQuitarDia.Name = "btnQuitarDia";
+            this.btnQuitarDia.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitarDia.TabIndex = 5;
+            this.btnQuitarDia.Text = "Quitar día";
+            this.btnQuitarDia.UseVisualStyleBackColor = true;
+            this.btnQuitarDia.Click += new System.EventHandler(this.btnQuitarDia_Click);
             // 
-            // button5
+            // btnAgregarDia
             // 
-            this.button5.Location = new System.Drawing.Point(244, 20);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Agregar día";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnAgregarDia.Location = new System.Drawing.Point(244, 20);
+            this.btnAgregarDia.Name = "btnAgregarDia";
+            this.btnAgregarDia.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarDia.TabIndex = 4;
+            this.btnAgregarDia.Text = "Agregar día";
+            this.btnAgregarDia.UseVisualStyleBackColor = true;
+            this.btnAgregarDia.Click += new System.EventHandler(this.AgregarDia_Click);
             // 
             // tbHorasSemanales
             // 
@@ -170,8 +188,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.numericUpDown2);
-            this.groupBox3.Controls.Add(this.numericUpDown1);
+            this.groupBox3.Controls.Add(this.nudHasta);
+            this.groupBox3.Controls.Add(this.nudDesde);
             this.groupBox3.Controls.Add(this.cbDia);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
@@ -183,19 +201,29 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalle diario";
             // 
-            // numericUpDown2
+            // nudHasta
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(52, 78);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown2.TabIndex = 7;
+            this.nudHasta.Location = new System.Drawing.Point(52, 78);
+            this.nudHasta.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.nudHasta.Name = "nudHasta";
+            this.nudHasta.Size = new System.Drawing.Size(120, 20);
+            this.nudHasta.TabIndex = 7;
             // 
-            // numericUpDown1
+            // nudDesde
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(52, 52);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 6;
+            this.nudDesde.Location = new System.Drawing.Point(52, 52);
+            this.nudDesde.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.nudDesde.Name = "nudDesde";
+            this.nudDesde.Size = new System.Drawing.Size(120, 20);
+            this.nudDesde.TabIndex = 6;
             // 
             // cbDia
             // 
@@ -233,13 +261,13 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Día";
             // 
-            // listBox1
+            // listCronograma
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(9, 19);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(228, 147);
-            this.listBox1.TabIndex = 0;
+            this.listCronograma.FormattingEnabled = true;
+            this.listCronograma.Location = new System.Drawing.Point(9, 19);
+            this.listCronograma.Name = "listCronograma";
+            this.listCronograma.Size = new System.Drawing.Size(228, 147);
+            this.listCronograma.TabIndex = 0;
             // 
             // button2
             // 
@@ -268,20 +296,6 @@
             this.button4.Text = "Cancelar";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // dpFechaDesde
-            // 
-            this.dpFechaDesde.Location = new System.Drawing.Point(81, 59);
-            this.dpFechaDesde.Name = "dpFechaDesde";
-            this.dpFechaDesde.Size = new System.Drawing.Size(200, 20);
-            this.dpFechaDesde.TabIndex = 6;
-            // 
-            // dpFechaHasta
-            // 
-            this.dpFechaHasta.Location = new System.Drawing.Point(393, 59);
-            this.dpFechaHasta.Name = "dpFechaHasta";
-            this.dpFechaHasta.Size = new System.Drawing.Size(200, 20);
-            this.dpFechaHasta.TabIndex = 7;
-            // 
             // FrmAgendaAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,8 +315,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHasta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDesde)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -311,7 +325,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbProfesional;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -319,17 +333,17 @@
         private System.Windows.Forms.TextBox tbHorasSemanales;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listCronograma;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Button btnQuitarDia;
+        private System.Windows.Forms.Button btnAgregarDia;
+        private System.Windows.Forms.NumericUpDown nudHasta;
+        private System.Windows.Forms.NumericUpDown nudDesde;
         private System.Windows.Forms.ComboBox cbDia;
         private System.Windows.Forms.DateTimePicker dpFechaHasta;
         private System.Windows.Forms.DateTimePicker dpFechaDesde;

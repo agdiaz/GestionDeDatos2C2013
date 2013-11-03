@@ -10,6 +10,9 @@ using GestionGUIHelper.Formularios;
 using GestionGUIHelper.Validaciones;
 using GestionCommon.Helpers;
 using GestionCommon.Enums;
+using GestionGUIHelper.Helpers;
+using Clinica_Frba.Profesionales;
+using GestionCommon.Entidades;
 
 namespace Clinica_Frba.Agenda
 {
@@ -51,5 +54,86 @@ namespace Clinica_Frba.Agenda
         {
 
         }
+
+        private void AgregarDia_Click(object sender, EventArgs e)
+        {
+            if (this.validarCargaHorarioDia())
+            {
+                this.agregarDiaACronograma();
+            }
+        }
+
+        private void agregarDiaACronograma()
+        {
+            DiaSemana diaSemana = new DiaSemana();
+            DiaSemana diaSeleccionado = cbDia.SelectedItem as DiaSemana;
+            diaSemana.Id = diaSeleccionado.Id;
+            diaSemana.Nombre = diaSeleccionado.Nombre;
+            diaSemana.HoraDesde = new DateTime(2013, 1, 1, (int)nudDesde.Value, 0, 0);
+            diaSemana.HoraHasta = new DateTime(2013, 1, 1, (int)nudHasta.Value, 0, 0);
+            listCronograma.Items.Add(diaSemana);
+
+            this.actualizarTotalHoras();
+        }
+
+        private void actualizarTotalHoras()
+        {
+            int totalHorasSemanales = 0;
+            foreach (DiaSemana dia in listCronograma.Items)
+            {
+                totalHorasSemanales += dia.HoraHasta.Hour - dia.HoraDesde.Hour;
+            }
+            tbHorasSemanales.Text = totalHorasSemanales.ToString();
+        }
+
+        private Boolean validarCargaHorarioDia()
+        {
+            Boolean resultado = true;
+            DiaSemana diaSeleccionado = cbDia.SelectedItem as DiaSemana;
+            int horaDesdeSeleccionado = new DateTime(2013, 1, 1, (int)nudDesde.Value, 0, 0).Hour;
+            int horaHastaSeleccionado = new DateTime(2013, 1, 1, (int)nudHasta.Value, 0, 0).Hour;
+
+            if(diaSeleccionado.HoraDesdeLimite.Hour > horaDesdeSeleccionado ||
+                diaSeleccionado.HoraHastaLimite.Hour < horaHastaSeleccionado){
+                    MensajePorPantalla.MensajeInformativo(this,"Carga de horario incorrecta.\nHorario dia "
+                        +diaSeleccionado.Nombre+" de "+diaSeleccionado.HoraDesdeLimite.Hour+"hs a "+diaSeleccionado.HoraHastaLimite.Hour+"hs.");
+                    resultado = false;
+                }
+            else if ((int)nudDesde.Value >= (int)nudHasta.Value)
+            {
+                MensajePorPantalla.MensajeError(this, "Carga de horarios incorrecta.");
+                resultado = false;
+            }
+
+            return resultado;
+        }
+
+        private void btnQuitarDia_Click(object sender, EventArgs e)
+        {
+            DiaSemana dia = null;
+
+            dia = listCronograma.SelectedItem as DiaSemana;
+            if (dia != null)
+            {
+                listCronograma.Items.Remove(dia);
+                this.actualizarTotalHoras();
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            Profesional profesional = null;
+            using (FrmProfesionalListado frmProfesional = new FrmProfesionalListado(true))
+            {
+                frmProfesional.ShowDialog(this);
+                profesional = frmProfesional.EntidadSeleccionada as Profesional;
+            }
+            if (profesional != null)
+            {
+                tbProfesional.Text = profesional.Nombre;
+                tbProfesional.Tag = profesional;
+            }
+        }
+
     }
 }

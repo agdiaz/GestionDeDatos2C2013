@@ -24,6 +24,11 @@ namespace GestionCommon.Enums
         public DateTime HoraHasta { get; set; }
         public DateTime HoraDesdeLimite { get; set; }
         public DateTime HoraHastaLimite { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre + " de " + this.HoraDesde.Hour + " a " + this.HoraHasta.Hour;
+        }
     }
 
     public class Domingo : DiaSemana
