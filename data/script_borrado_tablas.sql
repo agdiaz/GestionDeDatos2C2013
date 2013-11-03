@@ -1,5 +1,6 @@
 USE [GD2C2013]
 
+DROP TABLE TOP_4.Turno
 DROP TABLE TOP_4.Afiliado
 DROP TABLE TOP_4.Rol_Funcionalidad
 DROP TABLE TOP_4.Funcionalidad
