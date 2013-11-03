@@ -1087,6 +1087,51 @@ INSERT INTO TOP_4.Resultado_Turno
 	FROM gd_esquema.Maestra m
 	WHERE Consulta_Enfermedades IS NOT NULL
 )
+-----------------------------------------RECETA------------------------------------------
+
+
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Receta]    Script Date: 11/03/2013 19:29:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [TOP_4].[Receta](
+	[id_receta] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_resultado_turno] [numeric](18, 0) NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Receta] PRIMARY KEY CLUSTERED 
+(
+	[id_receta] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Receta]  WITH CHECK ADD  CONSTRAINT [FK_Receta_Resultado_Turno] FOREIGN KEY([id_resultado_turno])
+REFERENCES [TOP_4].[Resultado_Turno] ([id_resultado_turno])
+GO
+
+ALTER TABLE [TOP_4].[Receta] CHECK CONSTRAINT [FK_Receta_Resultado_Turno]
+GO
+
+ALTER TABLE [TOP_4].[Receta] ADD  CONSTRAINT [DF_Receta_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+
+INSERT INTO TOP_4.Receta
+(id_resultado_turno)
+(
+	SELECT rt.id_resultado_turno
+	FROM gd_esquema.Maestra m
+	INNER JOIN TOP_4.Resultado_Turno rt
+		ON rt.id_turno = m.Turno_Numero
+	WHERE m.Bono_Farmacia_Medicamento IS NOT NULL
+)
 
 
 
