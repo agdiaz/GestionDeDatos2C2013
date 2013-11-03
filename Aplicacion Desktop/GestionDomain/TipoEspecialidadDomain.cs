@@ -59,7 +59,9 @@ namespace GestionDomain
 
             try
             {
-                resultado.Retorno = _domain.Crear(especialidad);
+                decimal id = _domain.Crear(especialidad);
+                especialidad.Id = id;
+                resultado.Retorno = especialidad;
             }
             catch (Exception ex)
             {

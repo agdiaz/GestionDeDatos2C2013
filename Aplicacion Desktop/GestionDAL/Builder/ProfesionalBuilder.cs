@@ -18,7 +18,7 @@ namespace GestionDAL.Builder
             profesional.IdUsuario = Convert.ToDecimal(row["id_usuario"]);
             profesional.Nombre = Convert.ToString(row["nombre"]);
             profesional.Apellido = Convert.ToString(row["apellido"]);
-            profesional.TipoDni = Convert.ToString(row["tipo_documento"]);
+            profesional.TipoDni = new ListaTipoDocumento().Obtener(Convert.ToInt32(row["tipo_documento"]));
             profesional.Dni = Convert.ToDecimal(row["documento"]);
             profesional.Telefono = Convert.ToDecimal(row["telefono"]);
             profesional.Mail = Convert.ToString(row["mail"]);

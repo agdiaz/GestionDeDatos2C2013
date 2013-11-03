@@ -25,11 +25,20 @@ namespace GestionCommon.Enums
         }
     }
 
+    public class EstadoCivilIndefinido : EstadoCivil
+    {
+        public EstadoCivilIndefinido()
+        {
+            Id = 0;
+            Nombre = "Indefinido";
+        }
+    }
+
     public class Soltero : EstadoCivil
     {
         public Soltero()
         {
-            Id = 0;
+            Id = 1;
             Nombre = "Soltero/a";
         }
     }
@@ -37,7 +46,7 @@ namespace GestionCommon.Enums
     {
         public Casado()
         {
-            Id = 1;
+            Id = 2;
             Nombre = "Casado/a";
         }
     }
@@ -45,7 +54,7 @@ namespace GestionCommon.Enums
     {
         public Viudo()
         {
-            Id = 2;
+            Id = 3;
             Nombre = "Viudo/a";
         }
     }
@@ -53,7 +62,7 @@ namespace GestionCommon.Enums
     {
         public Concubinato()
         {
-            Id = 3;
+            Id = 4;
             Nombre = "Concubinato";
         }
     }
@@ -61,7 +70,7 @@ namespace GestionCommon.Enums
     {
         public Divorciado()
         {
-            Id = 4;
+            Id = 5;
             Nombre = "Divorciado/a";
         }
     }
@@ -72,7 +81,8 @@ namespace GestionCommon.Enums
 
         public ListaEstadoCivil()
         {
-            Todos = new List<EstadoCivil>(5);
+            Todos = new List<EstadoCivil>(6);
+            Todos.Add(new EstadoCivilIndefinido());
             Todos.Add(new Soltero());
             Todos.Add(new Casado());
             Todos.Add(new Viudo());

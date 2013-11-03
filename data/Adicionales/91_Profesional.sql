@@ -24,7 +24,7 @@ END
 GO
 
 -----------------------------------------------------
-CREATE PROCEDURE [TOP_4].[sp_Profesional_filter](
+ALTER PROCEDURE [TOP_4].[sp_Profesional_filter](
 	@p_nombre varchar(255) = NULL,
 	@p_apellido varchar(255)= NULL,
 	@p_tipo_documento numeric(18)= NULL,
@@ -40,7 +40,7 @@ CREATE PROCEDURE [TOP_4].[sp_Profesional_filter](
 AS
 BEGIN
 
-SELECT p.[id_profesional]
+SELECT DISTINCT p.[id_profesional]
       ,p.[id_usuario]
       ,p.[nombre]
       ,p.[apellido]
@@ -64,7 +64,7 @@ SELECT p.[id_profesional]
   AND ((@p_direccion IS NULL)		OR (p.direccion like '%' + @p_direccion + '%'))
   AND ((@p_telefono IS NULL)		OR (p.telefono = @p_telefono))
   AND ((@p_mail IS NULL)			OR (p.mail like '%' + @p_mail + '%'))
-  AND ((@p_fecha_nacimiento IS NULL) OR (p.fecha_nacimiento = @p_fecha_nacimiento))
+  AND ((@p_fecha_nacimiento IS NULL) OR (CONVERT(VARCHAR(8), p.fecha_nacimiento, 112) = CONVERT(VARCHAR(8), @p_fecha_nacimiento, 112) ))
   AND ((@p_sexo IS NULL)			OR (p.sexo = @p_sexo))
   AND ((@p_matricula IS NULL)		OR (p.matricula = @p_matricula))
   AND ((@p_id_especialidad IS NULL) OR (@p_id_especialidad = e.id_especialidad))
@@ -75,7 +75,7 @@ CREATE PROCEDURE [TOP_4].[sp_Profesional_insert](
 	@p_id numeric(18) output,
 	@p_nombre varchar(255),
 	@p_apellido varchar(255),
-	@p_tipo_documento varchar(255),
+	@p_tipo_documento int,
 	@p_documento numeric(18),
 	@p_direccion varchar(255),
 	@p_telefono numeric(18),
@@ -93,11 +93,12 @@ BEGIN TRY
 	DECLARE @p_id_usuario numeric(18)
 	DECLARE @p_username varchar(255) = CONVERT(varchar,@p_documento)
 	DECLARE @p_password varbinary(32)
+	DECLARE @p_id_rol numeric(18) = (SELECT TOP 1 id_rol FROM [TOP_4].[Rol] WHERE nombre = 'Profesional')
 	
 	SELECT @p_password = P.[Password] from [TOP_4].[Password] P WHERE P.Id = 'PROFESIONAL'
 	
 	EXECUTE [TOP_4].[sp_Usuario_Insert] @p_username, @p_password, @p_id_usuario OUTPUT
-	
+	EXECUTE [TOP_4].[sp_Rol_asociar_Usuario] @p_id_rol, @p_id_usuario
 	-- Creo el registro del profesional
 	INSERT INTO [GD2C2013].[TOP_4].[Profesional]
 			   ([id_usuario]
@@ -136,4 +137,17 @@ BEGIN TRY
 	END CATCH
 
 END
+GO
 
+CREATE PROCEDURE [TOP_4].[sp_Profesional_asociar_especialidad]
+(	@p_id_profesional numeric(18), @p_id_especialidad numeric(18)
+)
+AS
+BEGIN
+
+	INSERT INTO [TOP_4].[Profesional_Especialidad]
+	(id_especialidad, id_profesional)
+	VALUES (@p_id_especialidad, @p_id_profesional)
+
+END
+GO

@@ -133,10 +133,6 @@
             // 
             this.cbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDocumento.FormattingEnabled = true;
-            this.cbTipoDocumento.Items.AddRange(new object[] {
-            "DNI",
-            "LE",
-            "CUIT"});
             this.cbTipoDocumento.Location = new System.Drawing.Point(78, 91);
             this.cbTipoDocumento.Name = "cbTipoDocumento";
             this.cbTipoDocumento.Size = new System.Drawing.Size(121, 21);
@@ -285,10 +281,7 @@
             // 
             this.cbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSexo.FormattingEnabled = true;
-            this.cbSexo.Items.AddRange(new object[] {
-            "Hombre",
-            "Mujer"});
-            this.cbSexo.Location = new System.Drawing.Point(383, 170);
+            this.cbSexo.Location = new System.Drawing.Point(348, 166);
             this.cbSexo.Name = "cbSexo";
             this.cbSexo.Size = new System.Drawing.Size(121, 21);
             this.cbSexo.TabIndex = 14;

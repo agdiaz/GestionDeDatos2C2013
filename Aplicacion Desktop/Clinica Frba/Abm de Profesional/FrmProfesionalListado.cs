@@ -80,7 +80,7 @@ namespace Clinica_Frba.Profesionales
             this.cbTipoDoc.DisplayMember = "Nombre";
             this.cbTipoDoc.ValueMember = "Id";
 
-            this.CargarTodosLosProfesionales();
+            //this.CargarTodosLosProfesionales();
         }
 
         private void CargarTodosLosProfesionales()

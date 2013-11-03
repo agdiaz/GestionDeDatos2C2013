@@ -106,15 +106,15 @@ namespace GestionDAL
         /// </summary>
         /// <param name="entidad"></param>
         /// <returns></returns>
-        public T Crear(T entidad)
+        public decimal Crear(T entidad)
         {
             IList<SqlParameter> parametros = this.GenerarParametrosCrear(entidad);
             _connector.EjecutarComando(_sp_crear, parametros);
-            EntidadBase entidadBase = entidad as EntidadBase;
+            //EntidadBase entidadBase = entidad as EntidadBase;
 
             var parametroId = parametros.Where(p => p.ParameterName == "@p_id").FirstOrDefault();
-            entidadBase.Id = Convert.ToInt32(parametroId.Value);
-            return entidad;
+            //entidadBase.Id = Convert.ToDecimal(parametroId.Value);
+            return Convert.ToDecimal(parametroId.Value); ;
         }
         
         public IList<T> Filtrar(W filtro)

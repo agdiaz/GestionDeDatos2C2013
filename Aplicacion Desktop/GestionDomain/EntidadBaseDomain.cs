@@ -42,7 +42,7 @@ namespace GestionDomain
             return _dal.Modificar(entidad);
         }
 
-        public T Crear(T entidad)
+        public decimal Crear(T entidad)
         {
             return _dal.Crear(entidad);
         }

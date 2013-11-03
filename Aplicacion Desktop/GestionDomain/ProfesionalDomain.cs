@@ -59,7 +59,10 @@ namespace GestionDomain
 
             try
             {
-                resultado.Retorno = _domain.Crear(profesional);
+                decimal id = _domain.Crear(profesional);
+                profesional.IdProfesional = id;
+
+                resultado.Retorno = profesional;
             }
             catch (Exception ex)
             {
@@ -104,5 +107,22 @@ namespace GestionDomain
             return resultado;
         }
 
+
+        public IResultado<bool> AsociarProfesionalEspecialidad(Profesional profesional, Especialidad especialidad)
+        {
+            Resultado<bool> resultado = new Resultado<bool>();
+
+            try
+            {
+                resultado.Retorno = _dal.AsociarProfesionalEspecialidad(profesional, especialidad);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
+        }
     }
 }

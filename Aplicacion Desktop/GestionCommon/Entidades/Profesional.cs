@@ -12,7 +12,7 @@ namespace GestionCommon.Entidades
         public decimal IdUsuario { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public string TipoDni { get; set; }
+        public TipoDocumento TipoDni { get; set; }
         public decimal Dni { get; set; }
         public string Direccion { get; set; }
         public decimal Telefono { get; set; }

@@ -13,6 +13,8 @@ using GestionDomain;
 using GestionCommon.Entidades;
 using GestionDomain.Resultados;
 using Clinica_Frba.Especialidades;
+using GestionGUIHelper.Helpers;
+using GestionCommon.Enums;
 
 namespace Clinica_Frba.Profesionales
 {
@@ -31,7 +33,37 @@ namespace Clinica_Frba.Profesionales
 
         protected override void AccionAceptar()
         {
-            base.AccionAceptar();
+            try
+            {
+                Profesional prof = this.ObtenerProfesional();
+                IResultado<Profesional> resultado = _profesionalDomain.Crear(prof);
+
+                foreach (Especialidad especialidad in lstEspecialidades.Items.Cast<Especialidad>())
+                {
+                    _profesionalDomain.AsociarProfesionalEspecialidad(prof, especialidad);
+                }
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(ex.Message);
+            }
+        }
+
+        private Profesional ObtenerProfesional()
+        {
+            Profesional profesional = new Profesional();
+            profesional.Apellido = tbApellido.Text;
+            profesional.Nombre = tbNombre.Text;
+            profesional.Direccion = tbDireccion.Text;
+            profesional.Dni = Convert.ToDecimal(tbNroDocumento.Text);
+            profesional.FechaNacimiento = dpFechaNacimiento.Value;
+            profesional.Mail = tbMail.Text;
+            profesional.Matricula = Convert.ToDecimal(tbMatriculaProfesional.Text);
+            profesional.Sexo = ((Sexo)cbSexo.SelectedItem);
+            profesional.Telefono = Convert.ToDecimal(tbTelefono.Text);
+            profesional.TipoDni = ((TipoDocumento)cbTipoDocumento.SelectedItem);
+
+            return profesional;
         }
 
         protected override void AccionLimpiar()
@@ -43,9 +75,6 @@ namespace Clinica_Frba.Profesionales
             tbNombre.Text = string.Empty;
             tbNroDocumento.Text = string.Empty;
             tbTelefono.Text = string.Empty;
-
-            cbSexo.SelectedIndex = 0;
-            cbTipoDocumento.SelectedIndex = 0;
 
             dpFechaNacimiento.Value = FechaHelper.Ahora();
 
@@ -73,6 +102,9 @@ namespace Clinica_Frba.Profesionales
         private void FrmProfesionalAlta_Load(object sender, EventArgs e)
         {
             AccionLimpiar();
+
+            this.CargarCombo();
+
             this.AgregarValidacion(new ValidadorString(tbNombre, 1, 255));
             this.AgregarValidacion(new ValidadorString(tbApellido, 1, 255));
             this.AgregarValidacion(new ValidadorCombobox(cbTipoDocumento));
@@ -84,6 +116,21 @@ namespace Clinica_Frba.Profesionales
             this.AgregarValidacion(new ValidadorCombobox(cbSexo));
             this.AgregarValidacion(new ValidadorNumerico(tbMatriculaProfesional));
 
+        }
+
+        private void CargarCombo()
+        {
+            var sexos = new ListaSexo().Todos;
+            cbSexo.DataSource = sexos;
+            cbSexo.DisplayMember = "Nombre";
+            cbSexo.ValueMember = "Id";
+
+            var tipoDocs = new ListaTipoDocumento().Todos;
+            cbTipoDocumento.DataSource = tipoDocs;
+            cbTipoDocumento.DisplayMember = "Nombre";
+            cbTipoDocumento.ValueMember = "Id";
+
+        
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

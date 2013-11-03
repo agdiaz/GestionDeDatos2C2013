@@ -93,8 +93,8 @@ namespace GestionDAL
             pApellido.Value = entidad.Apellido;
             parametros.Add(pApellido);
 
-            SqlParameter pTipoDocumento = new SqlParameter("@p_tipo_documento", System.Data.SqlDbType.VarChar, 255, "p_tipo_documento");
-            pTipoDocumento.Value = entidad.TipoDni;
+            SqlParameter pTipoDocumento = new SqlParameter("@p_tipo_documento", System.Data.SqlDbType.Int, 4, "p_tipo_documento");
+            pTipoDocumento.Value = entidad.TipoDni.Id;
             parametros.Add(pTipoDocumento);
 
             SqlParameter pDocumento = new SqlParameter("@p_documento", System.Data.SqlDbType.Decimal, 18, "p_documento");
@@ -118,7 +118,7 @@ namespace GestionDAL
             parametros.Add(pFechaNacimiento);
 
             SqlParameter pSexo = new SqlParameter("@p_sexo", System.Data.SqlDbType.Int, 4, "p_sexo");
-            pSexo.Value = entidad.Sexo;
+            pSexo.Value = entidad.Sexo.Id;
             parametros.Add(pSexo);
 
             SqlParameter pMatricula = new SqlParameter("@p_matricula", System.Data.SqlDbType.Decimal, 18, "p_matricula");
@@ -130,7 +130,72 @@ namespace GestionDAL
 
         protected override IList<SqlParameter> GenerarParametrosCrear(Profesional entidad)
         {
-            throw new NotImplementedException();
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
+            pId.Direction = System.Data.ParameterDirection.Output;
+            parametros.Add(pId);
+
+            SqlParameter pNombre = new SqlParameter("@p_nombre", System.Data.SqlDbType.VarChar, 255, "p_nombre");
+            pNombre.Value = entidad.Nombre;
+            parametros.Add(pNombre);
+
+            SqlParameter pApellido = new SqlParameter("@p_apellido", System.Data.SqlDbType.VarChar, 255, "p_apellido");
+            pApellido.Value = entidad.Apellido;
+            parametros.Add(pApellido);
+
+            SqlParameter pTipoDocumento = new SqlParameter("@p_tipo_documento", System.Data.SqlDbType.Int, 4, "p_tipo_documento");
+            pTipoDocumento.Value = entidad.TipoDni.Id;
+            parametros.Add(pTipoDocumento);
+
+            SqlParameter pDocumento = new SqlParameter("@p_documento", System.Data.SqlDbType.Decimal, 18, "p_documento");
+            pDocumento.Value = entidad.Dni;
+            parametros.Add(pDocumento);
+
+            SqlParameter pDireccion = new SqlParameter("@p_direccion", System.Data.SqlDbType.VarChar, 255, "p_direccion");
+            pDireccion.Value = entidad.Direccion;
+            parametros.Add(pDireccion);
+
+            SqlParameter pTelefono = new SqlParameter("@p_telefono", System.Data.SqlDbType.Decimal, 18, "p_telefono");
+            pTelefono.Value = entidad.Telefono;
+            parametros.Add(pTelefono);
+
+            SqlParameter pMail = new SqlParameter("@p_mail", System.Data.SqlDbType.VarChar, 255, "p_mail");
+            pMail.Value = entidad.Mail;
+            parametros.Add(pMail);
+
+            SqlParameter pFechaNacimiento = new SqlParameter("@p_fecha_nacimiento", System.Data.SqlDbType.DateTime, 8, "p_fecha_nacimiento");
+            pFechaNacimiento.Value = entidad.FechaNacimiento;
+            parametros.Add(pFechaNacimiento);
+
+            SqlParameter pSexo = new SqlParameter("@p_sexo", System.Data.SqlDbType.Int, 4, "p_sexo");
+            pSexo.Value = entidad.Sexo.Id;
+            parametros.Add(pSexo);
+
+            SqlParameter pMatricula = new SqlParameter("@p_matricula", System.Data.SqlDbType.Decimal, 18, "p_matricula");
+            pMatricula.Value = entidad.Matricula;
+            parametros.Add(pMatricula);
+
+            return parametros;
+
+        }
+
+        public bool AsociarProfesionalEspecialidad(Profesional profesional, Especialidad especialidad)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+            
+            SqlParameter pIdProfesional = new SqlParameter("@p_id_profesional", System.Data.SqlDbType.Decimal, 18, "p_id_profesional");
+            pIdProfesional.Value = profesional.IdProfesional;
+            parametros.Add(pIdProfesional);
+
+            SqlParameter pIdEspecialidad = new SqlParameter("@p_id_especialidad", System.Data.SqlDbType.Decimal, 18, "p_id_especialidad");
+            pIdEspecialidad.Value = especialidad.IdEspecialidad;
+            parametros.Add(pIdEspecialidad);
+
+            _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_Profesional_asociar_especialidad]", parametros);
+
+            return true;
+            
         }
     }
 }

@@ -70,8 +70,8 @@ namespace GestionDomain
             Resultado<Rol> resultado = new Resultado<Rol>();
             try
             {
-                Rol creado = _domain.Crear(nuevoRol);
-                nuevoRol.Id = creado.Id;
+                decimal id = _domain.Crear(nuevoRol);
+                nuevoRol.Id = id;
 
                 foreach (Funcionalidad func in funcionalidades)
                 {
