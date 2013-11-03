@@ -153,5 +153,21 @@ namespace Clinica_Frba.Login
             this.Close();
         }
         #endregion
+
+        private void tbUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Convert.ToInt32(e.KeyChar) == 13)
+            {
+                this.AccionAceptar();
+            }
+        }
+
+        private void tbPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Convert.ToInt32(e.KeyChar) == 13)
+            {
+                this.AccionAceptar();
+            }
+        }
     }
 }

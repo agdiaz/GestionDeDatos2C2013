@@ -75,7 +75,8 @@
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.Size = new System.Drawing.Size(201, 20);
             this.tbUsuario.TabIndex = 3;
-            this.tbUsuario.Text = "admin1";
+            this.tbUsuario.Text = "admin";
+            this.tbUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbUsuario_KeyPress);
             // 
             // tbPassword
             // 
@@ -85,6 +86,7 @@
             this.tbPassword.Size = new System.Drawing.Size(201, 20);
             this.tbPassword.TabIndex = 4;
             this.tbPassword.Text = "w23e";
+            this.tbPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPassword_KeyPress);
             // 
             // cbRol
             // 
