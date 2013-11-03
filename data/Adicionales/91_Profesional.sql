@@ -199,3 +199,78 @@ BEGIN
 	END CATCH
 END
 GO
+
+GO
+
+CREATE PROCEDURE [TOP_4].[sp_Profesional_limpiar_especialidades]
+(@p_id_profesional numeric(18))
+AS
+BEGIN
+	DELETE FROM [TOP_4].Profesional_Especialidad
+	WHERE id_profesional = @p_id_profesional
+END
+GO
+
+GO
+-----------------------------------------------------
+CREATE PROCEDURE [TOP_4].[sp_Profesional_update](
+	@p_id numeric(18),
+	@p_nombre varchar(255),
+	@p_apellido varchar(255),
+	@p_tipo_documento int,
+	@p_documento numeric(18),
+	@p_direccion varchar(255),
+	@p_telefono numeric(18),
+	@p_mail varchar(255),
+	@p_fecha_nacimiento datetime,
+	@p_sexo int,
+	@p_matricula numeric(18,0)
+)
+AS
+BEGIN
+BEGIN TRY
+	BEGIN TRAN
+	
+	-- Creo el usuario del profesional:
+	DECLARE @p_id_usuario numeric(18) = (SELECT TOP 1 id_usuario FROM [TOP_4].[Profesional] WHERE id_profesional = @p_id)
+	DECLARE @p_username varchar(255) = CONVERT(varchar, @p_documento)
+	
+	EXECUTE [TOP_4].[sp_Usuario_Update] @p_id_usuario, @p_username
+	
+	-- Creo el registro del profesional
+	
+	UPDATE [TOP_4].[Profesional]
+	SET [id_usuario] = @p_id_usuario
+			   ,[nombre] = @p_nombre
+			   ,[apellido] = @p_apellido
+			   ,[tipo_documento] = @p_tipo_documento
+			   ,[documento] = @p_documento
+			   ,[direccion] = @p_direccion
+			   ,[telefono]= @p_telefono
+			   ,[mail] = @p_mail
+			   ,[fecha_nacimiento] = @p_fecha_nacimiento
+			   ,[sexo] = @p_sexo
+			   ,[matricula] = @p_matricula
+	WHERE id_profesional = @p_id
+
+	COMMIT TRAN
+	
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN
+		
+		DECLARE @ErrorMessage NVARCHAR(4000);
+	    DECLARE @ErrorSeverity INT;
+		DECLARE @ErrorState INT;
+
+		SELECT @ErrorMessage = ERROR_MESSAGE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE();
+
+		RAISERROR (@ErrorMessage, -- Message text.
+               @ErrorSeverity, -- Severity.
+               @ErrorState -- State.
+               );
+               
+	END CATCH
+
+END
+GO

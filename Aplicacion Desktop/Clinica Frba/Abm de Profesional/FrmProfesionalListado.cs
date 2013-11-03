@@ -22,15 +22,15 @@ namespace Clinica_Frba.Profesionales
         private ProfesionalDomain _domain;
 
         public FrmProfesionalListado()
-            :base()
+            :this(false)
         {
-            _domain = new ProfesionalDomain(Program.ContextoActual.Logger);
             InitializeComponent();
         }
 
         public FrmProfesionalListado(bool modoSeleccion)
             : base(modoSeleccion)
         {
+            _domain = new ProfesionalDomain(Program.ContextoActual.Logger);
             InitializeComponent();
         }
 
@@ -44,7 +44,8 @@ namespace Clinica_Frba.Profesionales
 
         protected override void AccionModificar()
         {
-            using (FrmProfesionalModificar frm = new FrmProfesionalModificar())
+            Profesional p = this.EntidadSeleccionada as Profesional;
+            using (FrmProfesionalModificar frm = new FrmProfesionalModificar(p))
             {
                 frm.ShowDialog(this);
             }
@@ -65,6 +66,7 @@ namespace Clinica_Frba.Profesionales
             
 
         }
+
         protected override void AccionFiltrar()
         {
             FiltroProfesional filtro = this.ObtenerFiltro();

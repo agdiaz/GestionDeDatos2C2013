@@ -156,3 +156,16 @@ BEGIN
 END
 GO
 -----------------------------------------------------
+
+CREATE PROCEDURE [TOP_4].[sp_Usuario_update](
+	@p_id numeric(18),
+	@p_username varchar(255)
+)
+AS
+BEGIN
+
+UPDATE [TOP_4].[Usuario]
+   SET [username]  = @p_username
+ WHERE id_usuario = @p_id
+
+END 

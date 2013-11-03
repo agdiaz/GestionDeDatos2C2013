@@ -124,5 +124,21 @@ namespace GestionDomain
 
             return resultado;
         }
+
+        public IResultado<bool> LimpiarEspecialidades(Profesional prof)
+        {
+            Resultado<bool> resultado = new Resultado<bool>();
+            try
+            {
+                _dal.LimpiarEspecialidades(prof);
+                resultado.Retorno = true;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            throw new NotImplementedException();
+        }
     }
 }

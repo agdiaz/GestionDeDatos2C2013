@@ -85,6 +85,10 @@ namespace GestionDAL
         {
             IList<SqlParameter> parametros = new List<SqlParameter>();
 
+            SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
+            pId.Value = entidad.IdProfesional;
+            parametros.Add(pId);
+
             SqlParameter pNombre = new SqlParameter("@p_nombre", System.Data.SqlDbType.VarChar, 255, "p_nombre");
             pNombre.Value = entidad.Nombre;
             parametros.Add(pNombre);
@@ -126,6 +130,7 @@ namespace GestionDAL
             parametros.Add(pMatricula);
 
             return parametros;
+
         }
 
         protected override IList<SqlParameter> GenerarParametrosCrear(Profesional entidad)
@@ -196,6 +201,16 @@ namespace GestionDAL
 
             return true;
             
+        }
+
+        public void LimpiarEspecialidades(Profesional prof)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>(1);
+            SqlParameter p = new SqlParameter("@p_id_profesional", System.Data.SqlDbType.Decimal, 18, "p_id_profesional");
+            p.Value = prof.IdProfesional;
+            parametros.Add(p);
+
+            _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_Profesional_limpiar_especialidades]", parametros);
         }
     }
 }

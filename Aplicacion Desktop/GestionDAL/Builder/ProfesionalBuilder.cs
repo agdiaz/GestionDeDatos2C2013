@@ -25,6 +25,7 @@ namespace GestionDAL.Builder
             profesional.FechaNacimiento = Convert.ToDateTime(row["fecha_nacimiento"]);
             profesional.Sexo = new ListaSexo().Obtener(Convert.ToInt32(row["sexo"]));
             profesional.Matricula = Convert.ToDecimal(row["matricula"]);
+            profesional.Direccion = Convert.ToString(row["direccion"]);
             profesional.Habilitado = Convert.ToBoolean(row["habilitado"]);
             return profesional;
         }
