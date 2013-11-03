@@ -138,7 +138,7 @@ namespace GestionDomain
                 resultado.Correcto = false;
                 resultado.Mensajes.Add(ex.Message);
             }
-            throw new NotImplementedException();
+            return resultado;
         }
     }
 }

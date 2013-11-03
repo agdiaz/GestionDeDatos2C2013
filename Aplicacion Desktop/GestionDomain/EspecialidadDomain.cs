@@ -105,5 +105,22 @@ namespace GestionDomain
 
             return resultado;
         }
+
+        public IResultado<IList<Especialidad>> ObtenerPorProfesional(Profesional profesional)
+        {
+            Resultado<IList<Especialidad>> resultado = new Resultado<IList<Especialidad>>();
+
+            try
+            {
+                resultado.Retorno = _dal.ObtenerPorProfesional(profesional);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
+        }
     }
 }

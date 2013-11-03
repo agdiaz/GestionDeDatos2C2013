@@ -232,10 +232,10 @@ BEGIN TRY
 	BEGIN TRAN
 	
 	-- Creo el usuario del profesional:
-	DECLARE @p_id_usuario numeric(18) = (SELECT TOP 1 id_usuario FROM [TOP_4].[Profesional] WHERE id_profesional = @p_id)
-	DECLARE @p_username varchar(255) = CONVERT(varchar, @p_documento)
+	--DECLARE @p_id_usuario numeric(18) = (SELECT TOP 1 id_usuario FROM [TOP_4].[Profesional] WHERE id_profesional = @p_id)
+	--DECLARE @p_username varchar(255) = CONVERT(varchar, @p_documento)
 	
-	EXECUTE [TOP_4].[sp_Usuario_Update] @p_id_usuario, @p_username
+	--EXECUTE [TOP_4].[sp_Usuario_Update] @p_id_usuario, @p_username
 	
 	-- Creo el registro del profesional
 	

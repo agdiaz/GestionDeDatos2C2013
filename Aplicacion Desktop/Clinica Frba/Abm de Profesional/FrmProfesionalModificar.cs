@@ -19,12 +19,16 @@ namespace Clinica_Frba.Profesionales
     public partial class FrmProfesionalModificar : FormularioBaseModificacion
     {
         private ProfesionalDomain _profesionalDomain;
+        private EspecialidadDomain _especialidadDomain;
+
         private Profesional _profesional;
 
         public FrmProfesionalModificar(Profesional profesional)
             : base()
         {
             _profesionalDomain = new ProfesionalDomain(Program.ContextoActual.Logger);
+            _especialidadDomain = new EspecialidadDomain(Program.ContextoActual.Logger);
+
             _profesional = profesional;
 
             InitializeComponent();
@@ -84,16 +88,32 @@ namespace Clinica_Frba.Profesionales
 
         protected override void CargarEntidad()
         {
-            tbApellido.Text = _profesional.Apellido;
-            tbNombre.Text = _profesional.Nombre;
-            tbDireccion.Text = _profesional.Direccion;
-            tbNroDocumento.Text = _profesional.Dni.ToString();
-            dpFechaNacimiento.Value = _profesional.FechaNacimiento;
-            tbMail.Text = _profesional.Mail;
-            tbMatriculaProfesional.Text = _profesional.Matricula.ToString();
-            tbTelefono.Text = _profesional.Telefono.ToString();
-            cbSexo.SelectedItem = _profesional.Sexo;
-            cbTipoDocumento.SelectedItem = _profesional.TipoDni;
+            try
+            {
+                tbApellido.Text = _profesional.Apellido;
+                tbNombre.Text = _profesional.Nombre;
+                tbDireccion.Text = _profesional.Direccion;
+                tbNroDocumento.Text = _profesional.Dni.ToString();
+                dpFechaNacimiento.Value = _profesional.FechaNacimiento;
+                tbMail.Text = _profesional.Mail;
+                tbMatriculaProfesional.Text = _profesional.Matricula.ToString();
+                tbTelefono.Text = _profesional.Telefono.ToString();
+                cbSexo.SelectedItem = _profesional.Sexo;
+                cbTipoDocumento.SelectedItem = _profesional.TipoDni;
+
+                IResultado<IList<Especialidad>> resultadoEspecialidades = _especialidadDomain.ObtenerPorProfesional(this._profesional);
+                if (!resultadoEspecialidades.Correcto)
+                    throw new ResultadoIncorrectoException<IList<Especialidad>>(resultadoEspecialidades);
+                
+                foreach (Especialidad esp in resultadoEspecialidades.Retorno)
+                {
+                    lstEspecialidades.Items.Add(esp);
+                }
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(ex.Message);
+            }
         }
 
         private void FrmProfesionalModificar_Load(object sender, EventArgs e)
