@@ -25,13 +25,18 @@ GO
 
 -----------------------------------------------------
 CREATE PROCEDURE [TOP_4].[sp_Profesional_filter](
-	@p_nombre varchar(255),
-	@p_apellido varchar(255),
-	@p_documento numeric(18),
-	@p_matricula numeric(18),
-	@p_id_especialidad numeric(18)
+	@p_nombre varchar(255) = NULL,
+	@p_apellido varchar(255)= NULL,
+	@p_tipo_documento numeric(18)= NULL,
+	@p_documento numeric(18)= NULL,
+	@p_direccion varchar(255)= NULL,
+	@p_telefono numeric(18) = NULL,
+	@p_mail varchar(255) = NULL,
+	@p_fecha_nacimiento datetime = NULL,
+	@p_sexo int = NULL,
+	@p_matricula numeric(18)= NULL,
+	@p_id_especialidad numeric(18)= NULL
 )
-
 AS
 BEGIN
 
@@ -51,10 +56,17 @@ SELECT p.[id_profesional]
   FROM [TOP_4].[Profesional] p
   LEFT JOIN [TOP_4].Profesional_Especialidad pe on p.id_profesional = pe.id_profesional
   LEFT JOIN [TOP_4].Especialidad e on pe.id_especialidad = e.id_especialidad 
-  WHERE ((@p_nombre IS NULL) OR (p.nombre like '%' + @p_nombre + '%'))
-  AND ((@p_apellido IS NULL) OR (p.apellido like '%' + @p_apellido + '%'))
-  AND ((@p_documento IS NULL) OR (@p_documento = p.documento))
-  AND ((@p_matricula IS NULL) OR (@p_matricula = p.matricula))
+  WHERE 
+	  ((@p_nombre IS NULL)			OR (p.nombre like '%' + @p_nombre + '%'))
+  AND ((@p_apellido IS NULL)		OR (p.apellido like '%' + @p_apellido + '%'))
+  AND ((@p_tipo_documento IS NULL)	OR (p.tipo_documento = @p_tipo_documento))
+  AND ((@p_documento IS NULL)		OR (p.documento = @p_documento))
+  AND ((@p_direccion IS NULL)		OR (p.direccion like '%' + @p_direccion + '%'))
+  AND ((@p_telefono IS NULL)		OR (p.telefono = @p_telefono))
+  AND ((@p_mail IS NULL)			OR (p.mail like '%' + @p_mail + '%'))
+  AND ((@p_fecha_nacimiento IS NULL) OR (p.fecha_nacimiento = @p_fecha_nacimiento))
+  AND ((@p_sexo IS NULL)			OR (p.sexo = @p_sexo))
+  AND ((@p_matricula IS NULL)		OR (p.matricula = @p_matricula))
   AND ((@p_id_especialidad IS NULL) OR (@p_id_especialidad = e.id_especialidad))
 END
 GO

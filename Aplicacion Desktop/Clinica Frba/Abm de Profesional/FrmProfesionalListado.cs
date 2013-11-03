@@ -113,13 +113,13 @@ namespace Clinica_Frba.Profesionales
             if (!string.IsNullOrEmpty(tbTelefono.Text))
                 filtro.Telefono = Convert.ToDecimal(tbTelefono.Text);
 
-            filtro.TipoDni = cbTipoDoc.SelectedValue as string;
+            filtro.TipoDni = (int)cbTipoDoc.SelectedValue;
             
             if (chFechaNacimiento.Checked)
                 filtro.FechaNacimiento = dtpFechaNacimiento.Value;
 
             if (!string.IsNullOrEmpty(tbEspecialidad.Text))
-                filtro.IdTipoEspecialidad = ((TipoEspecialidad)tbEspecialidad.Tag).Id;
+                filtro.IdEspecialidad = ((TipoEspecialidad)tbEspecialidad.Tag).Id;
 
             filtro.Mail = tbMail.Text;
             if (!string.IsNullOrEmpty(tbMatricula.Text))

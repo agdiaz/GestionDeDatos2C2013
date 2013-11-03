@@ -24,48 +24,59 @@ namespace GestionDAL
             IList<SqlParameter> parametros = new List<SqlParameter>();
 
             SqlParameter pNombre = new SqlParameter("@p_nombre", System.Data.SqlDbType.VarChar, 255, "p_nombre");
-            pNombre.Value = entidad.Nombre;
+            if (!string.IsNullOrEmpty(entidad.Nombre))
+                pNombre.Value = entidad.Nombre;
             parametros.Add(pNombre);
 
             SqlParameter pApellido = new SqlParameter("@p_apellido", System.Data.SqlDbType.VarChar, 255, "p_apellido");
-            pApellido.Value = entidad.Apellido;
+            if (!string.IsNullOrEmpty(entidad.Apellido))
+                pApellido.Value = entidad.Apellido;
             parametros.Add(pApellido);
 
-            SqlParameter pTipoDocumento = new SqlParameter("@p_tipo_documento", System.Data.SqlDbType.VarChar, 255, "p_tipo_documento");
-            pTipoDocumento.Value = entidad.TipoDni;
+            SqlParameter pTipoDocumento = new SqlParameter("@p_tipo_documento", System.Data.SqlDbType.Int, 4, "p_tipo_documento");
+            if (entidad.TipoDni.HasValue)
+                pTipoDocumento.Value = entidad.TipoDni.Value;
             parametros.Add(pTipoDocumento);
 
             SqlParameter pDocumento = new SqlParameter("@p_documento", System.Data.SqlDbType.Decimal, 18, "p_documento");
-            pDocumento.Value = entidad.Dni;
+            if (entidad.Dni.HasValue)
+                pDocumento.Value = entidad.Dni.Value;
             parametros.Add(pDocumento);
 
             SqlParameter pDireccion = new SqlParameter("@p_direccion", System.Data.SqlDbType.VarChar, 255, "p_direccion");
-            pDireccion.Value = entidad.Direccion;
+            if (!string.IsNullOrEmpty(entidad.Direccion))
+                pDireccion.Value = entidad.Direccion;
             parametros.Add(pDireccion);
 
             SqlParameter pTelefono = new SqlParameter("@p_telefono", System.Data.SqlDbType.Decimal, 18, "p_telefono");
-            pTelefono.Value = entidad.Telefono;
+            if (entidad.Telefono.HasValue)
+                pTelefono.Value = entidad.Telefono.Value;
             parametros.Add(pTelefono);
 
             SqlParameter pMail = new SqlParameter("@p_mail", System.Data.SqlDbType.VarChar, 255, "p_mail");
-            pMail.Value = entidad.Mail;
+            if (!string.IsNullOrEmpty(entidad.Mail))
+                pMail.Value = entidad.Mail;
             parametros.Add(pMail);
 
             SqlParameter pFechaNacimiento = new SqlParameter("@p_fecha_nacimiento", System.Data.SqlDbType.DateTime, 8, "p_fecha_nacimiento");
-            pFechaNacimiento.Value = entidad.FechaNacimiento;
+            if (entidad.FechaNacimiento.HasValue)
+                pFechaNacimiento.Value = entidad.FechaNacimiento.Value;
             parametros.Add(pFechaNacimiento);
 
             SqlParameter pSexo = new SqlParameter("@p_sexo", System.Data.SqlDbType.Int, 4, "p_sexo");
-            pSexo.Value = entidad.Sexo;
+            if (entidad.Sexo.HasValue)
+                pSexo.Value = entidad.Sexo.Value;
             parametros.Add(pSexo);
 
             SqlParameter pMatricula = new SqlParameter("@p_matricula", System.Data.SqlDbType.Decimal, 18, "p_matricula");
-            pMatricula.Value = entidad.Matricula;
+            if (entidad.Matricula.HasValue)
+                pMatricula.Value = entidad.Matricula.Value;
             parametros.Add(pMatricula);
 
-            SqlParameter pIdTipoEspecialidad = new SqlParameter("@p_id_tipo_especialidad", System.Data.SqlDbType.Decimal, 18, "p_id_tipo_especialidad");
-            pIdTipoEspecialidad.Value = entidad.IdTipoEspecialidad;
-            parametros.Add(pIdTipoEspecialidad);
+            SqlParameter pIdEspecialidad = new SqlParameter("@p_id_especialidad", System.Data.SqlDbType.Decimal, 18, "p_id_especialidad");
+            if (entidad.IdEspecialidad.HasValue)
+                pIdEspecialidad.Value = entidad.IdEspecialidad.Value;
+            parametros.Add(pIdEspecialidad);
 
             return parametros;
         }
