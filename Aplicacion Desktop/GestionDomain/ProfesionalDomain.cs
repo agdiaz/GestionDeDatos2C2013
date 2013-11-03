@@ -107,7 +107,6 @@ namespace GestionDomain
             return resultado;
         }
 
-
         public IResultado<bool> AsociarProfesionalEspecialidad(Profesional profesional, Especialidad especialidad)
         {
             Resultado<bool> resultado = new Resultado<bool>();

@@ -13,6 +13,7 @@ using GestionDomain.Resultados;
 using GestionGUIHelper.Helpers;
 using GestionCommon.Enums;
 using GestionCommon.Helpers;
+using Clinica_Frba.Especialidades;
 
 namespace Clinica_Frba.Profesionales
 {
@@ -147,6 +148,25 @@ namespace Clinica_Frba.Profesionales
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             base.Limpiar();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Especialidad esp = null;
+            using (FrmEspecialidadListado frm = new FrmEspecialidadListado(true))
+            {
+                frm.ShowDialog(this);
+                esp = frm.EntidadSeleccionada as Especialidad;
+            }
+            if (esp != null)
+            {
+                lstEspecialidades.Items.Add(esp);
+            }
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
