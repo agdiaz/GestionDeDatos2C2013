@@ -926,14 +926,68 @@ INSERT INTO TOP_4.Afiliado
 		ON usu.username = CONVERT(varchar(255),m.Paciente_Dni)
 	
 )
-
-
-
 DROP TABLE #nrosPrinc
 DROP TABLE #TmpPacientesGruposAntes
 DROP TABLE #TmpPacientesGruposDespues
+GO
+----------------------------------------------TURNO-------------------------------------------------
 
+USE [GD2C2013]
+GO
 
+/****** Object:  Table [TOP_4].[Turno]    Script Date: 11/03/2013 15:18:05 ******/
+SET ANSI_NULLS ON
+GO
 
+SET QUOTED_IDENTIFIER ON
+GO
 
+CREATE TABLE [TOP_4].[Turno](
+	[id_turno] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_afiliado] [numeric](18, 0) NOT NULL,
+	[id_profesional] [numeric](18, 0) NOT NULL,
+	[fecha_turno] [datetime] NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Turno] PRIMARY KEY CLUSTERED 
+(
+	[id_turno] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Turno]  WITH CHECK ADD  CONSTRAINT [FK_Turno_Afiliado] FOREIGN KEY([id_afiliado])
+REFERENCES [TOP_4].[Afiliado] ([id_afiliado])
+GO
+
+ALTER TABLE [TOP_4].[Turno] CHECK CONSTRAINT [FK_Turno_Afiliado]
+GO
+
+ALTER TABLE [TOP_4].[Turno]  WITH CHECK ADD  CONSTRAINT [FK_Turno_Profesional] FOREIGN KEY([id_profesional])
+REFERENCES [TOP_4].[Profesional] ([id_profesional])
+GO
+
+ALTER TABLE [TOP_4].[Turno] CHECK CONSTRAINT [FK_Turno_Profesional]
+GO
+
+ALTER TABLE [TOP_4].[Turno] ADD  CONSTRAINT [DF_Turno_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+SET IDENTITY_INSERT TOP_4.Turno ON
+
+INSERT INTO TOP_4.Turno
+(id_turno, id_afiliado, id_profesional, fecha_turno)
+(
+	SELECT DISTINCT m.Turno_Numero, afi.id_afiliado, pro.id_profesional, m.Turno_Fecha
+	FROM gd_esquema.Maestra m
+	INNER JOIN TOP_4.Afiliado afi
+		ON afi.documento = m.Paciente_Dni
+	INNER JOIN TOP_4.Profesional pro
+		ON pro.documento = m.Medico_Dni
+	WHERE m.Turno_Fecha IS NOT NULL
+	AND m.Turno_Numero IS NOT NULL
+	AND m.Medico_Dni IS NOT NULL
+	AND m.Paciente_Dni IS NOT NULL
+)
+SET IDENTITY_INSERT TOP_4.Turno OFF
 
