@@ -140,6 +140,27 @@ namespace Clinica_Frba.Afiliados
             this.AgregarValidacion(new ValidadorNumerico(tbPlanMedico));
             this.AgregarValidacion(new ValidadorString(tbNombre, 1, 255));
             this.AgregarValidacion(new ValidadorString(tbApellido, 1, 255));
+
+            this.CargarCombos();
+        }
+
+        private void CargarCombos()
+        {
+            var sexos = new ListaSexo();
+            cbSexo.DataSource = sexos.Todos;
+            cbSexo.DisplayMember = "Nombre";
+            cbSexo.ValueMember = "Id";
+
+            var estadosCiviles = new ListaEstadoCivil();
+            cbEstadoCivil.DataSource = estadosCiviles.Todos;
+            cbEstadoCivil.DisplayMember = "Nombre";
+            cbEstadoCivil.ValueMember = "Id";
+
+            var tipoDocumentos = new ListaTipoDocumento();
+            cbTipoDoc.DataSource = tipoDocumentos.Todos;
+            cbTipoDoc.DisplayMember = "Nombre";
+            cbTipoDoc.ValueMember = "Id";
+
         }
 
         private void btnBuscarPlanMedico_Click(object sender, EventArgs e)
