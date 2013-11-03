@@ -26,7 +26,6 @@ SELECT a.[id_afiliado]
       ,a.[fecha_nacimiento]
       ,a.[sexo]
       ,a.[estado_civil]
-      ,a.[cantidad_familiares]
       ,a.[fecha_baja]
       ,a.[habilitado]
   FROM [TOP_4].[Afiliado] a
@@ -88,7 +87,6 @@ BEGIN TRY
            ,[fecha_nacimiento]
            ,[sexo]
            ,[estado_civil]
-           ,[cantidad_familiares]
            ,[fecha_baja]
            ,[habilitado])
      VALUES
@@ -107,7 +105,6 @@ BEGIN TRY
            ,@p_fecha_nacimiento
            ,@p_sexo
            ,@p_estado_civil
-           ,0
            ,null
            ,'1')
 	
