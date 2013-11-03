@@ -77,12 +77,15 @@ namespace Clinica_Frba.Especialidades
         private FiltroEspecialidad CrearFiltro()
         {
             FiltroEspecialidad filtro = new FiltroEspecialidad();
-            var tipo = cbTipoEspecialidad.SelectedItem as TipoEspecialidad;
-            if (tipo != null)
+            
+            if (chEspecialidad.Checked)
             {
-                filtro.IdTipoEspecialidad = tipo.Id;
+                var tipo = cbTipoEspecialidad.SelectedItem as TipoEspecialidad;
+                if (tipo != null)
+                {
+                    filtro.IdTipoEspecialidad = tipo.Id;
+                }
             }
-
             if (!string.IsNullOrEmpty(tbNombreEspecialidad.Text))
             {
                 filtro.Nombre = tbNombreEspecialidad.Text;

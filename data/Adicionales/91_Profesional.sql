@@ -24,7 +24,7 @@ END
 GO
 
 -----------------------------------------------------
-ALTER PROCEDURE [TOP_4].[sp_Profesional_filter](
+CREATE PROCEDURE [TOP_4].[sp_Profesional_filter](
 	@p_nombre varchar(255) = NULL,
 	@p_apellido varchar(255)= NULL,
 	@p_tipo_documento numeric(18)= NULL,
@@ -68,6 +68,7 @@ SELECT DISTINCT p.[id_profesional]
   AND ((@p_sexo IS NULL)			OR (p.sexo = @p_sexo))
   AND ((@p_matricula IS NULL)		OR (p.matricula = @p_matricula))
   AND ((@p_id_especialidad IS NULL) OR (@p_id_especialidad = e.id_especialidad))
+  AND habilitado = '1'
 END
 GO
 -----------------------------------------------------
@@ -134,6 +135,18 @@ BEGIN TRY
 	END TRY
 	BEGIN CATCH
 		ROLLBACK TRAN
+		
+		DECLARE @ErrorMessage NVARCHAR(4000);
+	    DECLARE @ErrorSeverity INT;
+		DECLARE @ErrorState INT;
+
+		SELECT @ErrorMessage = ERROR_MESSAGE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE();
+
+		RAISERROR (@ErrorMessage, -- Message text.
+               @ErrorSeverity, -- Severity.
+               @ErrorState -- State.
+               );
+               
 	END CATCH
 
 END
@@ -149,5 +162,40 @@ BEGIN
 	(id_especialidad, id_profesional)
 	VALUES (@p_id_especialidad, @p_id_profesional)
 
+END
+GO
+
+GO
+
+CREATE PROCEDURE [TOP_4].[sp_Profesional_delete]
+(
+	@p_id numeric(18)
+)
+AS
+BEGIN
+	BEGIN TRAN
+	BEGIN TRY
+		UPDATE [TOP_4].[Profesional]
+		SET habilitado = 0
+		WHERE id_profesional = @p_id
+
+		-- Cancelar los turnos!
+
+		COMMIT TRAN	
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN
+		
+		DECLARE @ErrorMessage NVARCHAR(4000);
+	    DECLARE @ErrorSeverity INT;
+		DECLARE @ErrorState INT;
+
+		SELECT @ErrorMessage = ERROR_MESSAGE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE();
+
+		RAISERROR (@ErrorMessage, -- Message text.
+               @ErrorSeverity, -- Severity.
+               @ErrorState -- State.
+               );
+	END CATCH
 END
 GO

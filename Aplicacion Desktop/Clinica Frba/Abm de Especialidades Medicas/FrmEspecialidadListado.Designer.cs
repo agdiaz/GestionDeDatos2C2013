@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.tbNombreEspecialidad = new System.Windows.Forms.TextBox();
             this.cbTipoEspecialidad = new System.Windows.Forms.ComboBox();
+            this.chEspecialidad = new System.Windows.Forms.CheckBox();
             this.gbAcciones.SuspendLayout();
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
@@ -39,12 +39,12 @@
             // gbFiltros
             // 
             this.gbFiltros.Controls.Add(this.label1);
-            this.gbFiltros.Controls.Add(this.label2);
-            this.gbFiltros.Controls.Add(this.cbTipoEspecialidad);
             this.gbFiltros.Controls.Add(this.tbNombreEspecialidad);
-            this.gbFiltros.Controls.SetChildIndex(this.tbNombreEspecialidad, 0);
+            this.gbFiltros.Controls.Add(this.chEspecialidad);
+            this.gbFiltros.Controls.Add(this.cbTipoEspecialidad);
             this.gbFiltros.Controls.SetChildIndex(this.cbTipoEspecialidad, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.label2, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.chEspecialidad, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.tbNombreEspecialidad, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
@@ -58,15 +58,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre de especialidad";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Tipo de especialidad";
-            // 
             // tbNombreEspecialidad
             // 
             this.tbNombreEspecialidad.Location = new System.Drawing.Point(134, 17);
@@ -76,11 +67,22 @@
             // 
             // cbTipoEspecialidad
             // 
+            this.cbTipoEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoEspecialidad.FormattingEnabled = true;
             this.cbTipoEspecialidad.Location = new System.Drawing.Point(134, 43);
             this.cbTipoEspecialidad.Name = "cbTipoEspecialidad";
             this.cbTipoEspecialidad.Size = new System.Drawing.Size(511, 21);
             this.cbTipoEspecialidad.TabIndex = 5;
+            // 
+            // chEspecialidad
+            // 
+            this.chEspecialidad.AutoSize = true;
+            this.chEspecialidad.Location = new System.Drawing.Point(10, 45);
+            this.chEspecialidad.Name = "chEspecialidad";
+            this.chEspecialidad.Size = new System.Drawing.Size(124, 17);
+            this.chEspecialidad.TabIndex = 6;
+            this.chEspecialidad.Text = "Tipo de especialidad";
+            this.chEspecialidad.UseVisualStyleBackColor = true;
             // 
             // FrmEspecialidadListado
             // 
@@ -99,8 +101,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbNombreEspecialidad;
         private System.Windows.Forms.ComboBox cbTipoEspecialidad;
+        private System.Windows.Forms.CheckBox chEspecialidad;
     }
 }

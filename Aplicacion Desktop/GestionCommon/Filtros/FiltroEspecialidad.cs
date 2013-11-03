@@ -8,6 +8,6 @@ namespace GestionCommon.Filtros
     public class FiltroEspecialidad
     {
         public string Nombre { get; set; }
-        public decimal IdTipoEspecialidad { get; set; }
+        public decimal? IdTipoEspecialidad { get; set; }
     }
 }

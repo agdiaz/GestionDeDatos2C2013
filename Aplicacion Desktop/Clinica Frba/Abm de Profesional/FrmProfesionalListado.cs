@@ -50,6 +50,21 @@ namespace Clinica_Frba.Profesionales
             }
         }
 
+        protected override void AccionBorrar()
+        {
+            try
+            {
+                var resultado = _domain.Borrar((Profesional)this.EntidadSeleccionada);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<bool>(resultado);
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
+            
+
+        }
         protected override void AccionFiltrar()
         {
             FiltroProfesional filtro = this.ObtenerFiltro();
