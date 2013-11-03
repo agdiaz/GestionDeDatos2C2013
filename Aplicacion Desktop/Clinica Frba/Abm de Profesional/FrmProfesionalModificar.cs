@@ -41,12 +41,17 @@ namespace Clinica_Frba.Profesionales
             {
                 Profesional prof = this.ObtenerProfesional();
                 IResultado<Profesional> resultado = _profesionalDomain.Modificar(prof);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<Profesional>(resultado);
 
-                _profesionalDomain.LimpiarEspecialidades(prof);
-            
+                var resultadoLimpiarEspecialidades = _profesionalDomain.LimpiarEspecialidades(prof);
+                if (!resultadoLimpiarEspecialidades.Correcto)
+                    throw new ResultadoIncorrectoException<bool>(resultadoLimpiarEspecialidades);
+
                 foreach (Especialidad especialidad in lstEspecialidades.Items.Cast<Especialidad>())
                 {
-                    _profesionalDomain.AsociarProfesionalEspecialidad(prof, especialidad);
+                    var resultadoAsociar = _profesionalDomain.AsociarProfesionalEspecialidad(prof, especialidad);
+                    throw new ResultadoIncorrectoException<bool>(resultadoAsociar);
                 }
             }
             catch (Exception ex)
@@ -58,7 +63,7 @@ namespace Clinica_Frba.Profesionales
         private Profesional ObtenerProfesional()
         {
             Profesional profesional = new Profesional();
-
+            profesional.IdProfesional = _profesional.IdProfesional;
             profesional.Apellido = tbApellido.Text;
             profesional.Nombre = tbNombre.Text;
             profesional.Direccion = tbDireccion.Text;
