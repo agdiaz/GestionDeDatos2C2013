@@ -990,4 +990,48 @@ INSERT INTO TOP_4.Turno
 	AND m.Paciente_Dni IS NOT NULL
 )
 SET IDENTITY_INSERT TOP_4.Turno OFF
+GO
+------------------------------------MEDICAMENTO-----------------------------------------
+
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Medicamento]    Script Date: 11/03/2013 17:45:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [TOP_4].[Medicamento](
+	[id_medicamento] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](255) NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Medicamento] PRIMARY KEY CLUSTERED 
+(
+	[id_medicamento] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [TOP_4].[Medicamento] ADD  CONSTRAINT [DF_Medicamento_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+
+INSERT INTO TOP_4.Medicamento
+(nombre)
+(
+	SELECT DISTINCT Bono_Farmacia_Medicamento
+	FROM gd_esquema.Maestra
+	WHERE Bono_Farmacia_Medicamento IS NOT NULL
+)
+GO
+
 
