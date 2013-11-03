@@ -12,6 +12,7 @@ using GestionGUIHelper.Validaciones;
 using GestionDomain;
 using GestionCommon.Entidades;
 using GestionDomain.Resultados;
+using Clinica_Frba.Especialidades;
 
 namespace Clinica_Frba.Profesionales
 {
@@ -48,10 +49,10 @@ namespace Clinica_Frba.Profesionales
 
             dpFechaNacimiento.Value = FechaHelper.Ahora();
 
-            foreach (int i in clbEspecialidades.CheckedIndices)
-            {
-                clbEspecialidades.SetItemCheckState(i, CheckState.Unchecked);
-            }
+            //foreach (int i in clbEspecialidades.CheckedIndices)
+            //{
+            //    clbEspecialidades.SetItemCheckState(i, CheckState.Unchecked);
+            //}
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -83,20 +84,31 @@ namespace Clinica_Frba.Profesionales
             this.AgregarValidacion(new ValidadorCombobox(cbSexo));
             this.AgregarValidacion(new ValidadorNumerico(tbMatriculaProfesional));
 
-            this.CargarEspecialidades();
         }
 
-        private void CargarEspecialidades()
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
-            IResultado<IList<Especialidad>> resultado = _especialidadDomain.ObtenerTodos();
+            Especialidad esp = null;
+            using (FrmEspecialidadListado frm = new FrmEspecialidadListado(true))
+            {
+                frm.ShowDialog(this);
+                esp = frm.EntidadSeleccionada as Especialidad;
+            }
+            if (esp != null)
+            {
+                lstEspecialidades.Items.Add(esp);
+            }
+        }
 
-            if (!resultado.Correcto)
-                throw new ResultadoIncorrectoException<IList<Especialidad>>(resultado);
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            Especialidad esp = null;
 
-            clbEspecialidades.DataSource = resultado.Retorno;
-            clbEspecialidades.DisplayMember = "Nombre";
-            clbEspecialidades.ValueMember = "IdEspecialidad";
-            
+            esp = lstEspecialidades.SelectedItem as Especialidad;
+            if (esp != null)
+            {
+                lstEspecialidades.Items.Remove(esp);
+            }
         }
     }
 }

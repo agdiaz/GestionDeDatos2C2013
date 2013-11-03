@@ -49,13 +49,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.gbDatosDeContacto = new System.Windows.Forms.GroupBox();
             this.gbDatosPersonales = new System.Windows.Forms.GroupBox();
+            this.tbMatriculaProfesional = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.cbSexo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.gbDatosMedicos = new System.Windows.Forms.GroupBox();
-            this.tbMatriculaProfesional = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.clbEspecialidades = new System.Windows.Forms.CheckedListBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.btnQuitar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.lstEspecialidades = new System.Windows.Forms.ListBox();
             this.gbDatosDeContacto.SuspendLayout();
             this.gbDatosPersonales.SuspendLayout();
             this.gbDatosMedicos.SuspendLayout();
@@ -242,6 +243,8 @@
             // 
             // gbDatosPersonales
             // 
+            this.gbDatosPersonales.Controls.Add(this.tbMatriculaProfesional);
+            this.gbDatosPersonales.Controls.Add(this.label10);
             this.gbDatosPersonales.Controls.Add(this.cbSexo);
             this.gbDatosPersonales.Controls.Add(this.label9);
             this.gbDatosPersonales.Controls.Add(this.dpFechaNacimiento);
@@ -261,6 +264,22 @@
             this.gbDatosPersonales.TabIndex = 24;
             this.gbDatosPersonales.TabStop = false;
             this.gbDatosPersonales.Text = "Datos personales";
+            // 
+            // tbMatriculaProfesional
+            // 
+            this.tbMatriculaProfesional.Location = new System.Drawing.Point(415, 129);
+            this.tbMatriculaProfesional.Name = "tbMatriculaProfesional";
+            this.tbMatriculaProfesional.Size = new System.Drawing.Size(270, 20);
+            this.tbMatriculaProfesional.TabIndex = 3;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(311, 132);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(104, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Matricula profesional";
             // 
             // cbSexo
             // 
@@ -285,50 +304,43 @@
             // 
             // gbDatosMedicos
             // 
-            this.gbDatosMedicos.Controls.Add(this.tbMatriculaProfesional);
-            this.gbDatosMedicos.Controls.Add(this.label11);
-            this.gbDatosMedicos.Controls.Add(this.clbEspecialidades);
-            this.gbDatosMedicos.Controls.Add(this.label10);
+            this.gbDatosMedicos.Controls.Add(this.btnQuitar);
+            this.gbDatosMedicos.Controls.Add(this.btnAgregar);
+            this.gbDatosMedicos.Controls.Add(this.lstEspecialidades);
             this.gbDatosMedicos.Location = new System.Drawing.Point(11, 220);
             this.gbDatosMedicos.Name = "gbDatosMedicos";
             this.gbDatosMedicos.Size = new System.Drawing.Size(700, 158);
             this.gbDatosMedicos.TabIndex = 30;
             this.gbDatosMedicos.TabStop = false;
-            this.gbDatosMedicos.Text = "Datos profesionales";
+            this.gbDatosMedicos.Text = "Especialidades médicas";
             // 
-            // tbMatriculaProfesional
+            // btnQuitar
             // 
-            this.tbMatriculaProfesional.Location = new System.Drawing.Point(10, 42);
-            this.tbMatriculaProfesional.Name = "tbMatriculaProfesional";
-            this.tbMatriculaProfesional.Size = new System.Drawing.Size(189, 20);
-            this.tbMatriculaProfesional.TabIndex = 3;
+            this.btnQuitar.Location = new System.Drawing.Point(48, 77);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitar.TabIndex = 2;
+            this.btnQuitar.Text = "Quitar";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
-            // label11
+            // btnAgregar
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(218, 26);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(78, 13);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Especialidades";
+            this.btnAgregar.Location = new System.Drawing.Point(48, 47);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 1;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // clbEspecialidades
+            // lstEspecialidades
             // 
-            this.clbEspecialidades.FormattingEnabled = true;
-            this.clbEspecialidades.Location = new System.Drawing.Point(305, 26);
-            this.clbEspecialidades.MultiColumn = true;
-            this.clbEspecialidades.Name = "clbEspecialidades";
-            this.clbEspecialidades.Size = new System.Drawing.Size(380, 124);
-            this.clbEspecialidades.TabIndex = 1;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 26);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(104, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Matricula profesional";
+            this.lstEspecialidades.FormattingEnabled = true;
+            this.lstEspecialidades.Location = new System.Drawing.Point(129, 19);
+            this.lstEspecialidades.Name = "lstEspecialidades";
+            this.lstEspecialidades.Size = new System.Drawing.Size(556, 121);
+            this.lstEspecialidades.TabIndex = 0;
             // 
             // FrmProfesionalAlta
             // 
@@ -348,7 +360,6 @@
             this.gbDatosPersonales.ResumeLayout(false);
             this.gbDatosPersonales.PerformLayout();
             this.gbDatosMedicos.ResumeLayout(false);
-            this.gbDatosMedicos.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -379,9 +390,10 @@
         private System.Windows.Forms.ComboBox cbSexo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox gbDatosMedicos;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.CheckedListBox clbEspecialidades;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tbMatriculaProfesional;
+        private System.Windows.Forms.Button btnQuitar;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.ListBox lstEspecialidades;
     }
 }
