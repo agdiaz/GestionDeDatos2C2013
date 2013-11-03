@@ -39,7 +39,6 @@
             this.tbMatricula = new System.Windows.Forms.TextBox();
             this.tbEspecialidad = new System.Windows.Forms.TextBox();
             this.btnBuscarEspecialidad = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.cbTipoDoc = new System.Windows.Forms.ComboBox();
             this.tbDireccion = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,8 +48,9 @@
             this.chFechaNacimiento = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tbMail = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.cbSexo = new System.Windows.Forms.ComboBox();
+            this.chSexo = new System.Windows.Forms.CheckBox();
+            this.chTipoDoc = new System.Windows.Forms.CheckBox();
             this.gbAcciones.SuspendLayout();
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
@@ -69,49 +69,49 @@
             // 
             this.gbFiltros.Controls.Add(this.tbMail);
             this.gbFiltros.Controls.Add(this.label9);
-            this.gbFiltros.Controls.Add(this.cbTipoDoc);
-            this.gbFiltros.Controls.Add(this.label10);
-            this.gbFiltros.Controls.Add(this.cbSexo);
             this.gbFiltros.Controls.Add(this.chFechaNacimiento);
+            this.gbFiltros.Controls.Add(this.chTipoDoc);
             this.gbFiltros.Controls.Add(this.dtpFechaNacimiento);
+            this.gbFiltros.Controls.Add(this.chSexo);
+            this.gbFiltros.Controls.Add(this.cbTipoDoc);
             this.gbFiltros.Controls.Add(this.btnBuscarEspecialidad);
+            this.gbFiltros.Controls.Add(this.cbSexo);
             this.gbFiltros.Controls.Add(this.tbTelefono);
             this.gbFiltros.Controls.Add(this.label8);
-            this.gbFiltros.Controls.Add(this.label6);
             this.gbFiltros.Controls.Add(this.label7);
             this.gbFiltros.Controls.Add(this.label1);
             this.gbFiltros.Controls.Add(this.tbDireccion);
             this.gbFiltros.Controls.Add(this.tbEspecialidad);
             this.gbFiltros.Controls.Add(this.tbNombre);
             this.gbFiltros.Controls.Add(this.tbApellido);
-            this.gbFiltros.Controls.Add(this.tbDni);
             this.gbFiltros.Controls.Add(this.label4);
             this.gbFiltros.Controls.Add(this.tbMatricula);
             this.gbFiltros.Controls.Add(this.label5);
             this.gbFiltros.Controls.Add(this.label2);
+            this.gbFiltros.Controls.Add(this.tbDni);
             this.gbFiltros.Controls.Add(this.label3);
             this.gbFiltros.Size = new System.Drawing.Size(862, 155);
             this.gbFiltros.Controls.SetChildIndex(this.label3, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.tbDni, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label2, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label5, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbMatricula, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label4, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.tbDni, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbApellido, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbNombre, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbEspecialidad, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbDireccion, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label7, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.label6, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label8, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbTelefono, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.btnBuscarEspecialidad, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.dtpFechaNacimiento, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.chFechaNacimiento, 0);
             this.gbFiltros.Controls.SetChildIndex(this.cbSexo, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.label10, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.btnBuscarEspecialidad, 0);
             this.gbFiltros.Controls.SetChildIndex(this.cbTipoDoc, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.chSexo, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.dtpFechaNacimiento, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.chTipoDoc, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.chFechaNacimiento, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label9, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbMail, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
@@ -146,7 +146,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(129, 73);
+            this.label3.Location = new System.Drawing.Point(218, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 4;
@@ -154,7 +154,7 @@
             // 
             // tbDni
             // 
-            this.tbDni.Location = new System.Drawing.Point(202, 70);
+            this.tbDni.Location = new System.Drawing.Point(286, 69);
             this.tbDni.Name = "tbDni";
             this.tbDni.Size = new System.Drawing.Size(157, 20);
             this.tbDni.TabIndex = 5;
@@ -216,21 +216,13 @@
             this.btnBuscarEspecialidad.UseVisualStyleBackColor = true;
             this.btnBuscarEspecialidad.Click += new System.EventHandler(this.btnBuscarEspecialidad_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 74);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Tipo Doc";
-            // 
             // cbTipoDoc
             // 
+            this.cbTipoDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDoc.FormattingEnabled = true;
-            this.cbTipoDoc.Location = new System.Drawing.Point(70, 70);
+            this.cbTipoDoc.Location = new System.Drawing.Point(127, 70);
             this.cbTipoDoc.Name = "cbTipoDoc";
-            this.cbTipoDoc.Size = new System.Drawing.Size(53, 21);
+            this.cbTipoDoc.Size = new System.Drawing.Size(84, 21);
             this.cbTipoDoc.TabIndex = 15;
             // 
             // tbDireccion
@@ -299,22 +291,34 @@
             this.tbMail.Size = new System.Drawing.Size(236, 20);
             this.tbMail.TabIndex = 24;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(356, 73);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(31, 13);
-            this.label10.TabIndex = 25;
-            this.label10.Text = "Sexo";
-            // 
             // cbSexo
             // 
+            this.cbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSexo.FormattingEnabled = true;
-            this.cbSexo.Location = new System.Drawing.Point(393, 70);
+            this.cbSexo.Location = new System.Drawing.Point(505, 68);
             this.cbSexo.Name = "cbSexo";
             this.cbSexo.Size = new System.Drawing.Size(142, 21);
             this.cbSexo.TabIndex = 26;
+            // 
+            // chSexo
+            // 
+            this.chSexo.AutoSize = true;
+            this.chSexo.Location = new System.Drawing.Point(449, 71);
+            this.chSexo.Name = "chSexo";
+            this.chSexo.Size = new System.Drawing.Size(50, 17);
+            this.chSexo.TabIndex = 27;
+            this.chSexo.Text = "Sexo";
+            this.chSexo.UseVisualStyleBackColor = true;
+            // 
+            // chTipoDoc
+            // 
+            this.chTipoDoc.AutoSize = true;
+            this.chTipoDoc.Location = new System.Drawing.Point(18, 71);
+            this.chTipoDoc.Name = "chTipoDoc";
+            this.chTipoDoc.Size = new System.Drawing.Size(103, 17);
+            this.chTipoDoc.TabIndex = 28;
+            this.chTipoDoc.Text = "Tipo documento";
+            this.chTipoDoc.UseVisualStyleBackColor = true;
             // 
             // FrmProfesionalListado
             // 
@@ -343,7 +347,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnBuscarEspecialidad;
         private System.Windows.Forms.TextBox tbEspecialidad;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbTipoDoc;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbDireccion;
@@ -353,7 +356,8 @@
         private System.Windows.Forms.CheckBox chFechaNacimiento;
         private System.Windows.Forms.TextBox tbMail;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cbSexo;
+        private System.Windows.Forms.CheckBox chTipoDoc;
+        private System.Windows.Forms.CheckBox chSexo;
     }
 }

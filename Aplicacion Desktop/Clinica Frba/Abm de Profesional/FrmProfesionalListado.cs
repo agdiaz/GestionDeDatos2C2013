@@ -112,20 +112,24 @@ namespace Clinica_Frba.Profesionales
 
             if (!string.IsNullOrEmpty(tbTelefono.Text))
                 filtro.Telefono = Convert.ToDecimal(tbTelefono.Text);
-
-            filtro.TipoDni = (int)cbTipoDoc.SelectedValue;
+            
+            if (chTipoDoc.Checked)
+                filtro.TipoDni = (int)cbTipoDoc.SelectedValue;
             
             if (chFechaNacimiento.Checked)
                 filtro.FechaNacimiento = dtpFechaNacimiento.Value;
 
             if (!string.IsNullOrEmpty(tbEspecialidad.Text))
                 filtro.IdEspecialidad = ((TipoEspecialidad)tbEspecialidad.Tag).Id;
-
-            filtro.Mail = tbMail.Text;
+            
+            if (!string.IsNullOrEmpty(tbMail.Text))
+                filtro.Mail = tbMail.Text;
+            
             if (!string.IsNullOrEmpty(tbMatricula.Text))
                 filtro.Matricula = Convert.ToDecimal(tbMatricula.Text);
-
-            filtro.Sexo = (int)cbSexo.SelectedValue ;
+            
+            if (chSexo.Checked)
+                filtro.Sexo = (int)cbSexo.SelectedValue ;
 
             return filtro;
         }
