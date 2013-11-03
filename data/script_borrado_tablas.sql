@@ -1,5 +1,6 @@
 USE [GD2C2013]
 
+DROP TABLE TOP_4.Item_Receta
 DROP TABLE TOP_4.Receta
 DROP TABLE TOP_4.Resultado_Turno
 DROP TABLE TOP_4.Medicamento

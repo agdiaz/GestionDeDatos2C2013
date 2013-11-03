@@ -1133,6 +1133,67 @@ INSERT INTO TOP_4.Receta
 	WHERE m.Bono_Farmacia_Medicamento IS NOT NULL
 )
 
+-----------------------------------------Item_Receta------------------------------------------------------
+
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Item_Receta]    Script Date: 11/03/2013 19:43:37 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [TOP_4].[Item_Receta](
+	[id_item_receta] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_receta] [numeric](18, 0) NOT NULL,
+	[id_medicamento] [numeric](18, 0) NOT NULL,
+	[cantidad] [int] NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Item_Receta] PRIMARY KEY CLUSTERED 
+(
+	[id_item_receta] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Item_Receta]  WITH CHECK ADD  CONSTRAINT [FK_Item_Receta_Medicamento] FOREIGN KEY([id_medicamento])
+REFERENCES [TOP_4].[Medicamento] ([id_medicamento])
+GO
+
+ALTER TABLE [TOP_4].[Item_Receta] CHECK CONSTRAINT [FK_Item_Receta_Medicamento]
+GO
+
+ALTER TABLE [TOP_4].[Item_Receta]  WITH CHECK ADD  CONSTRAINT [FK_Item_Receta_Receta] FOREIGN KEY([id_receta])
+REFERENCES [TOP_4].[Receta] ([id_receta])
+GO
+
+ALTER TABLE [TOP_4].[Item_Receta] CHECK CONSTRAINT [FK_Item_Receta_Receta]
+GO
+
+ALTER TABLE [TOP_4].[Item_Receta] ADD  CONSTRAINT [DF_Item_Receta_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+INSERT INTO TOP_4.Item_Receta
+(id_receta, id_medicamento, cantidad)
+(	
+	SELECT rec.id_receta, med.id_medicamento, 1
+	FROM gd_esquema.Maestra m
+	INNER JOIN TOP_4.Medicamento med
+		ON m.Bono_Farmacia_Medicamento = med.nombre
+	INNER JOIN TOP_4.Turno tur
+		ON m.Turno_Numero = tur.id_turno
+	INNER JOIN TOP_4.Resultado_Turno resTur
+		ON tur.id_turno = resTur.id_turno
+	INNER JOIN TOP_4.Receta rec
+		ON rec.id_resultado_turno = resTur.id_resultado_turno
+)
+
+GO
+
+
 
 
 
