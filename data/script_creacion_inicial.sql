@@ -347,7 +347,7 @@ DROP TABLE #tmpUsuariosPacientes
 
 --- Creo los usuarios administradores
 GO
-INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin1', CONVERT(varbinary(32),'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1),1)
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin', CONVERT(varbinary(32),'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1),1)
 INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2)
 
 INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('admin2', CONVERT(varbinary(32),'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1),1)
@@ -387,7 +387,7 @@ CREATE TABLE [TOP_4].[Profesional](
 	[id_usuario] [numeric](18, 0) NULL,
 	[nombre] [varchar](255) NOT NULL,
 	[apellido] [varchar](255) NOT NULL,
-	[tipo_documento] [varchar](255) NOT NULL,
+	[tipo_documento] [int] NOT NULL,
 	[documento] [numeric](18, 0) NOT NULL,
 	[direccion] [varchar](255) NOT NULL,
 	[telefono] [numeric](18, 0) NOT NULL,
@@ -417,7 +417,7 @@ GO
 ALTER TABLE [TOP_4].[Profesional] CHECK CONSTRAINT [FK_Profesionales_Usuario]
 GO
 
-ALTER TABLE [TOP_4].[Profesional] ADD  CONSTRAINT [DF_Profesionales_tipo_documento]  DEFAULT ('DNI') FOR [tipo_documento]
+ALTER TABLE [TOP_4].[Profesional] ADD  CONSTRAINT [DF_Profesionales_tipo_documento]  DEFAULT ((0)) FOR [tipo_documento]
 GO
 
 ALTER TABLE [TOP_4].[Profesional] ADD  CONSTRAINT [DF_Profesionales_sexo]  DEFAULT ((0)) FOR [sexo]
@@ -696,6 +696,28 @@ GO
 ALTER TABLE [TOP_4].[Dia_Agenda] ADD  CONSTRAINT [DF_Dia_Agenda_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
 
+
+INSERT INTO TOP_4.Dia_Agenda
+(id_agenda, nro_dia_semana, nombre_dia_semana, hora_desde, hora_hasta)
+( SELECT  agen.id_agenda, agen.numDia, agen.diaDeLaSemana, agen.primerHora, agen.ultimaHora
+	FROM
+	(
+		SELECT p.id_profesional
+				,cast(min(m.turno_fecha) as time) as 'primerHora' 
+				,cast(max(m.turno_fecha) as time) as 'ultimaHora'
+				,datepart(weekday,m.Turno_Fecha) as 'numDia'
+				,datename(weekday, m.Turno_Fecha) as 'diaDeLaSemana'
+				,ag.id_agenda
+		FROM gd_esquema.Maestra m
+		INNER JOIN TOP_4.Profesional p
+			ON m.Medico_Dni = p.documento
+		INNER JOIN TOP_4.Agenda ag
+			ON ag.id_profesional = p.id_profesional
+		GROUP BY p.id_profesional, datepart(weekday,m.Turno_Fecha), datename(weekday, m.Turno_Fecha), ag.id_agenda
+	) agen
+)
+
+
 ---------------------------------Afiliado----------------------------------------------
 
 
@@ -769,5 +791,7 @@ GO
 
 ALTER TABLE [TOP_4].[Afiliado] ADD  CONSTRAINT [DF_Afiliado_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
+
+
 
 
