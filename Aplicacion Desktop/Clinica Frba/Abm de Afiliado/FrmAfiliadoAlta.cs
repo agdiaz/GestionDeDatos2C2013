@@ -22,6 +22,7 @@ namespace Clinica_Frba.Afiliados
     {
         #region [Atributos privados]
         private bool _primeraVez;
+        private PlanMedico _plan;
         private Afiliado _afiliadoAnterior;
         private AfiliadoDomain _domain;
         #endregion
@@ -55,14 +56,29 @@ namespace Clinica_Frba.Afiliados
             Afiliado afiliado = this.ObtenerAfiliado();
             if (_primeraVez)
             {
-                AltaDelGrupoFamiliar(afiliado);
+                try
+                {
+                    AltaAfiliado(afiliado);
+                    AltaDelGrupoFamiliar(afiliado);
+                    this.Cancelar();
+                }
+                catch (Exception ex)
+                {
+                    MensajePorPantalla.MensajeError(ex.Message);
+                }
             }
             else
             {
-                AltaAfiliado(afiliado);    
+                try
+                {
+                    AltaAfiliado(afiliado);
+                    this.Cancelar();
+                }
+                catch (Exception ex)
+                {
+                    MensajePorPantalla.MensajeError(ex.Message);
+                }
             }
-
-            this.Cancelar();
         }
 
         private void AltaAfiliado(Afiliado afiliado)
@@ -71,18 +87,12 @@ namespace Clinica_Frba.Afiliados
             {
                 afiliado.NroPrincipal = _afiliadoAnterior.NroPrincipal;
             }
-            try
-            {
-                IResultado<Afiliado> resultadoCrear = _domain.Crear(afiliado);
-                if (!resultadoCrear.Correcto)
-                    throw new ResultadoIncorrectoException<Afiliado>(resultadoCrear);
 
-                afiliado = resultadoCrear.Retorno;
-            }
-            catch (Exception ex)
-            {
-                MensajePorPantalla.MensajeError(ex.Message);
-            }
+            IResultado<Afiliado> resultadoCrear = _domain.Crear(afiliado);
+            if (!resultadoCrear.Correcto)
+                throw new ResultadoIncorrectoException<Afiliado>(resultadoCrear);
+
+            afiliado = resultadoCrear.Retorno;
         }
 
         private void AltaDelGrupoFamiliar(Afiliado afiliado)
@@ -90,7 +100,7 @@ namespace Clinica_Frba.Afiliados
             if (afiliado.TienePareja)
             {
                 DialogResult registraPareja = MensajePorPantalla.MensajeInterrogativo(this, "¿Desea registrar a su pareja?", MessageBoxButtons.YesNo);
-                if (registraPareja != DialogResult.Yes)
+                if (registraPareja == DialogResult.Yes)
                 {
                     using (FrmAfiliadoAlta frmAltaPareja = new FrmAfiliadoAlta(afiliado))
                     {
@@ -121,9 +131,9 @@ namespace Clinica_Frba.Afiliados
             afiliado.Documento = Convert.ToDecimal(tbNroDocumento.Text);
             afiliado.EstadoCivil = (EstadoCivil)cbEstadoCivil.SelectedItem;
             afiliado.FechaNacimiento = dpFechaNacimiento.Value;
-            afiliado.IdPlanMedico = (tbPlanMedico.Tag != null) ? ((PlanMedico)tbPlanMedico.Tag).IdPlan : 0;
+            afiliado.IdPlanMedico = (_plan != null) ? _plan.IdPlan : 0;
             afiliado.Mail = tbMail.Text;
-            afiliado.Nombre = tbNroDocumento.Text;
+            afiliado.Nombre = tbNombre.Text;
             afiliado.Sexo = (Sexo)cbSexo.SelectedItem;
             afiliado.Telefono = Convert.ToDecimal(tbTelefono.Text);
             afiliado.TipoDocumento = (TipoDocumento)cbTipoDocumento.SelectedItem;
@@ -163,8 +173,6 @@ namespace Clinica_Frba.Afiliados
         #region AccionIniciar
         private void FrmAfiliadoAlta_Load(object sender, EventArgs e)
         {
-            AccionLimpiar();
-
             this.AgregarValidacion(new ValidadorString(tbNombre, 1, 255));
             this.AgregarValidacion(new ValidadorString(tbApellido, 1, 255));
             this.AgregarValidacion(new ValidadorCombobox(cbTipoDocumento));
@@ -209,8 +217,8 @@ namespace Clinica_Frba.Afiliados
 
             if (plan != null)
             {
-                this.tbPlanMedico.Text = plan.Descripcion;
-                this.tbPlanMedico.Tag = tbPlanMedico;
+                _plan = plan;
+                this.tbPlanMedico.Text = _plan.Descripcion;
             }
         }
 

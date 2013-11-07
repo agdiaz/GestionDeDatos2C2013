@@ -46,7 +46,7 @@ namespace GestionDAL
         public T Obtener(decimal id)
         {
             //Configuro el parametro:
-            IList<SqlParameter> parametros = GenerarParametrosObtener();
+            IList<SqlParameter> parametros = GenerarParametrosObtener(id);
             
             //Ejecuto el stored procedure
             DataSet ds = _connector.RealizarConsultaAlmacenada(_sp_obtener, parametros);
@@ -144,10 +144,12 @@ namespace GestionDAL
             parametros.Add(param);
             return parametros;
         }
-        protected virtual IList<SqlParameter> GenerarParametrosObtener()
+        protected virtual IList<SqlParameter> GenerarParametrosObtener(decimal id)
         {
             IList<SqlParameter> parametros = new List<SqlParameter>(1);
-            parametros.Add(new SqlParameter("@p_id", SqlDbType.Int, 4, "p_id"));
+            var param = new SqlParameter("@p_id", SqlDbType.Decimal, 18, "p_id");
+            param.Value = id;
+            parametros.Add(param);
             return parametros;
         }
         protected abstract IList<SqlParameter> GenerarParametrosFiltrar(W entidad);

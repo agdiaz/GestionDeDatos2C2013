@@ -54,7 +54,7 @@ END
 GO
 
 -----------------------------------------------------
-CREATE PROCEDURE [TOP_4].[sp_Afiliado_insert](
+ALTER PROCEDURE [TOP_4].[sp_Afiliado_insert](
 	 @p_id numeric(18) output
 	,@p_nro_principal numeric(18)
     ,@p_nro_secundario numeric(18,0)
@@ -79,8 +79,23 @@ BEGIN TRY
 	DECLARE @p_id_usuario numeric(18)
 	DECLARE @p_username varchar(255) = CONVERT(varchar, @p_documento)
 	DECLARE @p_password varbinary(32)
+	DECLARE @v_nro_principal numeric(18)
+	DECLARE @v_nro_secundario numeric(18)
 	
-	SELECT @p_password = P.[Password] from [TOP_4].[Password] P WHERE P.Id = 'AFILIADO'
+	IF (@p_nro_principal IS NOT NULL AND @p_nro_principal > 0)
+		BEGIN
+			SET @v_nro_principal = @p_nro_principal
+			SELECT @v_nro_secundario = MAX(nro_secundario)+1 
+				FROM [TOP_4].Afiliado 
+				WHERE nro_principal = @p_nro_principal
+		END
+	ELSE	
+		BEGIN
+			SELECT @v_nro_principal = MAX(nro_principal)+100 FROM [TOP_4].Afiliado
+			SET @v_nro_secundario = 1
+		END
+	
+	SET @p_password = CONVERT(varbinary(32),'0x1AEAEBA4BDBF8907638434B60504B1037C01905BEC294FB2CD5348724F2FA64F', 1)
 	
 	EXECUTE [TOP_4].[sp_Usuario_Insert] @p_username, @p_password, @p_id_usuario OUTPUT
 	
@@ -105,8 +120,8 @@ BEGIN TRY
            ,[habilitado])
      VALUES
            (
-           @p_nro_principal
-           ,@p_nro_secundario
+           @v_nro_principal
+           ,@v_nro_secundario
            ,@p_id_usuario
            ,@p_id_plan_medico
            ,@p_tipo_documento
@@ -129,9 +144,47 @@ BEGIN TRY
 	END TRY
 	BEGIN CATCH
 		ROLLBACK TRAN
+		
+		DECLARE @ErrorMessage NVARCHAR(4000);
+	    DECLARE @ErrorSeverity INT;
+		DECLARE @ErrorState INT;
+
+		SELECT @ErrorMessage = ERROR_MESSAGE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE();
+
+		RAISERROR (@ErrorMessage, -- Message text.
+               @ErrorSeverity, -- Severity.
+               @ErrorState -- State.
+               );
+
 	END CATCH
 
 END
 
-------------------------------------------------------------
-
+-----------------------------------------------------------
+GO
+CREATE PROCEDURE [TOP_4].[sp_Afiliado_select]
+(@p_id numeric(18))
+AS
+BEGIN
+SELECT [id_afiliado]
+      ,[nro_principal]
+      ,[nro_secundario]
+      ,[id_usuario]
+      ,[id_plan_medico]
+      ,[tipo_documento]
+      ,[documento]
+      ,[nombre]
+      ,[apellido]
+      ,[direccion]
+      ,[telefono]
+      ,[mail]
+      ,[fecha_nacimiento]
+      ,[sexo]
+      ,[estado_civil]
+      ,[fecha_baja]
+      ,[habilitado]
+  FROM [GD2C2013].[TOP_4].[Afiliado]
+  WHERE habilitado = 1
+  AND id_afiliado = @p_id
+END
+GO
