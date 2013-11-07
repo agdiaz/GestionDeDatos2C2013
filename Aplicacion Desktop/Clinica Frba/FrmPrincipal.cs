@@ -40,7 +40,7 @@ namespace Clinica_Frba
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             //Hack para ocultar los menues hasta que no me logueé:
-            frmPrincipal_Load_CargarFuncionalidadesBase(n
+            frmPrincipal_Load_CargarFuncionalidadesBase(new List<Funcionalidad>());
             this.frmPrincipal_Load_MostrarLogin();           
             this.frmPrincipal_Load_CargarMenues();
             this.frmPrincipal_Load_CargarBarraEstado();
