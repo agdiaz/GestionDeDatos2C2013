@@ -121,7 +121,7 @@ namespace Clinica_Frba.Afiliados
                 }
             }
         }
-
+        
         private Afiliado ObtenerAfiliado()
         {
             Afiliado afiliado = new Afiliado();
@@ -184,6 +184,14 @@ namespace Clinica_Frba.Afiliados
             this.AgregarValidacion(new ValidadorMail(tbMail));
 
             this.CargarCombos();
+
+            if (_afiliadoAnterior != null)
+            {
+                tbApellido.Text = _afiliadoAnterior.Apellido;
+                tbDireccion.Text = _afiliadoAnterior.Direccion;
+                tbTelefono.Text = _afiliadoAnterior.Telefono.ToString();
+                cbEstadoCivil.SelectedItem = (_afiliadoAnterior.TienePareja) ? _afiliadoAnterior.EstadoCivil : new Soltero();
+            }
         }
 
         private void CargarCombos()
