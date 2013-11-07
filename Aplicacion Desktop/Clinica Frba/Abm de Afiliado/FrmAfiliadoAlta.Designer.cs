@@ -41,6 +41,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.tbNroAfiliado = new System.Windows.Forms.TextBox();
             this.gbDatosPersonales = new System.Windows.Forms.GroupBox();
+            this.cbSexo = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.dpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.cbTipoDocumento = new System.Windows.Forms.ComboBox();
             this.tbNroDocumento = new System.Windows.Forms.TextBox();
@@ -51,21 +53,17 @@
             this.tbTelefono = new System.Windows.Forms.TextBox();
             this.tbDireccion = new System.Windows.Forms.TextBox();
             this.gbDatosFamiliares = new System.Windows.Forms.GroupBox();
-            this.gbEstadoCivil = new System.Windows.Forms.GroupBox();
-            this.rbEstadoCivilDivorciado = new System.Windows.Forms.RadioButton();
-            this.rbEstadoCivilConcubinato = new System.Windows.Forms.RadioButton();
-            this.rbEstadoCivilViudo = new System.Windows.Forms.RadioButton();
-            this.rbEstadoCivilCasado = new System.Windows.Forms.RadioButton();
-            this.rbEstadoCivilSoltero = new System.Windows.Forms.RadioButton();
+            this.cbEstadoCivil = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.ndCantHijos = new System.Windows.Forms.NumericUpDown();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.cbPlanMedico = new System.Windows.Forms.ComboBox();
-            this.ndCantHijos = new System.Windows.Forms.NumericUpDown();
+            this.tbPlanMedico = new System.Windows.Forms.TextBox();
+            this.btnBuscarPlan = new System.Windows.Forms.Button();
             this.gbDatosPersonales.SuspendLayout();
             this.gbDatosDeContacto.SuspendLayout();
             this.gbDatosFamiliares.SuspendLayout();
-            this.gbEstadoCivil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ndCantHijos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,7 +142,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 170);
+            this.label9.Location = new System.Drawing.Point(6, 91);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 13);
             this.label9.TabIndex = 8;
@@ -173,11 +171,14 @@
             this.tbNroAfiliado.Enabled = false;
             this.tbNroAfiliado.Location = new System.Drawing.Point(93, 6);
             this.tbNroAfiliado.Name = "tbNroAfiliado";
+            this.tbNroAfiliado.ReadOnly = true;
             this.tbNroAfiliado.Size = new System.Drawing.Size(147, 20);
             this.tbNroAfiliado.TabIndex = 11;
             // 
             // gbDatosPersonales
             // 
+            this.gbDatosPersonales.Controls.Add(this.cbSexo);
+            this.gbDatosPersonales.Controls.Add(this.label13);
             this.gbDatosPersonales.Controls.Add(this.dpFechaNacimiento);
             this.gbDatosPersonales.Controls.Add(this.cbTipoDocumento);
             this.gbDatosPersonales.Controls.Add(this.tbNroDocumento);
@@ -195,6 +196,24 @@
             this.gbDatosPersonales.TabStop = false;
             this.gbDatosPersonales.Text = "Datos personales";
             // 
+            // cbSexo
+            // 
+            this.cbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSexo.FormattingEnabled = true;
+            this.cbSexo.Location = new System.Drawing.Point(244, 90);
+            this.cbSexo.Name = "cbSexo";
+            this.cbSexo.Size = new System.Drawing.Size(121, 21);
+            this.cbSexo.TabIndex = 14;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(206, 95);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "Sexo";
+            // 
             // dpFechaNacimiento
             // 
             this.dpFechaNacimiento.Location = new System.Drawing.Point(90, 167);
@@ -206,10 +225,6 @@
             // 
             this.cbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDocumento.FormattingEnabled = true;
-            this.cbTipoDocumento.Items.AddRange(new object[] {
-            "DNI",
-            "LE",
-            "CUIT"});
             this.cbTipoDocumento.Location = new System.Drawing.Point(78, 91);
             this.cbTipoDocumento.Name = "cbTipoDocumento";
             this.cbTipoDocumento.Size = new System.Drawing.Size(121, 21);
@@ -219,7 +234,7 @@
             // 
             this.tbNroDocumento.Location = new System.Drawing.Point(78, 129);
             this.tbNroDocumento.Name = "tbNroDocumento";
-            this.tbNroDocumento.Size = new System.Drawing.Size(100, 20);
+            this.tbNroDocumento.Size = new System.Drawing.Size(194, 20);
             this.tbNroDocumento.TabIndex = 10;
             // 
             // tbApellido
@@ -274,8 +289,9 @@
             // 
             // gbDatosFamiliares
             // 
+            this.gbDatosFamiliares.Controls.Add(this.cbEstadoCivil);
+            this.gbDatosFamiliares.Controls.Add(this.label12);
             this.gbDatosFamiliares.Controls.Add(this.ndCantHijos);
-            this.gbDatosFamiliares.Controls.Add(this.gbEstadoCivil);
             this.gbDatosFamiliares.Controls.Add(this.label9);
             this.gbDatosFamiliares.Location = new System.Drawing.Point(423, 46);
             this.gbDatosFamiliares.Name = "gbDatosFamiliares";
@@ -284,74 +300,30 @@
             this.gbDatosFamiliares.TabStop = false;
             this.gbDatosFamiliares.Text = "Datos familiares";
             // 
-            // gbEstadoCivil
+            // cbEstadoCivil
             // 
-            this.gbEstadoCivil.Controls.Add(this.rbEstadoCivilDivorciado);
-            this.gbEstadoCivil.Controls.Add(this.rbEstadoCivilConcubinato);
-            this.gbEstadoCivil.Controls.Add(this.rbEstadoCivilViudo);
-            this.gbEstadoCivil.Controls.Add(this.rbEstadoCivilCasado);
-            this.gbEstadoCivil.Controls.Add(this.rbEstadoCivilSoltero);
-            this.gbEstadoCivil.Location = new System.Drawing.Point(6, 24);
-            this.gbEstadoCivil.Name = "gbEstadoCivil";
-            this.gbEstadoCivil.Size = new System.Drawing.Size(188, 137);
-            this.gbEstadoCivil.TabIndex = 9;
-            this.gbEstadoCivil.TabStop = false;
-            this.gbEstadoCivil.Text = "Estado civil";
+            this.cbEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEstadoCivil.FormattingEnabled = true;
+            this.cbEstadoCivil.Location = new System.Drawing.Point(12, 46);
+            this.cbEstadoCivil.Name = "cbEstadoCivil";
+            this.cbEstadoCivil.Size = new System.Drawing.Size(182, 21);
+            this.cbEstadoCivil.TabIndex = 12;
             // 
-            // rbEstadoCivilDivorciado
+            // label12
             // 
-            this.rbEstadoCivilDivorciado.AutoSize = true;
-            this.rbEstadoCivilDivorciado.Location = new System.Drawing.Point(3, 113);
-            this.rbEstadoCivilDivorciado.Name = "rbEstadoCivilDivorciado";
-            this.rbEstadoCivilDivorciado.Size = new System.Drawing.Size(87, 17);
-            this.rbEstadoCivilDivorciado.TabIndex = 4;
-            this.rbEstadoCivilDivorciado.TabStop = true;
-            this.rbEstadoCivilDivorciado.Text = "Divorciado/a";
-            this.rbEstadoCivilDivorciado.UseVisualStyleBackColor = true;
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(9, 30);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(61, 13);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Estado civil";
             // 
-            // rbEstadoCivilConcubinato
+            // ndCantHijos
             // 
-            this.rbEstadoCivilConcubinato.AutoSize = true;
-            this.rbEstadoCivilConcubinato.Location = new System.Drawing.Point(3, 90);
-            this.rbEstadoCivilConcubinato.Name = "rbEstadoCivilConcubinato";
-            this.rbEstadoCivilConcubinato.Size = new System.Drawing.Size(85, 17);
-            this.rbEstadoCivilConcubinato.TabIndex = 3;
-            this.rbEstadoCivilConcubinato.TabStop = true;
-            this.rbEstadoCivilConcubinato.Text = "Concubinato";
-            this.rbEstadoCivilConcubinato.UseVisualStyleBackColor = true;
-            // 
-            // rbEstadoCivilViudo
-            // 
-            this.rbEstadoCivilViudo.AutoSize = true;
-            this.rbEstadoCivilViudo.Location = new System.Drawing.Point(3, 67);
-            this.rbEstadoCivilViudo.Name = "rbEstadoCivilViudo";
-            this.rbEstadoCivilViudo.Size = new System.Drawing.Size(63, 17);
-            this.rbEstadoCivilViudo.TabIndex = 2;
-            this.rbEstadoCivilViudo.TabStop = true;
-            this.rbEstadoCivilViudo.Text = "Viudo/a";
-            this.rbEstadoCivilViudo.UseVisualStyleBackColor = true;
-            // 
-            // rbEstadoCivilCasado
-            // 
-            this.rbEstadoCivilCasado.AutoSize = true;
-            this.rbEstadoCivilCasado.Location = new System.Drawing.Point(3, 44);
-            this.rbEstadoCivilCasado.Name = "rbEstadoCivilCasado";
-            this.rbEstadoCivilCasado.Size = new System.Drawing.Size(72, 17);
-            this.rbEstadoCivilCasado.TabIndex = 1;
-            this.rbEstadoCivilCasado.TabStop = true;
-            this.rbEstadoCivilCasado.Text = "Casado/a";
-            this.rbEstadoCivilCasado.UseVisualStyleBackColor = true;
-            // 
-            // rbEstadoCivilSoltero
-            // 
-            this.rbEstadoCivilSoltero.AutoSize = true;
-            this.rbEstadoCivilSoltero.Location = new System.Drawing.Point(3, 20);
-            this.rbEstadoCivilSoltero.Name = "rbEstadoCivilSoltero";
-            this.rbEstadoCivilSoltero.Size = new System.Drawing.Size(69, 17);
-            this.rbEstadoCivilSoltero.TabIndex = 0;
-            this.rbEstadoCivilSoltero.TabStop = true;
-            this.rbEstadoCivilSoltero.Text = "Soltero/a";
-            this.rbEstadoCivilSoltero.UseVisualStyleBackColor = true;
+            this.ndCantHijos.Location = new System.Drawing.Point(68, 89);
+            this.ndCantHijos.Name = "ndCantHijos";
+            this.ndCantHijos.Size = new System.Drawing.Size(126, 20);
+            this.ndCantHijos.TabIndex = 10;
             // 
             // btnGuardar
             // 
@@ -383,32 +355,31 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // cbPlanMedico
+            // tbPlanMedico
             // 
-            this.cbPlanMedico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPlanMedico.FormattingEnabled = true;
-            this.cbPlanMedico.Items.AddRange(new object[] {
-            "210",
-            "310",
-            "410"});
-            this.cbPlanMedico.Location = new System.Drawing.Point(317, 5);
-            this.cbPlanMedico.Name = "cbPlanMedico";
-            this.cbPlanMedico.Size = new System.Drawing.Size(279, 21);
-            this.cbPlanMedico.TabIndex = 20;
+            this.tbPlanMedico.Location = new System.Drawing.Point(333, 6);
+            this.tbPlanMedico.Name = "tbPlanMedico";
+            this.tbPlanMedico.ReadOnly = true;
+            this.tbPlanMedico.Size = new System.Drawing.Size(210, 20);
+            this.tbPlanMedico.TabIndex = 20;
             // 
-            // ndCantHijos
+            // btnBuscarPlan
             // 
-            this.ndCantHijos.Location = new System.Drawing.Point(68, 167);
-            this.ndCantHijos.Name = "ndCantHijos";
-            this.ndCantHijos.Size = new System.Drawing.Size(45, 20);
-            this.ndCantHijos.TabIndex = 10;
+            this.btnBuscarPlan.Location = new System.Drawing.Point(549, 4);
+            this.btnBuscarPlan.Name = "btnBuscarPlan";
+            this.btnBuscarPlan.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarPlan.TabIndex = 21;
+            this.btnBuscarPlan.Text = "Buscar";
+            this.btnBuscarPlan.UseVisualStyleBackColor = true;
+            this.btnBuscarPlan.Click += new System.EventHandler(this.btnBuscarPlan_Click);
             // 
             // FrmAfiliadoAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 389);
-            this.Controls.Add(this.cbPlanMedico);
+            this.Controls.Add(this.btnBuscarPlan);
+            this.Controls.Add(this.tbPlanMedico);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnGuardar);
@@ -427,8 +398,6 @@
             this.gbDatosDeContacto.PerformLayout();
             this.gbDatosFamiliares.ResumeLayout(false);
             this.gbDatosFamiliares.PerformLayout();
-            this.gbEstadoCivil.ResumeLayout(false);
-            this.gbEstadoCivil.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ndCantHijos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -452,12 +421,6 @@
         private System.Windows.Forms.GroupBox gbDatosPersonales;
         private System.Windows.Forms.GroupBox gbDatosDeContacto;
         private System.Windows.Forms.GroupBox gbDatosFamiliares;
-        private System.Windows.Forms.GroupBox gbEstadoCivil;
-        private System.Windows.Forms.RadioButton rbEstadoCivilSoltero;
-        private System.Windows.Forms.RadioButton rbEstadoCivilDivorciado;
-        private System.Windows.Forms.RadioButton rbEstadoCivilConcubinato;
-        private System.Windows.Forms.RadioButton rbEstadoCivilViudo;
-        private System.Windows.Forms.RadioButton rbEstadoCivilCasado;
         private System.Windows.Forms.TextBox tbMail;
         private System.Windows.Forms.TextBox tbTelefono;
         private System.Windows.Forms.TextBox tbDireccion;
@@ -469,7 +432,12 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.ComboBox cbPlanMedico;
         private System.Windows.Forms.NumericUpDown ndCantHijos;
+        private System.Windows.Forms.ComboBox cbEstadoCivil;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbPlanMedico;
+        private System.Windows.Forms.Button btnBuscarPlan;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox cbSexo;
     }
 }

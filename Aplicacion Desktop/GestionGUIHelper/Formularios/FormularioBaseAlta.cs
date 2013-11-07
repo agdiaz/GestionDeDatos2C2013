@@ -49,23 +49,13 @@ namespace GestionGUIHelper.Formularios
 
         protected virtual void AccionAceptar()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Implementar AccionAceptar");
         }
         #endregion
 
         #region [Cancelar]
         protected virtual void Cancelar()
         {
-            //DialogResult result = MensajePorPantalla.MensajeInterrogativo(this, "Sus cambios no han sido guardados ¿Está seguro que desea cancelar?", MessageBoxButtons.YesNo);
-            //if (result == DialogResult.Yes)
-            //{
-            //    _cerrado = true;
-            //    this.Close();
-            //}
-            //else
-            //{
-            //    _cerrado = false;
-            //}
             _cerrado = true;
             this.Close();
         }

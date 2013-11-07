@@ -37,5 +37,25 @@ namespace GestionDomain
             return resultado;
         }
 
+
+        public IResultado<Afiliado> Crear(Afiliado afiliado)
+        {
+            Resultado<Afiliado> resultado = new Resultado<Afiliado>();
+
+            try
+            {
+                decimal idNuevoAfiliado = _domain.Crear(afiliado);
+                Afiliado afiliadoNuevo = _domain.Obtener(idNuevoAfiliado);
+                afiliado.NroPrincipal = afiliadoNuevo.NroPrincipal;
+                afiliado.NroSecundario = afiliado.NroSecundario;
+                afiliado.IdAfiliado = idNuevoAfiliado;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+        }
     }
 }

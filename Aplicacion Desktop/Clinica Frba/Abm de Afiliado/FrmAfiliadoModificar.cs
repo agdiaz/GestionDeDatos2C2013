@@ -31,10 +31,11 @@ namespace Clinica_Frba.Afiliados
             tbNroDocumento.Text = string.Empty;
             tbTelefono.Text = string.Empty;
 
-            cbPlanMedico.SelectedIndex = 0;
+            tbPlanMedico.Text = string.Empty;
+            tbPlanMedico.Tag = null;
             cbTipoDocumento.SelectedIndex = 0;
-
-            rbEstadoCivilSoltero.Checked = true;
+            cbEstadoCivil.SelectedIndex = 0;
+            cbSexo.SelectedIndex = 0;
 
             dpFechaNacimiento.Value = FechaHelper.Ahora();
         }

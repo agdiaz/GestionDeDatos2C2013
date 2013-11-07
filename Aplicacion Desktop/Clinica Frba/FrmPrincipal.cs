@@ -39,7 +39,8 @@ namespace Clinica_Frba
         #region [frmPrincipal_Load]
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            //this.frmPrincipal_Load_CargarUsuarioGenerico();
+            //Hack para ocultar los menues hasta que no me logueé:
+            frmPrincipal_Load_CargarFuncionalidadesBase(n
             this.frmPrincipal_Load_MostrarLogin();           
             this.frmPrincipal_Load_CargarMenues();
             this.frmPrincipal_Load_CargarBarraEstado();
@@ -79,18 +80,30 @@ namespace Clinica_Frba
                 frmPrincipal_Load_CargarFuncionalidades(mnuPrincipal.Items, nombresFuncionalidad);
             }
 
+            this.tsmArchivo.Visible = true;
             this.tsmArchivo.Enabled = true;
+
+            this.tsmSesion.Visible = true;
             this.tsmSesion.Enabled = true;
+
+            this.tsmSalir.Visible = true;
             this.tsmSalir.Enabled = true;
+
             if (Program.ContextoActual.SesionIniciada)
             {
                 this.tsmSesion_CerrarSesion.Enabled = true;
+                this.tsmSesion_CerrarSesion.Visible = true;
+
                 this.tsmSesion_IniciarSesion.Enabled = false;
+                this.tsmSesion_IniciarSesion.Visible = false;
             }
             else
             {
                 this.tsmSesion_CerrarSesion.Enabled = false;
+                this.tsmSesion_CerrarSesion.Visible = false;
+
                 this.tsmSesion_IniciarSesion.Enabled = true;
+                this.tsmSesion_IniciarSesion.Visible= true;
             }
         }
 
@@ -101,6 +114,7 @@ namespace Clinica_Frba
                 if (item is ToolStripMenuItem)
                 {
                     item.Enabled = nombresFuncionalidad.Contains(item.Name);
+                    item.Visible = item.Enabled;
                     frmPrincipal_Load_CargarFuncionalidades(((ToolStripMenuItem)item).DropDown.Items, nombresFuncionalidad);
                 }
             }

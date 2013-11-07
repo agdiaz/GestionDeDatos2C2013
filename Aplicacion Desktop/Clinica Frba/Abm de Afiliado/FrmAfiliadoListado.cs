@@ -30,7 +30,7 @@ namespace Clinica_Frba.Afiliados
 
         protected override void AccionAlta()
         {
-            using (FrmAfiliadoAlta frm = new FrmAfiliadoAlta())
+            using (FrmAfiliadoAlta frm = new FrmAfiliadoAlta(true))
             {
                 frm.ShowDialog(this);
             }

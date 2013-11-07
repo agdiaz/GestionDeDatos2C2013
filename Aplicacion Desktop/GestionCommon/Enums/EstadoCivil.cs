@@ -23,6 +23,16 @@ namespace GestionCommon.Enums
         {
             return Nombre;
         }
+
+        public override bool Equals(object obj)
+        {
+            EstadoCivil otro = obj as EstadoCivil;
+            if (otro != null)
+            {
+                return (this.Id == otro.Id);
+            }
+            return false;
+        }
     }
 
     public class EstadoCivilIndefinido : EstadoCivil
