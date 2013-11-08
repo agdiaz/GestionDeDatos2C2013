@@ -1,5 +1,7 @@
 USE [GD2C2013]
 
+DROP TABLE TOP_4.Bono_Consulta
+DROP TABLE TOP_4.Compra
 DROP TABLE TOP_4.Item_Receta
 DROP TABLE TOP_4.Receta
 DROP TABLE TOP_4.Resultado_Turno

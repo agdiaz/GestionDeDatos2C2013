@@ -1193,8 +1193,136 @@ INSERT INTO TOP_4.Item_Receta
 
 GO
 
+------------------------------------------------------Compra---------------------------------------------------------
+
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Compra]    Script Date: 11/07/2013 22:54:53 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [TOP_4].[Compra](
+	[id_compra] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_afiliado] [numeric](18, 0) NOT NULL,
+	[fecha_compra] [datetime] NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Compra] PRIMARY KEY CLUSTERED 
+(
+	[id_compra] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Compra]  WITH CHECK ADD  CONSTRAINT [FK_Compra_Afiliado] FOREIGN KEY([id_afiliado])
+REFERENCES [TOP_4].[Afiliado] ([id_afiliado])
+GO
+
+ALTER TABLE [TOP_4].[Compra] CHECK CONSTRAINT [FK_Compra_Afiliado]
+GO
+
+ALTER TABLE [TOP_4].[Compra] ADD  CONSTRAINT [DF_Compra_habilitado_1]  DEFAULT ((1)) FOR [habilitado]
+GO
 
 
+-------------------------------------------------Bono_Consulta-----------------------------------------------------------
+
+USE [GD2C2013]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [TOP_4].[Bono_Consulta](
+	[id_bono_consulta] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_compra] [numeric](18, 0) NOT NULL,
+	[id_turno] [numeric](18, 0) NULL,
+	[id_plan_medico] [numeric](18, 0) NOT NULL,
+	[fecha_impresion] [datetime] NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Bono_Consulta] PRIMARY KEY CLUSTERED 
+(
+	[id_bono_consulta] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Bono_Consulta]  WITH CHECK ADD  CONSTRAINT [FK_Bono_Consulta_Compra] FOREIGN KEY([id_compra])
+REFERENCES [TOP_4].[Compra] ([id_compra])
+GO
+
+ALTER TABLE [TOP_4].[Bono_Consulta] CHECK CONSTRAINT [FK_Bono_Consulta_Compra]
+GO
+
+ALTER TABLE [TOP_4].[Bono_Consulta]  WITH CHECK ADD  CONSTRAINT [FK_Bono_Consulta_Plan_medico] FOREIGN KEY([id_plan_medico])
+REFERENCES [TOP_4].[Plan_medico] ([id_plan_medico])
+GO
+
+ALTER TABLE [TOP_4].[Bono_Consulta] CHECK CONSTRAINT [FK_Bono_Consulta_Plan_medico]
+GO
+
+ALTER TABLE [TOP_4].[Bono_Consulta]  WITH CHECK ADD  CONSTRAINT [FK_Bono_Consulta_Turno] FOREIGN KEY([id_turno])
+REFERENCES [TOP_4].[Turno] ([id_turno])
+GO
+
+ALTER TABLE [TOP_4].[Bono_Consulta] CHECK CONSTRAINT [FK_Bono_Consulta_Turno]
+GO
+
+ALTER TABLE [TOP_4].[Bono_Consulta] ADD  CONSTRAINT [DF_Bono_Consulta_habilitado_1]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+--Inserto bonos consultas y compras asociadas
+CREATE TABLE #tmpBonoConsulta(
+	id_compra NUMERIC(18,0) IDENTITY(1,1),
+	id_afiliado NUMERIC(18,0),
+	id_plan_medico NUMERIC(18,0),
+	fecha_compra datetime,
+	fecha_impresion datetime,
+	id_bono_consulta NUMERIC(18,0)
+)
 
 
+INSERT INTO #tmpBonoConsulta (id_afiliado, id_plan_medico, fecha_compra, fecha_impresion, id_bono_consulta)
+(
+	SELECT a.id_afiliado, m.Plan_Med_Codigo, Compra_Bono_Fecha, Bono_Consulta_Fecha_Impresion, Bono_Consulta_Numero
+	FROM gd_esquema.Maestra m
+	JOIN TOP_4.Afiliado a
+		ON a.documento = m.Paciente_Dni
+	WHERE Bono_Consulta_Numero IS NOT NULL
+	AND Bono_Farmacia_Numero IS NULL
+)
 
+SET IDENTITY_INSERT TOP_4.Compra ON
+INSERT INTO TOP_4.Compra (id_compra, id_afiliado, fecha_compra)
+(
+	SELECT id_compra, id_afiliado, fecha_compra
+	FROM #tmpBonoConsulta
+)
+SET IDENTITY_INSERT TOP_4.Compra OFF
+
+SET IDENTITY_INSERT TOP_4.Bono_Consulta ON
+INSERT INTO TOP_4.Bono_Consulta (id_bono_consulta, id_compra, id_plan_medico, fecha_impresion)
+(
+	SELECT id_bono_consulta, id_compra, id_plan_medico, fecha_impresion
+	FROM #tmpBonoConsulta
+)
+SET IDENTITY_INSERT TOP_4.Bono_Consulta OFF
+
+DROP TABLE #tmpBonoConsulta
+
+--Asigno a los bonos que fueron utilizados sus turnos correspondientes
+UPDATE TOP_4.Bono_Consulta 
+SET TOP_4.Bono_Consulta.id_turno = gd_esquema.Maestra.Turno_Numero
+FROM gd_esquema.Maestra
+INNER JOIN TOP_4.Bono_Consulta
+	ON TOP_4.Bono_Consulta.id_bono_consulta = gd_esquema.Maestra.Bono_Consulta_Numero
+WHERE gd_esquema.Maestra.Bono_Consulta_Numero IS NOT NULL
+AND gd_esquema.Maestra.Bono_Farmacia_Numero IS NOT NULL
