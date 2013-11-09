@@ -38,9 +38,17 @@ namespace Clinica_Frba.Afiliados
 
         protected override void AccionModificar()
         {
-            using (FrmAfiliadoModificar frm = new FrmAfiliadoModificar())
+            try
             {
-                frm.ShowDialog(this);
+                Afiliado a = this.EntidadSeleccionada as Afiliado;
+                using (FrmAfiliadoModificar frm = new FrmAfiliadoModificar(a))
+                {
+                    frm.ShowDialog(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
 
@@ -118,7 +126,7 @@ namespace Clinica_Frba.Afiliados
 
         protected override void AccionIniciar()
         {
-            
+            this.CargarCombos();   
         }
 
         protected override void AccionLimpiar()

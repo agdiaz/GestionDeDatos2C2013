@@ -91,17 +91,17 @@
             this.gbFiltros.Controls.Add(this.label8);
             this.gbFiltros.Controls.Add(this.label5);
             this.gbFiltros.Controls.Add(this.tbPlanMedico);
-            this.gbFiltros.Controls.Add(this.cbTipoDoc);
             this.gbFiltros.Controls.Add(this.label4);
             this.gbFiltros.Controls.Add(this.tbDocumento);
+            this.gbFiltros.Controls.Add(this.cbTipoDoc);
             this.gbFiltros.Controls.Add(this.label3);
             this.gbFiltros.Controls.Add(this.tbNombre);
             this.gbFiltros.Size = new System.Drawing.Size(651, 206);
             this.gbFiltros.Controls.SetChildIndex(this.tbNombre, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label3, 0);
+            this.gbFiltros.Controls.SetChildIndex(this.cbTipoDoc, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbDocumento, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label4, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.cbTipoDoc, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbPlanMedico, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label5, 0);
             this.gbFiltros.Controls.SetChildIndex(this.label8, 0);
@@ -209,8 +209,9 @@
             // 
             // cbTipoDoc
             // 
+            this.cbTipoDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDoc.FormattingEnabled = true;
-            this.cbTipoDoc.Location = new System.Drawing.Point(353, 16);
+            this.cbTipoDoc.Location = new System.Drawing.Point(363, 17);
             this.cbTipoDoc.Name = "cbTipoDoc";
             this.cbTipoDoc.Size = new System.Drawing.Size(59, 21);
             this.cbTipoDoc.TabIndex = 14;
@@ -338,6 +339,7 @@
             // 
             // cbSexo
             // 
+            this.cbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSexo.FormattingEnabled = true;
             this.cbSexo.Location = new System.Drawing.Point(363, 135);
             this.cbSexo.Name = "cbSexo";
@@ -346,6 +348,7 @@
             // 
             // cbEstadoCivil
             // 
+            this.cbEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstadoCivil.FormattingEnabled = true;
             this.cbEstadoCivil.Location = new System.Drawing.Point(390, 163);
             this.cbEstadoCivil.Name = "cbEstadoCivil";

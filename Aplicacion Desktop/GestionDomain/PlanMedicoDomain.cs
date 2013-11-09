@@ -35,5 +35,21 @@ namespace GestionDomain
             }
             return resultado;
         }
+
+        public IResultado<PlanMedico> Obtener(decimal p)
+        {
+            Resultado<PlanMedico> resultado = new Resultado<PlanMedico>();
+
+            try
+            {
+                resultado.Retorno = _dal.Obtener(p);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+        }
     }
 }

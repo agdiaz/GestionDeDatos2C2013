@@ -8,6 +8,8 @@ namespace GestionCommon.Entidades
 {
     public class Afiliado
     {
+        public decimal NroAfiliado { get { return NroPrincipal + NroSecundario; } }
+
         public decimal IdAfiliado { get; set; }
         public decimal NroPrincipal { get; set; }
         public decimal NroSecundario { get; set; }

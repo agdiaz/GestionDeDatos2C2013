@@ -86,7 +86,7 @@
             this.tbDireccion.Location = new System.Drawing.Point(110, 22);
             this.tbDireccion.Name = "tbDireccion";
             this.tbDireccion.Size = new System.Drawing.Size(270, 20);
-            this.tbDireccion.TabIndex = 7;
+            this.tbDireccion.TabIndex = 6;
             // 
             // btnLimpiar
             // 
@@ -103,14 +103,14 @@
             this.tbTelefono.Location = new System.Drawing.Point(110, 49);
             this.tbTelefono.Name = "tbTelefono";
             this.tbTelefono.Size = new System.Drawing.Size(162, 20);
-            this.tbTelefono.TabIndex = 8;
+            this.tbTelefono.TabIndex = 7;
             // 
             // tbMail
             // 
             this.tbMail.Location = new System.Drawing.Point(110, 75);
             this.tbMail.Name = "tbMail";
             this.tbMail.Size = new System.Drawing.Size(270, 20);
-            this.tbMail.TabIndex = 9;
+            this.tbMail.TabIndex = 8;
             // 
             // btnGuardar
             // 
@@ -127,7 +127,7 @@
             this.dpFechaNacimiento.Location = new System.Drawing.Point(90, 167);
             this.dpFechaNacimiento.Name = "dpFechaNacimiento";
             this.dpFechaNacimiento.Size = new System.Drawing.Size(206, 20);
-            this.dpFechaNacimiento.TabIndex = 12;
+            this.dpFechaNacimiento.TabIndex = 5;
             // 
             // cbTipoDocumento
             // 
@@ -136,28 +136,28 @@
             this.cbTipoDocumento.Location = new System.Drawing.Point(78, 91);
             this.cbTipoDocumento.Name = "cbTipoDocumento";
             this.cbTipoDocumento.Size = new System.Drawing.Size(121, 21);
-            this.cbTipoDocumento.TabIndex = 11;
+            this.cbTipoDocumento.TabIndex = 3;
             // 
             // tbNroDocumento
             // 
             this.tbNroDocumento.Location = new System.Drawing.Point(78, 129);
             this.tbNroDocumento.Name = "tbNroDocumento";
             this.tbNroDocumento.Size = new System.Drawing.Size(100, 20);
-            this.tbNroDocumento.TabIndex = 10;
+            this.tbNroDocumento.TabIndex = 4;
             // 
             // tbApellido
             // 
             this.tbApellido.Location = new System.Drawing.Point(78, 60);
             this.tbApellido.Name = "tbApellido";
             this.tbApellido.Size = new System.Drawing.Size(218, 20);
-            this.tbApellido.TabIndex = 9;
+            this.tbApellido.TabIndex = 2;
             // 
             // tbNombre
             // 
             this.tbNombre.Location = new System.Drawing.Point(78, 24);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(218, 20);
-            this.tbNombre.TabIndex = 8;
+            this.tbNombre.TabIndex = 1;
             // 
             // label3
             // 
@@ -257,7 +257,7 @@
             this.gbDatosPersonales.Location = new System.Drawing.Point(11, 12);
             this.gbDatosPersonales.Name = "gbDatosPersonales";
             this.gbDatosPersonales.Size = new System.Drawing.Size(700, 201);
-            this.gbDatosPersonales.TabIndex = 24;
+            this.gbDatosPersonales.TabIndex = 0;
             this.gbDatosPersonales.TabStop = false;
             this.gbDatosPersonales.Text = "Datos personales";
             // 
@@ -266,7 +266,7 @@
             this.tbMatriculaProfesional.Location = new System.Drawing.Point(415, 129);
             this.tbMatriculaProfesional.Name = "tbMatriculaProfesional";
             this.tbMatriculaProfesional.Size = new System.Drawing.Size(270, 20);
-            this.tbMatriculaProfesional.TabIndex = 3;
+            this.tbMatriculaProfesional.TabIndex = 8;
             // 
             // label10
             // 
@@ -284,7 +284,7 @@
             this.cbSexo.Location = new System.Drawing.Point(348, 166);
             this.cbSexo.Name = "cbSexo";
             this.cbSexo.Size = new System.Drawing.Size(121, 21);
-            this.cbSexo.TabIndex = 14;
+            this.cbSexo.TabIndex = 9;
             // 
             // label9
             // 
@@ -312,7 +312,7 @@
             this.btnQuitar.Location = new System.Drawing.Point(48, 77);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(75, 23);
-            this.btnQuitar.TabIndex = 2;
+            this.btnQuitar.TabIndex = 11;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
             this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
@@ -322,7 +322,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(48, 47);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar.TabIndex = 1;
+            this.btnAgregar.TabIndex = 10;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -333,7 +333,7 @@
             this.lstEspecialidades.Location = new System.Drawing.Point(129, 19);
             this.lstEspecialidades.Name = "lstEspecialidades";
             this.lstEspecialidades.Size = new System.Drawing.Size(556, 121);
-            this.lstEspecialidades.TabIndex = 0;
+            this.lstEspecialidades.TabIndex = 12;
             // 
             // FrmProfesionalAlta
             // 

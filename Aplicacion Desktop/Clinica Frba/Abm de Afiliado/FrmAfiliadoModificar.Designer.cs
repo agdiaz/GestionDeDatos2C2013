@@ -131,6 +131,7 @@
             this.btnCancelar.TabIndex = 30;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
@@ -140,6 +141,7 @@
             this.btnGuardar.TabIndex = 28;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // gbDatosFamiliares
             // 
@@ -203,6 +205,7 @@
             this.btnLimpiar.TabIndex = 29;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // gbDatosDeContacto
             // 
@@ -290,6 +293,7 @@
             this.btnBuscarPlan.TabIndex = 32;
             this.btnBuscarPlan.Text = "Buscar";
             this.btnBuscarPlan.UseVisualStyleBackColor = true;
+            this.btnBuscarPlan.Click += new System.EventHandler(this.btnBuscarPlan_Click);
             // 
             // tbNroDocumento
             // 

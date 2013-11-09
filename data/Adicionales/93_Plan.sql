@@ -35,3 +35,13 @@ SELECT [id_plan_medico]
 END
 GO
 
+GO
+CREATE PROCEDURE [TOP_4].[sp_Plan_medico_select]
+(@p_id numeric(18))
+AS
+BEGIN
+	SELECT p.descripcion, p.habilitado, p.id_plan_medico, p.precio_bono_consulta, p.precio_bono_farmacia
+	FROM [TOP_4].Plan_medico p
+	WHERE p.id_plan_medico = @p_id
+	AND p.habilitado = '1'
+END

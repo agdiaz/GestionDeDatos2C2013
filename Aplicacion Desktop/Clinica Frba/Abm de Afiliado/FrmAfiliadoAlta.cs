@@ -182,15 +182,19 @@ namespace Clinica_Frba.Afiliados
             this.AgregarValidacion(new ValidadorNumerico(tbTelefono));
             this.AgregarValidacion(new ValidadorString(tbMail,1 ,255));
             this.AgregarValidacion(new ValidadorMail(tbMail));
-
+            this.AgregarValidacion(new ValidadorString(tbPlanMedico, 1, 255));
             this.CargarCombos();
 
             if (_afiliadoAnterior != null)
             {
                 tbApellido.Text = _afiliadoAnterior.Apellido;
+                tbApellido.ReadOnly = true;
+
                 tbDireccion.Text = _afiliadoAnterior.Direccion;
                 tbTelefono.Text = _afiliadoAnterior.Telefono.ToString();
                 cbEstadoCivil.SelectedItem = (_afiliadoAnterior.TienePareja) ? _afiliadoAnterior.EstadoCivil : new Soltero();
+                cbEstadoCivil.Enabled = !(_afiliadoAnterior.TienePareja);
+                ndCantHijos.Enabled = false;
             }
         }
 

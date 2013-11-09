@@ -73,6 +73,7 @@
     <Compile Include="Validaciones\ValidadorDateTimeFrom.cs" />
     <Compile Include="Validaciones\ValidadorDateTimeUntilFrom.cs" />
     <Compile Include="Validaciones\ValidadorDateTimeUntil.cs" />
+    <Compile Include="Validaciones\ValidadorLista.cs" />
     <Compile Include="Validaciones\ValidadorMail.cs" />
     <Compile Include="Validaciones\ValidadorNumerico.cs" />
     <Compile Include="Validaciones\ValidadorString.cs" />
