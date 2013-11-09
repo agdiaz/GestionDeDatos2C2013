@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GestionCommon.Entidades
+namespace GestionCommon.Filtros
 {
-    public class Agenda : EntidadBase
+    public class FiltroAgenda
     {
         public decimal IdProfesional { get; set; }
         public DateTime FechaDesde { get; set; }

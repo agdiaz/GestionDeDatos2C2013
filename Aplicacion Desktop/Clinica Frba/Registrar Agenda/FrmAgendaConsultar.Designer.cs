@@ -1,4 +1,4 @@
-﻿namespace Clinica_Frba.Agenda
+﻿namespace Clinica_Frba.Agendas
 {
     partial class FrmAgendaConsultar
     {

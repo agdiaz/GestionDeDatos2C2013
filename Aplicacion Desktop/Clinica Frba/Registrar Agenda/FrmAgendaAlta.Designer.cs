@@ -1,4 +1,4 @@
-﻿namespace Clinica_Frba.Agenda
+﻿namespace Clinica_Frba.Agendas
 {
     partial class FrmAgendaAlta
     {
@@ -49,7 +49,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.listCronograma = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -175,7 +175,6 @@
             this.tbHorasSemanales.Name = "tbHorasSemanales";
             this.tbHorasSemanales.Size = new System.Drawing.Size(100, 20);
             this.tbHorasSemanales.TabIndex = 3;
-            this.tbHorasSemanales.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label4
             // 
@@ -269,14 +268,15 @@
             this.listCronograma.Size = new System.Drawing.Size(228, 147);
             this.listCronograma.TabIndex = 0;
             // 
-            // button2
+            // btnGuardar
             // 
-            this.button2.Location = new System.Drawing.Point(12, 449);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Guardar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnGuardar.Location = new System.Drawing.Point(12, 449);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 5;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // button3
             // 
@@ -303,7 +303,7 @@
             this.ClientSize = new System.Drawing.Size(701, 484);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmAgendaAlta";
@@ -334,7 +334,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ListBox listCronograma;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label7;

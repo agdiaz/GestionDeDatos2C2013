@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AfiliadoDomain.cs" />
+    <Compile Include="AgendaDomain.cs" />
     <Compile Include="EntidadBaseDomain.cs" />
     <Compile Include="EspecialidadDomain.cs" />
     <Compile Include="EstadisticaDomain.cs" />
