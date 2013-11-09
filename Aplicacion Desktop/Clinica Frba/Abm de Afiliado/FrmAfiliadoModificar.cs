@@ -107,7 +107,7 @@ namespace Clinica_Frba.Afiliados
                 this.cbEstadoCivil.SelectedItem = AfiliadoModificado.EstadoCivil;
                 this.cbSexo.SelectedItem = AfiliadoModificado.Sexo;
                 this.cbTipoDocumento.SelectedItem = AfiliadoModificado.TipoDocumento;
-
+                this.cbTipoDocumento.Enabled = false;
                 this.dpFechaNacimiento.Value = AfiliadoModificado.FechaNacimiento;
                 this.ndCantHijos.Visible = false;
             }
@@ -138,6 +138,21 @@ namespace Clinica_Frba.Afiliados
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             this.AccionAceptar();
+        }
+        protected override void AccionAceptar()
+        {
+            try
+            {
+                IResultado<Afiliado> resultado = _afiliadoDomain.Modificar(this.AfiliadoModificado);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<Afiliado>(resultado);
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
         }
         #endregion
 

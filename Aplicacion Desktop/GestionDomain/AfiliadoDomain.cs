@@ -57,5 +57,20 @@ namespace GestionDomain
             }
             return resultado;
         }
+
+        public IResultado<Afiliado> Modificar(Afiliado afiliado)
+        {
+            Resultado<Afiliado> resultado = new Resultado<Afiliado>();
+            try
+            {
+                resultado.Retorno = _domain.Modificar(afiliado);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+        }
     }
 }

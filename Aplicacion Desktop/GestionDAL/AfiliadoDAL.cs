@@ -91,6 +91,63 @@ namespace GestionDAL
         {
             IList<SqlParameter> parametros = new List<SqlParameter>();
 
+            SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
+            pId.Direction = System.Data.ParameterDirection.Output;
+            parametros.Add(pId);
+
+            SqlParameter pNroPrincipal = new SqlParameter("@p_nro_principal", System.Data.SqlDbType.Decimal, 18, "p_nro_principal");
+            pNroPrincipal.Value = entidad.NroPrincipal;
+            parametros.Add(pNroPrincipal);
+
+            SqlParameter pNroSecundario = new SqlParameter("@p_nro_secundario", System.Data.SqlDbType.Decimal, 18, "p_nro_secundario");
+            pNroSecundario.Value = entidad.NroSecundario;
+            parametros.Add(pNroSecundario);
+
+
+            SqlParameter pIdPlanMedico = new SqlParameter("@p_id_plan_medico", System.Data.SqlDbType.Decimal, 18, "p_id_plan_medico");
+            pIdPlanMedico.Value = entidad.IdPlanMedico;
+            parametros.Add(pIdPlanMedico);
+
+            SqlParameter pTipoDocumento = new SqlParameter("@p_tipo_documento", System.Data.SqlDbType.Int, 4, "p_tipo_documento");
+            pTipoDocumento.Value = entidad.TipoDocumento.Id;
+            parametros.Add(pTipoDocumento);
+
+            SqlParameter pDocumento = new SqlParameter("@p_documento", System.Data.SqlDbType.Decimal, 18, "p_documento");
+            pDocumento.Value = entidad.Documento;
+            parametros.Add(pDocumento);
+
+            SqlParameter pNombre = new SqlParameter("@p_nombre", System.Data.SqlDbType.VarChar, 255, "p_nombre");
+            pNombre.Value = entidad.Nombre;
+            parametros.Add(pNombre);
+
+            SqlParameter pApellido = new SqlParameter("@p_apellido", System.Data.SqlDbType.VarChar, 255, "p_apellido");
+            pApellido.Value = entidad.Apellido;
+            parametros.Add(pApellido);
+
+            SqlParameter pDireccion = new SqlParameter("@p_direccion", System.Data.SqlDbType.VarChar, 255, "p_direccion");
+            pDireccion.Value = entidad.Direccion;
+            parametros.Add(pDireccion);
+
+            SqlParameter pTelefono = new SqlParameter("@p_telefono", System.Data.SqlDbType.Decimal, 18, "p_telefono");
+            pTelefono.Value = entidad.Telefono;
+            parametros.Add(pTelefono);
+
+            SqlParameter pMail = new SqlParameter("@p_mail", System.Data.SqlDbType.VarChar, 255, "p_mail");
+            pMail.Value = entidad.Mail;
+            parametros.Add(pMail);
+
+            SqlParameter pFechaNacimiento = new SqlParameter("@p_fecha_nacimiento", System.Data.SqlDbType.DateTime, 8, "p_fecha_nacimiento");
+            pFechaNacimiento.Value = entidad.FechaNacimiento;
+            parametros.Add(pFechaNacimiento);
+
+            SqlParameter pSexo = new SqlParameter("@p_sexo", System.Data.SqlDbType.Int, 4, "p_sexo");
+            pSexo.Value = entidad.Sexo.Id;
+            parametros.Add(pSexo);
+
+            SqlParameter pEstadoCivil = new SqlParameter("@p_estado_civil", System.Data.SqlDbType.Int, 4, "p_estado_civil");
+            pEstadoCivil.Value = entidad.Sexo.Id;
+            parametros.Add(pEstadoCivil);
+
             return parametros;
         }
 

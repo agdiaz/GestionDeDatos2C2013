@@ -188,3 +188,60 @@ SELECT [id_afiliado]
   AND id_afiliado = @p_id
 END
 GO
+
+CREATE PROCEDURE [TOP_4].[sp_Afiliado_update]
+(	 @p_id numeric(18) output
+	,@p_nro_principal numeric(18)
+    ,@p_nro_secundario numeric(18,0)
+	,@p_id_plan_medico numeric(18,0)
+	,@p_tipo_documento int
+	,@p_documento numeric(18,0)
+	,@p_nombre varchar(255)
+	,@p_apellido varchar(255)
+	,@p_direccion varchar(255)
+	,@p_telefono numeric(18)
+	,@p_mail varchar(255)
+	,@p_fecha_nacimiento datetime
+	,@p_sexo int
+	,@p_estado_civil int
+)
+AS
+BEGIN
+	BEGIN TRAN
+	
+	BEGIN TRY
+		DECLARE @v_plan_anterior numeric(18) = (SELECT a.id_plan_medico FROM [TOP_4].Afiliado a WHERE a.id_afiliado = @p_id)
+		
+		--IF (@v_plan_anterior <> @p_id_plan_medico)
+			--INSERT INTO [TOP_4].Afiliado_Plan
+			--VALUES (@p_id, @v_plan_anterior)
+				
+		UPDATE [TOP_4].Afiliado
+		SET id_plan_medico = @p_id_plan_medico,
+			nombre = @p_nombre,
+			apellido = @p_apellido,
+			direccion = @p_direccion,
+			telefono = @p_telefono,
+			mail = @p_mail,
+			fecha_nacimiento = @p_fecha_nacimiento,
+			sexo = @p_sexo,
+			estado_civil = @p_estado_civil
+		COMMIT TRAN
+	END TRY
+	BEGIN CATCH
+	
+		ROLLBACK TRAN
+
+		DECLARE @ErrorMessage NVARCHAR(4000);
+	    DECLARE @ErrorSeverity INT;
+		DECLARE @ErrorState INT;
+
+		SELECT @ErrorMessage = ERROR_MESSAGE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE();
+
+		RAISERROR (@ErrorMessage, -- Message text.
+               @ErrorSeverity, -- Severity.
+               @ErrorState -- State.
+               );
+
+	END CATCH
+END

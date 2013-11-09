@@ -45,3 +45,4 @@ BEGIN
 	WHERE p.id_plan_medico = @p_id
 	AND p.habilitado = '1'
 END
+GO
