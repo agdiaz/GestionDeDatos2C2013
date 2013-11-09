@@ -1326,3 +1326,102 @@ INNER JOIN TOP_4.Bono_Consulta
 	ON TOP_4.Bono_Consulta.id_bono_consulta = gd_esquema.Maestra.Bono_Consulta_Numero
 WHERE gd_esquema.Maestra.Bono_Consulta_Numero IS NOT NULL
 AND gd_esquema.Maestra.Bono_Farmacia_Numero IS NOT NULL
+
+
+------------------------------------------------Bono_Farmacia--------------------------------------------------
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Bono_Farmacia]    Script Date: 11/07/2013 23:38:01 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [TOP_4].[Bono_Farmacia](
+	[id_bono_farmacia] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_compra] [numeric](18, 0) NOT NULL,
+	[id_plan_medico] [numeric](18, 0) NOT NULL,
+	[id_receta] [numeric](18, 0) NOT NULL,
+	[fecha_vencimiento] [datetime] NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Bono_Farmacia] PRIMARY KEY CLUSTERED 
+(
+	[id_bono_farmacia] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Bono_Farmacia]  WITH CHECK ADD  CONSTRAINT [FK_Bono_Farmacia_Compra] FOREIGN KEY([id_compra])
+REFERENCES [TOP_4].[Compra] ([id_compra])
+GO
+
+ALTER TABLE [TOP_4].[Bono_Farmacia] CHECK CONSTRAINT [FK_Bono_Farmacia_Compra]
+GO
+
+ALTER TABLE [TOP_4].[Bono_Farmacia]  WITH CHECK ADD  CONSTRAINT [FK_Bono_Farmacia_Plan_medico] FOREIGN KEY([id_plan_medico])
+REFERENCES [TOP_4].[Plan_medico] ([id_plan_medico])
+GO
+
+ALTER TABLE [TOP_4].[Bono_Farmacia] CHECK CONSTRAINT [FK_Bono_Farmacia_Plan_medico]
+GO
+
+ALTER TABLE [TOP_4].[Bono_Farmacia]  WITH CHECK ADD  CONSTRAINT [FK_Bono_Farmacia_Receta] FOREIGN KEY([id_receta])
+REFERENCES [TOP_4].[Receta] ([id_receta])
+GO
+
+ALTER TABLE [TOP_4].[Bono_Farmacia] CHECK CONSTRAINT [FK_Bono_Farmacia_Receta]
+GO
+
+ALTER TABLE [TOP_4].[Bono_Farmacia] ADD  CONSTRAINT [DF_Bono_Farmacia_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+
+--aca inserts en bono_farmacia y compras respectivas
+
+-----------------------------------------Plan_Historico_Afiliado--------------------------------------------------
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Plan_Historico_Afiliado]    Script Date: 11/09/2013 14:25:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [TOP_4].[Plan_Historico_Afiliado](
+	[id_plan_historico_afiliado] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_afiliado] [numeric](18, 0) NOT NULL,
+	[id_plan_medico] [numeric](18, 0) NOT NULL,
+	[fecha] [datetime] NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Plan_Historico_Afiliado] PRIMARY KEY CLUSTERED 
+(
+	[id_plan_historico_afiliado] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Plan_Historico_Afiliado]  WITH CHECK ADD  CONSTRAINT [FK_Plan_Historico_Afiliado_Afiliado] FOREIGN KEY([id_afiliado])
+REFERENCES [TOP_4].[Afiliado] ([id_afiliado])
+GO
+
+ALTER TABLE [TOP_4].[Plan_Historico_Afiliado] CHECK CONSTRAINT [FK_Plan_Historico_Afiliado_Afiliado]
+GO
+
+ALTER TABLE [TOP_4].[Plan_Historico_Afiliado]  WITH CHECK ADD  CONSTRAINT [FK_Plan_Historico_Afiliado_Plan_medico] FOREIGN KEY([id_plan_medico])
+REFERENCES [TOP_4].[Plan_medico] ([id_plan_medico])
+GO
+
+ALTER TABLE [TOP_4].[Plan_Historico_Afiliado] CHECK CONSTRAINT [FK_Plan_Historico_Afiliado_Plan_medico]
+GO
+
+ALTER TABLE [TOP_4].[Plan_Historico_Afiliado] ADD  CONSTRAINT [DF_Plan_Historico_Afiliado_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+
+

@@ -1,5 +1,7 @@
 USE [GD2C2013]
 
+DROP TABLE TOP_4.Plan_Historico_Afiliado
+DROP TABLE TOP_4.Bono_Farmacia
 DROP TABLE TOP_4.Bono_Consulta
 DROP TABLE TOP_4.Compra
 DROP TABLE TOP_4.Item_Receta
