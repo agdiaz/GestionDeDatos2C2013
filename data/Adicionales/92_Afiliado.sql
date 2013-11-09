@@ -226,6 +226,8 @@ BEGIN
 			fecha_nacimiento = @p_fecha_nacimiento,
 			sexo = @p_sexo,
 			estado_civil = @p_estado_civil
+		WHERE id_afiliado = @p_id
+		
 		COMMIT TRAN
 	END TRY
 	BEGIN CATCH
