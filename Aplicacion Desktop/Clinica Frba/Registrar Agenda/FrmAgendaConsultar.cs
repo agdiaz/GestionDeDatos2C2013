@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Clinica_Frba.Agenda
+namespace Clinica_Frba.Agendas
 {
     public partial class FrmAgendaConsultar : Form
     {

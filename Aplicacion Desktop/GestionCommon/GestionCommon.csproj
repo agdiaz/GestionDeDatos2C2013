@@ -77,6 +77,7 @@
     <Compile Include="Enums\IdentificacionUsuario.cs" />
     <Compile Include="Enums\TipoDocumento.cs" />
     <Compile Include="Filtros\FiltroAfiliado.cs" />
+    <Compile Include="Filtros\FiltroAgenda.cs" />
     <Compile Include="Filtros\FiltroEspecialidad.cs" />
     <Compile Include="Filtros\FiltroEstadistica.cs" />
     <Compile Include="Filtros\FiltroPlanMedico.cs" />

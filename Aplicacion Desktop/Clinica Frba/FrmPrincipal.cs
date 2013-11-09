@@ -20,7 +20,7 @@ using Clinica_Frba.ResultadosAtencion;
 using Clinica_Frba.Recetas;
 using Clinica_Frba.Profesionales;
 using Clinica_Frba.Especialidades;
-using Clinica_Frba.Agenda;
+using Clinica_Frba.Agendas;
 using Clinica_Frba.Planes;
 using Clinica_Frba.Cancelaciones;
 using GestionDomain;

@@ -13,14 +13,20 @@ using GestionCommon.Enums;
 using GestionGUIHelper.Helpers;
 using Clinica_Frba.Profesionales;
 using GestionCommon.Entidades;
+using GestionDomain;
+using GestionDomain.Resultados;
 
-namespace Clinica_Frba.Agenda
+namespace Clinica_Frba.Agendas
 {
     public partial class FrmAgendaAlta : FormularioBaseAlta
 
     {
+        private AgendaDomain _agendaDomain;
+
         public FrmAgendaAlta()
         {
+            _agendaDomain = new AgendaDomain(Program.ContextoActual.Logger);
+
             InitializeComponent();
         }
 
@@ -43,16 +49,6 @@ namespace Clinica_Frba.Agenda
             this.cbDia.DataSource = diasSemana.Todos;
             this.cbDia.DisplayMember = "Nombre";
             this.cbDia.ValueMember = "Id";
-        }
-
-        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void AgregarDia_Click(object sender, EventArgs e)
@@ -130,10 +126,58 @@ namespace Clinica_Frba.Agenda
             }
             if (profesional != null)
             {
-                tbProfesional.Text = profesional.Nombre;
+                tbProfesional.Text = profesional.NombreCompleto;
                 tbProfesional.Tag = profesional;
             }
         }
 
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Agenda nuevaAgenda = this.CrearAgenda();
+            IList<DiaAgenda> diasAgenda = this.obtenerCronograma();
+
+            try
+            {
+                IResultado<Agenda> resAgenda = _agendaDomain.Alta(nuevaAgenda, diasAgenda);
+
+                if (!resAgenda.Correcto)
+                    throw new ResultadoIncorrectoException<Agenda>(resAgenda);
+
+                MensajePorPantalla.MensajeInformativo(this, string.Format("Se dió de alta la agenda: (IdAgenda: {0})", nuevaAgenda.IdProfesional.ToString()));
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
+        }
+
+        private IList<DiaAgenda> obtenerCronograma()
+        {
+            IList<DiaAgenda> retorno = new List<DiaAgenda>();
+            DiaAgenda diaAgenda = new DiaAgenda();
+            foreach(var dia in this.listCronograma.Items)
+            {
+                DiaSemana diaSemana = dia as DiaSemana;
+                diaAgenda.NroDiaSemana = diaSemana.Id;
+                diaAgenda.NombreDiaSemana = diaSemana.Nombre;
+                diaAgenda.HoraDesde = diaSemana.HoraDesde.Hour;
+                diaAgenda.HoraHasta = diaSemana.HoraHasta.Hour;
+                retorno.Add(diaAgenda);
+            }
+            return retorno;
+        }
+
+        private Agenda CrearAgenda()
+        {
+            Agenda nuevaAgenda = new Agenda();
+            Profesional profesional = tbProfesional.Tag as Profesional;
+
+            nuevaAgenda.IdProfesional = profesional.IdProfesional;
+            nuevaAgenda.FechaDesde = dpFechaDesde.Value;
+            nuevaAgenda.FechaHasta = dpFechaHasta.Value;
+
+            return nuevaAgenda;
+        }
     }
 }
