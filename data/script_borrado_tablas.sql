@@ -1,5 +1,7 @@
 USE [GD2C2013]
 
+DROP TABLE TOP_4.Cancelacion
+DROP TABLE TOP_4.Tipo_Cancelacion
 DROP TABLE TOP_4.Plan_Historico_Afiliado
 DROP TABLE TOP_4.Bono_Farmacia
 DROP TABLE TOP_4.Bono_Consulta

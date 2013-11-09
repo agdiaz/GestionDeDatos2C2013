@@ -1385,7 +1385,6 @@ GO
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Plan_Historico_Afiliado]    Script Date: 11/09/2013 14:25:34 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -1421,6 +1420,92 @@ ALTER TABLE [TOP_4].[Plan_Historico_Afiliado] CHECK CONSTRAINT [FK_Plan_Historic
 GO
 
 ALTER TABLE [TOP_4].[Plan_Historico_Afiliado] ADD  CONSTRAINT [DF_Plan_Historico_Afiliado_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+
+
+------------------------------------------------------Tipo_Cancelacion-----------------------------------------------------
+
+USE [GD2C2013]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [TOP_4].[Tipo_Cancelacion](
+	[id_tipo_cancelacion] [numeric](18, 0) NOT NULL,
+	[nombre_tipo_cancelacion] [varchar](255) NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Tipo_Cancelacion] PRIMARY KEY CLUSTERED 
+(
+	[id_tipo_cancelacion] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [TOP_4].[Tipo_Cancelacion] ADD  CONSTRAINT [DF_Tipo_Cancelacion_habilitado]  DEFAULT ((1)) FOR [habilitado]
+GO
+
+
+
+
+-------------------------------------------------------Cancelacion----------------------------------------------------------------
+USE [GD2C2013]
+GO
+
+/****** Object:  Table [TOP_4].[Cancelacion]    Script Date: 11/09/2013 14:40:23 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [TOP_4].[Cancelacion](
+	[id_cancelacion] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_tipo_cancelacion] [numeric](18, 0) NOT NULL,
+	[id_turno] [numeric](18, 0) NOT NULL,
+	[fecha] [datetime] NOT NULL,
+	[motivo] [varchar](255) NOT NULL,
+	[habilitado] [bit] NOT NULL,
+ CONSTRAINT [PK_Cancelacion] PRIMARY KEY CLUSTERED 
+(
+	[id_cancelacion] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [TOP_4].[Cancelacion]  WITH CHECK ADD  CONSTRAINT [FK_Cancelacion_Tipo_Cancelacion] FOREIGN KEY([id_tipo_cancelacion])
+REFERENCES [TOP_4].[Tipo_Cancelacion] ([id_tipo_cancelacion])
+GO
+
+ALTER TABLE [TOP_4].[Cancelacion] CHECK CONSTRAINT [FK_Cancelacion_Tipo_Cancelacion]
+GO
+
+ALTER TABLE [TOP_4].[Cancelacion]  WITH CHECK ADD  CONSTRAINT [FK_Cancelacion_Turno] FOREIGN KEY([id_turno])
+REFERENCES [TOP_4].[Turno] ([id_turno])
+GO
+
+ALTER TABLE [TOP_4].[Cancelacion] CHECK CONSTRAINT [FK_Cancelacion_Turno]
+GO
+
+ALTER TABLE [TOP_4].[Cancelacion] ADD  CONSTRAINT [DF_Cancelacion_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
 
 
