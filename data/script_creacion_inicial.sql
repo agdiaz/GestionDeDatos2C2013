@@ -1345,6 +1345,7 @@ CREATE TABLE [TOP_4].[Bono_Farmacia](
 	[id_plan_medico] [numeric](18, 0) NOT NULL,
 	[id_receta] [numeric](18, 0) NOT NULL,
 	[fecha_vencimiento] [datetime] NOT NULL,
+	[fecha_impresion] [datetime] NOT NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Bono_Farmacia] PRIMARY KEY CLUSTERED 
 (
