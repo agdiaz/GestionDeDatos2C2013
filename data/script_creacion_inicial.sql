@@ -1380,7 +1380,65 @@ ALTER TABLE [TOP_4].[Bono_Farmacia] ADD  CONSTRAINT [DF_Bono_Farmacia_habilitado
 GO
 
 
---aca inserts en bono_farmacia y compras respectivas
+CREATE TABLE #tmpBonosFarmacia(
+	id_bono_farmacia NUMERIC(18,0),
+	id_plan_medico NUMERIC(18,0),
+	id_compra NUMERIC(18,0) IDENTITY(1,1),
+	fecha_compra datetime,
+	fecha_impresion datetime,
+	fecha_vencimiento datetime,
+	id_turno NUMERIC(18,0),
+	dni	NUMERIC(18,0)
+)
+
+--Obtengo todos los bonos farmacia
+INSERT INTO #tmpBonosFarmacia
+(id_bono_farmacia, id_plan_medico, fecha_compra, fecha_impresion, fecha_vencimiento, dni)
+(
+	SELECT m.Bono_Farmacia_Numero, m.Plan_Med_Codigo, m.Compra_Bono_Fecha, m.Bono_Farmacia_Fecha_Impresion, m.Bono_Farmacia_Fecha_Vencimiento, m.Paciente_Dni
+	FROM gd_esquema.Maestra m
+	WHERE m.Bono_Farmacia_Numero IS NOT NULL
+	AND m.Compra_Bono_Fecha IS NOT NULL 
+)
+--Seteo los turnos en los que fueron utilizados
+UPDATE #tmpBonosFarmacia
+SET #tmpBonosFarmacia.id_turno = gd_esquema.Maestra.Turno_Numero
+FROM gd_esquema.Maestra
+WHERE gd_esquema.Maestra.Bono_Farmacia_Numero = #tmpBonosFarmacia.id_bono_farmacia
+AND gd_esquema.Maestra.Bono_Farmacia_Numero IS NOT NULL
+AND gd_esquema.Maestra.Compra_Bono_Fecha IS NULL
+
+--Inserto primero las compras de los bonos farmacia:
+
+DECLARE @ultimaIdentCompra NUMERIC(18,0)
+SET @ultimaIdentCompra = IDENT_CURRENT('TOP_4.Compra')
+
+SET IDENTITY_INSERT TOP_4.Compra ON
+INSERT INTO TOP_4.Compra (id_compra, id_afiliado, fecha_compra)
+(
+	SELECT (tbf.id_compra + @ultimaIdentCompra ), a.id_afiliado, tbf.fecha_compra
+	FROM #tmpBonosFarmacia tbf
+	INNER JOIN TOP_4.Afiliado a
+	ON a.documento = tbf.dni
+)
+SET IDENTITY_INSERT TOP_4.Compra OFF
+
+--Joineo, inserto y soy feliz porque esta es la ultima tabla de la migracion
+SET IDENTITY_INSERT TOP_4.Bono_Farmacia ON
+INSERT INTO TOP_4.Bono_Farmacia
+(id_bono_farmacia, id_compra, id_plan_medico, id_receta, fecha_vencimiento, fecha_impresion)
+(
+	SELECT tbf.id_bono_farmacia, (tbf.id_compra + @ultimaIdentCompra) as id_compra, tbf.id_plan_medico,
+		r.id_receta, tbf.fecha_vencimiento, tbf.fecha_impresion
+	FROM #tmpBonosFarmacia tbf
+	INNER JOIN TOP_4.Resultado_Turno rt
+		ON rt.id_turno = tbf.id_turno
+	INNER JOIN TOP_4.Receta r
+		ON r.id_resultado_turno = rt.id_resultado_turno
+)
+SET IDENTITY_INSERT TOP_4.Bono_Farmacia OFF
+
+DROP TABLE #tmpBonosFarmacia
 
 -----------------------------------------Plan_Historico_Afiliado--------------------------------------------------
 USE [GD2C2013]
