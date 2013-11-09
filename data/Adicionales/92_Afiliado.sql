@@ -227,7 +227,7 @@ BEGIN
 			sexo = @p_sexo,
 			estado_civil = @p_estado_civil
 		WHERE id_afiliado = @p_id
-		
+		AND habilitado = '1'
 		COMMIT TRAN
 	END TRY
 	BEGIN CATCH
