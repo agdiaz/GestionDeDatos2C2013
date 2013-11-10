@@ -144,7 +144,7 @@ namespace Clinica_Frba.Afiliados
             Afiliado modificado = this.ObtenerAfiliado();
             try
             {
-                IResultado<Afiliado> resultado = _afiliadoDomain.Modificar(this.AfiliadoModificado);
+                IResultado<Afiliado> resultado = _afiliadoDomain.Modificar(modificado);
                 if (!resultado.Correcto)
                     throw new ResultadoIncorrectoException<Afiliado>(resultado);
 
@@ -159,6 +159,8 @@ namespace Clinica_Frba.Afiliados
         private Afiliado ObtenerAfiliado()
         {
             Afiliado afiliado = new Afiliado();
+            
+            afiliado.IdAfiliado = this.AfiliadoModificado.IdAfiliado;
             afiliado.Apellido = tbApellido.Text;
             afiliado.Direccion = tbDireccion.Text;
             afiliado.EstadoCivil = (EstadoCivil)cbEstadoCivil.SelectedItem;
@@ -170,6 +172,9 @@ namespace Clinica_Frba.Afiliados
             afiliado.NroSecundario = AfiliadoModificado.NroSecundario;
             afiliado.Sexo = (Sexo)cbSexo.SelectedItem;
             afiliado.Telefono = Convert.ToDecimal(tbTelefono.Text);
+            afiliado.TipoDocumento = (TipoDocumento)cbTipoDocumento.SelectedItem;
+            afiliado.Documento = Convert.ToDecimal(tbNroDocumento.Text);
+            
             return afiliado;
         }
         #endregion
