@@ -54,7 +54,7 @@ END
 GO
 
 -----------------------------------------------------
-ALTER PROCEDURE [TOP_4].[sp_Afiliado_insert](
+CREATE PROCEDURE [TOP_4].[sp_Afiliado_insert](
 	 @p_id numeric(18) output
 	,@p_nro_principal numeric(18)
     ,@p_nro_secundario numeric(18,0)
@@ -204,6 +204,7 @@ CREATE PROCEDURE [TOP_4].[sp_Afiliado_update]
 	,@p_fecha_nacimiento datetime
 	,@p_sexo int
 	,@p_estado_civil int
+	,@p_fecha_hoy datetime
 )
 AS
 BEGIN
@@ -212,9 +213,9 @@ BEGIN
 	BEGIN TRY
 		DECLARE @v_plan_anterior numeric(18) = (SELECT a.id_plan_medico FROM [TOP_4].Afiliado a WHERE a.id_afiliado = @p_id)
 		
-		--IF (@v_plan_anterior <> @p_id_plan_medico)
-			--INSERT INTO [TOP_4].Afiliado_Plan
-			--VALUES (@p_id, @v_plan_anterior)
+		IF (@v_plan_anterior <> @p_id_plan_medico)
+			INSERT INTO [TOP_4].Plan_Historico_Afiliado (id_afiliado, id_plan_medico, fecha, habilitado)
+			VALUES (@p_id, @v_plan_anterior, @p_fecha_hoy, '1')
 				
 		UPDATE [TOP_4].Afiliado
 		SET id_plan_medico = @p_id_plan_medico,

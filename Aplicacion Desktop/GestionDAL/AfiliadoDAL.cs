@@ -148,6 +148,10 @@ namespace GestionDAL
             pEstadoCivil.Value = entidad.Sexo.Id;
             parametros.Add(pEstadoCivil);
 
+            SqlParameter pFechaHoy = new SqlParameter("@p_fecha_hoy", System.Data.SqlDbType.DateTime, 8, "p_fecha_hoy");
+            pFechaNacimiento.Value = FechaHelper.Ahora();
+            parametros.Add(pFechaNacimiento);
+
             return parametros;
         }
 
