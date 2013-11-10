@@ -7,6 +7,7 @@ namespace GestionCommon.Entidades
 {
     public class Turno
     {
+        public DateTime Fecha { get; set; }
         public decimal IdTurno { get; set; }
         public decimal IdProfesional { get; set; }
         public decimal IdAfiliado { get; set; }

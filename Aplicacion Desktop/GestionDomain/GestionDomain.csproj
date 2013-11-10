@@ -61,6 +61,7 @@
     <Compile Include="Resultados\ResultadoIncorrectoException.cs" />
     <Compile Include="RolDomain.cs" />
     <Compile Include="TipoEspecialidadDomain.cs" />
+    <Compile Include="TurnoDomain.cs" />
     <Compile Include="UsuarioDomain.cs" />
   </ItemGroup>
   <ItemGroup>
