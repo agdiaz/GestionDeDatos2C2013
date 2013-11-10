@@ -78,6 +78,7 @@
     <Compile Include="Enums\TipoDocumento.cs" />
     <Compile Include="Filtros\FiltroAfiliado.cs" />
     <Compile Include="Filtros\FiltroAgenda.cs" />
+    <Compile Include="Filtros\FiltroDiaAgenda.cs" />
     <Compile Include="Filtros\FiltroEspecialidad.cs" />
     <Compile Include="Filtros\FiltroEstadistica.cs" />
     <Compile Include="Filtros\FiltroPlanMedico.cs" />

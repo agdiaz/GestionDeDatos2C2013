@@ -13,7 +13,7 @@ namespace GestionDAL.Builder
         public DiaAgenda Build(System.Data.DataRow row)
         {
             DiaAgenda diaAgenda = new DiaAgenda();
-            diaAgenda.IdDiaAgenda = Convert.ToDecimal(row["id_dia_agenda"]);
+            diaAgenda.Id = Convert.ToDecimal(row["id_dia_agenda"]);
             diaAgenda.NroDiaSemana = Convert.ToDecimal(row["nro_dia_semana"]);
             diaAgenda.NombreDiaSemana = Convert.ToString(row["nombre_dia_semana"]);
             diaAgenda.HoraDesde = Convert.ToInt32(row["hora_desde"]);

@@ -14,11 +14,13 @@ namespace GestionDomain
     public class AgendaDomain
     {
         private AgendaDAL _dal;
+        private DiaAgendaDAL _dalDiaAgenda;
         private EntidadBaseDomain<Agenda, FiltroAgenda> _domain;
 
         public AgendaDomain(ILog log)
         {
             _dal = new AgendaDAL(log);
+            _dalDiaAgenda = new DiaAgendaDAL(log);
             _domain = new EntidadBaseDomain<Agenda, FiltroAgenda>(_dal);
         }
 
@@ -39,7 +41,8 @@ namespace GestionDomain
 
                 foreach (DiaAgenda diaAgenda in diasAgenda)
                 {
-                    _dal.AsociarDiaAAgenda(nuevaAgenda.Id, diaAgenda.IdDiaAgenda);
+                    decimal idDia = _dalDiaAgenda.Crear(diaAgenda);
+                    _dal.AsociarDiaAAgenda(nuevaAgenda.Id, diaAgenda.Id);
                 }
 
                 resultado.Retorno = nuevaAgenda;
