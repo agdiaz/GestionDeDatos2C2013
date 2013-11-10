@@ -65,7 +65,8 @@ namespace GestionCommon.Entidades
 
     public class TopAfiliadosConBonosSinComprarPorEllos : Estadistica
     {
-        public decimal IdAfiliado { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public int BonosUtilizados { get; set; }
 
         public TopAfiliadosConBonosSinComprarPorEllos()

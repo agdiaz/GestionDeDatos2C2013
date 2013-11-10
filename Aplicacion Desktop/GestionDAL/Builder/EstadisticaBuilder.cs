@@ -76,7 +76,8 @@ namespace GestionDAL.Builder
         public TopAfiliadosConBonosSinComprarPorEllos Build(System.Data.DataRow row)
         {
             TopAfiliadosConBonosSinComprarPorEllos topAfiliadosConBonosSinComprarPorEllos = new TopAfiliadosConBonosSinComprarPorEllos();
-            topAfiliadosConBonosSinComprarPorEllos.IdAfiliado = Convert.ToDecimal(row["id_afiliado"].ToString());
+            topAfiliadosConBonosSinComprarPorEllos.Nombre = row["nombre"].ToString();
+            topAfiliadosConBonosSinComprarPorEllos.Apellido = row["apellido"].ToString();
             topAfiliadosConBonosSinComprarPorEllos.BonosUtilizados = Convert.ToInt32(row["bonos_utilizados"].ToString());
             return topAfiliadosConBonosSinComprarPorEllos;
         }
