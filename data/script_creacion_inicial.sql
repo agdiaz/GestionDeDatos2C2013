@@ -61,7 +61,7 @@ GO
 
 CREATE TABLE [TOP_4].[Usuario](
 	[id_usuario] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[username] [varchar](255) NOT NULL,
+	[username] [varchar](255) NOT NULL UNIQUE,
 	[password] [varbinary](32) NOT NULL,
 	[cant_intentos_fallidos] int NOT NULL,
 	[habilitado] [bit] NOT NULL,
@@ -489,6 +489,14 @@ INSERT INTO [TOP_4].Usuario_Rol
 
 DROP TABLE #TmpProfesional
 GO
+
+CREATE NONCLUSTERED INDEX [indice_id_usuario] ON [TOP_4].[Profesional]
+(
+	[id_usuario] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
+
 ------------------------------------Tipo_especialidad---------------------------------------------
 
 USE [GD2C2013]
@@ -791,6 +799,7 @@ GO
 ALTER TABLE [TOP_4].[Afiliado] ADD  CONSTRAINT [DF_Afiliado_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
 
+ALTER TABLE [TOP_4].[Afiliado] ADD CONSTRAINT [Unique_documento] UNIQUE (tipo_documento, documento)
 
 --Primero inserto los usuarios con grupos familiares
 
@@ -932,7 +941,21 @@ INSERT INTO TOP_4.Afiliado
 DROP TABLE #nrosPrinc
 DROP TABLE #TmpPacientesGruposAntes
 DROP TABLE #TmpPacientesGruposDespues
+
 GO
+CREATE NONCLUSTERED INDEX [Afiliado_id_usuario] ON [TOP_4].[Afiliado]
+(
+	[id_usuario] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
+CREATE NONCLUSTERED INDEX [indice_id_usuario] ON [TOP_4].[Afiliado]
+(
+	[documento] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
+
 ----------------------------------------------TURNO-------------------------------------------------
 
 USE [GD2C2013]
@@ -994,12 +1017,18 @@ INSERT INTO TOP_4.Turno
 )
 SET IDENTITY_INSERT TOP_4.Turno OFF
 GO
-------------------------------------MEDICAMENTO-----------------------------------------
+
+CREATE NONCLUSTERED INDEX [indice_id_profesional] ON [TOP_4].[Turno]
+(
+	[id_profesional] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
+--------------------------------------------MEDICAMENTO----------------------------------------------
 
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Medicamento]    Script Date: 11/03/2013 17:45:15 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -1087,6 +1116,15 @@ INSERT INTO TOP_4.Resultado_Turno
 	FROM gd_esquema.Maestra m
 	WHERE Consulta_Enfermedades IS NOT NULL
 )
+
+GO
+CREATE NONCLUSTERED INDEX [Resultado_id_turno] ON [TOP_4].[Resultado_Turno]
+(
+	[id_turno] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
+
 -----------------------------------------RECETA------------------------------------------
 
 
@@ -1327,6 +1365,13 @@ INNER JOIN TOP_4.Bono_Consulta
 WHERE gd_esquema.Maestra.Bono_Consulta_Numero IS NOT NULL
 AND gd_esquema.Maestra.Bono_Farmacia_Numero IS NOT NULL
 
+GO
+CREATE NONCLUSTERED INDEX [indice_bono_consulta_id_compra] ON [TOP_4].[Bono_Consulta]
+(
+	[id_compra] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
 
 ------------------------------------------------Bono_Farmacia--------------------------------------------------
 USE [GD2C2013]
@@ -1440,6 +1485,19 @@ SET IDENTITY_INSERT TOP_4.Bono_Farmacia OFF
 
 DROP TABLE #tmpBonosFarmacia
 
+CREATE NONCLUSTERED INDEX [indice_bono_farmacia_id_compra] ON [TOP_4].[Bono_Farmacia]
+(
+	[id_compra] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
+--Creo este indice aqui por performance; ya se han ingresado los datos
+CREATE NONCLUSTERED INDEX [compra_id_afiliado] ON [TOP_4].[Compra]
+(
+	[id_afiliado] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
 -----------------------------------------Plan_Historico_Afiliado--------------------------------------------------
 USE [GD2C2013]
 GO
@@ -1517,11 +1575,35 @@ GO
 
 INSERT INTO TOP_4.Tipo_Cancelacion
 (nombre_tipo_cancelacion)
-VALUES ('Cancelado por el paciente')
+VALUES ('Sin justificacion')
 
 INSERT INTO TOP_4.Tipo_Cancelacion
 (nombre_tipo_cancelacion)
-VALUES ('Cancelado por el medico')
+VALUES ('Tramite personal')
+
+INSERT INTO TOP_4.Tipo_Cancelacion
+(nombre_tipo_cancelacion)
+VALUES ('Fallecimiento')
+
+INSERT INTO TOP_4.Tipo_Cancelacion
+(nombre_tipo_cancelacion)
+VALUES ('Problemas de salud')
+
+INSERT INTO TOP_4.Tipo_Cancelacion
+(nombre_tipo_cancelacion)
+VALUES ('Conflicto gremial')
+
+INSERT INTO TOP_4.Tipo_Cancelacion
+(nombre_tipo_cancelacion)
+VALUES ('Exorcismo')
+
+INSERT INTO TOP_4.Tipo_Cancelacion
+(nombre_tipo_cancelacion)
+VALUES ('Combustión espontánea')
+
+INSERT INTO TOP_4.Tipo_Cancelacion
+(nombre_tipo_cancelacion)
+VALUES ('Otro')
 
 
 -------------------------------------------------------Cancelacion----------------------------------------------------------------
@@ -1543,6 +1625,7 @@ CREATE TABLE [TOP_4].[Cancelacion](
 	[id_tipo_cancelacion] [numeric](18, 0) NOT NULL,
 	[id_turno] [numeric](18, 0) NOT NULL,
 	[fecha] [datetime] NOT NULL,
+	[cancelado_por] [char] NOT NULL,
 	[motivo] [varchar](255) NOT NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Cancelacion] PRIMARY KEY CLUSTERED 
@@ -1572,6 +1655,8 @@ GO
 
 ALTER TABLE [TOP_4].[Cancelacion] ADD  CONSTRAINT [DF_Cancelacion_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
+
+ALTER TABLE [TOP_4].[Cancelacion] ADD CONSTRAINT [Cancelacion_cancelado_por] CHECK ([cancelado_por] IN ('P','A'))
 
 
 
