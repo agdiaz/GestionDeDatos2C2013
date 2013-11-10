@@ -11,6 +11,9 @@ using Clinica_Frba.Afiliados;
 using GestionCommon.Enums;
 using Clinica_Frba.Profesionales;
 using GestionCommon.Helpers;
+using GestionGUIHelper.Helpers;
+using GestionDomain.Resultados;
+using GestionDomain;
 
 namespace Clinica_Frba.PedidosDeTurno
 {
@@ -19,9 +22,12 @@ namespace Clinica_Frba.PedidosDeTurno
         private Afiliado _afiliado;
         private Profesional _profesional;
         private DateTime _fechaSeleccionado;
-        
+
+        private TurnoDomain _domain;
+
         public FrmPedidoDeTurno()
         {
+            _domain = new TurnoDomain(Program.ContextoActual.Logger);
             _fechaSeleccionado = FechaHelper.Ahora();
             InitializeComponent();
         }
@@ -43,6 +49,8 @@ namespace Clinica_Frba.PedidosDeTurno
         {
             this._afiliado = afiliado;
             this.tbAfiliado.Text = afiliado.NombreCompleto;
+            this.gbBusquedaProfesional.Enabled = true;
+            this.btnBuscarAfiliado.Enabled = false;
         }
         #endregion 
         
@@ -63,6 +71,8 @@ namespace Clinica_Frba.PedidosDeTurno
         {
             this._profesional = profesional;
             this.tbProfesional.Text = profesional.NombreCompleto;
+            this.btnFiltrar.Enabled = true;
+            this.btnBuscarProfesional.Enabled = false;
         }
         #endregion
 
@@ -86,7 +96,7 @@ namespace Clinica_Frba.PedidosDeTurno
         #region [Filtrar]
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-
+            this.btnAceptar.Enabled = true;
         }
         #endregion
 
@@ -97,7 +107,18 @@ namespace Clinica_Frba.PedidosDeTurno
             t.IdProfesional = _profesional.IdProfesional;
             t.Fecha = _fechaSeleccionado;
 
-            
+            try
+            {
+                IResultado<bool> resultado = _domain.RegistrarTurno(t);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<bool>(resultado);
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
         }
 
     }

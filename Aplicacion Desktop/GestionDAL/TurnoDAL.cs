@@ -7,6 +7,7 @@ using GestionCommon.Filtros;
 using GestionConector;
 using GestionDAL.Builder;
 using GestionCommon.Helpers;
+using System.Data.SqlClient;
 
 namespace GestionDAL
 {
@@ -28,9 +29,27 @@ namespace GestionDAL
             throw new NotImplementedException();
         }
 
-        protected override IList<System.Data.SqlClient.SqlParameter> GenerarParametrosCrear(Turno entidad)
+        protected override IList<SqlParameter> GenerarParametrosCrear(Turno entidad)
         {
-            throw new NotImplementedException();
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pId= new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
+            pId.Direction = System.Data.ParameterDirection.Output;
+            parametros.Add(pId);
+
+            SqlParameter pIdAfiliado = new SqlParameter("@p_id_afiliado", System.Data.SqlDbType.Decimal, 18, "p_id_afiliado");
+            pIdAfiliado.Value = entidad.IdAfiliado;
+            parametros.Add(pIdAfiliado);
+
+            SqlParameter pIdProfesional = new SqlParameter("@p_id_profesional", System.Data.SqlDbType.Decimal, 18, "p_id_profesional");
+            pIdProfesional.Value = entidad.IdProfesional;
+            parametros.Add(pIdProfesional);
+
+            SqlParameter pFechaTurno = new SqlParameter("@p_fecha_turno", System.Data.SqlDbType.DateTime, 8, "p_fecha_turno");
+            pFechaTurno.Value = entidad.Fecha;
+            parametros.Add(pFechaTurno);
+
+            return parametros;
         }
     }
 }

@@ -12,9 +12,13 @@ namespace GestionDomain
     public class CompraDomain
     {
         private CompraDAL _dal;
+        private BonoConsultaDAL _bonoConsultaDal;
+        private BonoFarmaciaDAL _bonoFarmaciaDal;
 
         public CompraDomain(ILog logger)
         {
+            _bonoConsultaDal = new BonoConsultaDAL(logger);
+            _bonoFarmaciaDal = new BonoFarmaciaDAL(logger);
             _dal = new CompraDAL(logger);
         }
 
@@ -48,6 +52,53 @@ namespace GestionDomain
             }
 
             return resultado;
+        }
+
+        public IResultado<BonoConsulta> ObtenerBonoConsulta(decimal p)
+        {
+            Resultado<BonoConsulta> resultado = new Resultado<BonoConsulta>();
+            try
+            {
+                resultado.Retorno = _bonoConsultaDal.Obtener(p);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add("No se ha encontrado el bono");
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+        }
+
+        public IResultado<BonoFarmacia> ObtenerBonoFarmacia(decimal p)
+        {
+            Resultado<BonoFarmacia> resultado = new Resultado<BonoFarmacia>();
+            try
+            {
+                resultado.Retorno = null;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+
+        }
+
+        public IResultado<bool> RegistrarLlegada(decimal idBono, decimal idTurno, DateTime fecha)
+        {
+            Resultado<bool> resultado = new Resultado<bool>();
+            try
+            {
+                resultado.Retorno = _bonoConsultaDal.RegistrarLlegada(idBono, idTurno, fecha);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;            
         }
     }
 }

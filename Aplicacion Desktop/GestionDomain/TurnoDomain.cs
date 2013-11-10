@@ -6,6 +6,7 @@ using GestionDAL;
 using GestionCommon.Entidades;
 using GestionCommon.Filtros;
 using GestionCommon.Helpers;
+using GestionDomain.Resultados;
 
 namespace GestionDomain
 {
@@ -18,6 +19,23 @@ namespace GestionDomain
         {
             _dal = new TurnoDAL(log);
             _domain = new EntidadBaseDomain<Turno, FiltroTurno>(_dal);
+        }
+
+        public IResultado<bool> RegistrarTurno(Turno t)
+        {
+            Resultado<bool> resultado = new Resultado<bool>();
+            try
+            {
+                _dal.Crear(t);
+                resultado.Retorno = true;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
         }
     }
 }

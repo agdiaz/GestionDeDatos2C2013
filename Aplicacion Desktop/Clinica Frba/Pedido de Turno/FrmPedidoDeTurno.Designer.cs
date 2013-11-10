@@ -63,6 +63,7 @@
             this.gbBusquedaProfesional.Controls.Add(this.btnBuscarProfesional);
             this.gbBusquedaProfesional.Controls.Add(this.tbProfesional);
             this.gbBusquedaProfesional.Controls.Add(this.label1);
+            this.gbBusquedaProfesional.Enabled = false;
             this.gbBusquedaProfesional.Location = new System.Drawing.Point(12, 65);
             this.gbBusquedaProfesional.Name = "gbBusquedaProfesional";
             this.gbBusquedaProfesional.Size = new System.Drawing.Size(689, 408);
@@ -72,6 +73,7 @@
             // 
             // btnFiltrar
             // 
+            this.btnFiltrar.Enabled = false;
             this.btnFiltrar.Location = new System.Drawing.Point(227, 89);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
@@ -90,6 +92,7 @@
             // 
             // btnAceptar
             // 
+            this.btnAceptar.Enabled = false;
             this.btnAceptar.Location = new System.Drawing.Point(9, 379);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(102, 23);

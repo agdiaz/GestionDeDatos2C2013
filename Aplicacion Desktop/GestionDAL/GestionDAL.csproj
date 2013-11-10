@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="AfiliadoDAL.cs" />
     <Compile Include="AgendaDAL.cs" />
+    <Compile Include="BonoConsultaDAL.cs" />
+    <Compile Include="BonoFarmaciaDAL.cs" />
     <Compile Include="Builder\AfiliadoBuilder.cs" />
     <Compile Include="Builder\AfiliadoCambioBuilder.cs" />
     <Compile Include="Builder\AgendaBuilder.cs" />
