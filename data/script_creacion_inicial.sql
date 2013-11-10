@@ -1247,6 +1247,7 @@ CREATE TABLE [TOP_4].[Compra](
 	[id_compra] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[id_afiliado] [numeric](18, 0) NOT NULL,
 	[fecha_compra] [datetime] NOT NULL,
+	[costo] [numeric](18,0) NOT NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Compra] PRIMARY KEY CLUSTERED 
 (
@@ -1339,10 +1340,12 @@ INSERT INTO #tmpBonoConsulta (id_afiliado, id_plan_medico, fecha_compra, fecha_i
 )
 
 SET IDENTITY_INSERT TOP_4.Compra ON
-INSERT INTO TOP_4.Compra (id_compra, id_afiliado, fecha_compra)
+INSERT INTO TOP_4.Compra (id_compra, id_afiliado, fecha_compra, costo)
 (
-	SELECT id_compra, id_afiliado, fecha_compra
-	FROM #tmpBonoConsulta
+	SELECT tbc.id_compra, tbc.id_afiliado, tbc.fecha_compra, pl.precio_bono_consulta
+	FROM #tmpBonoConsulta tbc
+	INNER JOIN TOP_4.Plan_medico pl
+		ON pl.id_plan_medico = tbc.id_plan_medico
 )
 SET IDENTITY_INSERT TOP_4.Compra OFF
 
@@ -1458,12 +1461,14 @@ DECLARE @ultimaIdentCompra NUMERIC(18,0)
 SET @ultimaIdentCompra = IDENT_CURRENT('TOP_4.Compra')
 
 SET IDENTITY_INSERT TOP_4.Compra ON
-INSERT INTO TOP_4.Compra (id_compra, id_afiliado, fecha_compra)
+INSERT INTO TOP_4.Compra (id_compra, id_afiliado, fecha_compra, costo)
 (
-	SELECT (tbf.id_compra + @ultimaIdentCompra ), a.id_afiliado, tbf.fecha_compra
+	SELECT (tbf.id_compra + @ultimaIdentCompra ), a.id_afiliado, tbf.fecha_compra, pm.precio_bono_farmacia
 	FROM #tmpBonosFarmacia tbf
 	INNER JOIN TOP_4.Afiliado a
-	ON a.documento = tbf.dni
+		ON a.documento = tbf.dni
+	INNER JOIN TOP_4.Plan_medico pm
+		ON tbf.id_plan_medico = pm.id_plan_medico
 )
 SET IDENTITY_INSERT TOP_4.Compra OFF
 
