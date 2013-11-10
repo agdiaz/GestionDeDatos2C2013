@@ -113,7 +113,7 @@ CREATE PROCEDURE [TOP_4].[sp_topespecialidadesbonosfarmaciarecetados]
 	)
 AS
 BEGIN
-	SELECT TOP 5 esp.nombre, COUNT(*) as cantidadCancelaciones
+	SELECT TOP 5 esp.nombre as especialidad, COUNT(*) as bonos_farmacia_recetados
 	FROM TOP_4.Especialidad esp
 	INNER JOIN TOP_4.Profesional_Especialidad pe
 		ON pe.id_especialidad = esp.id_especialidad
@@ -129,7 +129,7 @@ BEGIN
 		ON bf.id_receta = rec.id_receta
 	WHERE bf.fecha_impresion BETWEEN @p_desde AND @p_fin
 	GROUP BY esp.id_especialidad, esp.nombre
-	ORDER BY cantidadCancelaciones DESC
+	ORDER BY bonos_farmacia_recetados DESC
 END
 
 GO

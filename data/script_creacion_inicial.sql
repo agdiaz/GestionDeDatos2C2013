@@ -10,7 +10,7 @@ GO
 
 USE [GD2C2013]
 GO
-/****** Object:  Table [TOP_4].[Plan_medico]    Script Date: 10/06/2013 16:34:41 ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -49,7 +49,6 @@ GO
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Usuario]    Script Date: 10/06/2013 17:12:36 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -89,7 +88,6 @@ GO
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Rol]    Script Date: 10/27/2013 17:46:03 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -364,10 +362,13 @@ INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2
 
 GO
 
-
-
-
-
+--Creo el usuario root con todos los roles
+DECLARE @identidadRoot NUMERIC(18,0)
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('root', CONVERT(varbinary(32),'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1),1)
+SET @identidadRoot = @@IDENTITY
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@identidadRoot , 1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@identidadRoot , 2)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@identidadRoot , 3)
 
 ------------------------------------Profesional------------------------------------------------
 
@@ -502,7 +503,6 @@ GO
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Tipo_especialidad]    Script Date: 10/06/2013 18:03:27 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -536,7 +536,6 @@ INSERT INTO TOP_4.Tipo_especialidad (id_tipo_especialidad, nombre)
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Especialidad]    Script Date: 10/06/2013 18:09:58 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -575,7 +574,6 @@ GO
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Profesional_Especialidad]    Script Date: 10/06/2013 18:18:13 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -619,7 +617,6 @@ GO
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Agenda]    Script Date: 10/27/2013 12:46:04 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -961,7 +958,6 @@ GO
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Turno]    Script Date: 11/03/2013 15:18:05 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -1071,7 +1067,6 @@ GO
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Resultado_Turno]    Script Date: 11/03/2013 18:40:01 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -1124,14 +1119,11 @@ CREATE NONCLUSTERED INDEX [Resultado_id_turno] ON [TOP_4].[Resultado_Turno]
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
 
-
 -----------------------------------------RECETA------------------------------------------
-
 
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Receta]    Script Date: 11/03/2013 19:29:34 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -1236,7 +1228,6 @@ GO
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Compra]    Script Date: 11/07/2013 22:54:53 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -1614,7 +1605,6 @@ VALUES ('Otro')
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Cancelacion]    Script Date: 11/09/2013 14:40:23 ******/
 SET ANSI_NULLS ON
 GO
 

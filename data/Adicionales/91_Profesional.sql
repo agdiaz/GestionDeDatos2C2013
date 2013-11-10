@@ -96,8 +96,8 @@ BEGIN TRY
 	DECLARE @p_password varbinary(32)
 	DECLARE @p_id_rol numeric(18) = (SELECT TOP 1 id_rol FROM [TOP_4].[Rol] WHERE nombre = 'Profesional')
 	
-	SELECT @p_password = P.[Password] from [TOP_4].[Password] P WHERE P.Id = 'PROFESIONAL'
-	
+	SET @p_password = CONVERT(varbinary(32),'0x24AFE47D0BD302AE42643C5848D99B683264026CD12CC998E05E100BBF2DC30D', 1)
+		
 	EXECUTE [TOP_4].[sp_Usuario_Insert] @p_username, @p_password, @p_id_usuario OUTPUT
 	EXECUTE [TOP_4].[sp_Rol_asociar_Usuario] @p_id_rol, @p_id_usuario
 	-- Creo el registro del profesional

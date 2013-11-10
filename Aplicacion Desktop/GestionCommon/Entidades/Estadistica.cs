@@ -40,7 +40,8 @@ namespace GestionCommon.Entidades
 
     public class TopBonosFarmaciaVencidosPorAfiliado : Estadistica
     {
-        public decimal IdAfiliado { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public int BonosVencidosFarmacia { get; set; }
 
         public TopBonosFarmaciaVencidosPorAfiliado()
