@@ -969,6 +969,7 @@ CREATE TABLE [TOP_4].[Turno](
 	[id_afiliado] [numeric](18, 0) NOT NULL,
 	[id_profesional] [numeric](18, 0) NOT NULL,
 	[fecha_turno] [datetime] NOT NULL,
+	[fecha_llegada] [datetime] NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Turno] PRIMARY KEY CLUSTERED 
 (
@@ -998,9 +999,9 @@ GO
 SET IDENTITY_INSERT TOP_4.Turno ON
 
 INSERT INTO TOP_4.Turno
-(id_turno, id_afiliado, id_profesional, fecha_turno)
+(id_turno, id_afiliado, id_profesional, fecha_turno, fecha_llegada)
 (
-	SELECT DISTINCT m.Turno_Numero, afi.id_afiliado, pro.id_profesional, m.Turno_Fecha
+	SELECT DISTINCT m.Turno_Numero, afi.id_afiliado, pro.id_profesional, m.Turno_Fecha, m.Turno_Fecha
 	FROM gd_esquema.Maestra m
 	INNER JOIN TOP_4.Afiliado afi
 		ON afi.documento = m.Paciente_Dni
