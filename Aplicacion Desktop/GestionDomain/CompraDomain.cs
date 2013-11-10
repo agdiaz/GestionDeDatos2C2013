@@ -15,7 +15,7 @@ namespace GestionDomain
 
         public CompraDomain(ILog logger)
         {
-            _dal = new CompraDAL();
+            _dal = new CompraDAL(logger);
         }
 
         public IResultado<bool> Comprar(Afiliado afiliado, PlanMedico plan, IList<BonoConsulta> bonosConsulta, IList<BonoFarmacia> bonosFarmacia)
