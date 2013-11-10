@@ -53,6 +53,7 @@
     <Compile Include="EstadisticaDomain.cs" />
     <Compile Include="FuncionalidadDomain.cs" />
     <Compile Include="IEntidadDomain.cs" />
+    <Compile Include="MedicamentoDomain.cs" />
     <Compile Include="PlanMedicoDomain.cs" />
     <Compile Include="ProfesionalDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

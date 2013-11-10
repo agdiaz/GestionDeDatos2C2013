@@ -79,6 +79,7 @@
     <Compile Include="Builder\UsuarioBuilder.cs" />
     <Compile Include="EntidadBaseDAL.cs" />
     <Compile Include="IEntidadDAL.cs" />
+    <Compile Include="MedicamentoDAL.cs" />
     <Compile Include="PlanMedicoDAL.cs" />
     <Compile Include="ProfesionalDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

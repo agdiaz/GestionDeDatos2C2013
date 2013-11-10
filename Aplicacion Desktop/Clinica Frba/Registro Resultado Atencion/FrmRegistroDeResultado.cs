@@ -10,6 +10,7 @@ using GestionDomain;
 using GestionGUIHelper.Helpers;
 using GestionDomain.Resultados;
 using GestionCommon.Entidades;
+using Clinica_Frba.Recetas;
 
 namespace Clinica_Frba.ResultadosAtencion
 {
@@ -31,6 +32,19 @@ namespace Clinica_Frba.ResultadosAtencion
             try
             {
                 IResultado<bool> resultado = _domain.RegistrarResultadoTurno(rt);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<bool>(resultado);
+
+                DialogResult altaReceta = MensajePorPantalla.MensajeInterrogativo(this, "¿Desea hacer recetas?", MessageBoxButtons.YesNo);
+                if (altaReceta == DialogResult.Yes)
+                {
+                    using (FrmRecetaAlta frm = new FrmRecetaAlta())
+                    {
+                        frm.ShowDialog(this);
+                    }
+                }
+                MensajePorPantalla.MensajeInformativo(this, "Resultado de la consulta guardado correctamente");
+                this.Close();
             }
             catch (Exception ex)
             {
