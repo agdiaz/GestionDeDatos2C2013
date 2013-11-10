@@ -255,7 +255,7 @@ END
 
 GO
 
-ALTER PROCEDURE [TOP_4].[sp_Afiliado_delete]
+CREATE PROCEDURE [TOP_4].[sp_Afiliado_delete]
 (	@p_id numeric(18)
 	,@p_fecha_baja datetime
 )
