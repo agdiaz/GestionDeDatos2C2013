@@ -13,6 +13,7 @@ using GestionGUIHelper.Formularios;
 using GestionGUIHelper.Helpers;
 using GestionGUIHelper.Validaciones;
 using GestionDomain;
+using GestionDomain.Resultados;
 
 namespace Clinica_Frba.Recetas
 {
@@ -155,9 +156,22 @@ namespace Clinica_Frba.Recetas
 
         private void btnValidar_Click(object sender, EventArgs e)
         {
-            decimal idBono = Convert.ToDecimal(tbBonoFarmacia.Text);
-            _domain.ObtenerBonoFarmacia(idBono);
-            groupBox2.Enabled = true;
+            try
+            {
+                decimal idBono = Convert.ToDecimal(tbBonoFarmacia.Text);
+                IResultado<BonoFarmacia> resultado = _domain.ObtenerBonoFarmacia(idBono);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<BonoFarmacia>(resultado);
+                
+                bonoFarmacia = resultado.Retorno;
+
+                groupBox2.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
+            
         }
     }
 }
