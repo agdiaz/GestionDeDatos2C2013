@@ -89,5 +89,32 @@ namespace GestionDAL
 
             return parametros;
         }
-    }
+    
+        public Boolean AgendaValida(Agenda nuevaAgenda)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter resultado = new SqlParameter("@resultado", System.Data.SqlDbType.Int, 4, "resultado");
+            resultado.Direction = System.Data.ParameterDirection.Output;
+            parametros.Add(resultado);
+
+            SqlParameter pIdProfesional = new SqlParameter("@p_id_profesional", System.Data.SqlDbType.Decimal, 18, "p_id_profesional");
+            pIdProfesional.Value = nuevaAgenda.IdProfesional;
+            parametros.Add(pIdProfesional);
+
+            SqlParameter pFechaDesde = new SqlParameter("@p_fecha_desde", System.Data.SqlDbType.DateTime, 8, "p_fecha_desde");
+            pFechaDesde.Value = nuevaAgenda.FechaDesde;
+            parametros.Add(pFechaDesde);
+
+            SqlParameter pFechaHasta = new SqlParameter("@p_fecha_hasta", System.Data.SqlDbType.DateTime, 8, "p_fecha_hasta");
+            pFechaHasta.Value = nuevaAgenda.FechaHasta;
+            parametros.Add(pFechaHasta);
+
+            _connector.EjecutarComando("[TOP_4].[sp_consultar_agenda_unica]", parametros);
+            //EntidadBase entidadBase = entidad as EntidadBase;
+
+            var resultado_consulta = parametros.Where(p => p.ParameterName == "@resultado").FirstOrDefault();
+            //entidadBase.Id = Convert.ToDecimal(parametroId.Value);
+            return Convert.ToBoolean(resultado.Value); ;
+        }}
 }

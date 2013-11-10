@@ -8,7 +8,6 @@ using GestionDAL;
 using GestionCommon.Helpers;
 using GestionCommon.Filtros;
 
-
 namespace GestionDomain
 {
     public class AgendaDomain
@@ -36,13 +35,21 @@ namespace GestionDomain
             Resultado<Agenda> resultado = new Resultado<Agenda>();
             try
             {
-                decimal id = _domain.Crear(nuevaAgenda);
-                nuevaAgenda.Id = id;
+                Boolean resul = _dal.AgendaValida(nuevaAgenda);
+                if (!resul)
+                {
+                    decimal id = _domain.Crear(nuevaAgenda);
+                    nuevaAgenda.Id = id;
+                }
+                else
+                {
+                    throw new NotImplementedException("Superposición de días de la agenda.");
+                }
 
                 foreach (DiaAgenda diaAgenda in diasAgenda)
                 {
-                    decimal idDia = _dalDiaAgenda.Crear(diaAgenda);
-                    _dal.AsociarDiaAAgenda(nuevaAgenda.Id, diaAgenda.Id);
+                    diaAgenda.Id = nuevaAgenda.Id;
+                    decimal idDia = _dalDiaAgenda.Crear(diaAgenda); //Asocia la agenda creada con los días.
                 }
 
                 resultado.Retorno = nuevaAgenda;

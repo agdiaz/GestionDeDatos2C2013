@@ -34,7 +34,6 @@ namespace GestionDAL
 
             SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
             pId.Value = entidad.Id;
-            pId.Direction = System.Data.ParameterDirection.Output;
             parametros.Add(pId);
 
             SqlParameter pNroDiaSemana = new SqlParameter("@p_nro_dia_semana", System.Data.SqlDbType.Decimal, 18, "p_nro_dia_semana");
@@ -46,11 +45,11 @@ namespace GestionDAL
             parametros.Add(pNombreDiaSemana);
 
             SqlParameter pHoraDesde = new SqlParameter("@p_hora_desde", System.Data.SqlDbType.DateTime, 8, "p_hora_desde");
-            pHoraDesde.Value = new DateTime(2013,0,0,entidad.HoraDesde,0,0);
+            pHoraDesde.Value = new DateTime(2013,1,1,entidad.HoraDesde,0,0);
             parametros.Add(pHoraDesde);
 
             SqlParameter pHoraHasta = new SqlParameter("@p_hora_hasta", System.Data.SqlDbType.DateTime, 8, "p_hora_hasta");
-            pHoraHasta.Value = new DateTime(2013,0,0,entidad.HoraHasta,0,0);
+            pHoraHasta.Value = new DateTime(2013,1,1,entidad.HoraHasta,0,0);
             parametros.Add(pHoraHasta);
 
             return parametros;

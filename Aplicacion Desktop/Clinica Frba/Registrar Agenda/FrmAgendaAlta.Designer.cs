@@ -173,8 +173,10 @@
             // 
             this.tbHorasSemanales.Location = new System.Drawing.Point(452, 150);
             this.tbHorasSemanales.Name = "tbHorasSemanales";
+            this.tbHorasSemanales.ReadOnly = true;
             this.tbHorasSemanales.Size = new System.Drawing.Size(100, 20);
             this.tbHorasSemanales.TabIndex = 3;
+            this.tbHorasSemanales.Text = "0";
             // 
             // label4
             // 

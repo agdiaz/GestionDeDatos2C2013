@@ -34,13 +34,14 @@ namespace Clinica_Frba.Agendas
         {
             //this.AccionLimpiar();
             this.AgregarValidacion(new ValidadorString(tbProfesional, 1, 255));
-            this.AgregarValidacion(new ValidadorDateTimeFrom(dpFechaDesde, FechaHelper.Ahora()));
-            this.AgregarValidacion(new ValidadorDateTimeFrom(dpFechaHasta,dpFechaDesde.Value));
-            this.AgregarValidacion(new ValidadorDateTimeUntil(dpFechaHasta,dpFechaDesde.Value.AddDays(120)));
             this.AgregarValidacion(new ValidadorCombobox(cbDia));
-            this.AgregarValidacion(new ValidadorNumerico(tbHorasSemanales));
 
             this.CargarDiasSemana();
+        }
+
+        private bool validarCronogramaEstaVacio(ListBox listCronograma)
+        {
+            return listCronograma.Items.Count == 0 ? true : false;
         }
 
         private void CargarDiasSemana()
@@ -61,15 +62,32 @@ namespace Clinica_Frba.Agendas
 
         private void agregarDiaACronograma()
         {
-            DiaSemana diaSemana = new DiaSemana();
-            DiaSemana diaSeleccionado = cbDia.SelectedItem as DiaSemana;
-            diaSemana.Id = diaSeleccionado.Id;
-            diaSemana.Nombre = diaSeleccionado.Nombre;
-            diaSemana.HoraDesde = new DateTime(2013, 1, 1, (int)nudDesde.Value, 0, 0);
-            diaSemana.HoraHasta = new DateTime(2013, 1, 1, (int)nudHasta.Value, 0, 0);
-            listCronograma.Items.Add(diaSemana);
+            if (this.YaExisteElDiaEnElCronograma())
+            {
+                MensajePorPantalla.MensajeInformativo(this,string.Format("Ya se cargo el día {0} en el cronograma.",cbDia.Text));
+            }
+            else {
+                DiaSemana diaSemana = new DiaSemana();
+                DiaSemana diaSeleccionado = cbDia.SelectedItem as DiaSemana;
+                diaSemana.Id = diaSeleccionado.Id;
+                diaSemana.Nombre = diaSeleccionado.Nombre;
+                diaSemana.HoraDesde = new DateTime(2013, 1, 1, (int)nudDesde.Value, 0, 0);
+                diaSemana.HoraHasta = new DateTime(2013, 1, 1, (int)nudHasta.Value, 0, 0);
+                listCronograma.Items.Add(diaSemana);
 
-            this.actualizarTotalHoras();
+                this.actualizarTotalHoras();            
+            }
+        }
+
+        private bool YaExisteElDiaEnElCronograma()
+        {
+            bool existe_dia = false;
+            foreach (DiaSemana dia in listCronograma.Items)
+            {
+                if (dia.Nombre == cbDia.Text)
+                    existe_dia = true;
+            }
+            return existe_dia;
         }
 
         private void actualizarTotalHoras()
@@ -133,23 +151,47 @@ namespace Clinica_Frba.Agendas
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Agenda nuevaAgenda = this.CrearAgenda();
-            IList<DiaAgenda> diasAgenda = this.obtenerCronograma();
+            bool fechas_validas = this.validacionFechas(dpFechaDesde, dpFechaHasta);
+            if(fechas_validas)
+                base.Aceptar();
+        }
 
-            try
-            {
-                IResultado<Agenda> resAgenda = _agendaDomain.Alta(nuevaAgenda, diasAgenda);
+        private bool validacionFechas(DateTimePicker dpFechaDesde, DateTimePicker dpFechaHasta)
+        {
+            bool resultado = new ValidadorDateTimeFrom(dpFechaDesde, FechaHelper.Ahora()).Validar()
+                            & new ValidadorDateTimeUntil(dpFechaHasta, dpFechaDesde.Value.AddDays(120)).Validar()
+                            & new ValidadorDateTimeFrom(dpFechaHasta, dpFechaDesde.Value).Validar();
+            return resultado;
+        }
 
-                if (!resAgenda.Correcto)
-                    throw new ResultadoIncorrectoException<Agenda>(resAgenda);
+        protected override void AccionAceptar()
+        {
+            bool cronogramaEstaVacio = this.validarCronogramaEstaVacio(listCronograma);
+            int horas_semanales = Convert.ToInt32(tbHorasSemanales.Text);
+            if (cronogramaEstaVacio){
+                MensajePorPantalla.MensajeInformativo(this, "Agregue días al cronograma.");
+            } else if (horas_semanales > 48){
+                MensajePorPantalla.MensajeInformativo(this,"El total de horas laborales no debe pasar las 48hs.\nModifique el cronograma.");
+            } else {
+                Agenda nuevaAgenda = this.CrearAgenda();
+                IList<DiaAgenda> diasAgenda = this.obtenerCronograma();
 
-                MensajePorPantalla.MensajeInformativo(this, string.Format("Se dió de alta la agenda: (IdAgenda: {0})", nuevaAgenda.IdProfesional.ToString()));
-                this.Close();
+                try
+                {
+                    IResultado<Agenda> resAgenda = _agendaDomain.Alta(nuevaAgenda, diasAgenda);
+
+                    if (!resAgenda.Correcto)
+                        throw new ResultadoIncorrectoException<Agenda>(resAgenda);
+
+                    MensajePorPantalla.MensajeInformativo(this, string.Format("Se dió de alta la agenda: (IdAgenda: {0})", nuevaAgenda.Id.ToString()));
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MensajePorPantalla.MensajeError(this, ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                MensajePorPantalla.MensajeError(this, ex.Message);
-            }
+            
         }
 
         private IList<DiaAgenda> obtenerCronograma()
