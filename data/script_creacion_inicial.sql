@@ -1498,7 +1498,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [TOP_4].[Tipo_Cancelacion](
-	[id_tipo_cancelacion] [numeric](18, 0) NOT NULL,
+	[id_tipo_cancelacion] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[nombre_tipo_cancelacion] [varchar](255) NOT NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Tipo_Cancelacion] PRIMARY KEY CLUSTERED 
@@ -1515,7 +1515,13 @@ GO
 ALTER TABLE [TOP_4].[Tipo_Cancelacion] ADD  CONSTRAINT [DF_Tipo_Cancelacion_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
 
+INSERT INTO TOP_4.Tipo_Cancelacion
+(nombre_tipo_cancelacion)
+VALUES ('Cancelado por el paciente')
 
+INSERT INTO TOP_4.Tipo_Cancelacion
+(nombre_tipo_cancelacion)
+VALUES ('Cancelado por el medico')
 
 
 -------------------------------------------------------Cancelacion----------------------------------------------------------------
