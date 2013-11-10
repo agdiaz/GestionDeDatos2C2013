@@ -43,7 +43,8 @@ namespace GestionDAL.Builder
         public TopBonosFarmaciaVencidosPorAfiliado Build(System.Data.DataRow row)
         {
             TopBonosFarmaciaVencidosPorAfiliado topBonosFarmaciaVencidasPorAfiliado = new TopBonosFarmaciaVencidosPorAfiliado();
-            topBonosFarmaciaVencidasPorAfiliado.IdAfiliado = Convert.ToDecimal(row["id_afiliado"].ToString());
+            topBonosFarmaciaVencidasPorAfiliado.Nombre = row["nombre"].ToString();
+            topBonosFarmaciaVencidasPorAfiliado.Apellido = row["apellido"].ToString();
             topBonosFarmaciaVencidasPorAfiliado.BonosVencidosFarmacia = Convert.ToInt32(row["bonos_vencidos"].ToString());
             return topBonosFarmaciaVencidasPorAfiliado;
         }
