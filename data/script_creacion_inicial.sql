@@ -1377,7 +1377,6 @@ GO
 USE [GD2C2013]
 GO
 
-/****** Object:  Table [TOP_4].[Bono_Farmacia]    Script Date: 11/07/2013 23:38:01 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -1388,7 +1387,7 @@ CREATE TABLE [TOP_4].[Bono_Farmacia](
 	[id_bono_farmacia] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[id_compra] [numeric](18, 0) NOT NULL,
 	[id_plan_medico] [numeric](18, 0) NOT NULL,
-	[id_receta] [numeric](18, 0) NOT NULL,
+	[id_receta] [numeric](18, 0) NULL,
 	[fecha_vencimiento] [datetime] NOT NULL,
 	[fecha_impresion] [datetime] NOT NULL,
 	[habilitado] [bit] NOT NULL,
