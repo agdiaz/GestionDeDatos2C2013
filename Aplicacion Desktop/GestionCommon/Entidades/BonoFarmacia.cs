@@ -6,14 +6,10 @@ using GestionCommon.Helpers;
 
 namespace GestionCommon.Entidades
 {
-    public class BonoFarmacia
+    public class BonoFarmacia : Bono
     {
-        public decimal IdCompra { get; set; }
-        public decimal IdPlanMedico { get; set; }
-        public string NombrePlanMedico { get; set; }
         public decimal IdReceta { get; set; }
         public DateTime FechaVencimiento { get; set; }
-        public bool Habilitado { get; set; }
 
         public override string ToString()
         {

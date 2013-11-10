@@ -52,6 +52,7 @@
     <Compile Include="Entidades\Afiliado.cs" />
     <Compile Include="Entidades\AfiliadoCambioPlan.cs" />
     <Compile Include="Entidades\Agenda.cs" />
+    <Compile Include="Entidades\Bono.cs" />
     <Compile Include="Entidades\BonoConsulta.cs" />
     <Compile Include="Entidades\BonoFarmacia.cs" />
     <Compile Include="Entidades\Cancelacion.cs" />
