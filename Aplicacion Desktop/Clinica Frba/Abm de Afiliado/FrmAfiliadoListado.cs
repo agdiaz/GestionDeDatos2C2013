@@ -21,9 +21,11 @@ namespace Clinica_Frba.Afiliados
     public partial class FrmAfiliadoListado : FormularioBaseListado
     {
         AfiliadoDomain _domain = new AfiliadoDomain(Program.ContextoActual.Logger);
-
         public FrmAfiliadoListado()
-            :base()
+            : this(false) { }
+        
+        public FrmAfiliadoListado(bool modoSeleccion)
+            :base(modoSeleccion)
         {
             InitializeComponent();
         }
