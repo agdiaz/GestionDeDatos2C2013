@@ -190,7 +190,7 @@ END
 GO
 
 CREATE PROCEDURE [TOP_4].[sp_Afiliado_update]
-(	 @p_id numeric(18) output
+(	 @p_id numeric(18)
 	,@p_nro_principal numeric(18)
     ,@p_nro_secundario numeric(18,0)
 	,@p_id_plan_medico numeric(18,0)
@@ -208,15 +208,20 @@ CREATE PROCEDURE [TOP_4].[sp_Afiliado_update]
 )
 AS
 BEGIN
-	BEGIN TRAN
-	
 	BEGIN TRY
-		DECLARE @v_plan_anterior numeric(18) = (SELECT a.id_plan_medico FROM [TOP_4].Afiliado a WHERE a.id_afiliado = @p_id)
+		BEGIN TRAN
+		
+		DECLARE @v_plan_anterior numeric(18)
+		SELECT @v_plan_anterior= a.id_plan_medico 
+			FROM [TOP_4].Afiliado a 
+			WHERE a.id_afiliado = @p_id
 		
 		IF (@v_plan_anterior <> @p_id_plan_medico)
+		BEGIN 
 			INSERT INTO [TOP_4].Plan_Historico_Afiliado (id_afiliado, id_plan_medico, fecha, habilitado)
 			VALUES (@p_id, @v_plan_anterior, @p_fecha_hoy, '1')
-				
+		END	
+		
 		UPDATE [TOP_4].Afiliado
 		SET id_plan_medico = @p_id_plan_medico,
 			nombre = @p_nombre,
@@ -228,7 +233,7 @@ BEGIN
 			sexo = @p_sexo,
 			estado_civil = @p_estado_civil
 		WHERE id_afiliado = @p_id
-		AND habilitado = '1'
+
 		COMMIT TRAN
 	END TRY
 	BEGIN CATCH
@@ -245,6 +250,5 @@ BEGIN
                @ErrorSeverity, -- Severity.
                @ErrorState -- State.
                );
-
 	END CATCH
 END

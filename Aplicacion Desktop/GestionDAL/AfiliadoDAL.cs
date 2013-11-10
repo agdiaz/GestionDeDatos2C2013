@@ -92,7 +92,7 @@ namespace GestionDAL
             IList<SqlParameter> parametros = new List<SqlParameter>();
 
             SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
-            pId.Direction = System.Data.ParameterDirection.Output;
+            pId.Value = entidad.IdAfiliado;
             parametros.Add(pId);
 
             SqlParameter pNroPrincipal = new SqlParameter("@p_nro_principal", System.Data.SqlDbType.Decimal, 18, "p_nro_principal");
@@ -149,8 +149,8 @@ namespace GestionDAL
             parametros.Add(pEstadoCivil);
 
             SqlParameter pFechaHoy = new SqlParameter("@p_fecha_hoy", System.Data.SqlDbType.DateTime, 8, "p_fecha_hoy");
-            pFechaNacimiento.Value = FechaHelper.Ahora();
-            parametros.Add(pFechaNacimiento);
+            pFechaHoy.Value = FechaHelper.Ahora();
+            parametros.Add(pFechaHoy);
 
             return parametros;
         }
