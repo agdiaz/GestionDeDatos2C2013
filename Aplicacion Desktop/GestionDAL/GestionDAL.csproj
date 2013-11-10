@@ -82,6 +82,7 @@
     <Compile Include="PlanMedicoDAL.cs" />
     <Compile Include="ProfesionalDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultadoConsultaDAL.cs" />
     <Compile Include="RolDAL.cs" />
     <Compile Include="TipoEspecialidadDAL.cs" />
     <Compile Include="TurnoDAL.cs" />

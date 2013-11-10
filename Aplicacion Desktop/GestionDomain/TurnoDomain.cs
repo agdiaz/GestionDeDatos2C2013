@@ -13,11 +13,14 @@ namespace GestionDomain
     public class TurnoDomain
     {
         private TurnoDAL _dal;
+        private ResultadoTurnoDAL _resultadoTurnoDal;
+
         private EntidadBaseDomain<Turno, FiltroTurno> _domain;
 
         public TurnoDomain(ILog log)
         {
             _dal = new TurnoDAL(log);
+            _resultadoTurnoDal = new ResultadoTurnoDAL(log);
             _domain = new EntidadBaseDomain<Turno, FiltroTurno>(_dal);
         }
 
@@ -37,5 +40,23 @@ namespace GestionDomain
 
             return resultado;
         }
+
+        public IResultado<bool> RegistrarResultadoTurno(ResultadoTurno t)
+        {
+            Resultado<bool> resultado = new Resultado<bool>();
+            try
+            {
+                _resultadoTurnoDal.Crear(t);
+                resultado.Retorno = true;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
+        }
+
     }
 }
