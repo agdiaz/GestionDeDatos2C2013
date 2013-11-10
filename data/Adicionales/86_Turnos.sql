@@ -26,16 +26,16 @@ END
 GO
 CREATE PROCEDURE [TOP_4].[sp_ResultadoTurno_insert]
 (
-	@id_turno numeric(18)
-	,@sintoma varchar(255)
-	,@diagnostico varchar(255)
-	,@fecha_diagnostico datetime
+	@p_id_turno numeric(18)
+	,@p_sintoma varchar(255)
+	,@p_diagnostico varchar(255)
+	,@p_fecha_diagnostico datetime
 )
 AS
 BEGIN
 	INSERT INTO [TOP_4].Resultado_Turno
 	(id_turno, sintoma, diagnostico, fecha_diagnostico, habilitado)
-	VALUES()
+	VALUES(@p_id_turno, @p_sintoma, @p_diagnostico, @p_fecha_diagnostico, '1')
 END
 
 

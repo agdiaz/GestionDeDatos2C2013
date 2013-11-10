@@ -75,11 +75,12 @@ namespace GestionDomain
             Resultado<BonoFarmacia> resultado = new Resultado<BonoFarmacia>();
             try
             {
-                resultado.Retorno = null;
+                resultado.Retorno = _bonoFarmaciaDal.Obtener(p);
             }
             catch (Exception ex)
             {
                 resultado.Correcto = false;
+                resultado.Mensajes.Add("No se ha encontrado el bono");
                 resultado.Mensajes.Add(ex.Message);
             }
             return resultado;

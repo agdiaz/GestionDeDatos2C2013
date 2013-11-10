@@ -81,3 +81,21 @@ BEGIN
 	 AND habilitado = '1'
 END
 GO
+
+CREATE PROCEDURE [TOP_4].[sp_BonoFarmacia_select]
+(@p_id numeric(18))
+AS
+BEGIN
+	SELECT [id_bono_farmacia]
+      ,[id_compra]
+      ,[id_plan_medico]
+      ,[id_receta]
+      ,[fecha_vencimiento]
+      ,[fecha_impresion]
+      ,[habilitado]
+  FROM [GD2C2013].[TOP_4].[Bono_Farmacia]
+	 WHERE id_bono_farmacia = @p_id
+	 AND [id_receta] = NULL
+	 AND habilitado = '1'
+END
+GO

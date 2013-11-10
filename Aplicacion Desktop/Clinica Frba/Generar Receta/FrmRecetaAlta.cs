@@ -11,17 +11,23 @@ using GestionCommon.Entidades;
 using GestionCommon.Helpers;
 using GestionGUIHelper.Formularios;
 using GestionGUIHelper.Helpers;
+using GestionGUIHelper.Validaciones;
+using GestionDomain;
 
 namespace Clinica_Frba.Recetas
 {
     public partial class FrmRecetaAlta : FormularioBaseAlta
     {
+        private BonoFarmacia bonoFarmacia;
         private Medicamento nuevo;
         private int cantidadMedicamentos;
 
+        private CompraDomain _domain;
+        
         public FrmRecetaAlta()
             :base()
         {
+            _domain = new CompraDomain(Program.ContextoActual.Logger);
             InitializeComponent();
         }
 
@@ -42,10 +48,33 @@ namespace Clinica_Frba.Recetas
         {
             base.Aceptar();
         }
-
+        protected override void Aceptar()
+        {
+            if (lstMedicamentos.Items.Count > 0)
+            {
+                AccionAceptar();
+            }
+        }
         protected override void AccionAceptar()
         {
-            base.AccionAceptar();
+            try
+            {
+
+                DialogResult otraReceta = MensajePorPantalla.MensajeInterrogativo(this, "¿Quiere crear otra receta?", MessageBoxButtons.YesNo);
+                if (otraReceta == DialogResult.Yes)
+                {
+                    using (FrmRecetaAlta frm = new FrmRecetaAlta())
+                    {
+                        frm.ShowDialog(this);
+                    }
+                }
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
         }
 
         private void FrmRecetaAlta_Load(object sender, EventArgs e)
@@ -54,6 +83,9 @@ namespace Clinica_Frba.Recetas
             this.ndCantidad.Value = 1;
             this.tbCantidad.Text = "Uno";
             this.cantidadMedicamentos = 0;
+
+            this.AgregarValidacion(new ValidadorString(tbMedicamento, 1, 255));
+            
         }
 
         private void ndCantidad_ValueChanged(object sender, EventArgs e)
@@ -76,7 +108,7 @@ namespace Clinica_Frba.Recetas
 
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            if (cantidadMedicamentos < 5)
+            if (this.Validar() && cantidadMedicamentos < 5)
             {
                 ItemReceta ir = new ItemReceta();
                 ir.NombreMedicamento = tbMedicamento.Text;
@@ -119,6 +151,13 @@ namespace Clinica_Frba.Recetas
             this.tbCantidad.Text = "Uno";
             this.ndCantidad.Value = 1;
             this.tbMedicamento.Text = string.Empty;
+        }
+
+        private void btnValidar_Click(object sender, EventArgs e)
+        {
+            decimal idBono = Convert.ToDecimal(tbBonoFarmacia.Text);
+            _domain.ObtenerBonoFarmacia(idBono);
+            groupBox2.Enabled = true;
         }
     }
 }
