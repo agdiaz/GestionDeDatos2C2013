@@ -1385,6 +1385,7 @@ CREATE TABLE [TOP_4].[Bono_Farmacia](
 	[id_receta] [numeric](18, 0) NULL,
 	[fecha_vencimiento] [datetime] NOT NULL,
 	[fecha_impresion] [datetime] NOT NULL,
+	[fecha_prescripcion] [datetime] NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Bono_Farmacia] PRIMARY KEY CLUSTERED 
 (
@@ -1467,11 +1468,13 @@ SET IDENTITY_INSERT TOP_4.Compra OFF
 --Joineo, inserto y soy feliz porque esta es la ultima tabla de la migracion
 SET IDENTITY_INSERT TOP_4.Bono_Farmacia ON
 INSERT INTO TOP_4.Bono_Farmacia
-(id_bono_farmacia, id_compra, id_plan_medico, id_receta, fecha_vencimiento, fecha_impresion)
+(id_bono_farmacia, id_compra, id_plan_medico, id_receta, fecha_vencimiento, fecha_impresion, fecha_prescripcion)
 (
 	SELECT tbf.id_bono_farmacia, (tbf.id_compra + @ultimaIdentCompra) as id_compra, tbf.id_plan_medico,
-		r.id_receta, tbf.fecha_vencimiento, tbf.fecha_impresion
+		r.id_receta, tbf.fecha_vencimiento, tbf.fecha_impresion, tur.fecha_turno
 	FROM #tmpBonosFarmacia tbf
+	INNER JOIN TOP_4.Turno tur
+		ON tbf.id_turno = tur.id_turno
 	INNER JOIN TOP_4.Resultado_Turno rt
 		ON rt.id_turno = tbf.id_turno
 	INNER JOIN TOP_4.Receta r
