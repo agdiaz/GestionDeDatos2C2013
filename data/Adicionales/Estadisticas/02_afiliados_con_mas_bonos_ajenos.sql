@@ -1,5 +1,6 @@
 
-SELECT bonosConsulta.id_afiliado, bonosConsulta.nombre, bonosConsulta.apellido, bonosConsulta.cantBonosAjenosCons + bonosFarmacia.cantBonosAjenosFarm as cantBonosAjenos
+SELECT TOP 10 bonosConsulta.id_afiliado, bonosConsulta.nombre, bonosConsulta.apellido, 
+	(bonosConsulta.cantBonosAjenosCons + bonosFarmacia.cantBonosAjenosFarm) as cantBonosAjenos
 FROM
 (
 	SELECT af.id_afiliado, af.nombre, af.apellido, COUNT(*) as cantBonosAjenosCons
@@ -34,7 +35,7 @@ ON bonosConsulta.id_afiliado = bonosFarmacia.id_afiliado
 ORDER BY cantBonosAjenos DESC
 
 
---Consulta que hago para probar
+--Cambios que hago para probar
 --En los datos existentes, no hay usuarios que hayan usado bonos comprados por otros
 
 UPDATE TOP_4.Turno
