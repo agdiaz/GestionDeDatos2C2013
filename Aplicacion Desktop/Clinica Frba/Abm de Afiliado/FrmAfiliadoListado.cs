@@ -54,7 +54,19 @@ namespace Clinica_Frba.Afiliados
 
         protected override void AccionBorrar()
         {
-            base.AccionBorrar();
+            try
+            {
+                var afiliado = EntidadSeleccionada as Afiliado;
+                IResultado<bool> resultado = _domain.Borrar(afiliado);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<bool>(resultado);
+
+                this.Filtrar();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
         }
 
         protected override void AccionFiltrar()

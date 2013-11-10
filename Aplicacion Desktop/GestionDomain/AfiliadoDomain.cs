@@ -72,5 +72,23 @@ namespace GestionDomain
             }
             return resultado;
         }
+
+        public IResultado<bool> Borrar(Afiliado afiliado)
+        {
+            Resultado<bool> resultado = new Resultado<bool>();
+            try
+            {
+                _domain.Borrar(afiliado.IdAfiliado);
+                resultado.Retorno = true;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+                throw;
+            }
+
+            return resultado;
+        }
     }
 }

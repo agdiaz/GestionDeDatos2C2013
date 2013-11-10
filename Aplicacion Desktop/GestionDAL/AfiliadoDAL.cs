@@ -218,5 +218,16 @@ namespace GestionDAL
 
             return parametros;
         }
+
+        protected override IList<SqlParameter> GenerarParametrosBorrar(decimal id)
+        {
+            IList <SqlParameter>  parameters = base.GenerarParametrosBorrar(id);
+            
+            SqlParameter fechaBaja = new SqlParameter("@p_fecha_baja", System.Data.SqlDbType.DateTime, 8, "p_fecha_baja");
+            fechaBaja.Value = FechaHelper.Ahora();
+            parameters.Add(fechaBaja);
+            
+            return parameters;
+        }
     }
 }

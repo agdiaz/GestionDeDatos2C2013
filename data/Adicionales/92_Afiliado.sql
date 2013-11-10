@@ -49,7 +49,7 @@ SELECT a.[id_afiliado]
   AND ((@p_sexo IS NULL) OR (a.sexo = @p_sexo))
   AND ((@p_estado_civil IS NULL) OR (a.estado_civil = @p_estado_civil))
   AND ((@p_mail IS NULL) OR (a.mail like '%'+@p_mail+'%'))
-
+  AND habilitado = '1'
 END
 GO
 
@@ -251,4 +251,67 @@ BEGIN
                @ErrorState -- State.
                );
 	END CATCH
+END
+
+GO
+
+ALTER PROCEDURE [TOP_4].[sp_Afiliado_delete]
+(	@p_id numeric(18)
+	,@p_fecha_baja datetime
+)
+AS
+BEGIN
+	BEGIN TRY
+		BEGIN TRAN
+		
+		UPDATE IR
+		SET IR.habilitado = '0'
+		FROM [TOP_4].[Item_Receta] IR
+		INNER JOIN [TOP_4].[Receta] R
+			ON IR.id_receta = R.id_receta
+		INNER JOIN [TOP_4].[Resultado_Turno] RT
+			ON R.id_resultado_turno = RT.id_resultado_turno
+		INNER JOIN [TOP_4].[Turno] T
+			ON T.id_turno = RT.id_turno
+			AND T.id_afiliado = @p_id
+		
+				
+		UPDATE R
+		SET R.Habilitado = '0'
+		FROM [TOP_4].Receta R
+		INNER JOIN [TOP_4].[Resultado_Turno] RT
+			ON R.id_resultado_turno = RT.id_resultado_turno
+		INNER JOIN [TOP_4].[Turno] T
+			ON T.id_turno = RT.id_turno
+			AND T.id_afiliado = @p_id
+		
+		
+		UPDATE [TOP_4].[Turno]
+			SET habilitado = '0'
+			WHERE id_afiliado = @p_id
+
+		UPDATE [TOP_4].[Afiliado]
+			SET habilitado = '0',
+			fecha_baja = @p_fecha_baja
+			WHERE id_afiliado = @p_id
+		
+
+		COMMIT TRAN
+			
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN
+		
+		DECLARE @ErrorMessage NVARCHAR(4000);
+	    DECLARE @ErrorSeverity INT;
+		DECLARE @ErrorState INT;
+
+		SELECT @ErrorMessage = ERROR_MESSAGE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE();
+
+		RAISERROR (@ErrorMessage, -- Message text.
+               @ErrorSeverity, -- Severity.
+               @ErrorState -- State.
+               );			
+	END CATCH
+	
 END
