@@ -362,10 +362,13 @@ INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@@IDENTITY , 2
 
 GO
 
-
-
-
-
+--Creo el usuario root con todos los roles
+DECLARE @identidadRoot NUMERIC(18,0)
+INSERT INTO [TOP_4].[Usuario] ([username],[password],[habilitado]) VALUES ('root', CONVERT(varbinary(32),'0xE6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1),1)
+SET @identidadRoot = @@IDENTITY
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@identidadRoot , 1)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@identidadRoot , 2)
+INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@identidadRoot , 3)
 
 ------------------------------------Profesional------------------------------------------------
 
@@ -1116,9 +1119,7 @@ CREATE NONCLUSTERED INDEX [Resultado_id_turno] ON [TOP_4].[Resultado_Turno]
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
 
-
 -----------------------------------------RECETA------------------------------------------
-
 
 USE [GD2C2013]
 GO
