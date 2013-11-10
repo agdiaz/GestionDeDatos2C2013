@@ -38,14 +38,19 @@ namespace Clinica_Frba.Compras
 
             if (_afiliado != null)
             {
-                this.tbAfiliado.Text = _afiliado.NombreCompleto;
-                this.CargarPlan();
-                this.btnComprar.Enabled = true;
-                this.btnConsulta.Enabled = true;
-                this.btnFarmacia.Enabled = true;
-                this.btnQuitar.Enabled = true;
-                this.btnBuscar.Enabled = false;
+                CargarAfiliado();
             }
+        }
+
+        private void CargarAfiliado()
+        {
+            this.tbAfiliado.Text = _afiliado.NombreCompleto;
+            this.CargarPlan();
+            this.btnComprar.Enabled = true;
+            this.btnConsulta.Enabled = true;
+            this.btnFarmacia.Enabled = true;
+            this.btnQuitar.Enabled = true;
+            this.btnBuscar.Enabled = false;
         }
 
         private void CargarPlan()
@@ -109,6 +114,11 @@ namespace Clinica_Frba.Compras
         private void FrmCompraBonos_Load(object sender, EventArgs e)
         {
             this.tbPrecioTotal.Text = "0";
+        }
+
+        private void btnComprar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
