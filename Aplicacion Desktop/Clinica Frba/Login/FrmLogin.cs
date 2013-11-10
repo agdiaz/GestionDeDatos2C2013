@@ -35,6 +35,7 @@ namespace Clinica_Frba.Login
         public FrmLogin(): base()
         {
             this._usuarioDomain = new UsuarioDomain(Program.ContextoActual.Logger);
+            this.elegir_un_rol = true;
             InitializeComponent();
         }
 
