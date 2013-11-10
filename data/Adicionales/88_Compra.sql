@@ -2,14 +2,15 @@ GO
 CREATE PROCEDURE [TOP_4].[sp_Compra_registrar]
 (
 	@p_id numeric(18) output
+	,@p_costo numeric(18)
 	,@p_id_afiliado numeric(18)
 	,@p_fecha_compra datetime
 )
 AS
 BEGIN
 	INSERT INTO [TOP_4].[Compra]
-	(id_afiliado, fecha_compra, habilitado)
-	VALUES (@p_id_afiliado, @p_fecha_compra, '1')
+	(id_afiliado, fecha_compra, habilitado, costo)
+	VALUES (@p_id_afiliado, @p_fecha_compra, '1', @p_costo)
 	
 	SET @p_id = SCOPE_IDENTITY()
 END
