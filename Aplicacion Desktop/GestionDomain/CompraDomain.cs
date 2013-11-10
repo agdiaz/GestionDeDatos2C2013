@@ -18,14 +18,14 @@ namespace GestionDomain
             _dal = new CompraDAL(logger);
         }
 
-        public IResultado<bool> Comprar(Afiliado afiliado, PlanMedico plan, IList<BonoConsulta> bonosConsulta, IList<BonoFarmacia> bonosFarmacia)
+        public IResultado<bool> Comprar(Afiliado afiliado, decimal costo, IList<BonoConsulta> bonosConsulta, IList<BonoFarmacia> bonosFarmacia)
         {
             Resultado<bool> resultado = new Resultado<bool>();
 
             try
             {
                 DateTime fechaImpresion = FechaHelper.Ahora();
-                decimal idCompra = _dal.RegistrarCompra(afiliado, fechaImpresion);
+                decimal idCompra = _dal.RegistrarCompra(afiliado, fechaImpresion, costo);
                 foreach (BonoConsulta bono in bonosConsulta)
                 {
                     bono.FechaImpresion = fechaImpresion;

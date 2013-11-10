@@ -56,10 +56,10 @@ namespace GestionDAL
             pFechaVencimiento.Value = bono.FechaVencimiento;
             parametros.Add(pFechaVencimiento);
 
-            _conector.RealizarConsultaAlmacenada("[TOP_4].[sp_Compra_bono_consulta]", parametros);
+            _conector.RealizarConsultaAlmacenada("[TOP_4].[sp_Compra_bono_farmacia]", parametros);
         }
 
-        public decimal RegistrarCompra(Afiliado afiliado, DateTime fechaImpresion)
+        public decimal RegistrarCompra(Afiliado afiliado, DateTime fechaImpresion, decimal costo)
         {
             IList<SqlParameter> parametros = new List<SqlParameter>();
 
@@ -67,15 +67,19 @@ namespace GestionDAL
             pId.Direction = System.Data.ParameterDirection.Output;
             parametros.Add(pId);
 
-            SqlParameter pIdAfiliado= new SqlParameter("@p_id_plan_medico", System.Data.SqlDbType.Decimal, 18, "p_id_plan_medico");
+            SqlParameter pIdAfiliado = new SqlParameter("@p_id_afiliado", System.Data.SqlDbType.Decimal, 18, "p_id_afiliado");
             pIdAfiliado.Value = afiliado.IdAfiliado;
             parametros.Add(pIdAfiliado);
 
-            SqlParameter pFechaImpresion = new SqlParameter("@p_fecha_impresion", System.Data.SqlDbType.DateTime, 8, "p_fecha_impresion");
+            SqlParameter pFechaImpresion = new SqlParameter("@p_fecha_compra", System.Data.SqlDbType.DateTime, 8, "p_fecha_compra");
             pFechaImpresion.Value = fechaImpresion;
             parametros.Add(pFechaImpresion);
 
-            _conector.RealizarConsultaAlmacenada("[TOP_4].[sp_Compra_bono_consulta]", parametros);
+            SqlParameter pCosto = new SqlParameter("@p_costo", System.Data.SqlDbType.Decimal, 18, "p_costo");
+            pCosto.Value = costo;
+            parametros.Add(pCosto);
+
+            _conector.RealizarConsultaAlmacenada("[TOP_4].[sp_Compra_registrar]", parametros);
 
             return ((Decimal)pId.Value);
         }

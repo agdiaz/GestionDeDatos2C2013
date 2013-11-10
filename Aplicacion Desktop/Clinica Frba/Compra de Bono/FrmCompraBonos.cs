@@ -11,6 +11,7 @@ using Clinica_Frba.Afiliados;
 using GestionCommon.Helpers;
 using GestionDomain;
 using GestionDomain.Resultados;
+using GestionGUIHelper.Helpers;
 
 namespace Clinica_Frba.Compras
 {
@@ -20,10 +21,13 @@ namespace Clinica_Frba.Compras
         private PlanMedico _plan;
 
         private PlanMedicoDomain _planMedicoDomain;
+        private CompraDomain _compraDomain;
 
         public FrmCompraBonos()
         {
             _planMedicoDomain = new PlanMedicoDomain(Program.ContextoActual.Logger);
+            _compraDomain = new CompraDomain(Program.ContextoActual.Logger);
+
             InitializeComponent();
         }
 
@@ -118,7 +122,37 @@ namespace Clinica_Frba.Compras
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
+            List<BonoConsulta> bonosConsulta = new List<BonoConsulta>();
+            foreach (Bono b in lstBonos.Items)
+            {
+                if (b as BonoConsulta != null)
+                {
+                    bonosConsulta.Add((BonoConsulta)b);
+                }
+            }
 
+            List<BonoFarmacia> bonosFarmacia = new List<BonoFarmacia>();
+            foreach (Bono b in lstBonos.Items)
+            {
+                if (b as BonoFarmacia != null)
+                {
+                    bonosFarmacia.Add((BonoFarmacia)b);
+                }
+            }
+            try
+            {
+                Decimal subtotal = Convert.ToDecimal(tbPrecioTotal.Text);
+                IResultado<bool> resultado = _compraDomain.Comprar(_afiliado, subtotal, bonosConsulta, bonosFarmacia);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<bool>(resultado);
+                
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
+            
         }
     }
 }

@@ -86,6 +86,7 @@
     <Compile Include="Filtros\FiltroProfesional.cs" />
     <Compile Include="Filtros\FiltroRol.cs" />
     <Compile Include="Filtros\FiltroTipoEspecialidad.cs" />
+    <Compile Include="Filtros\FiltroTurno.cs" />
     <Compile Include="Filtros\FiltroUsuario.cs" />
     <Compile Include="Filtros\Semestre.cs" />
     <Compile Include="Helpers\AppConfigReader.cs" />
