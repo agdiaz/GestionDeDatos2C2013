@@ -26,7 +26,12 @@ namespace Clinica_Frba.Recetas
         private int cantidadMedicamentos;
 
         private CompraDomain _domain;
-        
+
+        public FrmRecetaAlta(Afiliado a)
+            :base()
+        {
+            this.CargarAfiliado(a);
+        }
         public FrmRecetaAlta()
             :base()
         {
@@ -192,6 +197,7 @@ namespace Clinica_Frba.Recetas
         {
             this._afiliado = afiliado;
             this.tbAfiliado.Text = afiliado.NombreCompleto;
+            this.btnBuscarAfiliado.Enabled = false;
         }
     }
 }
