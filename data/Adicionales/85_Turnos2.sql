@@ -81,7 +81,7 @@ BEGIN
 	SELECT horaInicio, horaFin FROM #tmpTurnos
 	DROP TABLE #tmpTurnos
 END 
-
+GO
 
 CREATE PROCEDURE [TOP_4].[sp_turnos_existentes_por_dia]
 (
