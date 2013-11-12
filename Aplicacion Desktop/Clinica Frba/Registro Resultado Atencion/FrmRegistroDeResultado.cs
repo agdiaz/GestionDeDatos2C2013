@@ -91,6 +91,7 @@ namespace Clinica_Frba.ResultadosAtencion
 
                     _afiliado = resultadoAfiliado.Retorno;
                     tbAfiliado.Text = _afiliado.NombreCompleto;
+                    
                 }
                 catch (Exception ex)
                 {

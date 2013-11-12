@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnBuscarProfesional = new System.Windows.Forms.Button();
+            this.tbProfesional = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.dpFecha = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.tbAfiliado = new System.Windows.Forms.TextBox();
@@ -36,23 +39,22 @@
             this.btnBuscarTurno = new System.Windows.Forms.Button();
             this.tbTurno = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbResultado = new System.Windows.Forms.GroupBox();
             this.tbDiagnostico = new System.Windows.Forms.TextBox();
             this.tbSintomas = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbProfesional = new System.Windows.Forms.TextBox();
-            this.btnBuscarProfesional = new System.Windows.Forms.Button();
+            this.btnConfirmarHorario = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbResultado.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnConfirmarHorario);
             this.groupBox1.Controls.Add(this.btnBuscarProfesional);
             this.groupBox1.Controls.Add(this.tbProfesional);
             this.groupBox1.Controls.Add(this.label6);
@@ -69,6 +71,33 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Validación de turno";
+            // 
+            // btnBuscarProfesional
+            // 
+            this.btnBuscarProfesional.Location = new System.Drawing.Point(347, 20);
+            this.btnBuscarProfesional.Name = "btnBuscarProfesional";
+            this.btnBuscarProfesional.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarProfesional.TabIndex = 9;
+            this.btnBuscarProfesional.Text = "Buscar";
+            this.btnBuscarProfesional.UseVisualStyleBackColor = true;
+            this.btnBuscarProfesional.Click += new System.EventHandler(this.btnBuscarProfesional_Click);
+            // 
+            // tbProfesional
+            // 
+            this.tbProfesional.Location = new System.Drawing.Point(71, 22);
+            this.tbProfesional.Name = "tbProfesional";
+            this.tbProfesional.ReadOnly = true;
+            this.tbProfesional.Size = new System.Drawing.Size(261, 20);
+            this.tbProfesional.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Profesional";
             // 
             // dpFecha
             // 
@@ -132,21 +161,22 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Turno";
             // 
-            // groupBox2
+            // gbResultado
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.gbResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.tbDiagnostico);
-            this.groupBox2.Controls.Add(this.tbSintomas);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(12, 149);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(528, 219);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Resultados de la consulta";
+            this.gbResultado.Controls.Add(this.tbDiagnostico);
+            this.gbResultado.Controls.Add(this.tbSintomas);
+            this.gbResultado.Controls.Add(this.label3);
+            this.gbResultado.Controls.Add(this.label2);
+            this.gbResultado.Enabled = false;
+            this.gbResultado.Location = new System.Drawing.Point(12, 149);
+            this.gbResultado.Name = "gbResultado";
+            this.gbResultado.Size = new System.Drawing.Size(528, 219);
+            this.gbResultado.TabIndex = 4;
+            this.gbResultado.TabStop = false;
+            this.gbResultado.Text = "Resultados de la consulta";
             // 
             // tbDiagnostico
             // 
@@ -192,6 +222,7 @@
             // btnAceptar
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAceptar.Enabled = false;
             this.btnAceptar.Location = new System.Drawing.Point(456, 377);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
@@ -200,32 +231,15 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // label6
+            // btnConfirmarHorario
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Profesional";
-            // 
-            // tbProfesional
-            // 
-            this.tbProfesional.Location = new System.Drawing.Point(71, 22);
-            this.tbProfesional.Name = "tbProfesional";
-            this.tbProfesional.ReadOnly = true;
-            this.tbProfesional.Size = new System.Drawing.Size(261, 20);
-            this.tbProfesional.TabIndex = 8;
-            // 
-            // btnBuscarProfesional
-            // 
-            this.btnBuscarProfesional.Location = new System.Drawing.Point(347, 20);
-            this.btnBuscarProfesional.Name = "btnBuscarProfesional";
-            this.btnBuscarProfesional.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarProfesional.TabIndex = 9;
-            this.btnBuscarProfesional.Text = "Buscar";
-            this.btnBuscarProfesional.UseVisualStyleBackColor = true;
-            this.btnBuscarProfesional.Click += new System.EventHandler(this.btnBuscarProfesional_Click);
+            this.btnConfirmarHorario.Enabled = false;
+            this.btnConfirmarHorario.Location = new System.Drawing.Point(347, 100);
+            this.btnConfirmarHorario.Name = "btnConfirmarHorario";
+            this.btnConfirmarHorario.Size = new System.Drawing.Size(117, 23);
+            this.btnConfirmarHorario.TabIndex = 10;
+            this.btnConfirmarHorario.Text = "Confirma horario";
+            this.btnConfirmarHorario.UseVisualStyleBackColor = true;
             // 
             // FrmRegistroDeResultado
             // 
@@ -233,14 +247,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 412);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gbResultado);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmRegistroDeResultado";
             this.Text = "Clinica FRBA - Registro de resultados";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbResultado.ResumeLayout(false);
+            this.gbResultado.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -251,7 +265,7 @@
         private System.Windows.Forms.Button btnBuscarTurno;
         private System.Windows.Forms.TextBox tbTurno;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbResultado;
         private System.Windows.Forms.TextBox tbDiagnostico;
         private System.Windows.Forms.TextBox tbSintomas;
         private System.Windows.Forms.Label label3;
@@ -264,5 +278,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnBuscarProfesional;
         private System.Windows.Forms.TextBox tbProfesional;
+        private System.Windows.Forms.Button btnConfirmarHorario;
     }
 }
