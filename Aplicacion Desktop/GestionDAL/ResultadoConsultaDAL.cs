@@ -7,6 +7,7 @@ using GestionCommon.Helpers;
 using GestionConector;
 using GestionDAL.Builder;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace GestionDAL
 {
@@ -48,6 +49,30 @@ namespace GestionDAL
             parametros.Add(pFecha);
             
             return parametros;
+        }
+
+        public FechaTurno ObtenerFechasParaTurnos(decimal idProfesional, DateTime hoy)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pIdProfesional = new SqlParameter("@p_id_profesional", System.Data.SqlDbType.Decimal, 18, "p_id_profesional");
+            pIdProfesional.Value = idProfesional;
+            parametros.Add(pIdProfesional);
+
+            SqlParameter pFecha = new SqlParameter("@p_fecha", System.Data.SqlDbType.DateTime, 8, "p_fecha");
+            pFecha.Value = hoy;
+            parametros.Add(pFecha);
+
+            DataSet ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_dias_disponibles_profesional]", parametros);
+
+            return new FechaTurno()
+            {
+                FechaDesde = Convert.ToDateTime(ds.Tables[0].Rows[0]["fecha_desde"]),
+                FechaHasta = Convert.ToDateTime(ds.Tables[0].Rows[0]["fecha_hasta"]),
+            };
+
+
+
         }
     }
 }
