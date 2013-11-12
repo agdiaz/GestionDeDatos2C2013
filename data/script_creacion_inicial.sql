@@ -515,12 +515,16 @@ GO
 CREATE TABLE [TOP_4].[Tipo_especialidad](
 	[id_tipo_especialidad] [numeric](18, 0) NOT NULL,
 	[nombre] [varchar](255) NOT NULL,
+	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Tipo_especialidad] PRIMARY KEY CLUSTERED 
 (
 	[id_tipo_especialidad] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+
+ALTER TABLE [TOP_4].[Tipo_Especialidad] ADD  CONSTRAINT [DF_Tipo_Especialidad_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
 
 SET ANSI_PADDING OFF
@@ -546,6 +550,7 @@ CREATE TABLE [TOP_4].[Especialidad](
 	[id_especialidad] [numeric](18, 0) NOT NULL,
 	[id_tipo_especialidad] [numeric](18, 0) NOT NULL,
 	[nombre] [nvarchar](255) NOT NULL,
+	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Especialidad] PRIMARY KEY CLUSTERED 
 (
 	[id_especialidad] ASC
@@ -559,6 +564,9 @@ REFERENCES [TOP_4].[Tipo_especialidad] ([id_tipo_especialidad])
 GO
 
 ALTER TABLE [TOP_4].[Especialidad] CHECK CONSTRAINT [FK_Especialidad_Tipo_especialidad]
+GO
+
+ALTER TABLE [TOP_4].[Especialidad] ADD  CONSTRAINT [DF_Especialidad_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
 
 INSERT INTO TOP_4.Especialidad
@@ -651,7 +659,7 @@ ALTER TABLE [TOP_4].[Agenda] ADD  CONSTRAINT [DF_Agenda_habilitado]  DEFAULT ((1
 GO
 
 INSERT INTO TOP_4.Agenda
-(id_profesional, fecha_desde, fecha_hasta)
+(id_profesional, fecha_hasta, fecha_desde)
 (
 	SELECT DISTINCT p.id_profesional, MAX(m.Turno_Fecha) as 'maxturno' , 
 			MIN(m.turno_fecha) as 'minturno'
