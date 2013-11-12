@@ -114,6 +114,12 @@
     <Compile Include="Cancelar Atencion\FrmCancelarProfesional.Designer.cs">
       <DependentUpon>FrmCancelarProfesional.cs</DependentUpon>
     </Compile>
+    <Compile Include="Compra de Bono\FrmImpresion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compra de Bono\FrmImpresion.Designer.cs">
+      <DependentUpon>FrmImpresion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -364,6 +370,9 @@
     <EmbeddedResource Include="Recursos\decoracion-clinica.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Compra de Bono\FrmImpresion.resx">
+      <DependentUpon>FrmImpresion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Generar Receta\FrmMedicamentoListado.resx">
       <DependentUpon>FrmMedicamentoListado.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,6 +8,7 @@ namespace GestionCommon.Entidades
 {
     public class BonoFarmacia : Bono
     {
+        public decimal IdBonoFarmacia { get; set; }
         public decimal IdReceta { get; set; }
         public DateTime FechaVencimiento { get; set; }
 

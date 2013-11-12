@@ -17,9 +17,13 @@ namespace GestionDAL
         {
             _conector = new SqlServerConector(log);
         }
-        public void CrearBonoConsulta(BonoConsulta bono)
+        public decimal CrearBonoConsulta(BonoConsulta bono)
         {
             IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
+            pId.Direction = System.Data.ParameterDirection.Output;
+            parametros.Add(pId);
 
             SqlParameter pIdCompra = new SqlParameter("@p_id_compra", System.Data.SqlDbType.Decimal, 18, "p_id_compra");
             pIdCompra.Value = bono.IdCompra;
@@ -34,11 +38,17 @@ namespace GestionDAL
             parametros.Add(pFechaImpresion);
 
             _conector.RealizarConsultaAlmacenada("[TOP_4].[sp_Compra_bono_consulta]", parametros);
+
+            return (decimal)pId.Value;
         }
 
-        public void CrearBonoFarmacia(BonoFarmacia bono)
+        public decimal CrearBonoFarmacia(BonoFarmacia bono)
         {
             IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
+            pId.Direction = System.Data.ParameterDirection.Output;
+            parametros.Add(pId);
 
             SqlParameter pIdCompra = new SqlParameter("@p_id_compra", System.Data.SqlDbType.Decimal, 18, "p_id_compra");
             pIdCompra.Value = bono.IdCompra;
@@ -57,6 +67,8 @@ namespace GestionDAL
             parametros.Add(pFechaVencimiento);
 
             _conector.RealizarConsultaAlmacenada("[TOP_4].[sp_Compra_bono_farmacia]", parametros);
+
+            return (decimal)pId.Value;
         }
 
         public decimal RegistrarCompra(Afiliado afiliado, DateTime fechaImpresion, decimal costo)

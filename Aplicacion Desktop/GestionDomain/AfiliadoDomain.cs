@@ -90,5 +90,10 @@ namespace GestionDomain
 
             return resultado;
         }
+
+        public IResultado<Afiliado> Obtener(decimal p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -30,6 +30,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.btnValidar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -46,7 +47,9 @@
             this.lstMedicamentos = new System.Windows.Forms.ListBox();
             this.tbBonoFarmacia = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnAceptar = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbAfiliado = new System.Windows.Forms.TextBox();
+            this.btnBuscarAfiliado = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ndCantidad)).BeginInit();
@@ -54,6 +57,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnBuscarAfiliado);
+            this.groupBox1.Controls.Add(this.tbAfiliado);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.btnAceptar);
             this.groupBox1.Controls.Add(this.btnValidar);
@@ -63,7 +69,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(629, 502);
+            this.groupBox1.Size = new System.Drawing.Size(629, 447);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Receta";
@@ -75,14 +81,25 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 13;
             // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Location = new System.Drawing.Point(530, 411);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.TabIndex = 5;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
             // btnValidar
             // 
-            this.btnValidar.Location = new System.Drawing.Point(263, 21);
+            this.btnValidar.Location = new System.Drawing.Point(263, 33);
             this.btnValidar.Name = "btnValidar";
             this.btnValidar.Size = new System.Drawing.Size(75, 23);
             this.btnValidar.TabIndex = 6;
             this.btnValidar.Text = "Validar";
             this.btnValidar.UseVisualStyleBackColor = true;
+            this.btnValidar.Click += new System.EventHandler(this.btnValidar_Click);
             // 
             // label5
             // 
@@ -106,6 +123,7 @@
             this.groupBox2.Controls.Add(this.btnQuitar);
             this.groupBox2.Controls.Add(this.btnBuscar);
             this.groupBox2.Controls.Add(this.lstMedicamentos);
+            this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(6, 108);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(605, 297);
@@ -227,7 +245,7 @@
             // 
             // tbBonoFarmacia
             // 
-            this.tbBonoFarmacia.Location = new System.Drawing.Point(98, 25);
+            this.tbBonoFarmacia.Location = new System.Drawing.Point(98, 37);
             this.tbBonoFarmacia.Name = "tbBonoFarmacia";
             this.tbBonoFarmacia.Size = new System.Drawing.Size(158, 20);
             this.tbBonoFarmacia.TabIndex = 1;
@@ -235,30 +253,47 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 28);
+            this.label1.Location = new System.Drawing.Point(17, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Bono farmacia";
             // 
-            // btnAceptar
+            // label6
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(509, 473);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 5;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(20, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Afiliado";
+            // 
+            // tbAfiliado
+            // 
+            this.tbAfiliado.Location = new System.Drawing.Point(98, 11);
+            this.tbAfiliado.Name = "tbAfiliado";
+            this.tbAfiliado.ReadOnly = true;
+            this.tbAfiliado.Size = new System.Drawing.Size(158, 20);
+            this.tbAfiliado.TabIndex = 15;
+            // 
+            // btnBuscarAfiliado
+            // 
+            this.btnBuscarAfiliado.Location = new System.Drawing.Point(263, 11);
+            this.btnBuscarAfiliado.Name = "btnBuscarAfiliado";
+            this.btnBuscarAfiliado.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarAfiliado.TabIndex = 16;
+            this.btnBuscarAfiliado.Text = "Buscar";
+            this.btnBuscarAfiliado.UseVisualStyleBackColor = true;
+            this.btnBuscarAfiliado.Click += new System.EventHandler(this.btnBuscarAfiliado_Click);
             // 
             // FrmRecetaAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 545);
+            this.ClientSize = new System.Drawing.Size(658, 465);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmRecetaAlta";
-            this.Text = "Clinica FRBA - Recetas - Alta";
+            this.Text = "z";
             this.Load += new System.EventHandler(this.FrmRecetaAlta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -290,5 +325,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbCantMedicamentos;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox tbAfiliado;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnBuscarAfiliado;
     }
 }

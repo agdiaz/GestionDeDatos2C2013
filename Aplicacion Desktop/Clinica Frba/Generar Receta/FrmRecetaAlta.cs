@@ -11,17 +11,31 @@ using GestionCommon.Entidades;
 using GestionCommon.Helpers;
 using GestionGUIHelper.Formularios;
 using GestionGUIHelper.Helpers;
+using GestionGUIHelper.Validaciones;
+using GestionDomain;
+using GestionDomain.Resultados;
+using Clinica_Frba.Afiliados;
 
 namespace Clinica_Frba.Recetas
 {
     public partial class FrmRecetaAlta : FormularioBaseAlta
     {
+        private Afiliado _afiliado;
+        private BonoFarmacia bonoFarmacia;
         private Medicamento nuevo;
         private int cantidadMedicamentos;
 
+        private CompraDomain _domain;
+
+        public FrmRecetaAlta(Afiliado a)
+            :base()
+        {
+            this.CargarAfiliado(a);
+        }
         public FrmRecetaAlta()
             :base()
         {
+            _domain = new CompraDomain(Program.ContextoActual.Logger);
             InitializeComponent();
         }
 
@@ -42,10 +56,33 @@ namespace Clinica_Frba.Recetas
         {
             base.Aceptar();
         }
-
+        protected override void Aceptar()
+        {
+            if (lstMedicamentos.Items.Count > 0)
+            {
+                AccionAceptar();
+            }
+        }
         protected override void AccionAceptar()
         {
-            base.AccionAceptar();
+            try
+            {
+
+                DialogResult otraReceta = MensajePorPantalla.MensajeInterrogativo(this, "¿Quiere crear otra receta?", MessageBoxButtons.YesNo);
+                if (otraReceta == DialogResult.Yes)
+                {
+                    using (FrmRecetaAlta frm = new FrmRecetaAlta())
+                    {
+                        frm.ShowDialog(this);
+                    }
+                }
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
         }
 
         private void FrmRecetaAlta_Load(object sender, EventArgs e)
@@ -54,6 +91,9 @@ namespace Clinica_Frba.Recetas
             this.ndCantidad.Value = 1;
             this.tbCantidad.Text = "Uno";
             this.cantidadMedicamentos = 0;
+
+            this.AgregarValidacion(new ValidadorString(tbMedicamento, 1, 255));
+            
         }
 
         private void ndCantidad_ValueChanged(object sender, EventArgs e)
@@ -76,7 +116,7 @@ namespace Clinica_Frba.Recetas
 
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            if (cantidadMedicamentos < 5)
+            if (this.Validar() && cantidadMedicamentos < 5)
             {
                 ItemReceta ir = new ItemReceta();
                 ir.NombreMedicamento = tbMedicamento.Text;
@@ -119,6 +159,45 @@ namespace Clinica_Frba.Recetas
             this.tbCantidad.Text = "Uno";
             this.ndCantidad.Value = 1;
             this.tbMedicamento.Text = string.Empty;
+        }
+
+        private void btnValidar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal idBono = Convert.ToDecimal(tbBonoFarmacia.Text);
+                IResultado<BonoFarmacia> resultado = _domain.ValidarBonoFarmacia(idBono, _afiliado.NroPrincipal, FechaHelper.Ahora());
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<BonoFarmacia>(resultado);
+                
+                bonoFarmacia = resultado.Retorno;
+
+                groupBox2.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
+            
+        }
+
+        private void btnBuscarAfiliado_Click(object sender, EventArgs e)
+        {
+            using (FrmAfiliadoListado frm = new FrmAfiliadoListado(true))
+            {
+                frm.ShowDialog(this);
+                if (frm.EntidadSeleccionada as Afiliado != null)
+                {
+                    this.CargarAfiliado((Afiliado)frm.EntidadSeleccionada);
+                }
+            }
+        }
+
+        private void CargarAfiliado(Afiliado afiliado)
+        {
+            this._afiliado = afiliado;
+            this.tbAfiliado.Text = afiliado.NombreCompleto;
+            this.btnBuscarAfiliado.Enabled = false;
         }
     }
 }
