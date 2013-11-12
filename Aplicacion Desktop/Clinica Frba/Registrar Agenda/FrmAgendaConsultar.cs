@@ -45,6 +45,9 @@ namespace Clinica_Frba.Agendas
             try
             {
                 IResultado<IList<TurnoDisponible>> resultado = _turnoDomain.ObtenerHorasParaTurno(mcDesde.SelectionRange.Start, _profesional.IdProfesional);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<IList<TurnoDisponible>>(resultado);
+
             }
             catch (Exception ex)
             {
@@ -82,6 +85,11 @@ namespace Clinica_Frba.Agendas
             {
                 MensajePorPantalla.MensajeError(this, ex.Message);
             }
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

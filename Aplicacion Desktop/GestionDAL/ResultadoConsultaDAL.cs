@@ -74,5 +74,33 @@ namespace GestionDAL
 
 
         }
+
+        public IList<TurnoDisponible> ObtenerHorasParaTurno(decimal idProfesional, DateTime hoy)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pIdProfesional = new SqlParameter("@p_id_profesional", System.Data.SqlDbType.Decimal, 18, "p_id_profesional");
+            pIdProfesional.Value = idProfesional;
+            parametros.Add(pIdProfesional);
+
+            SqlParameter pFecha = new SqlParameter("@p_fecha", System.Data.SqlDbType.DateTime, 8, "p_fecha");
+            pFecha.Value = hoy;
+            parametros.Add(pFecha);
+
+            DataSet ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_dias_disponibles_profesional]", parametros);
+
+            IList<TurnoDisponible> lista = new List<TurnoDisponible>();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                TurnoDisponible turno = new TurnoDisponible();
+                turno.Disponible = Convert.ToBoolean(dr["disponible"]);
+                turno.HoraDesde = Convert.ToDateTime(dr["horaInicio"]);
+                turno.HoraHasta = Convert.ToDateTime(dr["horaFin"]);
+
+                lista.Add(turno);
+            }
+
+            return lista;
+        }
     }
 }

@@ -58,7 +58,6 @@ namespace GestionDomain
             return resultado;
         }
 
-
         public IResultado<FechaTurno> ObtenerFechasParaTurnos(decimal idProfesional, DateTime hoy)
         {
             Resultado<FechaTurno> resultado = new Resultado<FechaTurno>();
@@ -75,9 +74,20 @@ namespace GestionDomain
             return resultado;
         }
 
-        public IResultado<IList<TurnoDisponible>> ObtenerHorasParaTurno(DateTime dateTime, decimal p)
+        public IResultado<IList<TurnoDisponible>> ObtenerHorasParaTurno(DateTime hoy, decimal idProfesional)
         {
-            throw new NotImplementedException();
+            Resultado<IList<TurnoDisponible>> resultado = new Resultado<IList<TurnoDisponible>>();
+            try
+            {
+                resultado.Retorno = _resultadoTurnoDal.ObtenerHorasParaTurno(idProfesional, hoy);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
         }
     }
 }
