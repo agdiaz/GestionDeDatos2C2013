@@ -17,7 +17,7 @@ BEGIN
 	
 	IF @fechaDesde > @p_fecha_hoy
 	BEGIN
-		SELECT TOP 1 ag.fecha_desde, ag.fecha_hasta
+		SELECT TOP 1 ag.fecha_desde as fecha_desde, ag.fecha_hasta as fecha_hasta
 		FROM TOP_4.Agenda ag
 		INNER JOIN TOP_4.Profesional pro
 			ON pro.id_profesional = ag.id_profesional
@@ -27,7 +27,7 @@ BEGIN
 	END
 	ELSE
 	BEGIN
-		SELECT TOP 1 @p_fecha_hoy, ag.fecha_hasta
+		SELECT TOP 1 @p_fecha_hoy as fecha_desde, ag.fecha_hasta as fecha_hasta
 		FROM TOP_4.Agenda ag
 		INNER JOIN TOP_4.Profesional pro
 			ON pro.id_profesional = ag.id_profesional
@@ -78,6 +78,6 @@ BEGIN
 		set @horaActual = DATEADD(minute, 30, @horaActual)
 	END
 	
-	SELECT * FROM #tmpTurnos
+	SELECT horaInicio, horaFin FROM #tmpTurnos
 	DROP TABLE #tmpTurnos
 END 
