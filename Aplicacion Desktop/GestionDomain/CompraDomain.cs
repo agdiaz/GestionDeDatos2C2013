@@ -22,28 +22,37 @@ namespace GestionDomain
             _dal = new CompraDAL(logger);
         }
 
-        public IResultado<bool> Comprar(Afiliado afiliado, decimal costo, IList<BonoConsulta> bonosConsulta, IList<BonoFarmacia> bonosFarmacia)
+        public IResultado<Compra> Comprar(Afiliado afiliado, decimal costo, IList<BonoConsulta> bonosConsulta, IList<BonoFarmacia> bonosFarmacia)
         {
-            Resultado<bool> resultado = new Resultado<bool>();
+             Resultado<Compra> resultado = new Resultado<Compra>();
 
             try
             {
+                Compra compra = new Compra();
+
                 DateTime fechaImpresion = FechaHelper.Ahora();
+                
                 decimal idCompra = _dal.RegistrarCompra(afiliado, fechaImpresion, costo);
+                compra.IdCompra = idCompra;
+
                 foreach (BonoConsulta bono in bonosConsulta)
                 {
                     bono.FechaImpresion = fechaImpresion;
                     bono.IdCompra = idCompra;
-                    _dal.CrearBonoConsulta(bono);
+                    decimal idBono = _dal.CrearBonoConsulta(bono);
+                    bono.IdBonoConsulta = idBono;
+                    compra.BonosConsulta.Add(bono);
                 }
 
                 foreach (BonoFarmacia bono in bonosFarmacia)
                 {
                     bono.FechaImpresion = fechaImpresion;
                     bono.IdCompra = idCompra;
-                    _dal.CrearBonoFarmacia(bono);
+                    decimal idBono =_dal.CrearBonoFarmacia(bono);
+                    bono.IdBonoFarmacia = idBono;
+                    compra.BonosFarmacia.Add(bono);
                 }
-
+                resultado.Retorno = compra;
             }
             catch (Exception ex)
             {

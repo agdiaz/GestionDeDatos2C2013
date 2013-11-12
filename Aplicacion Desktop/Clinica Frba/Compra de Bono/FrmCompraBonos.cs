@@ -12,6 +12,7 @@ using GestionCommon.Helpers;
 using GestionDomain;
 using GestionDomain.Resultados;
 using GestionGUIHelper.Helpers;
+using Clinica_Frba.Compra_de_Bono;
 
 namespace Clinica_Frba.Compras
 {
@@ -142,10 +143,14 @@ namespace Clinica_Frba.Compras
             try
             {
                 Decimal subtotal = Convert.ToDecimal(tbPrecioTotal.Text);
-                IResultado<bool> resultado = _compraDomain.Comprar(_afiliado, subtotal, bonosConsulta, bonosFarmacia);
+                IResultado<Compra> resultado = _compraDomain.Comprar(_afiliado, subtotal, bonosConsulta, bonosFarmacia);
                 if (!resultado.Correcto)
-                    throw new ResultadoIncorrectoException<bool>(resultado);
-                
+                    throw new ResultadoIncorrectoException<Compra>(resultado);
+
+                using (FrmImpresion frm = new FrmImpresion(resultado.Retorno, _afiliado))
+                {
+                    frm.ShowDialog(this);
+                }
                 this.Close();
             }
             catch (Exception ex)
