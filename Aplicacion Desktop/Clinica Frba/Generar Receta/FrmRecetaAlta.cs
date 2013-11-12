@@ -14,11 +14,13 @@ using GestionGUIHelper.Helpers;
 using GestionGUIHelper.Validaciones;
 using GestionDomain;
 using GestionDomain.Resultados;
+using Clinica_Frba.Afiliados;
 
 namespace Clinica_Frba.Recetas
 {
     public partial class FrmRecetaAlta : FormularioBaseAlta
     {
+        private Afiliado _afiliado;
         private BonoFarmacia bonoFarmacia;
         private Medicamento nuevo;
         private int cantidadMedicamentos;
@@ -159,7 +161,7 @@ namespace Clinica_Frba.Recetas
             try
             {
                 decimal idBono = Convert.ToDecimal(tbBonoFarmacia.Text);
-                IResultado<BonoFarmacia> resultado = _domain.ObtenerBonoFarmacia(idBono);
+                IResultado<BonoFarmacia> resultado = _domain.ValidarBonoFarmacia(idBono, _afiliado.NroPrincipal, FechaHelper.Ahora());
                 if (!resultado.Correcto)
                     throw new ResultadoIncorrectoException<BonoFarmacia>(resultado);
                 
@@ -172,6 +174,24 @@ namespace Clinica_Frba.Recetas
                 MensajePorPantalla.MensajeError(this, ex.Message);
             }
             
+        }
+
+        private void btnBuscarAfiliado_Click(object sender, EventArgs e)
+        {
+            using (FrmAfiliadoListado frm = new FrmAfiliadoListado(true))
+            {
+                frm.ShowDialog(this);
+                if (frm.EntidadSeleccionada as Afiliado != null)
+                {
+                    this.CargarAfiliado((Afiliado)frm.EntidadSeleccionada);
+                }
+            }
+        }
+
+        private void CargarAfiliado(Afiliado afiliado)
+        {
+            this._afiliado = afiliado;
+            this.tbAfiliado.Text = afiliado.NombreCompleto;
         }
     }
 }

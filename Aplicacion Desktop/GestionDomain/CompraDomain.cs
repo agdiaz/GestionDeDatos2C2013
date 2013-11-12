@@ -110,5 +110,22 @@ namespace GestionDomain
             }
             return resultado;            
         }
+
+        public IResultado<BonoFarmacia> ValidarBonoFarmacia(decimal idBono, decimal nroPrincipal, DateTime fecha)
+        {
+            Resultado<BonoFarmacia> resultado = new Resultado<BonoFarmacia>();
+            try
+            {
+                resultado.Retorno = _bonoFarmaciaDal.Validar(idBono, fecha, nroPrincipal );
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add("No se ha encontrado el bono");
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+
+        }
     }
 }

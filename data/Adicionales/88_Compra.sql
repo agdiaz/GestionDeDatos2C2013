@@ -105,3 +105,28 @@ BEGIN
 	 AND habilitado = '1'
 END
 GO
+
+CREATE PROCEDURE [TOP_4].[sp_BonoFarmacia_validar]
+(@p_id_bono numeric(18)
+,@p_nro_principal numeric(18)
+,@p_fecha datetime)
+AS
+BEGIN
+	SELECT BF.[id_bono_farmacia]
+      ,BF.[id_compra]
+      ,BF.[id_plan_medico]
+      ,BF.[id_receta]
+      ,BF.[fecha_vencimiento]
+      ,BF.[fecha_impresion]
+      ,BF.[habilitado]
+  FROM [GD2C2013].[TOP_4].[Bono_Farmacia] BF
+  INNER JOIN [TOP_4].Compra C ON BF.id_compra = C.id_compra
+  INNER JOIN [TOP_4].Afiliado A ON C.id_afiliado = A.id_afiliado
+  WHERE id_bono_farmacia = @p_id_bono
+  AND [id_receta] = NULL
+  AND [fecha_impresion] <= @p_fecha
+  AND BF.habilitado = '1'
+  AND A.nro_principal = @p_nro_principal
+  AND A.habilitado = '1'
+END
+GO
