@@ -513,7 +513,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [TOP_4].[Tipo_especialidad](
-	[id_tipo_especialidad] [numeric](18, 0) NOT NULL,
+	[id_tipo_especialidad] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[nombre] [varchar](255) NOT NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Tipo_especialidad] PRIMARY KEY CLUSTERED 
@@ -530,12 +530,17 @@ GO
 SET ANSI_PADDING OFF
 GO
 
+
+SET IDENTITY_INSERT TOP_4.Tipo_especialidad ON
+
 INSERT INTO TOP_4.Tipo_especialidad (id_tipo_especialidad, nombre)
 (
 	SELECT DISTINCT  m.Tipo_Especialidad_Codigo, m.Tipo_Especialidad_Descripcion 
 		FROM gd_esquema.Maestra m
 		WHERE Tipo_Especialidad_Codigo is not null	
 )
+
+SET IDENTITY_INSERT TOP_4.Tipo_especialidad OFF
 ---------------------------------------Especialidad--------------------------------------------------
 USE [GD2C2013]
 GO
@@ -547,7 +552,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [TOP_4].[Especialidad](
-	[id_especialidad] [numeric](18, 0) NOT NULL,
+	[id_especialidad] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[id_tipo_especialidad] [numeric](18, 0) NOT NULL,
 	[nombre] [nvarchar](255) NOT NULL,
 	[habilitado] [bit] NOT NULL,
@@ -569,6 +574,7 @@ GO
 ALTER TABLE [TOP_4].[Especialidad] ADD  CONSTRAINT [DF_Especialidad_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
 
+SET IDENTITY_INSERT TOP_4.Especialidad ON
 INSERT INTO TOP_4.Especialidad
 (id_especialidad, nombre, id_tipo_especialidad)
 (
@@ -576,7 +582,7 @@ INSERT INTO TOP_4.Especialidad
 		FROM gd_esquema.Maestra m
 		WHERE m.Especialidad_Codigo IS NOT NULL
 )
-
+SET IDENTITY_INSERT TOP_4.Especialidad OFF
 GO
 ------------------------------------Profesional_especialidad-----------------------------------------------
 USE [GD2C2013]
