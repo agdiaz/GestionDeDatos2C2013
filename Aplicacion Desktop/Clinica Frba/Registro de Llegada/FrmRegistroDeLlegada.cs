@@ -21,6 +21,7 @@ namespace Clinica_Frba.RegistrosDeLLegada
     {
         private Afiliado _afiliado;
         private Turno _turno;
+        private BonoConsulta _bono;
 
         private CompraDomain _domain;
 
@@ -92,7 +93,12 @@ namespace Clinica_Frba.RegistrosDeLLegada
         {
             try
             {
-                IResultado<BonoConsulta> resultado = _domain.ValidarBonoConsulta(Convert.ToDecimal(tbBonoConsulta.Text), _afiliado.NroPrincipal, _afiliado.IdPlanMedico); 
+                IResultado<BonoConsulta> resultado = _domain.ValidarBonoConsulta(Convert.ToDecimal(tbBonoConsulta.Text), _afiliado.NroPrincipal, _afiliado.IdPlanMedico);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<BonoConsulta>(resultado);
+
+                this._bono = resultado.Retorno;
+                this.btnValidarBono.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -104,8 +110,20 @@ namespace Clinica_Frba.RegistrosDeLLegada
         {
             using (FrmAfiliadoListado frm = new FrmAfiliadoListado(true))
             {
-
+                frm.ShowDialog(this);
+                if (frm.EntidadSeleccionada as Afiliado != null)
+                {
+                    this.CargarAfiliado((Afiliado)frm.EntidadSeleccionada);
+                }
             }
+        }
+
+        private void CargarAfiliado(Afiliado afiliado)
+        {
+            this._afiliado = afiliado;
+            this.btnBuscarAfiliado.Enabled = false;
+            this.tbAfiliado.Text = _afiliado.NombreCompleto;
+            
         }
     }
 }
