@@ -12,5 +12,8 @@ namespace GestionCommon.Entidades
         public decimal IdProfesional { get; set; }
         public decimal IdAfiliado { get; set; }
         public bool Habilitado { get; set; }
+
+        public DateTime HoraInicio { get; set; }
+        public DateTime HoraFin { get; set; }
     }
 }

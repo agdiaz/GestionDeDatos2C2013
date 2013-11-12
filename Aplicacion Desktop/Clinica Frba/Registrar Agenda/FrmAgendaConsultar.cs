@@ -48,11 +48,11 @@ namespace Clinica_Frba.Agendas
                 if (!resultado.Correcto)
                     throw new ResultadoIncorrectoException<IList<TurnoDisponible>>(resultado);
 
+                this.dgvTurnos.DataSource = resultado.Retorno;
             }
             catch (Exception ex)
             {
-
-                throw;
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
 
@@ -89,7 +89,15 @@ namespace Clinica_Frba.Agendas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
+            if (dgvTurnos.SelectedRows.Count > 0)
+            {
+                TurnoDisponible td = dgvTurnos.SelectedRows[0].DataBoundItem as TurnoDisponible;
+                Turno t = new Turno();
+                t.IdProfesional = _profesional.IdProfesional;
+                t.Fecha = mcDesde.SelectionRange.Start;
+                t.HoraInicio = td.HoraDesde;
+                t.HoraFin = td.HoraHasta;
+            }
         }
     }
 }

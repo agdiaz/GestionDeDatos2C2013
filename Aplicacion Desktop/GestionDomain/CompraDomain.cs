@@ -127,5 +127,22 @@ namespace GestionDomain
             return resultado;
 
         }
+
+        public IResultado<BonoConsulta> ValidarBonoConsulta(decimal idBono, decimal nroPrincipal, decimal idPlan)
+        {
+            Resultado<BonoConsulta> resultado = new Resultado<BonoConsulta>();
+            try
+            {
+                resultado.Retorno = _bonoConsultaDal.Validar(idBono, nroPrincipal, idPlan);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add("No se ha encontrado el bono");
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+
+        }
     }
 }

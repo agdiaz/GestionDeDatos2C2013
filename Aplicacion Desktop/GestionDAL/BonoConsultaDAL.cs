@@ -48,5 +48,10 @@ namespace GestionDAL
             _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_BonoConsulta_registrar_llegada]", parametros);
             return true;
         }
+
+        public BonoConsulta Validar(decimal idBono, decimal nroPrincipal, decimal idPlan)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

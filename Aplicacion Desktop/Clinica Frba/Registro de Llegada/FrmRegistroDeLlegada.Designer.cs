@@ -36,12 +36,19 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.tbBonoConsulta = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnValidarBono = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnBuscarAfiliado = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnBuscarAfiliado);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.btnBuscarTurno);
             this.groupBox1.Controls.Add(this.tbTurno);
             this.groupBox1.Controls.Add(this.label1);
@@ -54,7 +61,7 @@
             // 
             // btnBuscarTurno
             // 
-            this.btnBuscarTurno.Location = new System.Drawing.Point(334, 30);
+            this.btnBuscarTurno.Location = new System.Drawing.Point(334, 46);
             this.btnBuscarTurno.Name = "btnBuscarTurno";
             this.btnBuscarTurno.Size = new System.Drawing.Size(75, 23);
             this.btnBuscarTurno.TabIndex = 2;
@@ -64,15 +71,16 @@
             // 
             // tbTurno
             // 
-            this.tbTurno.Location = new System.Drawing.Point(47, 30);
+            this.tbTurno.Location = new System.Drawing.Point(47, 46);
             this.tbTurno.Name = "tbTurno";
+            this.tbTurno.ReadOnly = true;
             this.tbTurno.Size = new System.Drawing.Size(280, 20);
             this.tbTurno.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 33);
+            this.label1.Location = new System.Drawing.Point(6, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -80,6 +88,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnValidarBono);
             this.groupBox2.Controls.Add(this.btnRegistrar);
             this.groupBox2.Controls.Add(this.tbBonoConsulta);
             this.groupBox2.Controls.Add(this.label2);
@@ -116,11 +125,48 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Nro de bono";
             // 
+            // btnValidarBono
+            // 
+            this.btnValidarBono.Location = new System.Drawing.Point(334, 31);
+            this.btnValidarBono.Name = "btnValidarBono";
+            this.btnValidarBono.Size = new System.Drawing.Size(75, 23);
+            this.btnValidarBono.TabIndex = 3;
+            this.btnValidarBono.Text = "Validar";
+            this.btnValidarBono.UseVisualStyleBackColor = true;
+            this.btnValidarBono.Click += new System.EventHandler(this.btnValidarBono_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Afiliado";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(47, 24);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(280, 20);
+            this.textBox1.TabIndex = 4;
+            // 
+            // btnBuscarAfiliado
+            // 
+            this.btnBuscarAfiliado.Location = new System.Drawing.Point(334, 22);
+            this.btnBuscarAfiliado.Name = "btnBuscarAfiliado";
+            this.btnBuscarAfiliado.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarAfiliado.TabIndex = 5;
+            this.btnBuscarAfiliado.Text = "Buscar";
+            this.btnBuscarAfiliado.UseVisualStyleBackColor = true;
+            this.btnBuscarAfiliado.Click += new System.EventHandler(this.btnBuscarAfiliado_Click);
+            // 
             // FrmRegistroDeLlegada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 388);
+            this.ClientSize = new System.Drawing.Size(470, 215);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmRegistroDeLlegada";
@@ -143,5 +189,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbBonoConsulta;
         private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.Button btnValidarBono;
+        private System.Windows.Forms.Button btnBuscarAfiliado;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
     }
 }

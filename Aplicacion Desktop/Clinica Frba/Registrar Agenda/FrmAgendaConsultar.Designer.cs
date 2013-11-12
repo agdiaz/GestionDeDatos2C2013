@@ -32,11 +32,11 @@
             this.tbProfesional = new System.Windows.Forms.TextBox();
             this.btnBuscarProfesional = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvTurnos = new System.Windows.Forms.DataGridView();
             this.btnTurnos = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.mcDesde = new System.Windows.Forms.MonthCalendar();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -74,13 +74,13 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Fechas disponibles";
             // 
-            // dataGridView1
+            // dgvTurnos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(373, 70);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(331, 361);
-            this.dataGridView1.TabIndex = 9;
+            this.dgvTurnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTurnos.Location = new System.Drawing.Point(373, 70);
+            this.dgvTurnos.Name = "dgvTurnos";
+            this.dgvTurnos.Size = new System.Drawing.Size(331, 361);
+            this.dgvTurnos.TabIndex = 9;
             // 
             // btnTurnos
             // 
@@ -117,7 +117,7 @@
             this.Controls.Add(this.mcDesde);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnTurnos);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvTurnos);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBuscarProfesional);
             this.Controls.Add(this.tbProfesional);
@@ -125,7 +125,7 @@
             this.Name = "FrmAgendaConsultar";
             this.Text = "Clinica FRBA - Agenda - Consultar";
             this.Load += new System.EventHandler(this.FrmAgendaConsultar_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,7 +137,7 @@
         private System.Windows.Forms.TextBox tbProfesional;
         private System.Windows.Forms.Button btnBuscarProfesional;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvTurnos;
         private System.Windows.Forms.Button btnTurnos;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.MonthCalendar mcDesde;

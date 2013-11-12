@@ -12,11 +12,14 @@ using GestionDomain.Resultados;
 using GestionGUIHelper.Formularios;
 using GestionGUIHelper.Helpers;
 using GestionCommon.Helpers;
+using Clinica_Frba.Agendas;
+using Clinica_Frba.Afiliados;
 
 namespace Clinica_Frba.RegistrosDeLLegada
 {
     public partial class FrmRegistroDeLlegada : FormularioBase
     {
+        private Afiliado _afiliado;
         private Turno _turno;
 
         private CompraDomain _domain;
@@ -73,7 +76,36 @@ namespace Clinica_Frba.RegistrosDeLLegada
 
         private void btnBuscarTurno_Click(object sender, EventArgs e)
         {
+            using (FrmAgendaConsultar frm = new FrmAgendaConsultar())
+            {
+                frm.ShowDialog(this);
+                if (frm.TurnoSeleccionado != null)
+                {
+                    this._turno = frm.TurnoSeleccionado;
+                    tbTurno.Text = _turno.ToString();
+                    btnBuscarTurno.Enabled = false;
+                }
+            }
+        }
 
+        private void btnValidarBono_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IResultado<BonoConsulta> resultado = _domain.ValidarBonoConsulta(Convert.ToDecimal(tbBonoConsulta.Text), _afiliado.NroPrincipal, _afiliado.IdPlanMedico); 
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
+        }
+
+        private void btnBuscarAfiliado_Click(object sender, EventArgs e)
+        {
+            using (FrmAfiliadoListado frm = new FrmAfiliadoListado(true))
+            {
+
+            }
         }
     }
 }
