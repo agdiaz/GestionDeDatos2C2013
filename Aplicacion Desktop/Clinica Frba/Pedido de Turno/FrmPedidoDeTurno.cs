@@ -25,6 +25,11 @@ namespace Clinica_Frba.PedidosDeTurno
 
         private TurnoDomain _domain;
 
+        public FrmPedidoDeTurno(Afiliado af)
+            :this()
+        {
+            this.CargarAfiliado(af);
+        }
         public FrmPedidoDeTurno()
         {
             _domain = new TurnoDomain(Program.ContextoActual.Logger);

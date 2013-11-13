@@ -163,13 +163,14 @@ namespace Clinica_Frba
                             throw new ResultadoIncorrectoException<Afiliado>(resultadoAfiliado);
 
                         Program.ContextoActual.RegistrarAfiliado(resultadoAfiliado.Retorno);
+                        this.tstNombre.Text = "AFILIADO: " + Program.ContextoActual.AfiliadoDelUsuario.NombreCompleto;
                     }
                     catch (Exception ex)
                     {
                         MensajePorPantalla.MensajeError(this, ex.Message);
                     }
                 }
-                if (rol.Id == 2) //Profesional
+                if (rol.Id == 3) //Profesional
                 {
                     try
                     {
@@ -178,6 +179,7 @@ namespace Clinica_Frba
                             throw new ResultadoIncorrectoException<Profesional>(resultadoProfesional);
 
                         Program.ContextoActual.RegistrarProfesional(resultadoProfesional.Retorno);
+                        this.tstNombre.Text = "PROFESIONAL: " + Program.ContextoActual.ProfesionalDelUsuario.NombreCompleto;
                     }
                     catch (Exception ex)
                     {
@@ -334,7 +336,7 @@ namespace Clinica_Frba
         {
             try
             {
-                FrmCompraBonos frm = new FrmCompraBonos();
+                FrmCompraBonos frm = (Program.ContextoActual.AfiliadoDelUsuario != null) ? new FrmCompraBonos(Program.ContextoActual.AfiliadoDelUsuario) : new FrmCompraBonos();
                 frm.StartPosition = FormStartPosition.CenterParent;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.MdiParent = this;
@@ -352,7 +354,7 @@ namespace Clinica_Frba
         {
             try
             {
-                FrmPedidoDeTurno frm = new FrmPedidoDeTurno();
+                FrmPedidoDeTurno frm = (Program.ContextoActual.AfiliadoDelUsuario != null) ? new FrmPedidoDeTurno(Program.ContextoActual.AfiliadoDelUsuario) : new FrmPedidoDeTurno();
                 frm.StartPosition = FormStartPosition.CenterParent;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.MdiParent = this;
@@ -388,7 +390,7 @@ namespace Clinica_Frba
         {
             try
             {
-                FrmRegistroDeResultado frm = new FrmRegistroDeResultado();
+                FrmRegistroDeResultado frm = (Program.ContextoActual.ProfesionalDelUsuario != null) ? new FrmRegistroDeResultado(Program.ContextoActual.ProfesionalDelUsuario) : new FrmRegistroDeResultado();
                 frm.StartPosition = FormStartPosition.CenterParent;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.MdiParent = this;
@@ -521,7 +523,7 @@ namespace Clinica_Frba
         {
             try
             {
-                FrmCancelarAfiliado frm = new FrmCancelarAfiliado();
+                FrmCancelarAfiliado frm = (Program.ContextoActual.AfiliadoDelUsuario != null) ? new FrmCancelarAfiliado(Program.ContextoActual.AfiliadoDelUsuario) : new FrmCancelarAfiliado();
                 frm.StartPosition = FormStartPosition.CenterParent;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.MdiParent = this;
@@ -539,7 +541,7 @@ namespace Clinica_Frba
         {
             try
             {
-                FrmCancelarProfesional frm = new FrmCancelarProfesional();
+                FrmCancelarProfesional frm = (Program.ContextoActual.ProfesionalDelUsuario != null) ? new FrmCancelarProfesional(Program.ContextoActual.ProfesionalDelUsuario) : new FrmCancelarProfesional();
                 frm.StartPosition = FormStartPosition.CenterParent;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.MdiParent = this;

@@ -24,6 +24,11 @@ namespace Clinica_Frba.Compras
         private PlanMedicoDomain _planMedicoDomain;
         private CompraDomain _compraDomain;
 
+        public FrmCompraBonos(Afiliado af)
+            :this()
+        {
+            this.CargarAfiliado(af);
+        }
         public FrmCompraBonos()
         {
             _planMedicoDomain = new PlanMedicoDomain(Program.ContextoActual.Logger);
@@ -38,17 +43,13 @@ namespace Clinica_Frba.Compras
             {
                 frm.ShowDialog(this);
                 if (frm.EntidadSeleccionada != null)
-                    this._afiliado = (Afiliado)frm.EntidadSeleccionada;
-            }
-
-            if (_afiliado != null)
-            {
-                CargarAfiliado();
+                    CargarAfiliado((Afiliado)frm.EntidadSeleccionada);
             }
         }
 
-        private void CargarAfiliado()
+        private void CargarAfiliado(Afiliado af)
         {
+            this._afiliado = af;
             this.tbAfiliado.Text = _afiliado.NombreCompleto;
             this.CargarPlan();
             this.btnComprar.Enabled = true;

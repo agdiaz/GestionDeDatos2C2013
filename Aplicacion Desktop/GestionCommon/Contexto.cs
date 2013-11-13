@@ -81,6 +81,8 @@ namespace GestionCommon
         public void DesregistrarUsuario()
         { 
             this.UsuarioActual = new Usuario();
+            this.AfiliadoDelUsuario = null;
+            this.ProfesionalDelUsuario = null;
             this.SesionIniciada = false;
         }
         public void DesregistrarRol()

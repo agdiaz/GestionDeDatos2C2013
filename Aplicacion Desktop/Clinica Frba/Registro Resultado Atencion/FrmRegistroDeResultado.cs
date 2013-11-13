@@ -25,6 +25,12 @@ namespace Clinica_Frba.ResultadosAtencion
         private AfiliadoDomain _afiliadoDomain;
         private TurnoDomain _domain;
 
+        public FrmRegistroDeResultado(Profesional prof)
+            :this()
+        {
+            this.CargarProfesional(prof);
+        }
+
         public FrmRegistroDeResultado()
         {
             _afiliadoDomain = new AfiliadoDomain(Program.ContextoActual.Logger);
