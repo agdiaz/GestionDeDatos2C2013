@@ -1440,7 +1440,7 @@ BEGIN
          INNER JOIN [TOP_4].[Afiliado] A
          	ON A.id_afiliado = C.id_afiliado
          WHERE BC.id_bono_consulta = @p_id
-         AND BC.id_turno = NULL
+         AND BC.id_turno IS NULL
          AND BC.habilitado = '1'
          AND C.habilitado = '1'
          AND A.nro_principal = @p_nro_principal
