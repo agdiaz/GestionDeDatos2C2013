@@ -80,14 +80,14 @@
             this.dgvTurnos.Location = new System.Drawing.Point(373, 70);
             this.dgvTurnos.Name = "dgvTurnos";
             this.dgvTurnos.Size = new System.Drawing.Size(331, 361);
-            this.dgvTurnos.TabIndex = 9;
+            this.dgvTurnos.TabIndex = 5;
             // 
             // btnTurnos
             // 
             this.btnTurnos.Location = new System.Drawing.Point(263, 116);
             this.btnTurnos.Name = "btnTurnos";
             this.btnTurnos.Size = new System.Drawing.Size(104, 23);
-            this.btnTurnos.TabIndex = 10;
+            this.btnTurnos.TabIndex = 4;
             this.btnTurnos.Text = "Turnos disponibles";
             this.btnTurnos.UseVisualStyleBackColor = true;
             this.btnTurnos.Click += new System.EventHandler(this.btnTurnos_Click);
@@ -97,7 +97,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(629, 437);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 11;
+            this.btnAceptar.TabIndex = 6;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -107,7 +107,7 @@
             this.mcDesde.Location = new System.Drawing.Point(24, 70);
             this.mcDesde.MaxSelectionCount = 1;
             this.mcDesde.Name = "mcDesde";
-            this.mcDesde.TabIndex = 12;
+            this.mcDesde.TabIndex = 3;
             // 
             // FrmAgendaConsultar
             // 

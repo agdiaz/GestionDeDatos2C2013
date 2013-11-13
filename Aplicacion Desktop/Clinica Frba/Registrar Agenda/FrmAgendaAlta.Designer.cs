@@ -38,9 +38,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnQuitarDia = new System.Windows.Forms.Button();
-            this.btnAgregarDia = new System.Windows.Forms.Button();
             this.tbHorasSemanales = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.listCronograma = new System.Windows.Forms.ListBox();
+            this.btnAgregarDia = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.nudHasta = new System.Windows.Forms.NumericUpDown();
             this.nudDesde = new System.Windows.Forms.NumericUpDown();
@@ -48,7 +49,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.listCronograma = new System.Windows.Forms.ListBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -107,14 +107,14 @@
             this.dpFechaHasta.Location = new System.Drawing.Point(393, 59);
             this.dpFechaHasta.Name = "dpFechaHasta";
             this.dpFechaHasta.Size = new System.Drawing.Size(200, 20);
-            this.dpFechaHasta.TabIndex = 7;
+            this.dpFechaHasta.TabIndex = 4;
             // 
             // dpFechaDesde
             // 
             this.dpFechaDesde.Location = new System.Drawing.Point(81, 59);
             this.dpFechaDesde.Name = "dpFechaDesde";
             this.dpFechaDesde.Size = new System.Drawing.Size(200, 20);
-            this.dpFechaDesde.TabIndex = 6;
+            this.dpFechaDesde.TabIndex = 3;
             // 
             // label3
             // 
@@ -152,20 +152,10 @@
             this.btnQuitarDia.Location = new System.Drawing.Point(243, 19);
             this.btnQuitarDia.Name = "btnQuitarDia";
             this.btnQuitarDia.Size = new System.Drawing.Size(75, 23);
-            this.btnQuitarDia.TabIndex = 5;
+            this.btnQuitarDia.TabIndex = 10;
             this.btnQuitarDia.Text = "Quitar día";
             this.btnQuitarDia.UseVisualStyleBackColor = true;
             this.btnQuitarDia.Click += new System.EventHandler(this.btnQuitarDia_Click);
-            // 
-            // btnAgregarDia
-            // 
-            this.btnAgregarDia.Location = new System.Drawing.Point(72, 104);
-            this.btnAgregarDia.Name = "btnAgregarDia";
-            this.btnAgregarDia.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregarDia.TabIndex = 4;
-            this.btnAgregarDia.Text = "Agregar día";
-            this.btnAgregarDia.UseVisualStyleBackColor = true;
-            this.btnAgregarDia.Click += new System.EventHandler(this.AgregarDia_Click);
             // 
             // tbHorasSemanales
             // 
@@ -184,6 +174,24 @@
             this.label4.Size = new System.Drawing.Size(113, 13);
             this.label4.TabIndex = 2;
             this.label4.Text = "Total horas semanales";
+            // 
+            // listCronograma
+            // 
+            this.listCronograma.FormattingEnabled = true;
+            this.listCronograma.Location = new System.Drawing.Point(9, 19);
+            this.listCronograma.Name = "listCronograma";
+            this.listCronograma.Size = new System.Drawing.Size(228, 147);
+            this.listCronograma.TabIndex = 9;
+            // 
+            // btnAgregarDia
+            // 
+            this.btnAgregarDia.Location = new System.Drawing.Point(72, 104);
+            this.btnAgregarDia.Name = "btnAgregarDia";
+            this.btnAgregarDia.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarDia.TabIndex = 8;
+            this.btnAgregarDia.Text = "Agregar día";
+            this.btnAgregarDia.UseVisualStyleBackColor = true;
+            this.btnAgregarDia.Click += new System.EventHandler(this.AgregarDia_Click);
             // 
             // groupBox3
             // 
@@ -261,20 +269,12 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Día";
             // 
-            // listCronograma
-            // 
-            this.listCronograma.FormattingEnabled = true;
-            this.listCronograma.Location = new System.Drawing.Point(9, 19);
-            this.listCronograma.Name = "listCronograma";
-            this.listCronograma.Size = new System.Drawing.Size(228, 147);
-            this.listCronograma.TabIndex = 0;
-            // 
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(12, 449);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 5;
+            this.btnGuardar.TabIndex = 11;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -284,7 +284,7 @@
             this.button3.Location = new System.Drawing.Point(93, 449);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 6;
+            this.button3.TabIndex = 12;
             this.button3.Text = "Limpiar";
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -293,7 +293,7 @@
             this.button4.Location = new System.Drawing.Point(174, 449);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 7;
+            this.button4.TabIndex = 13;
             this.button4.Text = "Cancelar";
             this.button4.UseVisualStyleBackColor = true;
             // 

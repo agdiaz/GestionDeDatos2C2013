@@ -36,6 +36,18 @@
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnBaja
+            // 
+            this.btnBaja.TabIndex = 6;
+            // 
+            // btnModificacion
+            // 
+            this.btnModificacion.TabIndex = 5;
+            // 
+            // btnAlta
+            // 
+            this.btnAlta.TabIndex = 4;
+            // 
             // gbFiltros
             // 
             this.gbFiltros.Controls.Add(this.label1);
@@ -48,6 +60,14 @@
             this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.TabIndex = 3;
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.TabIndex = 4;
             // 
             // label1
             // 
@@ -72,7 +92,7 @@
             this.tbUsername.Location = new System.Drawing.Point(87, 23);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(336, 20);
-            this.tbUsername.TabIndex = 4;
+            this.tbUsername.TabIndex = 1;
             // 
             // cbRol
             // 
@@ -81,7 +101,7 @@
             this.cbRol.Location = new System.Drawing.Point(87, 49);
             this.cbRol.Name = "cbRol";
             this.cbRol.Size = new System.Drawing.Size(336, 21);
-            this.cbRol.TabIndex = 5;
+            this.cbRol.TabIndex = 2;
             // 
             // FrmUsuarioListado
             // 

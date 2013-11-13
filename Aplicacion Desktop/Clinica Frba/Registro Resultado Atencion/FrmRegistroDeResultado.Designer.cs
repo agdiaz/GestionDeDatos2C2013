@@ -78,7 +78,7 @@
             this.btnConfirmarHorario.Location = new System.Drawing.Point(347, 100);
             this.btnConfirmarHorario.Name = "btnConfirmarHorario";
             this.btnConfirmarHorario.Size = new System.Drawing.Size(117, 23);
-            this.btnConfirmarHorario.TabIndex = 10;
+            this.btnConfirmarHorario.TabIndex = 7;
             this.btnConfirmarHorario.Text = "Confirma horario";
             this.btnConfirmarHorario.UseVisualStyleBackColor = true;
             // 
@@ -87,7 +87,7 @@
             this.btnBuscarProfesional.Location = new System.Drawing.Point(347, 20);
             this.btnBuscarProfesional.Name = "btnBuscarProfesional";
             this.btnBuscarProfesional.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarProfesional.TabIndex = 9;
+            this.btnBuscarProfesional.TabIndex = 2;
             this.btnBuscarProfesional.Text = "Buscar";
             this.btnBuscarProfesional.UseVisualStyleBackColor = true;
             this.btnBuscarProfesional.Click += new System.EventHandler(this.btnBuscarProfesional_Click);
@@ -98,7 +98,7 @@
             this.tbProfesional.Name = "tbProfesional";
             this.tbProfesional.ReadOnly = true;
             this.tbProfesional.Size = new System.Drawing.Size(261, 20);
-            this.tbProfesional.TabIndex = 8;
+            this.tbProfesional.TabIndex = 1;
             // 
             // label6
             // 
@@ -132,7 +132,7 @@
             this.tbAfiliado.Name = "tbAfiliado";
             this.tbAfiliado.ReadOnly = true;
             this.tbAfiliado.Size = new System.Drawing.Size(271, 20);
-            this.tbAfiliado.TabIndex = 4;
+            this.tbAfiliado.TabIndex = 5;
             // 
             // label4
             // 
@@ -149,7 +149,7 @@
             this.btnBuscarTurno.Location = new System.Drawing.Point(347, 46);
             this.btnBuscarTurno.Name = "btnBuscarTurno";
             this.btnBuscarTurno.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarTurno.TabIndex = 2;
+            this.btnBuscarTurno.TabIndex = 4;
             this.btnBuscarTurno.Text = "Buscar";
             this.btnBuscarTurno.UseVisualStyleBackColor = true;
             this.btnBuscarTurno.Click += new System.EventHandler(this.btnBuscarTurno_Click);
@@ -160,7 +160,7 @@
             this.tbTurno.Name = "tbTurno";
             this.tbTurno.ReadOnly = true;
             this.tbTurno.Size = new System.Drawing.Size(271, 20);
-            this.tbTurno.TabIndex = 1;
+            this.tbTurno.TabIndex = 3;
             // 
             // label1
             // 
@@ -196,7 +196,7 @@
             this.tbDiagnostico.Multiline = true;
             this.tbDiagnostico.Name = "tbDiagnostico";
             this.tbDiagnostico.Size = new System.Drawing.Size(444, 85);
-            this.tbDiagnostico.TabIndex = 3;
+            this.tbDiagnostico.TabIndex = 9;
             // 
             // tbSintomas
             // 
@@ -207,7 +207,7 @@
             this.tbSintomas.Multiline = true;
             this.tbSintomas.Name = "tbSintomas";
             this.tbSintomas.Size = new System.Drawing.Size(444, 94);
-            this.tbSintomas.TabIndex = 2;
+            this.tbSintomas.TabIndex = 8;
             // 
             // label3
             // 
@@ -236,7 +236,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(456, 377);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 5;
+            this.btnAceptar.TabIndex = 10;
             this.btnAceptar.Text = "Confirmar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);

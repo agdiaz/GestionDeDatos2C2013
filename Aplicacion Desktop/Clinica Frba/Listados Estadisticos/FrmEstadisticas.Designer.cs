@@ -79,7 +79,7 @@
             this.dtpFecha.Location = new System.Drawing.Point(58, 33);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(254, 20);
-            this.dtpFecha.TabIndex = 6;
+            this.dtpFecha.TabIndex = 1;
             this.dtpFecha.ValueChanged += new System.EventHandler(this.dtpFecha_ValueChanged);
             // 
             // btnConsultar
@@ -88,7 +88,7 @@
             this.btnConsultar.Location = new System.Drawing.Point(587, 71);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(75, 23);
-            this.btnConsultar.TabIndex = 5;
+            this.btnConsultar.TabIndex = 3;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -112,7 +112,7 @@
             this.cbVista.Location = new System.Drawing.Point(58, 60);
             this.cbVista.Name = "cbVista";
             this.cbVista.Size = new System.Drawing.Size(254, 21);
-            this.cbVista.TabIndex = 3;
+            this.cbVista.TabIndex = 2;
             // 
             // label2
             // 

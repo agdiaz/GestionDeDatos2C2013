@@ -77,7 +77,7 @@
             this.btnFiltrar.Location = new System.Drawing.Point(227, 89);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
-            this.btnFiltrar.TabIndex = 9;
+            this.btnFiltrar.TabIndex = 7;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
@@ -88,7 +88,7 @@
             this.checkedListBox1.Location = new System.Drawing.Point(9, 129);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(667, 244);
-            this.checkedListBox1.TabIndex = 0;
+            this.checkedListBox1.TabIndex = 8;
             // 
             // btnAceptar
             // 
@@ -96,7 +96,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(9, 379);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(102, 23);
-            this.btnAceptar.TabIndex = 1;
+            this.btnAceptar.TabIndex = 9;
             this.btnAceptar.Text = "Aceptar turno";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -108,7 +108,7 @@
             this.cbDias.Location = new System.Drawing.Point(100, 89);
             this.cbDias.Name = "cbDias";
             this.cbDias.Size = new System.Drawing.Size(121, 21);
-            this.cbDias.TabIndex = 8;
+            this.cbDias.TabIndex = 6;
             // 
             // label4
             // 
@@ -124,7 +124,7 @@
             this.dtpHasta.Location = new System.Drawing.Point(346, 59);
             this.dtpHasta.Name = "dtpHasta";
             this.dtpHasta.Size = new System.Drawing.Size(200, 20);
-            this.dtpHasta.TabIndex = 6;
+            this.dtpHasta.TabIndex = 5;
             // 
             // label3
             // 
@@ -156,7 +156,7 @@
             this.btnBuscarProfesional.Location = new System.Drawing.Point(601, 24);
             this.btnBuscarProfesional.Name = "btnBuscarProfesional";
             this.btnBuscarProfesional.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarProfesional.TabIndex = 2;
+            this.btnBuscarProfesional.TabIndex = 3;
             this.btnBuscarProfesional.Text = "Buscar";
             this.btnBuscarProfesional.UseVisualStyleBackColor = true;
             this.btnBuscarProfesional.Click += new System.EventHandler(this.btnBuscarProfesional_Click);
@@ -167,7 +167,7 @@
             this.tbProfesional.Name = "tbProfesional";
             this.tbProfesional.ReadOnly = true;
             this.tbProfesional.Size = new System.Drawing.Size(524, 20);
-            this.tbProfesional.TabIndex = 1;
+            this.tbProfesional.TabIndex = 2;
             // 
             // label1
             // 

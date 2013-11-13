@@ -74,7 +74,7 @@
             this.tbUsuario.Location = new System.Drawing.Point(231, 9);
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.Size = new System.Drawing.Size(201, 20);
-            this.tbUsuario.TabIndex = 3;
+            this.tbUsuario.TabIndex = 0;
             this.tbUsuario.Text = "admin";
             this.tbUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbUsuario_KeyPress);
             // 
@@ -84,7 +84,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(201, 20);
-            this.tbPassword.TabIndex = 4;
+            this.tbPassword.TabIndex = 1;
             this.tbPassword.Text = "w23e";
             this.tbPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPassword_KeyPress);
             // 
@@ -95,7 +95,7 @@
             this.cbRol.Location = new System.Drawing.Point(231, 63);
             this.cbRol.Name = "cbRol";
             this.cbRol.Size = new System.Drawing.Size(201, 21);
-            this.cbRol.TabIndex = 5;
+            this.cbRol.TabIndex = 2;
             this.cbRol.Visible = false;
             // 
             // btnAceptar
@@ -103,7 +103,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(231, 102);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 6;
+            this.btnAceptar.TabIndex = 3;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -113,7 +113,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(312, 102);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
