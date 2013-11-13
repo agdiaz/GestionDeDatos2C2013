@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnConfirmarHorario = new System.Windows.Forms.Button();
             this.btnBuscarProfesional = new System.Windows.Forms.Button();
             this.tbProfesional = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnConfirmarHorario = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gbResultado.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +71,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Validación de turno";
+            // 
+            // btnConfirmarHorario
+            // 
+            this.btnConfirmarHorario.Enabled = false;
+            this.btnConfirmarHorario.Location = new System.Drawing.Point(347, 100);
+            this.btnConfirmarHorario.Name = "btnConfirmarHorario";
+            this.btnConfirmarHorario.Size = new System.Drawing.Size(117, 23);
+            this.btnConfirmarHorario.TabIndex = 10;
+            this.btnConfirmarHorario.Text = "Confirma horario";
+            this.btnConfirmarHorario.UseVisualStyleBackColor = true;
             // 
             // btnBuscarProfesional
             // 
@@ -230,16 +240,6 @@
             this.btnAceptar.Text = "Confirmar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // btnConfirmarHorario
-            // 
-            this.btnConfirmarHorario.Enabled = false;
-            this.btnConfirmarHorario.Location = new System.Drawing.Point(347, 100);
-            this.btnConfirmarHorario.Name = "btnConfirmarHorario";
-            this.btnConfirmarHorario.Size = new System.Drawing.Size(117, 23);
-            this.btnConfirmarHorario.TabIndex = 10;
-            this.btnConfirmarHorario.Text = "Confirma horario";
-            this.btnConfirmarHorario.UseVisualStyleBackColor = true;
             // 
             // FrmRegistroDeResultado
             // 

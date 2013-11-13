@@ -31,8 +31,14 @@ namespace Clinica_Frba
 {
     public partial class FrmPrincipal : Form
     {
+        private AfiliadoDomain _afiliadoDomain;
+        private ProfesionalDomain _profesionalDomain;
+
         public FrmPrincipal()
         {
+            _afiliadoDomain = new AfiliadoDomain(Program.ContextoActual.Logger);
+            _profesionalDomain = new ProfesionalDomain(Program.ContextoActual.Logger);
+
             InitializeComponent();
         }
 
@@ -148,6 +154,36 @@ namespace Clinica_Frba
             if (rol != null)
             {
                 Program.ContextoActual.RegistrarRol(rol);
+                if (rol.Id == 1) //Afiliado
+                {
+                    try
+                    {
+                        IResultado<Afiliado> resultadoAfiliado = _afiliadoDomain.ObtenerPorUsuario(usuario);
+                        if (!resultadoAfiliado.Correcto)
+                            throw new ResultadoIncorrectoException<Afiliado>(resultadoAfiliado);
+
+                        Program.ContextoActual.RegistrarAfiliado(resultadoAfiliado.Retorno);
+                    }
+                    catch (Exception ex)
+                    {
+                        MensajePorPantalla.MensajeError(this, ex.Message);
+                    }
+                }
+                if (rol.Id == 2) //Profesional
+                {
+                    try
+                    {
+                        IResultado<Profesional> resultadoProfesional = _profesionalDomain.ObtenerPorUsuario(usuario);
+                        if (!resultadoProfesional.Correcto)
+                            throw new ResultadoIncorrectoException<Profesional>(resultadoProfesional);
+
+                        Program.ContextoActual.RegistrarProfesional(resultadoProfesional.Retorno);
+                    }
+                    catch (Exception ex)
+                    {
+                        MensajePorPantalla.MensajeError(this, ex.Message);
+                    }
+                }
             }
         }
 

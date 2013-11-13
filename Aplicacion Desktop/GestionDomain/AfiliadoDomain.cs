@@ -95,5 +95,21 @@ namespace GestionDomain
         {
             throw new NotImplementedException();
         }
+
+        public IResultado<Afiliado> ObtenerPorUsuario(Usuario usuario)
+        {
+            Resultado<Afiliado> resultado = new Resultado<Afiliado>();
+            try
+            {
+                resultado.Retorno = _dal.ObtenerPorUsuario(usuario.IdUsuario);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add("No se ha encontrado el afiliado para ese usuario");
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+        }
     }
 }

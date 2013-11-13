@@ -59,7 +59,7 @@ namespace GestionDAL
             pIdProfesional.Value = idProfesional;
             parametros.Add(pIdProfesional);
 
-            SqlParameter pFecha = new SqlParameter("@p_fecha", System.Data.SqlDbType.DateTime, 8, "p_fecha");
+            SqlParameter pFecha = new SqlParameter("@p_fecha_hoy", System.Data.SqlDbType.DateTime, 8, "p_fecha_hoy");
             pFecha.Value = hoy;
             parametros.Add(pFecha);
 
@@ -83,7 +83,7 @@ namespace GestionDAL
             pIdProfesional.Value = idProfesional;
             parametros.Add(pIdProfesional);
 
-            SqlParameter pFecha = new SqlParameter("@p_fecha", System.Data.SqlDbType.DateTime, 8, "p_fecha");
+            SqlParameter pFecha = new SqlParameter("@p_fecha_hoy", System.Data.SqlDbType.DateTime, 8, "p_fecha_hoy");
             pFecha.Value = hoy;
             parametros.Add(pFecha);
 

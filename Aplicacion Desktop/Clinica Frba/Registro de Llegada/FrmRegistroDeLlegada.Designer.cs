@@ -38,7 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnValidarBono = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbAfiliado = new System.Windows.Forms.TextBox();
             this.btnBuscarAfiliado = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -47,7 +47,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnBuscarAfiliado);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.tbAfiliado);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.btnBuscarTurno);
             this.groupBox1.Controls.Add(this.tbTurno);
@@ -144,13 +144,13 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Afiliado";
             // 
-            // textBox1
+            // tbAfiliado
             // 
-            this.textBox1.Location = new System.Drawing.Point(47, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(280, 20);
-            this.textBox1.TabIndex = 4;
+            this.tbAfiliado.Location = new System.Drawing.Point(47, 24);
+            this.tbAfiliado.Name = "tbAfiliado";
+            this.tbAfiliado.ReadOnly = true;
+            this.tbAfiliado.Size = new System.Drawing.Size(280, 20);
+            this.tbAfiliado.TabIndex = 4;
             // 
             // btnBuscarAfiliado
             // 
@@ -191,7 +191,7 @@
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnValidarBono;
         private System.Windows.Forms.Button btnBuscarAfiliado;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbAfiliado;
         private System.Windows.Forms.Label label3;
     }
 }

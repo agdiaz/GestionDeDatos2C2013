@@ -52,6 +52,10 @@ namespace GestionCommon
 
         public Rol RolActual { get; private set; }
 
+        public Afiliado AfiliadoDelUsuario { get; private set; }
+
+        public Profesional ProfesionalDelUsuario { get; private set; }
+
         public bool SesionIniciada { get; private set; }
 
         public void RegistrarUsuario(Usuario usuario)
@@ -62,6 +66,16 @@ namespace GestionCommon
         public void RegistrarRol(Rol rol)
         {
             this.RolActual = rol;
+        }
+
+        public void RegistrarAfiliado(Afiliado afiliado)
+        {
+            this.AfiliadoDelUsuario = afiliado;
+        }
+
+        public void RegistrarProfesional(Profesional profesional)
+        {
+            this.ProfesionalDelUsuario = profesional;
         }
 
         public void DesregistrarUsuario()

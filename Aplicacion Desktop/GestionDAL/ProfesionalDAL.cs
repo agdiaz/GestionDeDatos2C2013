@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using GestionCommon.Helpers;
 using GestionConector;
 using GestionDAL.Builder;
+using System.Data;
 
 namespace GestionDAL
 {
@@ -211,6 +212,18 @@ namespace GestionDAL
             parametros.Add(p);
 
             _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_Profesional_limpiar_especialidades]", parametros);
+        }
+
+        public Profesional ObtenerPorUsuario(decimal idProfesional)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>(1);
+            SqlParameter p = new SqlParameter("@p_id_usuario", System.Data.SqlDbType.Decimal, 18, "p_id_usuario");
+            p.Value = idProfesional;
+            parametros.Add(p);
+
+            DataSet ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_Profesional_obtener_id_usuario]", parametros);
+
+            return this._builder.Build(ds.Tables[0].Rows[0]);
         }
     }
 }

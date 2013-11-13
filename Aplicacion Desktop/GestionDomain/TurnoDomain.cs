@@ -68,6 +68,7 @@ namespace GestionDomain
             catch (Exception ex)
             {
                 resultado.Correcto = false;
+                resultado.Mensajes.Add("No se encontraron días disponibles");
                 resultado.Mensajes.Add(ex.Message);
             }
 
@@ -84,6 +85,7 @@ namespace GestionDomain
             catch (Exception ex)
             {
                 resultado.Correcto = false;
+                resultado.Mensajes.Add("No se encontraron horas");
                 resultado.Mensajes.Add(ex.Message);
             }
 

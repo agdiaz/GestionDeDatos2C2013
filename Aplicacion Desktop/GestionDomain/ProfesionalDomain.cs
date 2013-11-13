@@ -139,5 +139,20 @@ namespace GestionDomain
             }
             return resultado;
         }
+
+        public IResultado<Profesional> ObtenerPorUsuario(Usuario usuario)
+        {
+            Resultado<Profesional> resultado = new Resultado<Profesional>();
+            try
+            {
+                resultado.Retorno = _dal.ObtenerPorUsuario(usuario.IdUsuario);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add("No se ha encontrado el profesional para ese usuario");
+                resultado.Mensajes.Add(ex.Message);
+            }
+        }
     }
 }
