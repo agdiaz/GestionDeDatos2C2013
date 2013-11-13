@@ -97,7 +97,7 @@
             this.groupBox1.Controls.Add(this.tbProfesional);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(677, 242);
+            this.groupBox1.Size = new System.Drawing.Size(677, 98);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la agenda";
@@ -137,10 +137,8 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnQuitarDia);
-            this.groupBox2.Controls.Add(this.btnAgregarDia);
             this.groupBox2.Controls.Add(this.tbHorasSemanales);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.listCronograma);
             this.groupBox2.Location = new System.Drawing.Point(12, 260);
             this.groupBox2.Name = "groupBox2";
@@ -151,7 +149,7 @@
             // 
             // btnQuitarDia
             // 
-            this.btnQuitarDia.Location = new System.Drawing.Point(244, 50);
+            this.btnQuitarDia.Location = new System.Drawing.Point(243, 19);
             this.btnQuitarDia.Name = "btnQuitarDia";
             this.btnQuitarDia.Size = new System.Drawing.Size(75, 23);
             this.btnQuitarDia.TabIndex = 5;
@@ -161,7 +159,7 @@
             // 
             // btnAgregarDia
             // 
-            this.btnAgregarDia.Location = new System.Drawing.Point(244, 20);
+            this.btnAgregarDia.Location = new System.Drawing.Point(72, 104);
             this.btnAgregarDia.Name = "btnAgregarDia";
             this.btnAgregarDia.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarDia.TabIndex = 4;
@@ -190,14 +188,15 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.nudHasta);
+            this.groupBox3.Controls.Add(this.btnAgregarDia);
             this.groupBox3.Controls.Add(this.nudDesde);
             this.groupBox3.Controls.Add(this.cbDia);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(325, 21);
+            this.groupBox3.Location = new System.Drawing.Point(21, 116);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(346, 125);
+            this.groupBox3.Size = new System.Drawing.Size(346, 138);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalle diario";
@@ -307,6 +306,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmAgendaAlta";
             this.Text = "Clinica FRBA - Agenda - Administrar";
