@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,7 +52,18 @@ namespace GestionDAL
 
         public BonoConsulta Validar(decimal idBono, decimal nroPrincipal, decimal idPlan)
         {
-            throw new NotImplementedException();
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pIdBono = new SqlParameter("@p_id_bono", System.Data.SqlDbType.Decimal, 18, "p_id_bono");
+            pIdBono.Value = idBono;
+            parametros.Add(pIdBono);
+
+            SqlParameter pNroPrincipal = new SqlParameter("@p_nro_principal", System.Data.SqlDbType.Decimal, 18, "p_nro_principal");
+            pNroPrincipal.Value = fecha;
+            parametros.Add(pNroPrincipal);
+
+            DataSet ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_BonoConsulta_validar]", parametros);
+            return this._builder.Build(ds.Tables[0].Rows[0]);
         }
     }
 }
