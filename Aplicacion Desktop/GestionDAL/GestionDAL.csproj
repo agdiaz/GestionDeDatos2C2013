@@ -69,6 +69,7 @@
     <Compile Include="Builder\TipoCancelacionBuilder.cs" />
     <Compile Include="Builder\TipoEspecialidadBuilder.cs" />
     <Compile Include="Builder\TurnoBuilder.cs" />
+    <Compile Include="TipoCancelacionDAL.cs" />
     <Compile Include="CompraDAL.cs" />
     <Compile Include="DiaAgendaDAL.cs" />
     <Compile Include="EspecialidadDAL.cs" />

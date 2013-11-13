@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbMotivo = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbTipo = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbTurno = new System.Windows.Forms.TextBox();
+            this.btnBuscarTurno = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.tbAfiliado = new System.Windows.Forms.TextBox();
             this.btnBuscarAfiliado = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnBuscarTurno = new System.Windows.Forms.Button();
-            this.tbTurno = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbTipo = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbMotivo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +64,68 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cancelación de afiliado";
+            // 
+            // tbMotivo
+            // 
+            this.tbMotivo.Enabled = false;
+            this.tbMotivo.Location = new System.Drawing.Point(58, 134);
+            this.tbMotivo.Multiline = true;
+            this.tbMotivo.Name = "tbMotivo";
+            this.tbMotivo.Size = new System.Drawing.Size(453, 108);
+            this.tbMotivo.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 134);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Motivo";
+            // 
+            // cbTipo
+            // 
+            this.cbTipo.Enabled = false;
+            this.cbTipo.FormattingEnabled = true;
+            this.cbTipo.Location = new System.Drawing.Point(58, 84);
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.Size = new System.Drawing.Size(172, 21);
+            this.cbTipo.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 91);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(28, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Tipo";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Turno";
+            // 
+            // tbTurno
+            // 
+            this.tbTurno.Location = new System.Drawing.Point(58, 57);
+            this.tbTurno.Name = "tbTurno";
+            this.tbTurno.ReadOnly = true;
+            this.tbTurno.Size = new System.Drawing.Size(172, 20);
+            this.tbTurno.TabIndex = 6;
+            // 
+            // btnBuscarTurno
+            // 
+            this.btnBuscarTurno.Location = new System.Drawing.Point(248, 61);
+            this.btnBuscarTurno.Name = "btnBuscarTurno";
+            this.btnBuscarTurno.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarTurno.TabIndex = 5;
+            this.btnBuscarTurno.Text = "Buscar";
+            this.btnBuscarTurno.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -110,68 +172,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Afiliado";
             // 
-            // btnBuscarTurno
-            // 
-            this.btnBuscarTurno.Location = new System.Drawing.Point(248, 61);
-            this.btnBuscarTurno.Name = "btnBuscarTurno";
-            this.btnBuscarTurno.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarTurno.TabIndex = 5;
-            this.btnBuscarTurno.Text = "Buscar";
-            this.btnBuscarTurno.UseVisualStyleBackColor = true;
-            // 
-            // tbTurno
-            // 
-            this.tbTurno.Location = new System.Drawing.Point(58, 57);
-            this.tbTurno.Name = "tbTurno";
-            this.tbTurno.ReadOnly = true;
-            this.tbTurno.Size = new System.Drawing.Size(172, 20);
-            this.tbTurno.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Turno";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 91);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Tipo";
-            // 
-            // cbTipo
-            // 
-            this.cbTipo.Enabled = false;
-            this.cbTipo.FormattingEnabled = true;
-            this.cbTipo.Location = new System.Drawing.Point(58, 84);
-            this.cbTipo.Name = "cbTipo";
-            this.cbTipo.Size = new System.Drawing.Size(172, 21);
-            this.cbTipo.TabIndex = 9;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 134);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Motivo";
-            // 
-            // tbMotivo
-            // 
-            this.tbMotivo.Enabled = false;
-            this.tbMotivo.Location = new System.Drawing.Point(58, 134);
-            this.tbMotivo.Multiline = true;
-            this.tbMotivo.Name = "tbMotivo";
-            this.tbMotivo.Size = new System.Drawing.Size(453, 108);
-            this.tbMotivo.TabIndex = 11;
-            // 
             // FrmCancelarAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,6 +180,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmCancelarAfiliado";
             this.Text = "Clinica FRBA - Cancelaciones de afiliado";
+            this.Load += new System.EventHandler(this.FrmCancelarAfiliado_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -14,8 +14,8 @@ namespace GestionDAL.Builder
         {
             TipoCancelacion tipoCancelacion = new TipoCancelacion();
             tipoCancelacion.IdTipoCancelacion = Convert.ToDecimal(row["id_tipo_cancelacion"]);
-            tipoCancelacion.Nombre = Convert.ToString(row["nombre"]);
-            tipoCancelacion.Categoria = Convert.ToString(row["categoria"]);
+            tipoCancelacion.Nombre = Convert.ToString(row["nombre_tipo_cancelacion"]);
+            //tipoCancelacion.Categoria = Convert.ToString(row["categoria"]);
             return tipoCancelacion;
         }
 

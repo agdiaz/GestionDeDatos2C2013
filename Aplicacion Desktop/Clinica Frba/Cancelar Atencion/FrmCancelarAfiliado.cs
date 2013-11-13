@@ -8,12 +8,16 @@ using System.Text;
 using System.Windows.Forms;
 using GestionCommon.Entidades;
 using Clinica_Frba.Afiliados;
+using GestionDomain;
+using GestionGUIHelper.Helpers;
+using GestionDomain.Resultados;
 
 namespace Clinica_Frba.Cancelaciones
 {
     public partial class FrmCancelarAfiliado : Form
     {
         private Afiliado _afiliado;
+        private TipoCancelacionDomain _tipoCancDomain;
 
         public FrmCancelarAfiliado(Afiliado af)
             :this()
@@ -30,6 +34,7 @@ namespace Clinica_Frba.Cancelaciones
 
         public FrmCancelarAfiliado()
         {
+            _tipoCancDomain = new TipoCancelacionDomain(Program.ContextoActual.Logger);
             InitializeComponent();
         }
 
@@ -42,6 +47,24 @@ namespace Clinica_Frba.Cancelaciones
                 {
                     this.CargarAfiliado((Afiliado)frm.EntidadSeleccionada);
                 }
+            }
+        }
+
+        private void FrmCancelarAfiliado_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                IResultado<IList<TipoCancelacion>> resultado = _tipoCancDomain.ObtenerTodos();
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<IList<TipoCancelacion>>(resultado);
+
+                this.cbTipo.DataSource = resultado.Retorno;
+                this.cbTipo.DisplayMember = "Nombre";
+                this.cbTipo.ValueMember = "IdTipoCancelacion";
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
             }
         }
     }

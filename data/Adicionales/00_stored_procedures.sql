@@ -1652,3 +1652,11 @@ BEGIN
 
 END
 GO
+CREATE PROCEDURE [TOP_4].[sp_TipoCancelacion_select_all]
+AS
+BEGIN
+	SELECT [id_tipo_cancelacion]
+      ,[nombre_tipo_cancelacion]
+      ,[habilitado]
+	FROM [TOP_4].[Tipo_Cancelacion]
+END
