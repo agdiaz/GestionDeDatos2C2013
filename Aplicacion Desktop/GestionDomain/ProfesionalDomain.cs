@@ -153,6 +153,7 @@ namespace GestionDomain
                 resultado.Mensajes.Add("No se ha encontrado el profesional para ese usuario");
                 resultado.Mensajes.Add(ex.Message);
             }
+            return resultado;
         }
     }
 }
