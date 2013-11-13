@@ -68,7 +68,7 @@ SELECT DISTINCT p.[id_profesional]
   AND ((@p_sexo IS NULL)			OR (p.sexo = @p_sexo))
   AND ((@p_matricula IS NULL)		OR (p.matricula = @p_matricula))
   AND ((@p_id_especialidad IS NULL) OR (@p_id_especialidad = e.id_especialidad))
-  AND habilitado = '1'
+  AND p.habilitado = '1'
 END
 GO
 -----------------------------------------------------
