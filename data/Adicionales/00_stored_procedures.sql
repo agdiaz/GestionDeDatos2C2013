@@ -1423,6 +1423,31 @@ BEGIN
 END
 GO
 
+GO
+CREATE PROCEDURE [TOP_4].[sp_BonoConsulta_validar]
+(@p_id numeric(18), @p_nro_principal numeric(18))
+AS
+BEGIN
+        SELECT [id_bono_consulta]
+                 ,BC.[id_compra]
+                 ,BC.[id_turno]
+                 ,BC.[id_plan_medico]
+                 ,BC.[fecha_impresion]
+                 ,BC.[habilitado]
+         FROM [TOP_4].[Bono_Consulta] BC
+         INNER JOIN [TOP_4].[Compra] C
+         	ON BC.id_compra = C.id_compra
+         INNER JOIN [TOP_4].[Afiliado] A
+         	ON A.id_afiliado = C.id_afiliado
+         WHERE BC.id_bono_consulta = @p_id
+         AND BC.id_turno = NULL
+         AND BC.habilitado = '1'
+         AND C.habilitado = '1'
+         AND A.nro_principal = @p_nro_principal
+         AND A.habilitado = '1'
+         AND A.id_plan_medico = BC.id_plan_medico
+END
+
 CREATE PROCEDURE [TOP_4].[sp_BonoFarmacia_select]
 (@p_id numeric(18))
 AS
