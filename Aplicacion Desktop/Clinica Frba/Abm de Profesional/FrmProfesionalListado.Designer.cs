@@ -60,6 +60,18 @@
             this.gbAcciones.Location = new System.Drawing.Point(11, 453);
             this.gbAcciones.Size = new System.Drawing.Size(863, 47);
             // 
+            // btnBaja
+            // 
+            this.btnBaja.TabIndex = 19;
+            // 
+            // btnModificacion
+            // 
+            this.btnModificacion.TabIndex = 18;
+            // 
+            // btnAlta
+            // 
+            this.btnAlta.TabIndex = 17;
+            // 
             // gbBusqueda
             // 
             this.gbBusqueda.Location = new System.Drawing.Point(11, 183);
@@ -120,6 +132,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(6, 126);
+            this.btnLimpiar.TabIndex = 16;
             // 
             // btnFiltrar
             // 
@@ -157,21 +170,21 @@
             this.tbDni.Location = new System.Drawing.Point(286, 69);
             this.tbDni.Name = "tbDni";
             this.tbDni.Size = new System.Drawing.Size(157, 20);
-            this.tbDni.TabIndex = 5;
+            this.tbDni.TabIndex = 10;
             // 
             // tbApellido
             // 
             this.tbApellido.Location = new System.Drawing.Point(306, 18);
             this.tbApellido.Name = "tbApellido";
             this.tbApellido.Size = new System.Drawing.Size(178, 20);
-            this.tbApellido.TabIndex = 6;
+            this.tbApellido.TabIndex = 2;
             // 
             // tbNombre
             // 
             this.tbNombre.Location = new System.Drawing.Point(69, 18);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(179, 20);
-            this.tbNombre.TabIndex = 7;
+            this.tbNombre.TabIndex = 1;
             // 
             // label4
             // 
@@ -196,7 +209,7 @@
             this.tbMatricula.Location = new System.Drawing.Point(404, 98);
             this.tbMatricula.Name = "tbMatricula";
             this.tbMatricula.Size = new System.Drawing.Size(179, 20);
-            this.tbMatricula.TabIndex = 11;
+            this.tbMatricula.TabIndex = 15;
             // 
             // tbEspecialidad
             // 
@@ -204,14 +217,14 @@
             this.tbEspecialidad.Name = "tbEspecialidad";
             this.tbEspecialidad.ReadOnly = true;
             this.tbEspecialidad.Size = new System.Drawing.Size(211, 20);
-            this.tbEspecialidad.TabIndex = 12;
+            this.tbEspecialidad.TabIndex = 13;
             // 
             // btnBuscarEspecialidad
             // 
             this.btnBuscarEspecialidad.Location = new System.Drawing.Point(286, 97);
             this.btnBuscarEspecialidad.Name = "btnBuscarEspecialidad";
             this.btnBuscarEspecialidad.Size = new System.Drawing.Size(53, 23);
-            this.btnBuscarEspecialidad.TabIndex = 13;
+            this.btnBuscarEspecialidad.TabIndex = 14;
             this.btnBuscarEspecialidad.Text = "Buscar";
             this.btnBuscarEspecialidad.UseVisualStyleBackColor = true;
             this.btnBuscarEspecialidad.Click += new System.EventHandler(this.btnBuscarEspecialidad_Click);
@@ -223,14 +236,14 @@
             this.cbTipoDoc.Location = new System.Drawing.Point(127, 70);
             this.cbTipoDoc.Name = "cbTipoDoc";
             this.cbTipoDoc.Size = new System.Drawing.Size(84, 21);
-            this.cbTipoDoc.TabIndex = 15;
+            this.cbTipoDoc.TabIndex = 9;
             // 
             // tbDireccion
             // 
             this.tbDireccion.Location = new System.Drawing.Point(70, 44);
             this.tbDireccion.Name = "tbDireccion";
             this.tbDireccion.Size = new System.Drawing.Size(289, 20);
-            this.tbDireccion.TabIndex = 16;
+            this.tbDireccion.TabIndex = 5;
             // 
             // label7
             // 
@@ -255,7 +268,7 @@
             this.tbTelefono.Location = new System.Drawing.Point(393, 44);
             this.tbTelefono.Name = "tbTelefono";
             this.tbTelefono.Size = new System.Drawing.Size(158, 20);
-            this.tbTelefono.TabIndex = 19;
+            this.tbTelefono.TabIndex = 6;
             // 
             // dtpFechaNacimiento
             // 
@@ -263,7 +276,7 @@
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(712, 18);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(113, 20);
-            this.dtpFechaNacimiento.TabIndex = 21;
+            this.dtpFechaNacimiento.TabIndex = 4;
             // 
             // chFechaNacimiento
             // 
@@ -271,7 +284,7 @@
             this.chFechaNacimiento.Location = new System.Drawing.Point(596, 18);
             this.chFechaNacimiento.Name = "chFechaNacimiento";
             this.chFechaNacimiento.Size = new System.Drawing.Size(110, 17);
-            this.chFechaNacimiento.TabIndex = 22;
+            this.chFechaNacimiento.TabIndex = 3;
             this.chFechaNacimiento.Text = "Fecha nacimiento";
             this.chFechaNacimiento.UseVisualStyleBackColor = true;
             // 
@@ -289,7 +302,7 @@
             this.tbMail.Location = new System.Drawing.Point(589, 44);
             this.tbMail.Name = "tbMail";
             this.tbMail.Size = new System.Drawing.Size(236, 20);
-            this.tbMail.TabIndex = 24;
+            this.tbMail.TabIndex = 7;
             // 
             // cbSexo
             // 
@@ -298,7 +311,7 @@
             this.cbSexo.Location = new System.Drawing.Point(505, 68);
             this.cbSexo.Name = "cbSexo";
             this.cbSexo.Size = new System.Drawing.Size(142, 21);
-            this.cbSexo.TabIndex = 26;
+            this.cbSexo.TabIndex = 12;
             // 
             // chSexo
             // 
@@ -306,7 +319,7 @@
             this.chSexo.Location = new System.Drawing.Point(449, 71);
             this.chSexo.Name = "chSexo";
             this.chSexo.Size = new System.Drawing.Size(50, 17);
-            this.chSexo.TabIndex = 27;
+            this.chSexo.TabIndex = 11;
             this.chSexo.Text = "Sexo";
             this.chSexo.UseVisualStyleBackColor = true;
             // 
@@ -316,7 +329,7 @@
             this.chTipoDoc.Location = new System.Drawing.Point(18, 71);
             this.chTipoDoc.Name = "chTipoDoc";
             this.chTipoDoc.Size = new System.Drawing.Size(103, 17);
-            this.chTipoDoc.TabIndex = 28;
+            this.chTipoDoc.TabIndex = 8;
             this.chTipoDoc.Text = "Tipo documento";
             this.chTipoDoc.UseVisualStyleBackColor = true;
             // 

@@ -38,7 +38,16 @@
             // 
             // btnBaja
             // 
+            this.btnBaja.TabIndex = 7;
             this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
+            // 
+            // btnModificacion
+            // 
+            this.btnModificacion.TabIndex = 6;
+            // 
+            // btnAlta
+            // 
+            this.btnAlta.TabIndex = 5;
             // 
             // gbFiltros
             // 
@@ -52,6 +61,14 @@
             this.gbFiltros.Controls.SetChildIndex(this.lblFuncionalidad, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.TabIndex = 3;
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.TabIndex = 4;
             // 
             // lblRol
             // 
@@ -67,7 +84,7 @@
             this.tbRol.Location = new System.Drawing.Point(107, 16);
             this.tbRol.Name = "tbRol";
             this.tbRol.Size = new System.Drawing.Size(181, 20);
-            this.tbRol.TabIndex = 3;
+            this.tbRol.TabIndex = 1;
             // 
             // lblFuncionalidad
             // 
@@ -85,7 +102,7 @@
             this.cbFuncionalidad.Location = new System.Drawing.Point(107, 49);
             this.cbFuncionalidad.Name = "cbFuncionalidad";
             this.cbFuncionalidad.Size = new System.Drawing.Size(181, 21);
-            this.cbFuncionalidad.TabIndex = 5;
+            this.cbFuncionalidad.TabIndex = 2;
             // 
             // FrmRolListado
             // 

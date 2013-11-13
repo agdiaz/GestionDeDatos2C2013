@@ -34,6 +34,18 @@
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnBaja
+            // 
+            this.btnBaja.TabIndex = 6;
+            // 
+            // btnModificacion
+            // 
+            this.btnModificacion.TabIndex = 5;
+            // 
+            // btnAlta
+            // 
+            this.btnAlta.TabIndex = 4;
+            // 
             // gbFiltros
             // 
             this.gbFiltros.Controls.Add(this.label1);
@@ -42,6 +54,14 @@
             this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.TabIndex = 2;
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.TabIndex = 3;
             // 
             // label1
             // 
@@ -57,7 +77,7 @@
             this.tbNombre.Location = new System.Drawing.Point(67, 40);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(362, 20);
-            this.tbNombre.TabIndex = 3;
+            this.tbNombre.TabIndex = 1;
             // 
             // FrmMedicamentoListado
             // 

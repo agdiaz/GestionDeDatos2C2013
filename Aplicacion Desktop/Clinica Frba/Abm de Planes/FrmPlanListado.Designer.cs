@@ -38,6 +38,18 @@
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnBaja
+            // 
+            this.btnBaja.TabIndex = 7;
+            // 
+            // btnModificacion
+            // 
+            this.btnModificacion.TabIndex = 6;
+            // 
+            // btnAlta
+            // 
+            this.btnAlta.TabIndex = 5;
+            // 
             // gbFiltros
             // 
             this.gbFiltros.Controls.Add(this.tbBonoConsulta);
@@ -55,6 +67,14 @@
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.TabIndex = 3;
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.TabIndex = 4;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -69,7 +89,7 @@
             this.tbNombrePlan.Location = new System.Drawing.Point(109, 24);
             this.tbNombrePlan.Name = "tbNombrePlan";
             this.tbNombrePlan.Size = new System.Drawing.Size(536, 20);
-            this.tbNombrePlan.TabIndex = 3;
+            this.tbNombrePlan.TabIndex = 0;
             // 
             // label2
             // 
@@ -94,7 +114,7 @@
             this.tbBonoFarmacia.Location = new System.Drawing.Point(222, 50);
             this.tbBonoFarmacia.Name = "tbBonoFarmacia";
             this.tbBonoFarmacia.Size = new System.Drawing.Size(100, 20);
-            this.tbBonoFarmacia.TabIndex = 6;
+            this.tbBonoFarmacia.TabIndex = 1;
             this.tbBonoFarmacia.Text = "0";
             // 
             // tbBonoConsulta
@@ -102,7 +122,7 @@
             this.tbBonoConsulta.Location = new System.Drawing.Point(223, 77);
             this.tbBonoConsulta.Name = "tbBonoConsulta";
             this.tbBonoConsulta.Size = new System.Drawing.Size(100, 20);
-            this.tbBonoConsulta.TabIndex = 7;
+            this.tbBonoConsulta.TabIndex = 2;
             this.tbBonoConsulta.Text = "0";
             // 
             // FrmPlanListado

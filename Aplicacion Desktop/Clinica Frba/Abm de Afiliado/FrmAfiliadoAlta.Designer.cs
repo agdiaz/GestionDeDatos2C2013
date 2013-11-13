@@ -219,7 +219,7 @@
             this.dpFechaNacimiento.Location = new System.Drawing.Point(90, 167);
             this.dpFechaNacimiento.Name = "dpFechaNacimiento";
             this.dpFechaNacimiento.Size = new System.Drawing.Size(206, 20);
-            this.dpFechaNacimiento.TabIndex = 9;
+            this.dpFechaNacimiento.TabIndex = 8;
             // 
             // cbTipoDocumento
             // 
@@ -271,21 +271,21 @@
             this.tbMail.Location = new System.Drawing.Point(110, 75);
             this.tbMail.Name = "tbMail";
             this.tbMail.Size = new System.Drawing.Size(270, 20);
-            this.tbMail.TabIndex = 13;
+            this.tbMail.TabIndex = 11;
             // 
             // tbTelefono
             // 
             this.tbTelefono.Location = new System.Drawing.Point(110, 49);
             this.tbTelefono.Name = "tbTelefono";
             this.tbTelefono.Size = new System.Drawing.Size(162, 20);
-            this.tbTelefono.TabIndex = 12;
+            this.tbTelefono.TabIndex = 10;
             // 
             // tbDireccion
             // 
             this.tbDireccion.Location = new System.Drawing.Point(110, 22);
             this.tbDireccion.Name = "tbDireccion";
             this.tbDireccion.Size = new System.Drawing.Size(492, 20);
-            this.tbDireccion.TabIndex = 11;
+            this.tbDireccion.TabIndex = 9;
             // 
             // gbDatosFamiliares
             // 
@@ -307,7 +307,7 @@
             this.cbEstadoCivil.Location = new System.Drawing.Point(12, 46);
             this.cbEstadoCivil.Name = "cbEstadoCivil";
             this.cbEstadoCivil.Size = new System.Drawing.Size(182, 21);
-            this.cbEstadoCivil.TabIndex = 15;
+            this.cbEstadoCivil.TabIndex = 12;
             // 
             // label12
             // 
@@ -323,14 +323,14 @@
             this.ndCantHijos.Location = new System.Drawing.Point(68, 89);
             this.ndCantHijos.Name = "ndCantHijos";
             this.ndCantHijos.Size = new System.Drawing.Size(126, 20);
-            this.ndCantHijos.TabIndex = 16;
+            this.ndCantHijos.TabIndex = 13;
             // 
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(15, 353);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 17;
+            this.btnGuardar.TabIndex = 14;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -340,7 +340,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(96, 353);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 18;
+            this.btnLimpiar.TabIndex = 15;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -350,7 +350,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(177, 353);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 19;
+            this.btnCancelar.TabIndex = 16;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);

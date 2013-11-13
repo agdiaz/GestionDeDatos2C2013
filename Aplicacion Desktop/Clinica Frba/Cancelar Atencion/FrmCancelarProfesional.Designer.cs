@@ -71,7 +71,7 @@
             this.cbTipo.Location = new System.Drawing.Point(296, 91);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(228, 21);
-            this.cbTipo.TabIndex = 10;
+            this.cbTipo.TabIndex = 4;
             // 
             // label4
             // 
@@ -88,7 +88,7 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(228, 90);
-            this.textBox2.TabIndex = 8;
+            this.textBox2.TabIndex = 5;
             // 
             // label3
             // 
@@ -112,14 +112,14 @@
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(12, 49);
             this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 5;
+            this.monthCalendar1.TabIndex = 3;
             // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(296, 230);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 4;
+            this.button3.TabIndex = 7;
             this.button3.Text = "Aceptar";
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -128,7 +128,7 @@
             this.button2.Location = new System.Drawing.Point(215, 230);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
+            this.button2.TabIndex = 6;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
             // 

@@ -36,6 +36,18 @@
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnBaja
+            // 
+            this.btnBaja.TabIndex = 7;
+            // 
+            // btnModificacion
+            // 
+            this.btnModificacion.TabIndex = 6;
+            // 
+            // btnAlta
+            // 
+            this.btnAlta.TabIndex = 5;
+            // 
             // gbFiltros
             // 
             this.gbFiltros.Controls.Add(this.label1);
@@ -48,6 +60,14 @@
             this.gbFiltros.Controls.SetChildIndex(this.label1, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.TabIndex = 3;
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.TabIndex = 4;
             // 
             // label1
             // 
@@ -63,7 +83,7 @@
             this.tbNombreEspecialidad.Location = new System.Drawing.Point(134, 17);
             this.tbNombreEspecialidad.Name = "tbNombreEspecialidad";
             this.tbNombreEspecialidad.Size = new System.Drawing.Size(511, 20);
-            this.tbNombreEspecialidad.TabIndex = 4;
+            this.tbNombreEspecialidad.TabIndex = 0;
             // 
             // cbTipoEspecialidad
             // 
@@ -72,7 +92,7 @@
             this.cbTipoEspecialidad.Location = new System.Drawing.Point(134, 43);
             this.cbTipoEspecialidad.Name = "cbTipoEspecialidad";
             this.cbTipoEspecialidad.Size = new System.Drawing.Size(511, 21);
-            this.cbTipoEspecialidad.TabIndex = 5;
+            this.cbTipoEspecialidad.TabIndex = 2;
             // 
             // chEspecialidad
             // 
@@ -80,7 +100,7 @@
             this.chEspecialidad.Location = new System.Drawing.Point(10, 45);
             this.chEspecialidad.Name = "chEspecialidad";
             this.chEspecialidad.Size = new System.Drawing.Size(124, 17);
-            this.chEspecialidad.TabIndex = 6;
+            this.chEspecialidad.TabIndex = 1;
             this.chEspecialidad.Text = "Tipo de especialidad";
             this.chEspecialidad.UseVisualStyleBackColor = true;
             // 

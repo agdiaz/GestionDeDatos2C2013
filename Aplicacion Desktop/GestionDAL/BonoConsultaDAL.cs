@@ -59,7 +59,7 @@ namespace GestionDAL
             parametros.Add(pIdBono);
 
             SqlParameter pNroPrincipal = new SqlParameter("@p_nro_principal", System.Data.SqlDbType.Decimal, 18, "p_nro_principal");
-            pNroPrincipal.Value = fecha;
+            pNroPrincipal.Value = pNroPrincipal;
             parametros.Add(pNroPrincipal);
 
             DataSet ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_BonoConsulta_validar]", parametros);

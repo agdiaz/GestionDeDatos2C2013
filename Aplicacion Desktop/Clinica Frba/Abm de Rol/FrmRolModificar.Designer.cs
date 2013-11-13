@@ -46,7 +46,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(104, 398);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 9;
+            this.btnLimpiar.TabIndex = 5;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -56,7 +56,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(185, 398);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -66,7 +66,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(23, 398);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 7;
+            this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "Guardar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -87,7 +87,7 @@
             this.clsFuncionalidades.Location = new System.Drawing.Point(10, 20);
             this.clsFuncionalidades.Name = "clsFuncionalidades";
             this.clsFuncionalidades.Size = new System.Drawing.Size(243, 259);
-            this.clsFuncionalidades.TabIndex = 0;
+            this.clsFuncionalidades.TabIndex = 3;
             // 
             // gbDetalles
             // 

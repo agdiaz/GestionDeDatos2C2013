@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnComprar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.tbAfiliado = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this.lstBonos = new System.Windows.Forms.ListBox();
             this.btnFarmacia = new System.Windows.Forms.Button();
             this.btnConsulta = new System.Windows.Forms.Button();
-            this.btnComprar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -60,12 +60,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Compra de bonos";
             // 
+            // btnComprar
+            // 
+            this.btnComprar.Enabled = false;
+            this.btnComprar.Location = new System.Drawing.Point(546, 268);
+            this.btnComprar.Name = "btnComprar";
+            this.btnComprar.Size = new System.Drawing.Size(75, 23);
+            this.btnComprar.TabIndex = 8;
+            this.btnComprar.Text = "Comprar";
+            this.btnComprar.UseVisualStyleBackColor = true;
+            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
+            // 
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(265, 27);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 8;
+            this.btnBuscar.TabIndex = 2;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -76,7 +87,7 @@
             this.tbAfiliado.Name = "tbAfiliado";
             this.tbAfiliado.ReadOnly = true;
             this.tbAfiliado.Size = new System.Drawing.Size(197, 20);
-            this.tbAfiliado.TabIndex = 7;
+            this.tbAfiliado.TabIndex = 1;
             // 
             // label2
             // 
@@ -93,7 +104,7 @@
             this.tbPrecioTotal.Name = "tbPrecioTotal";
             this.tbPrecioTotal.ReadOnly = true;
             this.tbPrecioTotal.Size = new System.Drawing.Size(100, 20);
-            this.tbPrecioTotal.TabIndex = 5;
+            this.tbPrecioTotal.TabIndex = 7;
             // 
             // label1
             // 
@@ -123,7 +134,7 @@
             this.btnQuitar.Location = new System.Drawing.Point(531, 132);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(75, 23);
-            this.btnQuitar.TabIndex = 3;
+            this.btnQuitar.TabIndex = 6;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
             this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
@@ -134,7 +145,7 @@
             this.lstBonos.Location = new System.Drawing.Point(6, 21);
             this.lstBonos.Name = "lstBonos";
             this.lstBonos.Size = new System.Drawing.Size(519, 160);
-            this.lstBonos.TabIndex = 0;
+            this.lstBonos.TabIndex = 3;
             // 
             // btnFarmacia
             // 
@@ -142,7 +153,7 @@
             this.btnFarmacia.Location = new System.Drawing.Point(531, 50);
             this.btnFarmacia.Name = "btnFarmacia";
             this.btnFarmacia.Size = new System.Drawing.Size(75, 23);
-            this.btnFarmacia.TabIndex = 2;
+            this.btnFarmacia.TabIndex = 5;
             this.btnFarmacia.Text = "Farmacia";
             this.btnFarmacia.UseVisualStyleBackColor = true;
             this.btnFarmacia.Click += new System.EventHandler(this.btnFarmacia_Click);
@@ -153,21 +164,10 @@
             this.btnConsulta.Location = new System.Drawing.Point(531, 21);
             this.btnConsulta.Name = "btnConsulta";
             this.btnConsulta.Size = new System.Drawing.Size(75, 23);
-            this.btnConsulta.TabIndex = 1;
+            this.btnConsulta.TabIndex = 4;
             this.btnConsulta.Text = "Consulta";
             this.btnConsulta.UseVisualStyleBackColor = true;
             this.btnConsulta.Click += new System.EventHandler(this.btnConsulta_Click);
-            // 
-            // btnComprar
-            // 
-            this.btnComprar.Enabled = false;
-            this.btnComprar.Location = new System.Drawing.Point(546, 268);
-            this.btnComprar.Name = "btnComprar";
-            this.btnComprar.Size = new System.Drawing.Size(75, 23);
-            this.btnComprar.TabIndex = 9;
-            this.btnComprar.Text = "Comprar";
-            this.btnComprar.UseVisualStyleBackColor = true;
-            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
             // FrmCompraBonos
             // 

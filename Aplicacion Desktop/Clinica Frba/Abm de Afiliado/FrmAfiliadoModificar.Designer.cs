@@ -72,7 +72,7 @@
             this.tbMail.Location = new System.Drawing.Point(110, 75);
             this.tbMail.Name = "tbMail";
             this.tbMail.Size = new System.Drawing.Size(270, 20);
-            this.tbMail.TabIndex = 9;
+            this.tbMail.TabIndex = 11;
             // 
             // label13
             // 
@@ -87,26 +87,28 @@
             // 
             this.cbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDocumento.FormattingEnabled = true;
+            this.cbTipoDocumento.ItemHeight = 13;
             this.cbTipoDocumento.Location = new System.Drawing.Point(78, 91);
             this.cbTipoDocumento.Name = "cbTipoDocumento";
             this.cbTipoDocumento.Size = new System.Drawing.Size(121, 21);
-            this.cbTipoDocumento.TabIndex = 11;
+            this.cbTipoDocumento.TabIndex = 5;
             // 
             // cbSexo
             // 
             this.cbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSexo.FormattingEnabled = true;
+            this.cbSexo.ItemHeight = 13;
             this.cbSexo.Location = new System.Drawing.Point(244, 90);
             this.cbSexo.Name = "cbSexo";
             this.cbSexo.Size = new System.Drawing.Size(121, 21);
-            this.cbSexo.TabIndex = 14;
+            this.cbSexo.TabIndex = 6;
             // 
             // tbTelefono
             // 
             this.tbTelefono.Location = new System.Drawing.Point(110, 49);
             this.tbTelefono.Name = "tbTelefono";
             this.tbTelefono.Size = new System.Drawing.Size(162, 20);
-            this.tbTelefono.TabIndex = 8;
+            this.tbTelefono.TabIndex = 10;
             // 
             // tbPlanMedico
             // 
@@ -114,21 +116,21 @@
             this.tbPlanMedico.Name = "tbPlanMedico";
             this.tbPlanMedico.ReadOnly = true;
             this.tbPlanMedico.Size = new System.Drawing.Size(210, 20);
-            this.tbPlanMedico.TabIndex = 31;
+            this.tbPlanMedico.TabIndex = 1;
             // 
             // tbDireccion
             // 
             this.tbDireccion.Location = new System.Drawing.Point(110, 22);
             this.tbDireccion.Name = "tbDireccion";
             this.tbDireccion.Size = new System.Drawing.Size(492, 20);
-            this.tbDireccion.TabIndex = 7;
+            this.tbDireccion.TabIndex = 9;
             // 
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(183, 365);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 30;
+            this.btnCancelar.TabIndex = 16;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -138,7 +140,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(21, 365);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 28;
+            this.btnGuardar.TabIndex = 14;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -179,7 +181,7 @@
             this.ndCantHijos.Location = new System.Drawing.Point(68, 89);
             this.ndCantHijos.Name = "ndCantHijos";
             this.ndCantHijos.Size = new System.Drawing.Size(126, 20);
-            this.ndCantHijos.TabIndex = 10;
+            this.ndCantHijos.TabIndex = 13;
             // 
             // label9
             // 
@@ -195,14 +197,14 @@
             this.dpFechaNacimiento.Location = new System.Drawing.Point(90, 167);
             this.dpFechaNacimiento.Name = "dpFechaNacimiento";
             this.dpFechaNacimiento.Size = new System.Drawing.Size(206, 20);
-            this.dpFechaNacimiento.TabIndex = 12;
+            this.dpFechaNacimiento.TabIndex = 8;
             // 
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(102, 365);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 29;
+            this.btnLimpiar.TabIndex = 15;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -290,7 +292,7 @@
             this.btnBuscarPlan.Location = new System.Drawing.Point(555, 16);
             this.btnBuscarPlan.Name = "btnBuscarPlan";
             this.btnBuscarPlan.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarPlan.TabIndex = 32;
+            this.btnBuscarPlan.TabIndex = 2;
             this.btnBuscarPlan.Text = "Buscar";
             this.btnBuscarPlan.UseVisualStyleBackColor = true;
             this.btnBuscarPlan.Click += new System.EventHandler(this.btnBuscarPlan_Click);
@@ -300,7 +302,7 @@
             this.tbNroDocumento.Location = new System.Drawing.Point(78, 129);
             this.tbNroDocumento.Name = "tbNroDocumento";
             this.tbNroDocumento.Size = new System.Drawing.Size(194, 20);
-            this.tbNroDocumento.TabIndex = 10;
+            this.tbNroDocumento.TabIndex = 7;
             // 
             // gbDatosPersonales
             // 
@@ -328,14 +330,14 @@
             this.tbApellido.Location = new System.Drawing.Point(78, 60);
             this.tbApellido.Name = "tbApellido";
             this.tbApellido.Size = new System.Drawing.Size(218, 20);
-            this.tbApellido.TabIndex = 9;
+            this.tbApellido.TabIndex = 4;
             // 
             // tbNombre
             // 
             this.tbNombre.Location = new System.Drawing.Point(78, 24);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(218, 20);
-            this.tbNombre.TabIndex = 8;
+            this.tbNombre.TabIndex = 3;
             // 
             // label8
             // 
@@ -371,7 +373,7 @@
             this.tbNroAfiliado.Name = "tbNroAfiliado";
             this.tbNroAfiliado.ReadOnly = true;
             this.tbNroAfiliado.Size = new System.Drawing.Size(147, 20);
-            this.tbNroAfiliado.TabIndex = 24;
+            this.tbNroAfiliado.TabIndex = 0;
             // 
             // FrmAfiliadoModificar
             // 

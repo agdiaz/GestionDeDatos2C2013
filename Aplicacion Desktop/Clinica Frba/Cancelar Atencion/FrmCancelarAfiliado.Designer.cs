@@ -72,7 +72,7 @@
             this.tbMotivo.Multiline = true;
             this.tbMotivo.Name = "tbMotivo";
             this.tbMotivo.Size = new System.Drawing.Size(453, 108);
-            this.tbMotivo.TabIndex = 11;
+            this.tbMotivo.TabIndex = 6;
             // 
             // label4
             // 
@@ -90,7 +90,7 @@
             this.cbTipo.Location = new System.Drawing.Point(58, 84);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(172, 21);
-            this.cbTipo.TabIndex = 9;
+            this.cbTipo.TabIndex = 5;
             // 
             // label3
             // 
@@ -116,14 +116,14 @@
             this.tbTurno.Name = "tbTurno";
             this.tbTurno.ReadOnly = true;
             this.tbTurno.Size = new System.Drawing.Size(172, 20);
-            this.tbTurno.TabIndex = 6;
+            this.tbTurno.TabIndex = 3;
             // 
             // btnBuscarTurno
             // 
             this.btnBuscarTurno.Location = new System.Drawing.Point(248, 61);
             this.btnBuscarTurno.Name = "btnBuscarTurno";
             this.btnBuscarTurno.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarTurno.TabIndex = 5;
+            this.btnBuscarTurno.TabIndex = 4;
             this.btnBuscarTurno.Text = "Buscar";
             this.btnBuscarTurno.UseVisualStyleBackColor = true;
             // 
@@ -132,7 +132,7 @@
             this.button3.Location = new System.Drawing.Point(248, 290);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 4;
+            this.button3.TabIndex = 8;
             this.button3.Text = "Aceptar";
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -141,7 +141,7 @@
             this.button2.Location = new System.Drawing.Point(166, 290);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
+            this.button2.TabIndex = 7;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -151,14 +151,14 @@
             this.tbAfiliado.Name = "tbAfiliado";
             this.tbAfiliado.ReadOnly = true;
             this.tbAfiliado.Size = new System.Drawing.Size(172, 20);
-            this.tbAfiliado.TabIndex = 2;
+            this.tbAfiliado.TabIndex = 1;
             // 
             // btnBuscarAfiliado
             // 
             this.btnBuscarAfiliado.Location = new System.Drawing.Point(248, 31);
             this.btnBuscarAfiliado.Name = "btnBuscarAfiliado";
             this.btnBuscarAfiliado.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarAfiliado.TabIndex = 1;
+            this.btnBuscarAfiliado.TabIndex = 2;
             this.btnBuscarAfiliado.Text = "Buscar";
             this.btnBuscarAfiliado.UseVisualStyleBackColor = true;
             this.btnBuscarAfiliado.Click += new System.EventHandler(this.button1_Click);
