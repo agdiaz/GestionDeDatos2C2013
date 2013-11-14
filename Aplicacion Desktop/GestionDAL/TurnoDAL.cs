@@ -46,7 +46,7 @@ namespace GestionDAL
             parametros.Add(pIdProfesional);
 
             SqlParameter pFechaTurno = new SqlParameter("@p_fecha_turno", System.Data.SqlDbType.DateTime, 8, "p_fecha_turno");
-            pFechaTurno.Value = entidad.Fecha;
+            pFechaTurno.Value = entidad.HoraInicio;
             parametros.Add(pFechaTurno);
 
             return parametros;

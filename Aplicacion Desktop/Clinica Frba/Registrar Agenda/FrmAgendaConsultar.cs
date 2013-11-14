@@ -19,20 +19,22 @@ namespace Clinica_Frba.Agendas
     public partial class FrmAgendaConsultar : Form
     {
         private TurnoDomain _turnoDomain;
+        private int _opcionGrilla;
 
         private Profesional _profesional;
         public Turno TurnoSeleccionado { get; private set; }
-        
-        public FrmAgendaConsultar()
+
+        public FrmAgendaConsultar(int opcionGrilla)
         {
+            _opcionGrilla = opcionGrilla;
             _turnoDomain = new TurnoDomain(Program.ContextoActual.Logger);
             InitializeComponent();
         }
 
-        public FrmAgendaConsultar(Profesional profesional)
-            :this()
+        public FrmAgendaConsultar(Profesional profesional, int opcionGrilla)
+            : this(opcionGrilla)
         {
-            _profesional = profesional;    
+            this.CargarProfesional(profesional);
         }
 
         private void FrmAgendaConsultar_Load(object sender, EventArgs e)
@@ -47,8 +49,16 @@ namespace Clinica_Frba.Agendas
                 IResultado<IList<TurnoDisponible>> resultado = _turnoDomain.ObtenerHorasParaTurno(mcDesde.SelectionRange.Start, _profesional.IdProfesional);
                 if (!resultado.Correcto)
                     throw new ResultadoIncorrectoException<IList<TurnoDisponible>>(resultado);
-
-                this.dgvTurnos.DataSource = resultado.Retorno;
+                var turnos = resultado.Retorno;
+                if (_opcionGrilla == 1)
+                {
+                    turnos = resultado.Retorno.Where(t => t.Disponible == false).ToList();
+                }
+                else if (_opcionGrilla == 2)
+                {
+                    turnos = resultado.Retorno.Where(t => t.Disponible == true).ToList();
+                }
+                this.dgvTurnos.DataSource = turnos;
             }
             catch (Exception ex)
             {
@@ -96,8 +106,16 @@ namespace Clinica_Frba.Agendas
                 Turno t = new Turno();
                 t.IdProfesional = _profesional.IdProfesional;
                 t.Fecha = mcDesde.SelectionRange.Start;
-                //t.HoraInicio = td.HoraDesde;
-                //t.HoraFin = td.HoraHasta;
+                t.HoraInicio = this.mcDesde.SelectionStart.Add(td.HoraDesde);
+                t.HoraFin = this.mcDesde.SelectionStart.Add(td.HoraHasta);
+                t.IdTurno = td.IdTurno; 
+                t.NombreProfesional = _profesional.NombreCompleto;
+                t.IdAfiliado = td.IdAfiliado;
+                
+                TurnoSeleccionado = t;
+                this.Close();
+
+          
             }
         }
     }

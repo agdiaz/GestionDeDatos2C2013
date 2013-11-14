@@ -34,10 +34,14 @@ namespace Clinica_Frba.RegistrosDeLLegada
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            bool validarNroBono = this.ValidarNroBono();
-            if (validarNroBono)
+            DateTime ahora = FechaHelper.Ahora();
+            if (_turno.HoraInicio.Subtract(ahora).TotalMinutes < 0 )
             {
                 this.Registrar();
+            }
+            else
+            {
+                MensajePorPantalla.MensajeError(this, "Debería haberse presentado por lo menos 15 minutos antes del comienzo del turno");
             }
         }
 
@@ -67,6 +71,7 @@ namespace Clinica_Frba.RegistrosDeLLegada
                 if (!resultado.Correcto)
                     throw new ResultadoIncorrectoException<bool>(resultado);
 
+                MensajePorPantalla.MensajeInformativo(this, "La llegada al turno ha sido registrada");
             }
             catch (Exception ex)
             {
@@ -77,7 +82,7 @@ namespace Clinica_Frba.RegistrosDeLLegada
 
         private void btnBuscarTurno_Click(object sender, EventArgs e)
         {
-            using (FrmAgendaConsultar frm = new FrmAgendaConsultar())
+            using (FrmAgendaConsultar frm = new FrmAgendaConsultar(1))
             {
                 frm.ShowDialog(this);
                 if (frm.TurnoSeleccionado != null)
@@ -85,6 +90,7 @@ namespace Clinica_Frba.RegistrosDeLLegada
                     this._turno = frm.TurnoSeleccionado;
                     tbTurno.Text = _turno.ToString();
                     btnBuscarTurno.Enabled = false;
+                    this.btnValidarBono.Enabled = true;
                 }
             }
         }
@@ -99,6 +105,7 @@ namespace Clinica_Frba.RegistrosDeLLegada
 
                 this._bono = resultado.Retorno;
                 this.btnValidarBono.Enabled = false;
+                this.btnRegistrar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -123,7 +130,13 @@ namespace Clinica_Frba.RegistrosDeLLegada
             this._afiliado = afiliado;
             this.btnBuscarAfiliado.Enabled = false;
             this.tbAfiliado.Text = _afiliado.NombreCompleto;
+            this.btnBuscarTurno.Enabled = true;
             
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

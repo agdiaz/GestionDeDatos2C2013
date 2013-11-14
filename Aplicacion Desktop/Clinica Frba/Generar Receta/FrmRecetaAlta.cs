@@ -28,15 +28,15 @@ namespace Clinica_Frba.Recetas
         private CompraDomain _domain;
 
         public FrmRecetaAlta(Afiliado a)
-            :base()
+            :this()
         {
             this.CargarAfiliado(a);
         }
         public FrmRecetaAlta()
             :base()
         {
-            _domain = new CompraDomain(Program.ContextoActual.Logger);
             InitializeComponent();
+            _domain = new CompraDomain(Program.ContextoActual.Logger);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -196,7 +196,7 @@ namespace Clinica_Frba.Recetas
         private void CargarAfiliado(Afiliado afiliado)
         {
             this._afiliado = afiliado;
-            this.tbAfiliado.Text = afiliado.NombreCompleto;
+            this.tbAfiliado.Text = _afiliado.NombreCompleto;
             this.btnBuscarAfiliado.Enabled = false;
         }
     }

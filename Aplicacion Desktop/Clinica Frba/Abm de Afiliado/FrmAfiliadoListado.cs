@@ -95,6 +95,8 @@ namespace Clinica_Frba.Afiliados
             this.dgvBusqueda.Columns["NroSecundario"].Visible = false;
             this.dgvBusqueda.Columns["IdPlanMedico"].Visible = false;
             this.dgvBusqueda.Columns["NombreCompleto"].Visible = false;
+            this.dgvBusqueda.Columns["Habilitado"].Visible = false;
+            this.dgvBusqueda.Columns["CantidadHijos"].Visible = false;
         }
 
         private FiltroAfiliado ObtenerFiltro()

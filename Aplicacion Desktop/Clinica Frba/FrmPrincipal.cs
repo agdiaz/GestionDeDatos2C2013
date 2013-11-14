@@ -483,7 +483,7 @@ namespace Clinica_Frba
         {
             try
             {
-                FrmAgendaConsultar frm = new FrmAgendaConsultar();
+                FrmAgendaConsultar frm = (Program.ContextoActual.ProfesionalDelUsuario == null) ? new FrmAgendaConsultar(0) : new FrmAgendaConsultar(Program.ContextoActual.ProfesionalDelUsuario, 0);
                 frm.StartPosition = FormStartPosition.CenterParent;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.MdiParent = this;

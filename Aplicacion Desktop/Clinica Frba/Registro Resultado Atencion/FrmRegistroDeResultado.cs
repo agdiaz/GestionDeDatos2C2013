@@ -78,7 +78,7 @@ namespace Clinica_Frba.ResultadosAtencion
 
         private void btnBuscarTurno_Click(object sender, EventArgs e)
         {
-            using (FrmAgendaConsultar frm = new FrmAgendaConsultar(_profesional))
+            using (FrmAgendaConsultar frm = new FrmAgendaConsultar(_profesional, 1))
             {
                 frm.ShowDialog(this);
                 if (frm.TurnoSeleccionado != null)
@@ -97,6 +97,9 @@ namespace Clinica_Frba.ResultadosAtencion
 
                     _afiliado = resultadoAfiliado.Retorno;
                     tbAfiliado.Text = _afiliado.NombreCompleto;
+                    
+                    this.dpFecha.Enabled = true;
+                    this.btnConfirmarHorario.Enabled = true;
                     
                 }
                 catch (Exception ex)
@@ -125,6 +128,13 @@ namespace Clinica_Frba.ResultadosAtencion
             tbProfesional.Text = _profesional.NombreCompleto;
             btnBuscarProfesional.Enabled = false;
             btnBuscarTurno.Enabled = true;
+        }
+
+        private void btnConfirmarHorario_Click(object sender, EventArgs e)
+        {
+            this._fecha = dpFecha.Value;
+            this.gbResultado.Enabled = true;
+            this.btnAceptar.Enabled = true;
         }
     }
 }

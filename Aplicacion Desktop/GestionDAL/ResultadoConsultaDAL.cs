@@ -31,7 +31,10 @@ namespace GestionDAL
         protected override IList<System.Data.SqlClient.SqlParameter> GenerarParametrosCrear(ResultadoTurno entidad)
         {
             IList<SqlParameter> parametros = new List<SqlParameter>();
-	        
+            SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
+            pId.Direction = ParameterDirection.Output;
+            parametros.Add(pId); 
+
             SqlParameter pIdTurno = new SqlParameter("@p_id_turno", System.Data.SqlDbType.Decimal, 18, "p_id_turno");
             pIdTurno.Value = entidad.IdTurno;
             parametros.Add(pIdTurno);
@@ -96,7 +99,8 @@ namespace GestionDAL
                 turno.Disponible = Convert.ToBoolean(dr["disponible"]);
                 turno.HoraDesde = TimeSpan.Parse((dr["horaInicio"].ToString()));
                 turno.HoraHasta = TimeSpan.Parse(dr["horaFin"].ToString());
-
+                turno.IdTurno = dr["id_turno"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["id_turno"]);
+                turno.IdAfiliado = dr["id_afiliado"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["id_afiliado"]);
                 lista.Add(turno);
             }
 

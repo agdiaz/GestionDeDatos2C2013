@@ -93,7 +93,18 @@ namespace GestionDomain
 
         public IResultado<Afiliado> Obtener(decimal p)
         {
-            throw new NotImplementedException();
+            Resultado<Afiliado> resultado = new Resultado<Afiliado>();
+            try
+            {
+                resultado.Retorno = _dal.Obtener(p);
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add("No se ha encontrado el afiliado para ese usuario");
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
         }
 
         public IResultado<Afiliado> ObtenerPorUsuario(Usuario usuario)

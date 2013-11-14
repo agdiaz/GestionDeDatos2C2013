@@ -14,6 +14,7 @@ using GestionCommon.Helpers;
 using GestionGUIHelper.Helpers;
 using GestionDomain.Resultados;
 using GestionDomain;
+using Clinica_Frba.Agendas;
 
 namespace Clinica_Frba.PedidosDeTurno
 {
@@ -21,7 +22,7 @@ namespace Clinica_Frba.PedidosDeTurno
     {
         private Afiliado _afiliado;
         private Profesional _profesional;
-        private DateTime _fechaSeleccionado;
+        private Turno _turno;
 
         private TurnoDomain _domain;
 
@@ -33,7 +34,6 @@ namespace Clinica_Frba.PedidosDeTurno
         public FrmPedidoDeTurno()
         {
             _domain = new TurnoDomain(Program.ContextoActual.Logger);
-            _fechaSeleccionado = FechaHelper.Ahora();
             InitializeComponent();
         }
         
@@ -54,47 +54,19 @@ namespace Clinica_Frba.PedidosDeTurno
         {
             this._afiliado = afiliado;
             this.tbAfiliado.Text = afiliado.NombreCompleto;
-            this.gbBusquedaProfesional.Enabled = true;
+            this.gbBusquedaHorario.Enabled = true;
             this.btnBuscarAfiliado.Enabled = false;
         }
         #endregion 
         
         #region [Buscar profesional]
-        private void btnBuscarProfesional_Click(object sender, EventArgs e)
-        {
-            using (FrmProfesionalListado frm = new FrmProfesionalListado(true))
-            {
-                frm.ShowDialog(this);
-                if (frm.EntidadSeleccionada as Profesional != null)
-                {
-                    this.CargarProfesional((Profesional)frm.EntidadSeleccionada);
-                }
-            }
-        }
-
-        private void CargarProfesional(Profesional profesional)
-        {
-            this._profesional = profesional;
-            this.tbProfesional.Text = profesional.NombreCompleto;
-            this.btnFiltrar.Enabled = true;
-            this.btnBuscarProfesional.Enabled = false;
-        }
+        
+        
         #endregion
 
         #region [Load]
         private void FrmPedidoDeTurno_Load(object sender, EventArgs e)
         {
-            this.CargarDias();
-            this.dtpDesde.Value = FechaHelper.Ahora();
-            this.dtpHasta.Value = this.dtpDesde.Value.AddMonths(1);
-        }
-
-        private void CargarDias()
-        {
-            IList<DiaSemana> dias = new ListaDiaSemana().Todos;
-            cbDias.DataSource = dias;
-            cbDias.DisplayMember = "Nombre";
-            cbDias.ValueMember = "Id";
         }
 
         #endregion
@@ -107,22 +79,40 @@ namespace Clinica_Frba.PedidosDeTurno
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Turno t = new Turno();
-            t.IdAfiliado = _afiliado.IdAfiliado;
-            t.IdProfesional = _profesional.IdProfesional;
-            t.Fecha = _fechaSeleccionado;
-
-            try
+         try
             {
-                IResultado<bool> resultado = _domain.RegistrarTurno(t);
+                _turno.IdAfiliado = _afiliado.IdAfiliado;
+                IResultado<bool> resultado = _domain.RegistrarTurno(_turno);
                 if (!resultado.Correcto)
                     throw new ResultadoIncorrectoException<bool>(resultado);
 
+                MensajePorPantalla.MensajeInformativo(this, "Se realizo pedido de turno con éxito");
                 this.Close();
             }
             catch (Exception ex)
             {
                 MensajePorPantalla.MensajeError(this, ex.Message);
+            }
+        }
+
+        private void gbBusquedaHorario_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBuscarTurno_Click(object sender, EventArgs e)
+        {
+            using (FrmAgendaConsultar frm = new FrmAgendaConsultar(2))
+            {
+                frm.ShowDialog(this);
+
+                if (frm.TurnoSeleccionado != null)
+                {
+                    this._turno = frm.TurnoSeleccionado;
+                    this.textBox1.Text = _turno.ToString();
+                    this.btnAceptar.Enabled = true;
+                }
+
             }
         }
 

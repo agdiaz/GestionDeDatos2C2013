@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbProfesional = new System.Windows.Forms.TextBox();
             this.btnBuscarProfesional = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.dgvTurnos = new System.Windows.Forms.DataGridView();
             this.btnTurnos = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -66,26 +65,18 @@
             this.btnBuscarProfesional.UseVisualStyleBackColor = true;
             this.btnBuscarProfesional.Click += new System.EventHandler(this.btnBuscarProfesional_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Fechas disponibles";
-            // 
             // dgvTurnos
             // 
             this.dgvTurnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTurnos.Location = new System.Drawing.Point(373, 70);
+            this.dgvTurnos.Location = new System.Drawing.Point(24, 213);
             this.dgvTurnos.Name = "dgvTurnos";
-            this.dgvTurnos.Size = new System.Drawing.Size(331, 361);
+            this.dgvTurnos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTurnos.Size = new System.Drawing.Size(680, 227);
             this.dgvTurnos.TabIndex = 5;
             // 
             // btnTurnos
             // 
-            this.btnTurnos.Location = new System.Drawing.Point(263, 116);
+            this.btnTurnos.Location = new System.Drawing.Point(600, 175);
             this.btnTurnos.Name = "btnTurnos";
             this.btnTurnos.Size = new System.Drawing.Size(104, 23);
             this.btnTurnos.TabIndex = 4;
@@ -105,7 +96,7 @@
             // 
             // mcDesde
             // 
-            this.mcDesde.Location = new System.Drawing.Point(24, 70);
+            this.mcDesde.Location = new System.Drawing.Point(479, 10);
             this.mcDesde.MaxSelectionCount = 1;
             this.mcDesde.Name = "mcDesde";
             this.mcDesde.TabIndex = 3;
@@ -119,7 +110,6 @@
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnTurnos);
             this.Controls.Add(this.dgvTurnos);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBuscarProfesional);
             this.Controls.Add(this.tbProfesional);
             this.Controls.Add(this.label1);
@@ -137,7 +127,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbProfesional;
         private System.Windows.Forms.Button btnBuscarProfesional;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvTurnos;
         private System.Windows.Forms.Button btnTurnos;
         private System.Windows.Forms.Button btnAceptar;

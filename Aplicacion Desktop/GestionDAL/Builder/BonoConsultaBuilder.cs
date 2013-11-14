@@ -15,7 +15,7 @@ namespace GestionDAL.Builder
             BonoConsulta bc = new BonoConsulta();
             bc.IdCompra = Convert.ToDecimal(row["id_compra"]);
             bc.IdPlanMedico = Convert.ToDecimal(row["id_plan_medico"]);
-            bc.IdTurno = Convert.ToDecimal(row["id_turno"]);
+            bc.IdTurno = row["id_turno"]== DBNull.Value? 0 : Convert.ToDecimal(row["id_turno"]);
             bc.Habilitado = Convert.ToBoolean(row["habilitado"]);
 
             return bc;

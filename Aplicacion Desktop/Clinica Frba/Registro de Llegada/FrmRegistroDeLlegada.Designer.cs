@@ -88,6 +88,7 @@
             // 
             // btnBuscarTurno
             // 
+            this.btnBuscarTurno.Enabled = false;
             this.btnBuscarTurno.Location = new System.Drawing.Point(334, 46);
             this.btnBuscarTurno.Name = "btnBuscarTurno";
             this.btnBuscarTurno.Size = new System.Drawing.Size(75, 23);
@@ -125,9 +126,11 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bono consulta";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // btnValidarBono
             // 
+            this.btnValidarBono.Enabled = false;
             this.btnValidarBono.Location = new System.Drawing.Point(334, 31);
             this.btnValidarBono.Name = "btnValidarBono";
             this.btnValidarBono.Size = new System.Drawing.Size(75, 23);
@@ -138,6 +141,7 @@
             // 
             // btnRegistrar
             // 
+            this.btnRegistrar.Enabled = false;
             this.btnRegistrar.Location = new System.Drawing.Point(9, 71);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(75, 23);

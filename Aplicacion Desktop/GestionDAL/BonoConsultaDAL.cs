@@ -46,6 +46,10 @@ namespace GestionDAL
             pFecha.Value = fecha;
             parametros.Add(pFecha);
 
+            SqlParameter pIdTurno = new SqlParameter("@p_id_turno", System.Data.SqlDbType.Decimal, 18, "p_id_turno");
+            pIdTurno.Value = idTurno;
+            parametros.Add(pIdTurno);
+
             _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_BonoConsulta_registrar_llegada]", parametros);
             return true;
         }
@@ -54,12 +58,12 @@ namespace GestionDAL
         {
             IList<SqlParameter> parametros = new List<SqlParameter>();
 
-            SqlParameter pIdBono = new SqlParameter("@p_id_bono", System.Data.SqlDbType.Decimal, 18, "p_id_bono");
+            SqlParameter pIdBono = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
             pIdBono.Value = idBono;
             parametros.Add(pIdBono);
 
             SqlParameter pNroPrincipal = new SqlParameter("@p_nro_principal", System.Data.SqlDbType.Decimal, 18, "p_nro_principal");
-            pNroPrincipal.Value = pNroPrincipal;
+            pNroPrincipal.Value = nroPrincipal;
             parametros.Add(pNroPrincipal);
 
             DataSet ds = _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_BonoConsulta_validar]", parametros);

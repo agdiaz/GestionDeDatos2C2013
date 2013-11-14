@@ -10,5 +10,7 @@ namespace GestionCommon.Entidades
         public TimeSpan HoraDesde { get; set; }
         public TimeSpan HoraHasta { get; set; }
         public bool Disponible { get; set; }
+        public decimal IdTurno { get; set; }
+        public decimal IdAfiliado { get; set; }
     }
 }
