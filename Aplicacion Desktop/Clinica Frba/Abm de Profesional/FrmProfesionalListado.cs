@@ -86,6 +86,7 @@ namespace Clinica_Frba.Profesionales
             this.dgvBusqueda.Columns["IdProfesional"].Visible = false;
             this.dgvBusqueda.Columns["NombreCompleto"].Visible = false;
             this.dgvBusqueda.Columns["IdUsuario"].Visible = false;
+            this.dgvBusqueda.Columns["Habilitado"].Visible = false;
 
         }
 

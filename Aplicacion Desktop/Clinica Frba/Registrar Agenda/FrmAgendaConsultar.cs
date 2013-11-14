@@ -59,6 +59,7 @@ namespace Clinica_Frba.Agendas
                     turnos = resultado.Retorno.Where(t => t.Disponible == true).ToList();
                 }
                 this.dgvTurnos.DataSource = turnos;
+                this.dgvTurnos.Columns["IdTurno"].Visible = false;
             }
             catch (Exception ex)
             {
