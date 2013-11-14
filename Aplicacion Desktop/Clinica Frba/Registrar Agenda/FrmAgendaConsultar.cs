@@ -95,8 +95,8 @@ namespace Clinica_Frba.Agendas
                 Turno t = new Turno();
                 t.IdProfesional = _profesional.IdProfesional;
                 t.Fecha = mcDesde.SelectionRange.Start;
-                t.HoraInicio = td.HoraDesde;
-                t.HoraFin = td.HoraHasta;
+                //t.HoraInicio = td.HoraDesde;
+                //t.HoraFin = td.HoraHasta;
             }
         }
     }

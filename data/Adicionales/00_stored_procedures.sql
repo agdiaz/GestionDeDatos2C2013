@@ -1447,7 +1447,7 @@ BEGIN
          AND A.habilitado = '1'
          AND A.id_plan_medico = BC.id_plan_medico
 END
-
+GO
 CREATE PROCEDURE [TOP_4].[sp_BonoFarmacia_select]
 (@p_id numeric(18))
 AS
@@ -1531,8 +1531,8 @@ BEGIN
 END
 
 
-
-CREATE PROCEDURE [TOP_4].[sp_dias_disponibles_profesional]
+GO
+ALTER PROCEDURE [TOP_4].[sp_dias_disponibles_profesional]
 (
 	@p_fecha_hoy datetime,
 	@p_id_profesional NUMERIC(18,0)
@@ -1545,7 +1545,7 @@ BEGIN
 	INNER JOIN TOP_4.Profesional pro
 		ON pro.id_profesional = ag.id_profesional
 	WHERE pro.id_profesional = @p_id_profesional
-	AND ag.fecha_hasta <= @p_fecha_hoy
+	AND @p_fecha_hoy <= ag.fecha_hasta  
 	ORDER BY ag.fecha_desde DESC
 	
 	IF @fechaDesde > @p_fecha_hoy
@@ -1555,7 +1555,7 @@ BEGIN
 		INNER JOIN TOP_4.Profesional pro
 			ON pro.id_profesional = ag.id_profesional
 		WHERE pro.id_profesional = @p_id_profesional
-		AND ag.fecha_hasta <= @p_fecha_hoy
+		AND @p_fecha_hoy <= ag.fecha_hasta 
 		ORDER BY ag.fecha_desde DESC
 	END
 	ELSE
@@ -1565,7 +1565,7 @@ BEGIN
 		INNER JOIN TOP_4.Profesional pro
 			ON pro.id_profesional = ag.id_profesional
 		WHERE pro.id_profesional = @p_id_profesional
-		AND ag.fecha_hasta <= @p_fecha_hoy
+		AND @p_fecha_hoy  <= ag.fecha_hasta
 		ORDER BY ag.fecha_desde DESC
 	END
 	
@@ -1661,9 +1661,10 @@ BEGIN
 		set @horaActual = DATEADD(minute, 30, @horaActual)
 	END
 	
-	SELECT horaInicio, horaFin FROM #tmpTurnos
+	SELECT horaInicio, horaFin, disponible FROM #tmpTurnos
 	DROP TABLE #tmpTurnos
 END 
+GO
 CREATE PROCEDURE [TOP_4].[sp_Medicamento_filter]
 (@p_nombre varchar(255))
 AS

@@ -77,7 +77,7 @@
             this.gbFuncionalidades.Location = new System.Drawing.Point(13, 97);
             this.gbFuncionalidades.Name = "gbFuncionalidades";
             this.gbFuncionalidades.Size = new System.Drawing.Size(259, 294);
-            this.gbFuncionalidades.TabIndex = 6;
+            this.gbFuncionalidades.TabIndex = 3;
             this.gbFuncionalidades.TabStop = false;
             this.gbFuncionalidades.Text = "Funcionalidades asociadas";
             // 
