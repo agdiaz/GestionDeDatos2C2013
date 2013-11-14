@@ -1635,8 +1635,9 @@ BEGIN
 		horaInicio time,
 		horaFin	time,
 		disponible bit,
-		id_turno numeric(18),
-		id_afiliado numeric(18)
+		id_turno numeric(18,0),
+		id_afiliado numeric(18,0),
+		id_resultado_turno numeric(18,0)
 	)
 	DECLARE @horaDesde time
 	DECLARE @horaHasta time
@@ -1652,13 +1653,16 @@ BEGIN
 	DECLARE @horaActual time
 	SET @horaActual = @horaDesde
 	
-	DECLARE @id_turno numeric(18)
-	DECLARE @id_afiliado numeric(18)
+	DECLARE @id_turno numeric(18,0)
+	DECLARE @id_afiliado numeric(18,0)
+	DECLARE @id_resultado_turno numeric(18,0)
 	WHILE @horaActual < @horaHasta
 	BEGIN
 		IF NOT EXISTS (
 			SELECT * 
 			FROM TOP_4.Turno tur
+			INNER JOIN TOP_4.Resultado_Turno resTur
+				ON resTur.id_turno = tur.id_turno
 			LEFT JOIN TOP_4.Cancelacion can
 				ON can.id_turno = tur.id_turno
 			WHERE tur.id_profesional = @p_id_profesional
@@ -1668,19 +1672,26 @@ BEGIN
 			AND tur.habilitado = 1
 			)
 		BEGIN
-			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado)
-			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 1, null, null)
+			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno)
+			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 1, null, null, null)
 		END
 		ELSE
 		BEGIN
-			SELECT @id_turno = tur.id_turno , @id_afiliado = tur.id_afiliado
+			SELECT TOP 1 @id_turno = tur.id_turno , @id_afiliado = tur.id_afiliado, @id_resultado_turno = resTur.id_resultado_turno
 			FROM TOP_4.Turno tur
+			INNER JOIN TOP_4.Resultado_Turno resTur
+				ON resTur.id_turno = tur.id_turno
+			LEFT JOIN TOP_4.Cancelacion can
+				ON can.id_turno = tur.id_turno
 			WHERE tur.id_profesional = @p_id_profesional
 			AND CAST(tur.fecha_turno as date) = CAST(@p_fecha as date)
 			AND CAST(tur.fecha_turno as time) = @horaActual
+			AND can.id_cancelacion IS NULL
+			AND tur.habilitado = 1
+
 			
-			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado)
-			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 0, @id_turno, @id_afiliado)
+			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno)
+			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 0, @id_turno, @id_afiliado, @id_resultado_turno)
 		END
 		set @horaActual = DATEADD(minute, 30, @horaActual)
 	END
