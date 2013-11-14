@@ -63,6 +63,8 @@ namespace Clinica_Frba.Usuarios
             this.dgvBusqueda.DataSource = resultadoUsuarios.Retorno;
 
             this.dgvBusqueda.Columns["IdUsuario"].Visible = false;
+            this.dgvBusqueda.Columns["Habilitado"].Visible = false;
+            this.dgvBusqueda.Columns["Password"].Visible = false;
         }
 
         protected override void AccionIniciar()

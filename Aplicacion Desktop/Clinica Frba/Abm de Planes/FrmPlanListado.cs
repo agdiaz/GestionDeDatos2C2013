@@ -74,6 +74,7 @@ namespace Clinica_Frba.Planes
             this.dgvBusqueda.DataSource = resultado.Retorno;
 
             this.dgvBusqueda.Columns["IdPlan"].Visible = false;
+            this.dgvBusqueda.Columns["Habilitado"].Visible = false;
         }
 
         protected override void AccionIniciar()
