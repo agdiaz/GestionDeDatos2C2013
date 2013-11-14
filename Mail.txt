@@ -1,0 +1,13 @@
+Para: gestiondedatos.entregas@gmail.com
+BCC: demodawid@gmail.com; florxgomez@gmail.com; rojas.r.cristian@gmail.com
+
+
+Asunto: TP2C2013 K3051 TOP_4 14
+
+Cuerpo:
+Grupo: TOP_4
+Curso: K3051
+Integrantes: Diaz, Adrian gustavo - 1370809
+	     Dawid, Demian - 1245200
+	     Goméz, Florencia - 1338316
+	     Rojas, Cristian - 1375891
