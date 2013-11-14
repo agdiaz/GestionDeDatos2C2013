@@ -1483,7 +1483,7 @@ BEGIN
   INNER JOIN [TOP_4].Compra C ON BF.id_compra = C.id_compra
   INNER JOIN [TOP_4].Afiliado A ON C.id_afiliado = A.id_afiliado
   WHERE id_bono_farmacia = @p_id_bono
-  AND [id_receta] = NULL
+  AND [id_receta] IS NULL
   AND [fecha_impresion] <= @p_fecha
   AND BF.habilitado = '1'
   AND A.nro_principal = @p_nro_principal
@@ -1518,7 +1518,8 @@ END
 GO
 CREATE PROCEDURE [TOP_4].[sp_ResultadoTurno_insert]
 (
-	@p_id_turno numeric(18)
+	@p_id numeric(18) Output
+	,@p_id_turno numeric(18)
 	,@p_sintoma varchar(255)
 	,@p_diagnostico varchar(255)
 	,@p_fecha_diagnostico datetime
@@ -1528,6 +1529,8 @@ BEGIN
 	INSERT INTO [TOP_4].Resultado_Turno
 	(id_turno, sintoma, diagnostico, fecha_diagnostico, habilitado)
 	VALUES(@p_id_turno, @p_sintoma, @p_diagnostico, @p_fecha_diagnostico, '1')
+	
+	SET @p_id = SCOPE_IDENTITY()
 END
 
 
@@ -1626,7 +1629,9 @@ BEGIN
 	CREATE TABLE #tmpTurnos(
 		horaInicio time,
 		horaFin	time,
-		disponible bit
+		disponible bit,
+		id_turno numeric(18),
+		id_afiliado numeric(18)
 	)
 	DECLARE @horaDesde time
 	DECLARE @horaHasta time
@@ -1641,6 +1646,8 @@ BEGIN
 	DECLARE @horaActual time
 	SET @horaActual = @horaDesde
 	
+	DECLARE @id_turno numeric(18)
+	DECLARE @id_afiliado numeric(18)
 	WHILE @horaActual < @horaHasta
 	BEGIN
 		IF NOT EXISTS (
@@ -1650,18 +1657,24 @@ BEGIN
 			AND CAST(tur.fecha_turno as date) = CAST(@p_fecha as date)
 			AND CAST(tur.fecha_turno as time) = @horaActual)
 		BEGIN
-			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible)
-			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 1)
+			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado)
+			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 1, null, null)
 		END
 		ELSE
 		BEGIN
-			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible)
-			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 0)
+			SELECT @id_turno = tur.id_turno , @id_afiliado = tur.id_afiliado
+			FROM TOP_4.Turno tur
+			WHERE tur.id_profesional = @p_id_profesional
+			AND CAST(tur.fecha_turno as date) = CAST(@p_fecha as date)
+			AND CAST(tur.fecha_turno as time) = @horaActual
+			
+			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado)
+			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 0, @id_turno, @id_afiliado)
 		END
 		set @horaActual = DATEADD(minute, 30, @horaActual)
 	END
 	
-	SELECT horaInicio, horaFin, disponible FROM #tmpTurnos
+	SELECT horaInicio, horaFin, disponible, id_turno, id_afiliado FROM #tmpTurnos
 	DROP TABLE #tmpTurnos
 END 
 GO
