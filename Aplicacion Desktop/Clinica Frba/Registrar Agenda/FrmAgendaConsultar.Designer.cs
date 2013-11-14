@@ -52,6 +52,7 @@
             // 
             this.tbProfesional.Location = new System.Drawing.Point(100, 12);
             this.tbProfesional.Name = "tbProfesional";
+            this.tbProfesional.ReadOnly = true;
             this.tbProfesional.Size = new System.Drawing.Size(286, 20);
             this.tbProfesional.TabIndex = 1;
             // 
