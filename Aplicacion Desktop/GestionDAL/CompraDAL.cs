@@ -95,5 +95,47 @@ namespace GestionDAL
 
             return ((Decimal)pId.Value);
         }
+
+        public decimal RegistrarReceta(Receta r)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+            SqlParameter pIdResultadoTurno = new SqlParameter("@p_id_resultado_turno", System.Data.SqlDbType.Decimal, 18, "p_id_resultado_turno");
+            pIdResultadoTurno.Value = r.IdResultadoTurno;
+            parametros.Add(pIdResultadoTurno);
+
+            SqlParameter pIdBonoFarmacia = new SqlParameter("@p_id_bono_farmacia", System.Data.SqlDbType.Decimal, 18, "p_id_bono_farmacia");
+            pIdBonoFarmacia.Value = r.IdBonoFarmacia;
+            parametros.Add(pIdBonoFarmacia);
+
+            SqlParameter pFecha = new SqlParameter("@p_fecha", System.Data.SqlDbType.DateTime, 8, "p_fecha");
+            pFecha.Value = r.Fecha;
+            parametros.Add(pFecha);
+
+            SqlParameter pId = new SqlParameter("@p_id", System.Data.SqlDbType.Decimal, 18, "p_id");
+            pId.Direction = System.Data.ParameterDirection.Output;
+            parametros.Add(pId);
+
+            _conector.RealizarConsultaAlmacenada("[TOP_4].[sp_Receta_insert]", parametros);
+            return (decimal)pId.Value;
+        }
+
+        public bool RegistrarItemReceta(ItemReceta ir)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+            SqlParameter pIdReceta = new SqlParameter("@p_id_receta", System.Data.SqlDbType.Decimal, 18, "p_id_receta");
+            pIdReceta.Value = ir.IdReceta;
+            parametros.Add(pIdReceta);
+
+            SqlParameter pIdMedicamento = new SqlParameter("@p_id_medicamento", System.Data.SqlDbType.Decimal, 18, "p_id_medicamento");
+            pIdMedicamento.Value = ir.IdMedicamento;
+            parametros.Add(pIdMedicamento);
+
+            SqlParameter pCantidad = new SqlParameter("@p_cantidad", System.Data.SqlDbType.Int, 4, "p_cantidad");
+            pCantidad.Value = ir.Cantidad;
+            parametros.Add(pCantidad);
+
+            _conector.RealizarConsultaAlmacenada("[TOP_4].[sp_ItemReceta_insert]", parametros);
+            return true;
+        }
     }
 }

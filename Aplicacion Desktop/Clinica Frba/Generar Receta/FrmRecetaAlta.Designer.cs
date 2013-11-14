@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnBuscarAfiliado = new System.Windows.Forms.Button();
+            this.tbAfiliado = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnValidar = new System.Windows.Forms.Button();
@@ -47,9 +50,8 @@
             this.lstMedicamentos = new System.Windows.Forms.ListBox();
             this.tbBonoFarmacia = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbAfiliado = new System.Windows.Forms.TextBox();
-            this.btnBuscarAfiliado = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbProfesional = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ndCantidad)).BeginInit();
@@ -57,6 +59,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tbProfesional);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.btnBuscarAfiliado);
             this.groupBox1.Controls.Add(this.tbAfiliado);
             this.groupBox1.Controls.Add(this.label6);
@@ -74,9 +78,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Receta";
             // 
+            // btnBuscarAfiliado
+            // 
+            this.btnBuscarAfiliado.Location = new System.Drawing.Point(536, 19);
+            this.btnBuscarAfiliado.Name = "btnBuscarAfiliado";
+            this.btnBuscarAfiliado.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarAfiliado.TabIndex = 16;
+            this.btnBuscarAfiliado.Text = "Buscar";
+            this.btnBuscarAfiliado.UseVisualStyleBackColor = true;
+            this.btnBuscarAfiliado.Click += new System.EventHandler(this.btnBuscarAfiliado_Click);
+            // 
+            // tbAfiliado
+            // 
+            this.tbAfiliado.Location = new System.Drawing.Point(371, 19);
+            this.tbAfiliado.Name = "tbAfiliado";
+            this.tbAfiliado.ReadOnly = true;
+            this.tbAfiliado.Size = new System.Drawing.Size(158, 20);
+            this.tbAfiliado.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(293, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Afiliado";
+            // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(98, 63);
+            this.dateTimePicker1.Location = new System.Drawing.Point(420, 68);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 13;
@@ -93,7 +124,7 @@
             // 
             // btnValidar
             // 
-            this.btnValidar.Location = new System.Drawing.Point(263, 33);
+            this.btnValidar.Location = new System.Drawing.Point(262, 67);
             this.btnValidar.Name = "btnValidar";
             this.btnValidar.Size = new System.Drawing.Size(75, 23);
             this.btnValidar.TabIndex = 6;
@@ -104,7 +135,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 69);
+            this.label5.Location = new System.Drawing.Point(343, 72);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 12;
@@ -124,16 +155,16 @@
             this.groupBox2.Controls.Add(this.btnBuscar);
             this.groupBox2.Controls.Add(this.lstMedicamentos);
             this.groupBox2.Enabled = false;
-            this.groupBox2.Location = new System.Drawing.Point(6, 108);
+            this.groupBox2.Location = new System.Drawing.Point(6, 133);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(605, 297);
+            this.groupBox2.Size = new System.Drawing.Size(605, 272);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Medicamentos";
             // 
             // tbCantMedicamentos
             // 
-            this.tbCantMedicamentos.Location = new System.Drawing.Point(178, 269);
+            this.tbCantMedicamentos.Location = new System.Drawing.Point(178, 239);
             this.tbCantMedicamentos.Name = "tbCantMedicamentos";
             this.tbCantMedicamentos.ReadOnly = true;
             this.tbCantMedicamentos.Size = new System.Drawing.Size(100, 20);
@@ -142,7 +173,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 272);
+            this.label4.Location = new System.Drawing.Point(37, 242);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(135, 13);
             this.label4.TabIndex = 11;
@@ -150,7 +181,7 @@
             // 
             // tbCantidad
             // 
-            this.tbCantidad.Location = new System.Drawing.Point(243, 57);
+            this.tbCantidad.Location = new System.Drawing.Point(243, 48);
             this.tbCantidad.Name = "tbCantidad";
             this.tbCantidad.ReadOnly = true;
             this.tbCantidad.Size = new System.Drawing.Size(100, 20);
@@ -158,7 +189,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(422, 94);
+            this.btnAgregar.Location = new System.Drawing.Point(422, 64);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 9;
@@ -168,7 +199,7 @@
             // 
             // ndCantidad
             // 
-            this.ndCantidad.Location = new System.Drawing.Point(116, 56);
+            this.ndCantidad.Location = new System.Drawing.Point(116, 47);
             this.ndCantidad.Maximum = new decimal(new int[] {
             3,
             0,
@@ -191,7 +222,7 @@
             // 
             // tbMedicamento
             // 
-            this.tbMedicamento.Location = new System.Drawing.Point(116, 30);
+            this.tbMedicamento.Location = new System.Drawing.Point(116, 21);
             this.tbMedicamento.Name = "tbMedicamento";
             this.tbMedicamento.ReadOnly = true;
             this.tbMedicamento.Size = new System.Drawing.Size(354, 20);
@@ -200,7 +231,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 60);
+            this.label3.Location = new System.Drawing.Point(23, 51);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 6;
@@ -209,7 +240,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 30);
+            this.label2.Location = new System.Drawing.Point(23, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 5;
@@ -217,7 +248,7 @@
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(503, 94);
+            this.btnQuitar.Location = new System.Drawing.Point(503, 64);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(75, 23);
             this.btnQuitar.TabIndex = 4;
@@ -227,7 +258,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(476, 28);
+            this.btnBuscar.Location = new System.Drawing.Point(476, 19);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 3;
@@ -238,14 +269,14 @@
             // lstMedicamentos
             // 
             this.lstMedicamentos.FormattingEnabled = true;
-            this.lstMedicamentos.Location = new System.Drawing.Point(26, 123);
+            this.lstMedicamentos.Location = new System.Drawing.Point(26, 93);
             this.lstMedicamentos.Name = "lstMedicamentos";
             this.lstMedicamentos.Size = new System.Drawing.Size(573, 134);
             this.lstMedicamentos.TabIndex = 2;
             // 
             // tbBonoFarmacia
             // 
-            this.tbBonoFarmacia.Location = new System.Drawing.Point(98, 37);
+            this.tbBonoFarmacia.Location = new System.Drawing.Point(97, 71);
             this.tbBonoFarmacia.Name = "tbBonoFarmacia";
             this.tbBonoFarmacia.Size = new System.Drawing.Size(158, 20);
             this.tbBonoFarmacia.TabIndex = 1;
@@ -253,38 +284,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 40);
+            this.label1.Location = new System.Drawing.Point(16, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Bono farmacia";
             // 
-            // label6
+            // label7
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Afiliado";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Profesional";
             // 
-            // tbAfiliado
+            // tbProfesional
             // 
-            this.tbAfiliado.Location = new System.Drawing.Point(98, 11);
-            this.tbAfiliado.Name = "tbAfiliado";
-            this.tbAfiliado.ReadOnly = true;
-            this.tbAfiliado.Size = new System.Drawing.Size(158, 20);
-            this.tbAfiliado.TabIndex = 15;
-            // 
-            // btnBuscarAfiliado
-            // 
-            this.btnBuscarAfiliado.Location = new System.Drawing.Point(263, 11);
-            this.btnBuscarAfiliado.Name = "btnBuscarAfiliado";
-            this.btnBuscarAfiliado.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarAfiliado.TabIndex = 16;
-            this.btnBuscarAfiliado.Text = "Buscar";
-            this.btnBuscarAfiliado.UseVisualStyleBackColor = true;
-            this.btnBuscarAfiliado.Click += new System.EventHandler(this.btnBuscarAfiliado_Click);
+            this.tbProfesional.Location = new System.Drawing.Point(97, 18);
+            this.tbProfesional.Name = "tbProfesional";
+            this.tbProfesional.ReadOnly = true;
+            this.tbProfesional.Size = new System.Drawing.Size(187, 20);
+            this.tbProfesional.TabIndex = 18;
             // 
             // FrmRecetaAlta
             // 
@@ -328,5 +349,7 @@
         private System.Windows.Forms.TextBox tbAfiliado;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnBuscarAfiliado;
+        private System.Windows.Forms.TextBox tbProfesional;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -44,14 +44,16 @@ namespace Clinica_Frba.ResultadosAtencion
             ResultadoTurno rt = this.ObtenerResultadoTurno();
             try
             {
-                IResultado<bool> resultado = _domain.RegistrarResultadoTurno(rt);
+                IResultado<ResultadoTurno> resultado = _domain.RegistrarResultadoTurno(rt);
                 if (!resultado.Correcto)
-                    throw new ResultadoIncorrectoException<bool>(resultado);
+                    throw new ResultadoIncorrectoException<ResultadoTurno>(resultado);
+                // Le asigna el id:
+                rt.IdResultadoTurno = resultado.Retorno.IdResultadoTurno;
 
                 DialogResult altaReceta = MensajePorPantalla.MensajeInterrogativo(this, "¿Desea hacer recetas?", MessageBoxButtons.YesNo);
                 if (altaReceta == DialogResult.Yes)
                 {
-                    using (FrmRecetaAlta frm = new FrmRecetaAlta(_afiliado))
+                    using (FrmRecetaAlta frm = new FrmRecetaAlta(rt, _profesional, _afiliado))
                     {
                         frm.ShowDialog(this);
                     }

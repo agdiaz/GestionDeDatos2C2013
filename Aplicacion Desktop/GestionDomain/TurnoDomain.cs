@@ -41,13 +41,14 @@ namespace GestionDomain
             return resultado;
         }
 
-        public IResultado<bool> RegistrarResultadoTurno(ResultadoTurno t)
+        public IResultado<ResultadoTurno> RegistrarResultadoTurno(ResultadoTurno t)
         {
-            Resultado<bool> resultado = new Resultado<bool>();
+            Resultado<ResultadoTurno> resultado = new Resultado<ResultadoTurno>();
             try
             {
-                _resultadoTurnoDal.Crear(t);
-                resultado.Retorno = true;
+                decimal id = _resultadoTurnoDal.Crear(t);
+                t.IdResultadoTurno = id;
+                resultado.Retorno = t;
             }
             catch (Exception ex)
             {
