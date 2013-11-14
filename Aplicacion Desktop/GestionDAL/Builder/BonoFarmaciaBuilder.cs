@@ -17,7 +17,7 @@ namespace GestionDAL.Builder
             bf.Habilitado = Convert.ToBoolean(row["habilitado"]);
             bf.IdCompra = Convert.ToDecimal(row["id_compra"]);
             bf.IdPlanMedico = Convert.ToDecimal(row["id_plan_medico"]);
-            bf.IdReceta = Convert.ToDecimal(row["id_receta"]);
+            bf.IdReceta = (row["id_receta"] == DBNull.Value) ? 0 : Convert.ToDecimal(row["id_receta"]);
 
             return bf;
         }
