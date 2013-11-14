@@ -72,6 +72,8 @@ namespace Clinica_Frba.Especialidades
             {
                 MensajePorPantalla.MensajeError(this, ex.Message);
             }
+
+            this.dgvBusqueda.Columns["IdEspecialidad"].Visible = false;
         }
 
         private FiltroEspecialidad CrearFiltro()

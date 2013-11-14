@@ -72,6 +72,8 @@ namespace Clinica_Frba.Planes
                 throw new ResultadoIncorrectoException<IList<PlanMedico>>(resultado);
 
             this.dgvBusqueda.DataSource = resultado.Retorno;
+
+            this.dgvBusqueda.Columns["IdPlan"].Visible = false;
         }
 
         protected override void AccionIniciar()

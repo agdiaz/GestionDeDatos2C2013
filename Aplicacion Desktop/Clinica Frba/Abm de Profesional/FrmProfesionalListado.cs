@@ -83,6 +83,10 @@ namespace Clinica_Frba.Profesionales
                 MensajePorPantalla.MensajeError(ex.Message);
             }
 
+            this.dgvBusqueda.Columns["IdProfesional"].Visible = false;
+            this.dgvBusqueda.Columns["NombreCompleto"].Visible = false;
+            this.dgvBusqueda.Columns["IdUsuario"].Visible = false;
+
         }
 
         protected override void AccionIniciar()

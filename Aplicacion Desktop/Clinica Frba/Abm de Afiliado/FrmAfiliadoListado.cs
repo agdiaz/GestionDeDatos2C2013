@@ -89,6 +89,12 @@ namespace Clinica_Frba.Afiliados
                 MensajePorPantalla.MensajeError(this, ex.Message);
                
             }
+
+            this.dgvBusqueda.Columns["IdAfiliado"].Visible = false;
+            this.dgvBusqueda.Columns["NroPrincipal"].Visible = false;
+            this.dgvBusqueda.Columns["NroSecundario"].Visible = false;
+            this.dgvBusqueda.Columns["IdPlanMedico"].Visible = false;
+            this.dgvBusqueda.Columns["NombreCompleto"].Visible = false;
         }
 
         private FiltroAfiliado ObtenerFiltro()
@@ -162,9 +168,9 @@ namespace Clinica_Frba.Afiliados
             this.AgregarValidacion(new ValidadorNumerico(tbPlanMedico));
             this.AgregarValidacion(new ValidadorString(tbNombre, 1, 255));
             this.AgregarValidacion(new ValidadorString(tbApellido, 1, 255));
-
+            
             this.CargarCombos();
-        }
+            }
 
         private void CargarCombos()
         {
@@ -182,7 +188,6 @@ namespace Clinica_Frba.Afiliados
             cbTipoDoc.DataSource = tipoDocumentos.Todos;
             cbTipoDoc.DisplayMember = "Nombre";
             cbTipoDoc.ValueMember = "Id";
-
         }
 
         private void btnBuscarPlanMedico_Click(object sender, EventArgs e)

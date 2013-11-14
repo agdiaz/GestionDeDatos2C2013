@@ -61,6 +61,8 @@ namespace Clinica_Frba.Usuarios
                 throw new ResultadoIncorrectoException<IList<Usuario>>(resultadoUsuarios);
 
             this.dgvBusqueda.DataSource = resultadoUsuarios.Retorno;
+
+            this.dgvBusqueda.Columns["IdUsuario"].Visible = false;
         }
 
         protected override void AccionIniciar()

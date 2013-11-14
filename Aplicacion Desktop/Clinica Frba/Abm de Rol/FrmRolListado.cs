@@ -82,7 +82,10 @@ namespace Clinica_Frba.Roles
             catch (Exception ex)
             {
                 MensajePorPantalla.MensajeError(this, ex.Message);
-            }            
+            }
+
+            this.dgvBusqueda.Columns["Id"].Visible = false;
+            this.dgvBusqueda.Columns["Habilitado"].Visible = false;
         }
 
         protected override void AccionBorrar()
