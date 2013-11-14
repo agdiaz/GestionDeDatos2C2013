@@ -1535,7 +1535,7 @@ END
 
 
 GO
-ALTER PROCEDURE [TOP_4].[sp_dias_disponibles_profesional]
+CREATE PROCEDURE [TOP_4].[sp_dias_disponibles_profesional]
 (
 	@p_fecha_hoy datetime,
 	@p_id_profesional NUMERIC(18,0)
@@ -1595,6 +1595,7 @@ BEGIN
 		ON ag.id_agenda = da.id_agenda
 	WHERE ag.id_profesional = @p_id_profesional
 	AND da.nro_dia_semana = DATEPART(weekday, @p_fecha)
+	AND da.habilitado = 1
 	
 	DECLARE @horaActual time
 	SET @horaActual = @horaDesde
@@ -1604,9 +1605,13 @@ BEGIN
 		IF NOT EXISTS (
 			SELECT * 
 			FROM TOP_4.Turno tur
+			LEFT JOIN TOP_4.Cancelacion can
+				ON can.id_turno = tur.id_turno
 			WHERE tur.id_profesional = @p_id_profesional
 			AND CAST(tur.fecha_turno as date) = CAST(@p_fecha as date)
-			AND CAST(tur.fecha_turno as time) = @horaActual)
+			AND CAST(tur.fecha_turno as time) = @horaActual
+			AND can.id_cancelacion IS NULL
+			)
 		BEGIN
 			INSERT INTO #tmpTurnos (horaInicio, horaFin)
 			VALUES (@horaActual, DATEADD(minute, 30, @horaActual))
@@ -1642,6 +1647,7 @@ BEGIN
 		ON ag.id_agenda = da.id_agenda
 	WHERE ag.id_profesional = @p_id_profesional
 	AND da.nro_dia_semana = DATEPART(weekday, @p_fecha)
+	AND da.habilitado = 1
 	
 	DECLARE @horaActual time
 	SET @horaActual = @horaDesde
@@ -1653,9 +1659,14 @@ BEGIN
 		IF NOT EXISTS (
 			SELECT * 
 			FROM TOP_4.Turno tur
+			LEFT JOIN TOP_4.Cancelacion can
+				ON can.id_turno = tur.id_turno
 			WHERE tur.id_profesional = @p_id_profesional
 			AND CAST(tur.fecha_turno as date) = CAST(@p_fecha as date)
-			AND CAST(tur.fecha_turno as time) = @horaActual)
+			AND CAST(tur.fecha_turno as time) = @horaActual
+			AND can.id_cancelacion IS NULL
+			AND tur.habilitado = 1
+			)
 		BEGIN
 			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado)
 			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 1, null, null)
