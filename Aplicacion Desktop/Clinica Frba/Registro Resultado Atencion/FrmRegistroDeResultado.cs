@@ -78,7 +78,7 @@ namespace Clinica_Frba.ResultadosAtencion
 
         private void btnBuscarTurno_Click(object sender, EventArgs e)
         {
-            using (FrmAgendaConsultar frm = new FrmAgendaConsultar(_profesional, 1))
+            using (FrmAgendaConsultar frm = new FrmAgendaConsultar(_profesional, 3))
             {
                 frm.ShowDialog(this);
                 if (frm.TurnoSeleccionado != null)

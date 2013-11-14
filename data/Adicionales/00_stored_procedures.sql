@@ -1696,7 +1696,7 @@ BEGIN
 		set @horaActual = DATEADD(minute, 30, @horaActual)
 	END
 	
-	SELECT horaInicio, horaFin, disponible, id_turno, id_afiliado FROM #tmpTurnos
+	SELECT horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno FROM #tmpTurnos
 	DROP TABLE #tmpTurnos
 END 
 GO

@@ -52,11 +52,18 @@ namespace Clinica_Frba.Agendas
                 var turnos = resultado.Retorno;
                 if (_opcionGrilla == 1)
                 {
+                    //solo los turnos ya asignados
                     turnos = resultado.Retorno.Where(t => t.Disponible == false).ToList();
                 }
                 else if (_opcionGrilla == 2)
                 {
+                    //todos los turnos disponibles
                     turnos = resultado.Retorno.Where(t => t.Disponible == true).ToList();
+                }
+                else if (_opcionGrilla == 3)
+                {
+                    //los turnos disponibles que no tienen resultado
+                    turnos = resultado.Retorno.Where(t => t.Disponible == true && t.IdResultadoTurno != null).ToList();
                 }
                 this.dgvTurnos.DataSource = turnos;
                 this.dgvTurnos.Columns["IdTurno"].Visible = false;

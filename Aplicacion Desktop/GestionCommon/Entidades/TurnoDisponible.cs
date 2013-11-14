@@ -12,5 +12,6 @@ namespace GestionCommon.Entidades
         public bool Disponible { get; set; }
         public decimal IdTurno { get; set; }
         public decimal IdAfiliado { get; set; }
+        public decimal IdResultadoTurno { get; set; }
     }
 }
