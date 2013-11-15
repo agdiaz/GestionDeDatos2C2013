@@ -11,6 +11,8 @@ namespace GestionCommon.Entidades
         public decimal IdTurno { get; set; }
         public DateTime Fecha { get; set; }
         public bool Habilitado { get; set; }
+        public char CanceladoPor { get; set; }
+        public string Motivo { get; set; }
 
     }
 }

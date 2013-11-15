@@ -126,6 +126,7 @@
             this.btnBuscarTurno.TabIndex = 4;
             this.btnBuscarTurno.Text = "Buscar";
             this.btnBuscarTurno.UseVisualStyleBackColor = true;
+            this.btnBuscarTurno.Click += new System.EventHandler(this.btnBuscarTurno_Click);
             // 
             // button3
             // 
@@ -135,6 +136,7 @@
             this.button3.TabIndex = 8;
             this.button3.Text = "Aceptar";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -144,6 +146,7 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // tbAfiliado
             // 
