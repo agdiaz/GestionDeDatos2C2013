@@ -54,8 +54,8 @@ namespace Clinica_Frba.Agendas
                 var turnos = resultado.Retorno;
                 if (_opcionGrilla == 1)
                 {
-                    //solo los turnos ya asignados
-                    turnos = resultado.Retorno.Where(t => t.Disponible == false).ToList();
+                    //solo los turnos ya asignados sin resultado
+                    turnos = resultado.Retorno.Where(t => t.Disponible == false && t.IdResultadoTurno == 0).ToList();
                 }
                 else if (_opcionGrilla == 2)
                 {
@@ -64,8 +64,8 @@ namespace Clinica_Frba.Agendas
                 }
                 else if (_opcionGrilla == 3)
                 {
-                    //los turnos disponibles que no tienen resultado
-                    turnos = resultado.Retorno.Where(t => t.Disponible == true && t.IdResultadoTurno != null).ToList();
+                    //los turnos ocupados que no tienen resultado
+                    turnos = resultado.Retorno.Where(t => t.Disponible == false && t.IdResultadoTurno > 0).ToList();
                 }
 
                 if (AfiliadoBuscador != null)
