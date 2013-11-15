@@ -76,8 +76,10 @@ namespace Clinica_Frba
                 if (item is ToolStripMenuItem)
                 {
                     item.Enabled = false;
+                    item.Visible = false;
                 }
                 estadísticasToolStripMenuItem.Enabled = false;
+                estadísticasToolStripMenuItem.Visible = false;
             }
 
             if (funcionalidades != null)
