@@ -37,7 +37,7 @@ namespace GestionCommon.Helpers
         public static DateTime Ahora()
         {
             var ahora = AppConfigReader.Get("DateTimeNow");
-            return DateTime.ParseExact(ahora, DateFormat, System.Globalization.CultureInfo.CurrentCulture);
+            return DateTime.Parse(ahora);
         }
     }
 }

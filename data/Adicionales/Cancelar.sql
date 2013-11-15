@@ -51,6 +51,8 @@ SELECT [id_turno]
   FROM [GD2C2013].[TOP_4].[Turno]
 WHERE id_profesional = @p_id_profesional
 AND fecha_turno BETWEEN @p_fecha AND dateadd(minute, 59, dateadd(HOUR, 23, @p_fecha))
+AND fecha_llegada IS NULL
 AND habilitado = '1'
+
 END
 GO
