@@ -37,6 +37,8 @@ namespace Clinica_Frba.Profesionales
             {
                 Profesional prof = this.ObtenerProfesional();
                 IResultado<Profesional> resultado = _profesionalDomain.Crear(prof);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<Profesional>(resultado);
 
                 foreach (Especialidad especialidad in lstEspecialidades.Items.Cast<Especialidad>())
                 {
