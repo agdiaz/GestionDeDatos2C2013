@@ -13,5 +13,6 @@ namespace GestionCommon.Entidades
         public decimal IdTurno { get; set; }
         public decimal IdAfiliado { get; set; }
         public decimal IdResultadoTurno { get; set; }
+        public DateTime? FechaLLegada { get; set; }
     }
 }

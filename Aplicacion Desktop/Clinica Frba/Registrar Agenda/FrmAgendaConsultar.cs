@@ -51,11 +51,11 @@ namespace Clinica_Frba.Agendas
                 IResultado<IList<TurnoDisponible>> resultado = _turnoDomain.ObtenerHorasParaTurno(mcDesde.SelectionRange.Start, _profesional.IdProfesional);
                 if (!resultado.Correcto)
                     throw new ResultadoIncorrectoException<IList<TurnoDisponible>>(resultado);
-                var turnos = resultado.Retorno;
+               var turnos = resultado.Retorno;
                 if (_opcionGrilla == 1)
                 {
-                    //solo los turnos ya asignados sin resultado
-                    turnos = resultado.Retorno.Where(t => t.Disponible == false && t.IdResultadoTurno == 0).ToList();
+                    //solo los turnos ya asignados sin resultado y sin registro de llegada
+                    turnos = resultado.Retorno.Where(t => t.Disponible == false && t.IdResultadoTurno == 0 && t.FechaLLegada.HasValue == false).ToList();
                 }
                 else if (_opcionGrilla == 2)
                 {
@@ -65,7 +65,7 @@ namespace Clinica_Frba.Agendas
                 else if (_opcionGrilla == 3)
                 {
                     //los turnos ocupados que no tienen resultado
-                    turnos = resultado.Retorno.Where(t => t.Disponible == false && t.IdResultadoTurno > 0).ToList();
+                    turnos = resultado.Retorno.Where(t => t.Disponible == false && t.IdResultadoTurno == 0).ToList();
                 }
 
                 if (AfiliadoBuscador != null)

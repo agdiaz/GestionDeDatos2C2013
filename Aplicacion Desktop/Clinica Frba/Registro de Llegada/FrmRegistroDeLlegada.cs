@@ -35,7 +35,7 @@ namespace Clinica_Frba.RegistrosDeLLegada
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             DateTime ahora = FechaHelper.Ahora();
-            if (_turno.HoraInicio.Subtract(ahora).TotalMinutes < 0 )
+            if (ahora <= _turno.HoraInicio )
             {
                 this.Registrar();
             }

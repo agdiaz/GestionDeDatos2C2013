@@ -102,6 +102,8 @@ namespace GestionDAL
                 turno.IdTurno = dr["id_turno"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["id_turno"]);
                 turno.IdAfiliado = dr["id_afiliado"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["id_afiliado"]);
                 turno.IdResultadoTurno = dr["id_resultado_turno"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["id_resultado_turno"]);
+                if (dr["fecha_llegada"] != DBNull.Value)
+                    turno.FechaLLegada = Convert.ToDateTime(dr["fecha_llegada"]);
                 lista.Add(turno);
             }
 

@@ -13,6 +13,7 @@ using GestionCommon.Entidades;
 using Clinica_Frba.Recetas;
 using Clinica_Frba.Agendas;
 using Clinica_Frba.Profesionales;
+using GestionCommon.Helpers;
 
 namespace Clinica_Frba.ResultadosAtencion
 {
@@ -134,9 +135,25 @@ namespace Clinica_Frba.ResultadosAtencion
 
         private void btnConfirmarHorario_Click(object sender, EventArgs e)
         {
-            this._fecha = dpFecha.Value;
-            this.gbResultado.Enabled = true;
-            this.btnAceptar.Enabled = true;
+            if (dpFecha.Value <= _turno.HoraInicio)
+            {
+                MensajePorPantalla.MensajeInformativo(this, "Fecha confirmada");
+                this._fecha = dpFecha.Value;
+                this.gbResultado.Enabled = true;
+                this.btnAceptar.Enabled = true;
+            }
+            else
+            {
+                MensajePorPantalla.MensajeError(this, "No se puede atender después del turno");
+                this.Close();
+            }
+        }
+
+        private void FrmRegistroDeResultado_Load(object sender, EventArgs e)
+        {
+            dpFecha.Value = FechaHelper.Ahora();
+            dpFecha.Format = DateTimePickerFormat.Custom;
+            dpFecha.CustomFormat = FechaHelper.DateTimeFormat;  
         }
     }
 }
