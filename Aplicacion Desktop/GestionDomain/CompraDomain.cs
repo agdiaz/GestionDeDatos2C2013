@@ -142,9 +142,39 @@ namespace GestionDomain
                 resultado.Mensajes.Add(ex.Message);
             }
             return resultado;
+        }
 
-        
-        
+        public IResultado<ItemReceta> RegistrarItemReceta(ItemReceta ir)
+        {
+            Resultado<ItemReceta> resultado = new Resultado<ItemReceta>();
+            try
+            {
+                bool id = _dal.RegistrarItemReceta(ir);
+                resultado.Retorno = ir;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+        }
+
+        public IResultado<Receta> RegistrarReceta(Receta r)
+        {
+            Resultado<Receta> resultado = new Resultado<Receta>();
+            try
+            {
+                decimal id = _dal.RegistrarReceta(r);
+                r.IdReceta = id;
+                resultado.Retorno = r;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
         }
     }
 }

@@ -21,22 +21,33 @@ namespace Clinica_Frba.Recetas
     public partial class FrmRecetaAlta : FormularioBaseAlta
     {
         private Afiliado _afiliado;
+        private Profesional _profesional;
         private BonoFarmacia bonoFarmacia;
+        private ResultadoTurno _resultadoTurno;
+ 
         private Medicamento nuevo;
         private int cantidadMedicamentos;
 
         private CompraDomain _domain;
 
-        public FrmRecetaAlta(Afiliado a)
-            :this()
+        public FrmRecetaAlta(ResultadoTurno rt, Profesional p, Afiliado a)
+            : this(rt, p)
         {
             this.CargarAfiliado(a);
         }
-        public FrmRecetaAlta()
+        public FrmRecetaAlta(ResultadoTurno rt, Profesional p)
             :base()
         {
             InitializeComponent();
             _domain = new CompraDomain(Program.ContextoActual.Logger);
+            this.CargarProfesional(p);
+            this._resultadoTurno = rt;
+        }
+
+        private void CargarProfesional(Profesional p)
+        {
+            this._profesional = p;
+            this.tbProfesional.Text = p.NombreCompleto;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -67,11 +78,11 @@ namespace Clinica_Frba.Recetas
         {
             try
             {
-
+                this.GuardarReceta();
                 DialogResult otraReceta = MensajePorPantalla.MensajeInterrogativo(this, "¿Quiere crear otra receta?", MessageBoxButtons.YesNo);
                 if (otraReceta == DialogResult.Yes)
                 {
-                    using (FrmRecetaAlta frm = new FrmRecetaAlta())
+                    using (FrmRecetaAlta frm = new FrmRecetaAlta(_resultadoTurno, _profesional, _afiliado))
                     {
                         frm.ShowDialog(this);
                     }
@@ -82,6 +93,48 @@ namespace Clinica_Frba.Recetas
             {
 
                 MensajePorPantalla.MensajeError(this, ex.Message);
+            }
+        }
+
+        private void GuardarReceta()
+        {
+            try
+            {
+                Receta r = new Receta();
+                r.IdResultadoTurno = _resultadoTurno.IdResultadoTurno;
+                r.IdBonoFarmacia = Convert.ToDecimal(tbBonoFarmacia.Text);
+                r.Fecha = dateTimePicker1.Value;
+
+                IResultado<Receta> resultado = _domain.RegistrarReceta(r);
+                if (!resultado.Correcto)
+                    throw new ResultadoIncorrectoException<Receta>(resultado);
+
+                r = resultado.Retorno;
+             
+
+                foreach (var item in this.lstMedicamentos.Items.Cast<ItemReceta>())
+                {
+                    item.IdReceta = r.IdReceta;
+                    r.Items.Add(item);
+                }
+
+
+                foreach (ItemReceta ir in r.Items)
+                {
+
+                    IResultado<ItemReceta> resIR = _domain.RegistrarItemReceta(ir);
+                    if (!resIR.Correcto)
+                        throw new ResultadoIncorrectoException<ItemReceta>(resIR);
+                }
+
+                using (FrmRecetaVista frm = new FrmRecetaVista(r, _afiliado.NombreCompleto, _profesional.NombreCompleto))
+                {
+                    frm.ShowDialog(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError (this, ex.Message);
             }
         }
 

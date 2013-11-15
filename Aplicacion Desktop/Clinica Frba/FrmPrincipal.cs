@@ -408,11 +408,11 @@ namespace Clinica_Frba
         {
             try
             {
-                FrmRecetaAlta frm = new FrmRecetaAlta();
-                frm.StartPosition = FormStartPosition.CenterParent;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.MdiParent = this;
-                frm.Show();
+                //FrmRecetaAlta frm = new FrmRecetaAlta();
+                //frm.StartPosition = FormStartPosition.CenterParent;
+                //frm.WindowState = FormWindowState.Maximized;
+                //frm.MdiParent = this;
+                //frm.Show();
             }
             catch (Exception ex)
             {

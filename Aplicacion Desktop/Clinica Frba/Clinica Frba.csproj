@@ -132,6 +132,12 @@
     <Compile Include="Generar Receta\FrmMedicamentoListado.Designer.cs">
       <DependentUpon>FrmMedicamentoListado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generar Receta\FrmRecetaVista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Receta\FrmRecetaVista.Designer.cs">
+      <DependentUpon>FrmRecetaVista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -375,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Receta\FrmMedicamentoListado.resx">
       <DependentUpon>FrmMedicamentoListado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Receta\FrmRecetaVista.resx">
+      <DependentUpon>FrmRecetaVista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Recursos\Card_file.png" />
     <EmbeddedResource Include="Recursos\DefineControls.png" />
