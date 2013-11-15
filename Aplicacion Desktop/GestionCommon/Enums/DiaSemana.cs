@@ -35,7 +35,7 @@ namespace GestionCommon.Enums
     {
         public Domingo()
         {
-            Id = 0;
+            Id = 7;
             Nombre = "Domingo";
             HoraDesdeLimite = new DateTime(2013,1,1,0,0,0);
             HoraHastaLimite = new DateTime(2013,1,1,0,0,0);
