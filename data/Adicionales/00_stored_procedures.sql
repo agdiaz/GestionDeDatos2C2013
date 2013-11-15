@@ -1302,12 +1302,12 @@ CREATE PROCEDURE [TOP_4].[sp_consultar_agenda_unica](
 AS
 BEGIN
 SELECT @resultado = COUNT(*)
-FROM Agenda
-WHERE Agenda.id_profesional=@p_id_profesional AND
-		(@p_fecha_desde BETWEEN Agenda.fecha_desde AND Agenda.fecha_hasta) OR
-		(@p_fecha_hasta BETWEEN Agenda.fecha_desde AND Agenda.fecha_hasta) OR
-		(Agenda.fecha_desde BETWEEN @p_fecha_desde AND @p_fecha_hasta) OR
-		(Agenda.fecha_hasta BETWEEN @p_fecha_desde AND @p_fecha_hasta)
+FROM TOP_4.Agenda A
+WHERE A.id_profesional=@p_id_profesional AND (
+		(@p_fecha_desde BETWEEN A.fecha_desde AND A.fecha_hasta) OR
+		(@p_fecha_hasta BETWEEN A.fecha_desde AND A.fecha_hasta) OR
+		(A.fecha_desde BETWEEN @p_fecha_desde AND @p_fecha_hasta) OR
+		(A.fecha_hasta BETWEEN @p_fecha_desde AND @p_fecha_hasta))
 END
 GO
 GO
@@ -1575,56 +1575,56 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [TOP_4].[sp_turnos_disponibles_por_dia]
-(
-	@p_fecha datetime,
-	@p_id_profesional NUMERIC(18,0)
-)
-AS
-BEGIN
-	CREATE TABLE #tmpTurnos(
-		horaInicio time,
-		horaFin	time
-	)
-	DECLARE @horaDesde time
-	DECLARE @horaHasta time
+--CREATE PROCEDURE [TOP_4].[sp_turnos_disponibles_por_dia]
+--(
+--	@p_fecha datetime,
+--	@p_id_profesional NUMERIC(18,0)
+--)
+--AS
+--BEGIN
+--	CREATE TABLE #tmpTurnos(
+--		horaInicio time,
+--		horaFin	time
+--	)
+--	DECLARE @horaDesde time
+--	DECLARE @horaHasta time
 	
-	SELECT @horaDesde = da.hora_desde, @horaHasta = da.hora_hasta
-	FROM TOP_4.Dia_Agenda da
-	INNER JOIN TOP_4.Agenda ag
-		ON ag.id_agenda = da.id_agenda
-	WHERE ag.id_profesional = @p_id_profesional
-	AND da.nro_dia_semana = DATEPART(weekday, @p_fecha)
-	AND da.habilitado = 1
+--	SELECT @horaDesde = da.hora_desde, @horaHasta = da.hora_hasta
+--	FROM TOP_4.Dia_Agenda da
+--	INNER JOIN TOP_4.Agenda ag
+--		ON ag.id_agenda = da.id_agenda
+--	WHERE ag.id_profesional = @p_id_profesional
+--	AND da.nro_dia_semana = DATEPART(weekday, @p_fecha)
+--	AND da.habilitado = 1
 	
-	DECLARE @horaActual time
-	SET @horaActual = @horaDesde
+--	DECLARE @horaActual time
+--	SET @horaActual = @horaDesde
 	
-	WHILE @horaActual < @horaHasta
-	BEGIN
-		IF NOT EXISTS (
-			SELECT * 
-			FROM TOP_4.Turno tur
-			LEFT JOIN TOP_4.Cancelacion can
-				ON can.id_turno = tur.id_turno
-			WHERE tur.id_profesional = @p_id_profesional
-			AND CAST(tur.fecha_turno as date) = CAST(@p_fecha as date)
-			AND CAST(tur.fecha_turno as time) = @horaActual
-			AND can.id_cancelacion IS NULL
-			)
-		BEGIN
-			INSERT INTO #tmpTurnos (horaInicio, horaFin)
-			VALUES (@horaActual, DATEADD(minute, 30, @horaActual))
-		END
-		set @horaActual = DATEADD(minute, 30, @horaActual)
-	END
+--	WHILE @horaActual < @horaHasta
+--	BEGIN
+--		IF NOT EXISTS (
+--			SELECT * 
+--			FROM TOP_4.Turno tur
+--			LEFT JOIN TOP_4.Cancelacion can
+--				ON can.id_turno = tur.id_turno
+--			WHERE tur.id_profesional = @p_id_profesional
+--			AND CAST(tur.fecha_turno as date) = CAST(@p_fecha as date)
+--			AND CAST(tur.fecha_turno as time) = @horaActual
+--			AND can.id_cancelacion IS NULL
+--			)
+--		BEGIN
+--			INSERT INTO #tmpTurnos (horaInicio, horaFin)
+--			VALUES (@horaActual, DATEADD(minute, 30, @horaActual))
+--		END
+--		set @horaActual = DATEADD(minute, 30, @horaActual)
+--	END
 	
-	SELECT horaInicio, horaFin FROM #tmpTurnos
-	DROP TABLE #tmpTurnos
-END 
+--	SELECT horaInicio, horaFin FROM #tmpTurnos
+--	DROP TABLE #tmpTurnos
+--END 
 GO
 
-CREATE PROCEDURE [TOP_4].[sp_turnos_existentes_por_dia]
+ALTER PROCEDURE [TOP_4].[sp_turnos_existentes_por_dia]
 (
 	@p_fecha datetime,
 	@p_id_profesional NUMERIC(18,0)
@@ -1679,7 +1679,7 @@ BEGIN
 		BEGIN
 			SELECT TOP 1 @id_turno = tur.id_turno , @id_afiliado = tur.id_afiliado, @id_resultado_turno = resTur.id_resultado_turno
 			FROM TOP_4.Turno tur
-			INNER JOIN TOP_4.Resultado_Turno resTur
+			LEFT JOIN TOP_4.Resultado_Turno resTur
 				ON resTur.id_turno = tur.id_turno
 			LEFT JOIN TOP_4.Cancelacion can
 				ON can.id_turno = tur.id_turno
@@ -1696,7 +1696,9 @@ BEGIN
 		set @horaActual = DATEADD(minute, 30, @horaActual)
 	END
 	
-	SELECT horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno FROM #tmpTurnos
+	SELECT horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno 
+	FROM #tmpTurnos
+	
 	DROP TABLE #tmpTurnos
 END 
 GO

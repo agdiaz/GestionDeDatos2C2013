@@ -84,6 +84,7 @@ namespace Clinica_Frba.RegistrosDeLLegada
         {
             using (FrmAgendaConsultar frm = new FrmAgendaConsultar(1))
             {
+                frm.AfiliadoBuscador = _afiliado;
                 frm.ShowDialog(this);
                 if (frm.TurnoSeleccionado != null)
                 {
