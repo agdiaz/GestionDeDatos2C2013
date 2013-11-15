@@ -220,7 +220,6 @@
             this.dpFechaNacimiento.Name = "dpFechaNacimiento";
             this.dpFechaNacimiento.Size = new System.Drawing.Size(206, 20);
             this.dpFechaNacimiento.TabIndex = 8;
-            this.dpFechaNacimiento.ValueChanged += new System.EventHandler(this.dpFechaNacimiento_ValueChanged);
             // 
             // cbTipoDocumento
             // 

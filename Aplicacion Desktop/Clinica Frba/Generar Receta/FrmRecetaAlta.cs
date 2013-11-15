@@ -144,7 +144,6 @@ namespace Clinica_Frba.Recetas
             this.ndCantidad.Value = 1;
             this.tbCantidad.Text = "Uno";
             this.cantidadMedicamentos = 0;
-            this.dateTimePicker1.Value = FechaHelper.Ahora();
 
             this.AgregarValidacion(new ValidadorString(tbMedicamento, 1, 255));
             

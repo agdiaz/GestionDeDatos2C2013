@@ -13,7 +13,6 @@ using GestionCommon.Entidades;
 using Clinica_Frba.Recetas;
 using Clinica_Frba.Agendas;
 using Clinica_Frba.Profesionales;
-using GestionCommon.Helpers;
 
 namespace Clinica_Frba.ResultadosAtencion
 {
@@ -138,11 +137,6 @@ namespace Clinica_Frba.ResultadosAtencion
             this._fecha = dpFecha.Value;
             this.gbResultado.Enabled = true;
             this.btnAceptar.Enabled = true;
-        }
-
-        private void FrmRegistroDeResultado_Load(object sender, EventArgs e)
-        {
-            this.dpFecha.Value = FechaHelper.Ahora();
         }
     }
 }

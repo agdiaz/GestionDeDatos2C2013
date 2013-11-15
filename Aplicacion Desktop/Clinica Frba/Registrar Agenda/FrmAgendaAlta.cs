@@ -35,8 +35,6 @@ namespace Clinica_Frba.Agendas
             //this.AccionLimpiar();
             this.AgregarValidacion(new ValidadorString(tbProfesional, 1, 255));
             this.AgregarValidacion(new ValidadorCombobox(cbDia));
-            this.dpFechaDesde.Value = FechaHelper.Ahora();
-            this.dpFechaHasta.Value = FechaHelper.Ahora();
 
             this.CargarDiasSemana();
         }
