@@ -619,6 +619,10 @@ BEGIN TRY
 	
 	EXECUTE [TOP_4].[sp_Usuario_Insert] @p_username, @p_password, @p_id_usuario OUTPUT
 	
+	
+	DECLARE @p_id_rol numeric(18) = (SELECT TOP 1 id_rol FROM [TOP_4].[Rol] WHERE nombre = 'Afiliado')
+	EXECUTE [TOP_4].[sp_Rol_asociar_Usuario] @p_id_rol, @p_id_usuario
+	
 	-- Creo el registro del afiliado
 	
 	INSERT INTO [TOP_4].[Afiliado]
