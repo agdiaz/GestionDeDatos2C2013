@@ -158,6 +158,19 @@ namespace Clinica_Frba.Profesionales
             return filtro;
         }
 
+        protected override void AccionLimpiar()
+        {
+            this.tbApellido.Text = string.Empty;
+            this.tbDireccion.Text = string.Empty;
+            this.tbDni.Text = string.Empty;
+            this.tbEspecialidad.Text = string.Empty;
+            this.tbMail.Text = string.Empty;
+            this.tbMatricula.Text = string.Empty;
+            this.tbNombre.Text = string.Empty;
+            this.tbTelefono.Text = string.Empty;
+
+        }
+
         private void btnBuscarEspecialidad_Click(object sender, EventArgs e)
         {
             Especialidad especialidad = null;

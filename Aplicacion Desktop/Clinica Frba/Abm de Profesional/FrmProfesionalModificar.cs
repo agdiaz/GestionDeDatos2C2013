@@ -33,6 +33,17 @@ namespace Clinica_Frba.Profesionales
             _profesional = profesional;
 
             InitializeComponent();
+
+            ListaSexo sexos = new ListaSexo();
+            this.cbSexo.DataSource = sexos.Todos;
+            this.cbSexo.DisplayMember = "Nombre";
+            this.cbSexo.ValueMember = "Id";
+
+            ListaTipoDocumento documentos = new ListaTipoDocumento();
+            this.cbTipoDocumento.DataSource = documentos.Todos;
+            this.cbTipoDocumento.DisplayMember = "Nombre";
+            this.cbTipoDocumento.ValueMember = "Id";
+            this.dpFechaNacimiento.Value = FechaHelper.Ahora();
         }
 
 
@@ -52,8 +63,11 @@ namespace Clinica_Frba.Profesionales
                 foreach (Especialidad especialidad in lstEspecialidades.Items.Cast<Especialidad>())
                 {
                     var resultadoAsociar = _profesionalDomain.AsociarProfesionalEspecialidad(prof, especialidad);
-                    throw new ResultadoIncorrectoException<bool>(resultadoAsociar);
+                    if (!resultadoAsociar.Correcto)
+                        throw new ResultadoIncorrectoException<bool>(resultadoAsociar);
                 }
+                MensajePorPantalla.MensajeInformativo(this, "Modificado con éxito");
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -124,16 +138,16 @@ namespace Clinica_Frba.Profesionales
 
         private void FrmProfesionalModificar_Load(object sender, EventArgs e)
         {
-            ListaSexo sexos = new ListaSexo();
-            this.cbSexo.DataSource = sexos.Todos;
-            this.cbSexo.DisplayMember = "Nombre";
-            this.cbSexo.ValueMember = "Id";
+            //ListaSexo sexos = new ListaSexo();
+            //this.cbSexo.DataSource = sexos.Todos;
+            //this.cbSexo.DisplayMember = "Nombre";
+            //this.cbSexo.ValueMember = "Id";
 
-            ListaTipoDocumento documentos = new ListaTipoDocumento();
-            this.cbTipoDocumento.DataSource = documentos.Todos;
-            this.cbTipoDocumento.DisplayMember = "Nombre";
-            this.cbTipoDocumento.ValueMember = "Id";
-            this.dpFechaNacimiento.Value = FechaHelper.Ahora();
+            //ListaTipoDocumento documentos = new ListaTipoDocumento();
+            //this.cbTipoDocumento.DataSource = documentos.Todos;
+            //this.cbTipoDocumento.DisplayMember = "Nombre";
+            //this.cbTipoDocumento.ValueMember = "Id";
+            //this.dpFechaNacimiento.Value = FechaHelper.Ahora();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

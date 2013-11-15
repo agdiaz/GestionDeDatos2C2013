@@ -161,6 +161,9 @@ namespace Clinica_Frba.Afiliados
             tbDocumento.Text = string.Empty;
             tbNombre.Text = string.Empty;
             tbApellido.Text = string.Empty;
+            tbDireccion.Text = string.Empty;
+            tbMail.Text = string.Empty;
+            tbTelefono.Text = string.Empty;
         }
 
         private void FrmAfiliadoListado_Load(object sender, EventArgs e)

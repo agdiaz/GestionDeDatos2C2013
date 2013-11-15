@@ -41,7 +41,8 @@ namespace Clinica_Frba.Agendas
 
         private void FrmAgendaConsultar_Load(object sender, EventArgs e)
         {
-
+            this.mcDesde.SelectionStart = FechaHelper.Ahora();
+            this.mcDesde.SelectionEnd = FechaHelper.Ahora();
         }
 
         private void btnTurnos_Click(object sender, EventArgs e)
