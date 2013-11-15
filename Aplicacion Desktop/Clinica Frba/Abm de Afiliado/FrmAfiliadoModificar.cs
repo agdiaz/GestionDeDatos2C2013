@@ -65,6 +65,7 @@ namespace Clinica_Frba.Afiliados
             this.AgregarValidacion(new ValidadorNumerico(tbTelefono));
             this.AgregarValidacion(new ValidadorString(tbMail, 1, 255));
             this.AgregarValidacion(new ValidadorMail(tbMail));
+            this.dpFechaNacimiento.Value = FechaHelper.Ahora();
         }
 
         private void CargarCombos()

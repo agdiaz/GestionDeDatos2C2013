@@ -184,7 +184,7 @@ namespace Clinica_Frba.Afiliados
             this.AgregarValidacion(new ValidadorMail(tbMail));
             this.AgregarValidacion(new ValidadorString(tbPlanMedico, 1, 255));
             this.CargarCombos();
-
+            this.dpFechaNacimiento.Value = FechaHelper.Ahora();
             if (_afiliadoAnterior != null)
             {
                 tbApellido.Text = _afiliadoAnterior.Apellido;
@@ -232,6 +232,11 @@ namespace Clinica_Frba.Afiliados
                 _plan = plan;
                 this.tbPlanMedico.Text = _plan.Descripcion;
             }
+        }
+
+        private void dpFechaNacimiento_ValueChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

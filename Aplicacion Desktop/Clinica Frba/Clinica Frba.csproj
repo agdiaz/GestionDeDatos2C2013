@@ -204,10 +204,10 @@
     <Compile Include="Pedido de Turno\FrmPedidoDeTurno.Designer.cs">
       <DependentUpon>FrmPedidoDeTurno.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registro de Llegada\FrmRegistroDeLlegada.cs">
+    <Compile Include="Recursos\Registro de Llegada\FrmRegistroDeLlegada.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registro de Llegada\FrmRegistroDeLlegada.Designer.cs">
+    <Compile Include="Recursos\Registro de Llegada\FrmRegistroDeLlegada.Designer.cs">
       <DependentUpon>FrmRegistroDeLlegada.cs</DependentUpon>
     </Compile>
     <Compile Include="Registro de Usuario\FrmUsuarioListado.cs">
@@ -328,7 +328,7 @@
     <EmbeddedResource Include="Registrar Agenda\FrmAgendaConsultar.resx">
       <DependentUpon>FrmAgendaConsultar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Registro de Llegada\FrmRegistroDeLlegada.resx">
+    <EmbeddedResource Include="Recursos\Registro de Llegada\FrmRegistroDeLlegada.resx">
       <DependentUpon>FrmRegistroDeLlegada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Registro de Usuario\FrmUsuarioAlta.resx">
