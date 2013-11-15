@@ -14,6 +14,7 @@ using GestionDomain;
 using GestionCommon.Filtros;
 using GestionGUIHelper.Helpers;
 using GestionCommon.Enums;
+using GestionCommon.Helpers;
 
 namespace Clinica_Frba.Profesionales
 {
@@ -101,6 +102,7 @@ namespace Clinica_Frba.Profesionales
             this.cbTipoDoc.DataSource = documentos.Todos;
             this.cbTipoDoc.DisplayMember = "Nombre";
             this.cbTipoDoc.ValueMember = "Id";
+            this.dtpFechaNacimiento.Value = FechaHelper.Ahora();
 
             //this.CargarTodosLosProfesionales();
         }

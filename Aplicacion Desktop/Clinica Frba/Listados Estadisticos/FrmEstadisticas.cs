@@ -11,6 +11,7 @@ using GestionDomain;
 using GestionDomain.Resultados;
 using GestionGUIHelper.Helpers;
 using GestionCommon.Entidades;
+using GestionCommon.Helpers;
 
 namespace Clinica_Frba.Estadisticas
 {
@@ -95,6 +96,7 @@ namespace Clinica_Frba.Estadisticas
         {
             Semestre semestre = ObtenerSemestre();
             lblSemestre.Text = semestre.ToString();
+            this.dtpFecha.Value = FechaHelper.Ahora();
 
             try
             {
