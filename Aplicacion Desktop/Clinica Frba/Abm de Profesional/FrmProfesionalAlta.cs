@@ -42,6 +42,8 @@ namespace Clinica_Frba.Profesionales
                 {
                     _profesionalDomain.AsociarProfesionalEspecialidad(prof, especialidad);
                 }
+                MensajePorPantalla.MensajeInformativo(this, "Se ha registrado al profesional con éxito");
+                this.Close();
             }
             catch (Exception ex)
             {
