@@ -15,6 +15,7 @@ using GestionDomain.Resultados;
 using GestionDomain;
 using GestionCommon.Enums;
 using GestionGUIHelper.Helpers;
+using GestionCommon.Helpers;
 
 namespace Clinica_Frba.Afiliados
 {
@@ -170,6 +171,7 @@ namespace Clinica_Frba.Afiliados
             this.AgregarValidacion(new ValidadorNumerico(tbPlanMedico));
             this.AgregarValidacion(new ValidadorString(tbNombre, 1, 255));
             this.AgregarValidacion(new ValidadorString(tbApellido, 1, 255));
+            this.dtpFechaNac.Value = FechaHelper.Ahora();
             
             this.CargarCombos();
             }

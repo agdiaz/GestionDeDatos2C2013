@@ -133,6 +133,7 @@ namespace Clinica_Frba.Profesionales
             this.cbTipoDocumento.DataSource = documentos.Todos;
             this.cbTipoDocumento.DisplayMember = "Nombre";
             this.cbTipoDocumento.ValueMember = "Id";
+            this.dpFechaNacimiento.Value = FechaHelper.Ahora();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

@@ -183,6 +183,7 @@ namespace Clinica_Frba.Afiliados
             this.AgregarValidacion(new ValidadorString(tbMail,1 ,255));
             this.AgregarValidacion(new ValidadorMail(tbMail));
             this.AgregarValidacion(new ValidadorString(tbPlanMedico, 1, 255));
+            this.dpFechaNacimiento.Value = FechaHelper.Ahora();
             this.CargarCombos();
 
             if (_afiliadoAnterior != null)

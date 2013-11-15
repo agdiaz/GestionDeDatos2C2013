@@ -116,6 +116,7 @@ namespace Clinica_Frba.Profesionales
             this.AgregarValidacion(new ValidadorCombobox(cbSexo));
             this.AgregarValidacion(new ValidadorNumerico(tbMatriculaProfesional));
             this.AgregarValidacion(new ValidadorLista(lstEspecialidades));
+            this.dpFechaNacimiento.Value = FechaHelper.Ahora();
 
         }
 
