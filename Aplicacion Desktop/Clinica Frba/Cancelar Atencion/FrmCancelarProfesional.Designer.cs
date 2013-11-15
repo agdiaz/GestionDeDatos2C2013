@@ -58,7 +58,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(554, 259);
+            this.groupBox1.Size = new System.Drawing.Size(598, 316);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cancelación de profesional";
@@ -67,8 +67,9 @@
             // cbTipo
             // 
             this.cbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipo.Enabled = false;
             this.cbTipo.FormattingEnabled = true;
-            this.cbTipo.Location = new System.Drawing.Point(296, 91);
+            this.cbTipo.Location = new System.Drawing.Point(346, 128);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(228, 21);
             this.cbTipo.TabIndex = 4;
@@ -76,7 +77,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(215, 91);
+            this.label4.Location = new System.Drawing.Point(304, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(28, 13);
             this.label4.TabIndex = 9;
@@ -84,7 +85,8 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(296, 122);
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(346, 168);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(228, 90);
@@ -93,7 +95,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(212, 122);
+            this.label3.Location = new System.Drawing.Point(293, 171);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 7;
@@ -102,7 +104,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(210, 62);
+            this.label2.Location = new System.Drawing.Point(260, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(314, 13);
             this.label2.TabIndex = 6;
@@ -110,22 +112,25 @@
             // 
             // monthCalendar1
             // 
+            this.monthCalendar1.Enabled = false;
             this.monthCalendar1.Location = new System.Drawing.Point(12, 49);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 3;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(296, 230);
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(499, 276);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 7;
             this.button3.Text = "Aceptar";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(215, 230);
+            this.button2.Location = new System.Drawing.Point(418, 276);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 6;
@@ -140,11 +145,13 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Buscar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(74, 21);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(206, 20);
             this.textBox1.TabIndex = 1;
             // 
@@ -161,7 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 274);
+            this.ClientSize = new System.Drawing.Size(623, 340);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmCancelarProfesional";
             this.Text = "Clinica FRBA - Cancelaciones de profesional";

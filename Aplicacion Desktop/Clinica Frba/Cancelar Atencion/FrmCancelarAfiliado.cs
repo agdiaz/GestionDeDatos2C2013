@@ -78,6 +78,7 @@ namespace Clinica_Frba.Cancelaciones
         {
             using (FrmAgendaConsultar frm = new FrmAgendaConsultar(1))
             {
+                frm.AfiliadoBuscador = _afiliado;
                 frm.ShowDialog(this);
                 if (frm.TurnoSeleccionado != null)
                 {
@@ -101,7 +102,7 @@ namespace Clinica_Frba.Cancelaciones
                 c.Motivo = tbMotivo.Text;
                 c.CanceladoPor = 'A';
 
-                IResultado<Cancelacion> resultado = _domain.CancelarAfiliado(c);
+                IResultado<Cancelacion> resultado = _domain.Cancelar(c);
                 if (!resultado.Correcto)
                 {
                     throw new ResultadoIncorrectoException<Cancelacion>(resultado);

@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using GestionCommon.Helpers;
 using GestionConector;
 using GestionDAL.Builder;
+using System.Data;
 
 namespace GestionDAL
 {
@@ -59,5 +60,29 @@ namespace GestionDAL
             _connector.RealizarConsultaAlmacenada("TOP_4.sp_cancelacion", parametros);
             return c;
         }
+
+        public IList<Turno> BuscarTurnos(decimal IdProfesional, DateTime Fecha)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter pFecha = new SqlParameter("@p_fecha", System.Data.SqlDbType.DateTime, 8, "p_fecha");
+            pFecha.Value = Fecha;
+            parametros.Add(pFecha);
+
+            SqlParameter pIdProfesional = new SqlParameter("@p_id_profesional", System.Data.SqlDbType.Decimal, 18, "p_id_profesional");
+            pIdProfesional.Value = IdProfesional;
+            parametros.Add(pIdProfesional);
+
+            DataSet ds = _connector.RealizarConsultaAlmacenada("TOP_4.sp_cancelacion_buscar_turno", parametros);
+            IList<Turno> turnos = new List<Turno>();
+
+            foreach (DataRow item in ds.Tables[0].Rows)
+
+            {
+                turnos.Add(new TurnoBuilder().Build(item));
+            }
+            return turnos;
+        }
+
     }
 }

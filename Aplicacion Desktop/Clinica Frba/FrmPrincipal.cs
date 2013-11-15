@@ -554,6 +554,13 @@ namespace Clinica_Frba
         }
         #endregion
 
+        private void tsmCancelaciones_Profesional_Click(object sender, EventArgs e)
+        {
+
+            FrmCancelarProfesional frm = new FrmCancelarProfesional();
+            frm.Show();
+        }
+
         #endregion
     }
 }

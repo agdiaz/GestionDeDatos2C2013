@@ -76,6 +76,7 @@
             // 
             // btnTurnos
             // 
+            this.btnTurnos.Enabled = false;
             this.btnTurnos.Location = new System.Drawing.Point(600, 175);
             this.btnTurnos.Name = "btnTurnos";
             this.btnTurnos.Size = new System.Drawing.Size(104, 23);
@@ -86,7 +87,8 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(629, 437);
+            this.btnAceptar.Enabled = false;
+            this.btnAceptar.Location = new System.Drawing.Point(629, 446);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 6;
@@ -96,6 +98,7 @@
             // 
             // mcDesde
             // 
+            this.mcDesde.Enabled = false;
             this.mcDesde.Location = new System.Drawing.Point(479, 10);
             this.mcDesde.MaxSelectionCount = 1;
             this.mcDesde.Name = "mcDesde";

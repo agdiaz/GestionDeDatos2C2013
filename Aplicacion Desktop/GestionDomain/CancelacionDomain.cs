@@ -18,7 +18,7 @@ namespace GestionDomain
             _dal = new CancelacionDAL(log);
         }
 
-        public IResultado<GestionCommon.Entidades.Cancelacion> CancelarAfiliado(Cancelacion c)
+        public IResultado<GestionCommon.Entidades.Cancelacion> Cancelar(Cancelacion c)
         {
             Resultado<Cancelacion> resultado = new Resultado<Cancelacion>();
             try
@@ -33,5 +33,21 @@ namespace GestionDomain
             }
             return resultado;
         }
+
+        public IResultado<IList<Turno>> BuscarTurnos(decimal idP, DateTime fecha)
+        {
+            Resultado<IList<Turno>> resultado = new Resultado<IList<Turno>>();
+            try
+            {
+                resultado.Retorno = _dal.BuscarTurnos(idP, fecha);
+            }
+            catch (Exception ex)
+            {
+                resultado.Retorno = new List<Turno>();
+                resultado.Mensajes.Add(ex.Message);
+            }
+            return resultado;
+        }
+
     }
 }

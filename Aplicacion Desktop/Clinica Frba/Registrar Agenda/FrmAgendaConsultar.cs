@@ -22,6 +22,8 @@ namespace Clinica_Frba.Agendas
         private int _opcionGrilla;
 
         private Profesional _profesional;
+        public Afiliado AfiliadoBuscador { get; set; }
+
         public Turno TurnoSeleccionado { get; private set; }
 
         public FrmAgendaConsultar(int opcionGrilla)
@@ -65,8 +67,14 @@ namespace Clinica_Frba.Agendas
                     //los turnos disponibles que no tienen resultado
                     turnos = resultado.Retorno.Where(t => t.Disponible == true && t.IdResultadoTurno != null).ToList();
                 }
+
+                if (AfiliadoBuscador != null)
+                {
+                    turnos = turnos.Where(t => t.IdAfiliado == AfiliadoBuscador.IdAfiliado).ToList();
+                }
                 this.dgvTurnos.DataSource = turnos;
                 this.dgvTurnos.Columns["IdTurno"].Visible = false;
+                this.btnAceptar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -95,7 +103,8 @@ namespace Clinica_Frba.Agendas
                 IResultado<FechaTurno> resultado = _turnoDomain.ObtenerFechasParaTurnos(profesional.IdProfesional, FechaHelper.Ahora());
                 if (!resultado.Correcto)
                     throw new ResultadoIncorrectoException<FechaTurno>(resultado);
-
+                this.mcDesde.Enabled = true;
+                this.btnTurnos.Enabled = true;
                 this.mcDesde.MinDate = resultado.Retorno.FechaDesde;
                 this.mcDesde.MaxDate = resultado.Retorno.FechaHasta;
                 
