@@ -34,21 +34,14 @@ namespace GestionDomain
         {
             Resultado<Agenda> resultado = new Resultado<Agenda>();
             try
-            {/*
+            {
                 Boolean resul = _dal.AgendaValida(nuevaAgenda);
                 if (!resul)
                 {
-                    decimal id = _domain.Crear(nuevaAgenda);
-                    nuevaAgenda.Id = id;
-                }
-                else
-                {
                     throw new NotImplementedException("Superposición de días de la agenda.");
                 }
-                */
-                
-                decimal id = _domain.Crear(nuevaAgenda);
-                nuevaAgenda.Id = id;
+                                
+                nuevaAgenda.Id = _domain.Crear(nuevaAgenda);
 
                 foreach (DiaAgenda diaAgenda in diasAgenda)
                 {

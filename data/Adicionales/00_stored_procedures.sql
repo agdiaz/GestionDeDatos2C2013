@@ -1624,7 +1624,7 @@ BEGIN
 END 
 GO
 
-CREATE PROCEDURE [TOP_4].[sp_turnos_existentes_por_dia]
+ALTER PROCEDURE [TOP_4].[sp_turnos_existentes_por_dia]
 (
 	@p_fecha datetime,
 	@p_id_profesional NUMERIC(18,0)

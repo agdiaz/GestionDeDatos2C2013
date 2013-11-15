@@ -115,6 +115,7 @@ namespace GestionDAL
 
             var resultado_consulta = parametros.Where(p => p.ParameterName == "@resultado").FirstOrDefault();
             //entidadBase.Id = Convert.ToDecimal(parametroId.Value);
-            return Convert.ToBoolean(resultado.Value); ;
+            
+            return resultado.Value.Equals(0);
         }}
 }
