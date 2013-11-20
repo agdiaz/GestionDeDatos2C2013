@@ -99,7 +99,7 @@ GO
 
 CREATE TABLE [TOP_4].[Rol](
 	[id_rol] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[nombre] [varchar](255) NOT NULL,
+	[nombre] [varchar](255) UNIQUE NOT NULL,
 	[activo] [bit] NOT NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Rol] PRIMARY KEY CLUSTERED 
@@ -155,28 +155,28 @@ GO
 GO
 -- Menu archivo:
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmArchivo', 'Archivo' ,1) -- 1
-INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmSesion', 'Sesión',1) -- 2
-INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmSesion_IniciarSesion', 'Iniciar sesión' ,1) -- 3  
-INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmSesion_CerrarSesion','Cerrar sesión' ,1) -- 4
-INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('estadísticasToolStripMenuItem','Estadísticas' ,1) --5 
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmSesion', 'Sesiï¿½n',1) -- 2
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmSesion_IniciarSesion', 'Iniciar sesiï¿½n' ,1) -- 3  
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmSesion_CerrarSesion','Cerrar sesiï¿½n' ,1) -- 4
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('estadï¿½sticasToolStripMenuItem','Estadï¿½sticas' ,1) --5 
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmSalir', 'Salir',1) -- 6
--- Menu Gestión de clínica
-INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmGestionDeClinica','Gestión de clínica' ,1) --7
+-- Menu Gestiï¿½n de clï¿½nica
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmGestionDeClinica','Gestiï¿½n de clï¿½nica' ,1) --7
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmPlanes','Planes' ,1) -- 8
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmRoles', 'Roles' ,1) --9 
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmUsuarios', 'Usuarios' ,1) -- 10
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmCancelaciones', 'Cancelaciones', 1) --11
-INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmCancelaciones_Afiliado', 'Cancelación afiliado'  ,1) --12
-INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmCancelaciones_Profesional', 'Cancelación profesional' ,1) --13
--- Menu Gestión de afiliados
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmCancelaciones_Afiliado', 'Cancelaciï¿½n afiliado'  ,1) --12
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmCancelaciones_Profesional', 'Cancelaciï¿½n profesional' ,1) --13
+-- Menu Gestiï¿½n de afiliados
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmAfiliados', 'Afiliados' ,1) --14
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmCompraDeBonos', 'Compra de bonos' ,1) --15
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmPedirTurno', 'Pedir turno' ,1) --16
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmRegistroDeLlegada', 'Registro de llegada' ,1) --17
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmRegistroDeResultados', 'Registro de resultados' ,1) --18
 --INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmRecetar', 'Recetar' ,1) --19
--- Menu Gestión de profesionales
-INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmGestionDeProfesionales', 'Gestión de profesionales' ,1) --20
+-- Menu Gestiï¿½n de profesionales
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmGestionDeProfesionales', 'Gestiï¿½n de profesionales' ,1) --20
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmProfesionales', 'Profesionales' ,1) --21
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmEspecialidades', 'Especialidades' ,1) --22 
 -- Menu Agenda
@@ -184,7 +184,7 @@ INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALU
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmAgenda_Consultar', 'Consultar agenda' ,1) --24
 INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmAgenda_Registrar', 'Registrar agenda', 1) --25
 -- ADRIAN:
-INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmGestionDeAfiliados', 'Gestión de afiliados' ,1) --26 
+INSERT INTO [TOP_4].[Funcionalidad] ([nombre], [descripcion], [habilitado]) VALUES ('tsmGestionDeAfiliados', 'Gestiï¿½n de afiliados' ,1) --26 
 GO
 
 ---------------------------------Usuario_Rol---------------------------------------
@@ -1612,7 +1612,7 @@ VALUES ('Exorcismo')
 
 INSERT INTO TOP_4.Tipo_Cancelacion
 (nombre_tipo_cancelacion)
-VALUES ('Combustión espontánea')
+VALUES ('Combustiï¿½n espontï¿½nea')
 
 INSERT INTO TOP_4.Tipo_Cancelacion
 (nombre_tipo_cancelacion)
