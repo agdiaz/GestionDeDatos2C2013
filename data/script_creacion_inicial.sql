@@ -395,7 +395,7 @@ CREATE TABLE [TOP_4].[Profesional](
 	[mail] [varchar](255) NOT NULL,
 	[fecha_nacimiento] [datetime] NOT NULL,
 	[sexo] [int] NOT NULL,
-	[matricula] [numeric](18, 0) NOT NULL,
+	[matricula] [numeric](18, 0) NOT NULL UNIQUE,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Profesionales] PRIMARY KEY CLUSTERED 
 (
