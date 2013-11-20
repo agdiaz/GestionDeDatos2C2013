@@ -99,7 +99,7 @@ GO
 
 CREATE TABLE [TOP_4].[Rol](
 	[id_rol] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[nombre] [varchar](255) UNIQUE NOT NULL,
+	[nombre] [varchar](255) NOT NULL UNIQUE,
 	[activo] [bit] NOT NULL,
 	[habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Rol] PRIMARY KEY CLUSTERED 
