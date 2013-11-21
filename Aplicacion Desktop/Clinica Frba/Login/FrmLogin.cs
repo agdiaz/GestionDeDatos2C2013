@@ -21,9 +21,7 @@ namespace Clinica_Frba.Login
     {
         #region [Atributos]
         private UsuarioDomain _usuarioDomain;
-
-        private Boolean control_mas_de_un_rol;
-        private Boolean elegir_un_rol;
+        private bool elegir_un_rol;
 
         #endregion
         

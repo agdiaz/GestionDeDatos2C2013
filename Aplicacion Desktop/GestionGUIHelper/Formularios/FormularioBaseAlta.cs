@@ -9,13 +9,10 @@ namespace GestionGUIHelper.Formularios
 {
     public class FormularioBaseAlta : FormularioBase
     {
-        private bool _cerrado;
-
         #region [Constructor]
         public FormularioBaseAlta()
             : base()
         {
-            _cerrado = false;
             InitializeComponent();
         }
 
@@ -56,7 +53,6 @@ namespace GestionGUIHelper.Formularios
         #region [Cancelar]
         protected virtual void Cancelar()
         {
-            _cerrado = true;
             this.Close();
         }
         #endregion

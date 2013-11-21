@@ -21,7 +21,6 @@ namespace Clinica_Frba.PedidosDeTurno
     public partial class FrmPedidoDeTurno : Form
     {
         private Afiliado _afiliado;
-        private Profesional _profesional;
         private Turno _turno;
 
         private TurnoDomain _domain;
@@ -58,18 +57,14 @@ namespace Clinica_Frba.PedidosDeTurno
             this.btnBuscarAfiliado.Enabled = false;
         }
         #endregion 
-        
-        #region [Buscar profesional]
-        
-        
-        #endregion
-
+       
         #region [Load]
         private void FrmPedidoDeTurno_Load(object sender, EventArgs e)
         {
         }
 
         #endregion
+
         #region [Filtrar]
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
