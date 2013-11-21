@@ -30,6 +30,12 @@ DROP TABLE TOP_4.Plan_medico
 declare @sql varchar(max)
 
 set @sql = (SELECT 'DROP PROCEDURE [' + routine_schema + '].[' + routine_name + ']; '
-from information_schema.routines where routine_schema = 'TOP_4' and routine_type IN ('PROCEDURE', 'FUNCTION')
+from information_schema.routines where routine_schema = 'TOP_4' and routine_type IN ('PROCEDURE')
+FOR XML PATH (''))
+exec(@sql)
+
+
+set @sql = (SELECT 'DROP FUNCTION [' + routine_schema + '].[' + routine_name + ']; '
+from information_schema.routines where routine_schema = 'TOP_4' and routine_type IN ('FUNCTION')
 FOR XML PATH (''))
 exec(@sql)
