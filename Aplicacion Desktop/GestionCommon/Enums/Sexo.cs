@@ -21,6 +21,7 @@ namespace GestionCommon.Enums
         {
             return Nombre;
         }
+        
         public override bool Equals(object obj)
         {
             Sexo otro = obj as Sexo;
@@ -29,6 +30,11 @@ namespace GestionCommon.Enums
                 return otro.Id == this.Id;
             }
             return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 

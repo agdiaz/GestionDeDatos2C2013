@@ -33,6 +33,10 @@ namespace GestionCommon.Enums
             }
             return false;
         }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 
     public class EstadoCivilIndefinido : EstadoCivil
