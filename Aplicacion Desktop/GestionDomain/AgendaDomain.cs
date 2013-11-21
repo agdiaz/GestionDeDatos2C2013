@@ -7,6 +7,7 @@ using GestionCommon.Entidades;
 using GestionDAL;
 using GestionCommon.Helpers;
 using GestionCommon.Filtros;
+using System.Data.SqlClient;
 
 namespace GestionDomain
 {
@@ -50,6 +51,19 @@ namespace GestionDomain
                 }
 
                 resultado.Retorno = nuevaAgenda;
+            }
+            catch (SqlException ex)
+            {
+                resultado.Correcto = false;
+                if (ex.Errors.Count > 0)
+                {
+                    // Violación de constraint UNIQUE
+                    if (ex.Class == 14 && (ex.Number == 2627 || ex.Number == 50000))
+                    {
+                        resultado.Mensajes.Add("No se permite valores repetidos.");
+                    }
+                }
+                resultado.Mensajes.Add(ex.Message);
             }
             catch (Exception ex)
             {

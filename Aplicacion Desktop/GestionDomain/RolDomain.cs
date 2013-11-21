@@ -7,6 +7,8 @@ using GestionCommon.Entidades;
 using GestionCommon.Helpers;
 using GestionDomain.Resultados;
 using GestionCommon.Filtros;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace GestionDomain
 {
@@ -80,6 +82,19 @@ namespace GestionDomain
 
                 resultado.Retorno = nuevoRol;
             }
+            catch (SqlException ex)
+            {
+                resultado.Correcto = false;
+                if (ex.Errors.Count > 0)
+                {
+                    // Violación de constraint UNIQUE
+                    if (ex.Class == 14 && (ex.Number == 2627 || ex.Number == 50000))
+                    {
+                        resultado.Mensajes.Add("No se permite valores repetidos para el campo nombre.");
+                    }
+                }
+                resultado.Mensajes.Add(ex.Message);
+            }
             catch (Exception ex)
             {
                 resultado.Correcto = false;
@@ -103,6 +118,19 @@ namespace GestionDomain
                     _dal.AsociarRolFuncionalidad(rolModificado.Id, func.IdFuncionalidad);
                 }
 
+            }
+            catch (SqlException ex)
+            {
+                resultado.Correcto = false;
+                if (ex.Errors.Count > 0)
+                {
+                    // Violación de constraint UNIQUE
+                    if (ex.Class == 14 && (ex.Number == 2627 || ex.Number == 50000))
+                    {
+                        resultado.Mensajes.Add("No se permite valores repetidos para el campo Nombre.");
+                    }
+                }
+                resultado.Mensajes.Add(ex.Message);
             }
             catch (Exception ex)
             {

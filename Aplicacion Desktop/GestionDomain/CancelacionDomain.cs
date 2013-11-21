@@ -18,7 +18,7 @@ namespace GestionDomain
             _dal = new CancelacionDAL(log);
         }
 
-        public IResultado<GestionCommon.Entidades.Cancelacion> Cancelar(Cancelacion c)
+        public IResultado<Cancelacion> Cancelar(Cancelacion c)
         {
             Resultado<Cancelacion> resultado = new Resultado<Cancelacion>();
             try

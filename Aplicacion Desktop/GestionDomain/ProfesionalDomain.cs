@@ -7,6 +7,7 @@ using GestionCommon.Entidades;
 using GestionCommon.Filtros;
 using GestionCommon.Helpers;
 using GestionDomain.Resultados;
+using System.Data.SqlClient;
 
 namespace GestionDomain
 {
@@ -64,6 +65,19 @@ namespace GestionDomain
 
                 resultado.Retorno = profesional;
             }
+            catch (SqlException ex)
+            {
+                resultado.Correcto = false;
+                if (ex.Errors.Count > 0)
+                {
+                    // Violación de constraint UNIQUE
+                    if (ex.Class == 14 && (ex.Number == 2627 || ex.Number == 50000))
+                    {
+                        resultado.Mensajes.Add("No se permite valores repetidos para los campos 'Nro de Documento' o 'Matricula'.");
+                    }
+                }
+                resultado.Mensajes.Add(ex.Message);
+            }
             catch (Exception ex)
             {
                 resultado.Correcto = false;
@@ -79,6 +93,19 @@ namespace GestionDomain
             try
             {
                 resultado.Retorno = _domain.Modificar(profesional);
+            }
+            catch (SqlException ex)
+            {
+                resultado.Correcto = false;
+                if (ex.Errors.Count > 0)
+                {
+                    // Violación de constraint UNIQUE
+                    if (ex.Class == 14 && (ex.Number == 2627 || ex.Number == 50000))
+                    {
+                        resultado.Mensajes.Add("No se permite valores repetidos para los campos 'Nro de Documento' o 'Matricula'.");
+                    }
+                }
+                resultado.Mensajes.Add(ex.Message);
             }
             catch (Exception ex)
             {
