@@ -65,7 +65,6 @@ namespace Clinica_Frba.Afiliados
             this.AgregarValidacion(new ValidadorNumerico(tbTelefono));
             this.AgregarValidacion(new ValidadorString(tbMail, 1, 255));
             this.AgregarValidacion(new ValidadorMail(tbMail));
-            this.dpFechaNacimiento.Value = FechaHelper.Ahora();
         }
 
         private void CargarCombos()
@@ -110,7 +109,9 @@ namespace Clinica_Frba.Afiliados
                 this.cbTipoDocumento.SelectedItem = AfiliadoModificado.TipoDocumento;
                 this.cbTipoDocumento.Enabled = false;
                 this.dpFechaNacimiento.Value = AfiliadoModificado.FechaNacimiento;
-                this.ndCantHijos.Visible = false;
+                this.ndCantHijos.Enabled = false;
+                this.ndCantHijos.Value = AfiliadoModificado.CantidadHijos;
+                this.cbEstadoCivil.Enabled = false;
             }
             catch (Exception ex)
             {

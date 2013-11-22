@@ -151,17 +151,17 @@ namespace Clinica_Frba.Roles
         {
             base.Limpiar();
         }
-
-        private void LimpiarControles()
+        protected override void AccionLimpiar()
         {
-            this.tbNombre.Text = string.Empty;
-            this.chkActivo.Checked = false;
+            this.tbNombre.Text = _rol.Nombre;
+            this.chkActivo.Checked = _rol.Activo;
 
             foreach (int i in clsFuncionalidades.CheckedIndices)
             {
                 clsFuncionalidades.SetItemCheckState(i, CheckState.Unchecked);
             }
         }
+
         #endregion
 
     }

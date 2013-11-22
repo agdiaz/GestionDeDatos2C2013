@@ -146,7 +146,7 @@ namespace GestionDAL
             parametros.Add(pSexo);
 
             SqlParameter pEstadoCivil = new SqlParameter("@p_estado_civil", System.Data.SqlDbType.Int, 4, "p_estado_civil");
-            pEstadoCivil.Value = entidad.Sexo.Id;
+            pEstadoCivil.Value = entidad.EstadoCivil.Id;
             parametros.Add(pEstadoCivil);
 
             SqlParameter pFechaHoy = new SqlParameter("@p_fecha_hoy", System.Data.SqlDbType.DateTime, 8, "p_fecha_hoy");
@@ -214,7 +214,7 @@ namespace GestionDAL
             parametros.Add(pSexo);
 
             SqlParameter pEstadoCivil = new SqlParameter("@p_estado_civil", System.Data.SqlDbType.Int, 4, "p_estado_civil");
-            pEstadoCivil.Value = entidad.Sexo.Id;
+            pEstadoCivil.Value = entidad.EstadoCivil.Id;
             parametros.Add(pEstadoCivil);
 
             return parametros;

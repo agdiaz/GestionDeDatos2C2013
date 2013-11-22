@@ -22,16 +22,20 @@ namespace Clinica_Frba.Afiliados
     {
         #region [Atributos privados]
         private bool _primeraVez;
+        public bool EsHijo { get; private set; }
         private PlanMedico _plan;
         private Afiliado _afiliadoAnterior;
+        private PlanMedico _planAnterior;
         private AfiliadoDomain _domain;
         #endregion
 
         #region [Constructor]
-        public FrmAfiliadoAlta(Afiliado afiliado)
+        public FrmAfiliadoAlta(Afiliado afiliado, PlanMedico plan, bool esHijo)
             :this(false)
         {
             _afiliadoAnterior = afiliado;
+            _planAnterior = plan;
+            EsHijo = esHijo;
         }
 
         public FrmAfiliadoAlta(bool primeraVez)
@@ -39,6 +43,7 @@ namespace Clinica_Frba.Afiliados
         {
             _primeraVez = primeraVez;
             _afiliadoAnterior = null;
+            _planAnterior = null;
             _domain = new AfiliadoDomain(Program.ContextoActual.Logger);
 
             InitializeComponent();
@@ -102,7 +107,7 @@ namespace Clinica_Frba.Afiliados
                 DialogResult registraPareja = MensajePorPantalla.MensajeInterrogativo(this, "¿Desea registrar a su pareja?", MessageBoxButtons.YesNo);
                 if (registraPareja == DialogResult.Yes)
                 {
-                    using (FrmAfiliadoAlta frmAltaPareja = new FrmAfiliadoAlta(afiliado))
+                    using (FrmAfiliadoAlta frmAltaPareja = new FrmAfiliadoAlta(afiliado, _plan, false))
                     {
                         frmAltaPareja.ShowDialog(this);
                     }
@@ -114,7 +119,7 @@ namespace Clinica_Frba.Afiliados
                 DialogResult registraPareja = MensajePorPantalla.MensajeInterrogativo(this, "¿Desea registrar a sus hijos?", MessageBoxButtons.YesNo);
                 for (int hijo = 0; (registraPareja == DialogResult.Yes) && (hijo < afiliado.CantidadHijos); hijo++)
                 {
-                    using (FrmAfiliadoAlta frmAltaHijo = new FrmAfiliadoAlta(afiliado))
+                    using (FrmAfiliadoAlta frmAltaHijo = new FrmAfiliadoAlta(afiliado, _plan, true))
                     {
                         frmAltaHijo.ShowDialog(this);
                     }
@@ -190,12 +195,17 @@ namespace Clinica_Frba.Afiliados
             {
                 tbApellido.Text = _afiliadoAnterior.Apellido;
                 tbApellido.ReadOnly = true;
-
+                
                 tbDireccion.Text = _afiliadoAnterior.Direccion;
                 tbTelefono.Text = _afiliadoAnterior.Telefono.ToString();
-                cbEstadoCivil.SelectedItem = (_afiliadoAnterior.TienePareja) ? _afiliadoAnterior.EstadoCivil : new Soltero();
-                cbEstadoCivil.Enabled = !(_afiliadoAnterior.TienePareja);
+                
+                cbEstadoCivil.SelectedItem = (!EsHijo) ? _afiliadoAnterior.EstadoCivil : new Soltero();
+                cbEstadoCivil.Enabled = EsHijo;
+                
                 ndCantHijos.Enabled = false;
+                ndCantHijos.Value = (!EsHijo) ? _afiliadoAnterior.CantidadHijos : 0;
+
+                this.CargarPlan(_planAnterior);
             }
         }
 
@@ -230,9 +240,14 @@ namespace Clinica_Frba.Afiliados
 
             if (plan != null)
             {
-                _plan = plan;
-                this.tbPlanMedico.Text = _plan.Descripcion;
+                CargarPlan(plan);
             }
+        }
+
+        private void CargarPlan(PlanMedico plan)
+        {
+            _plan = plan;
+            this.tbPlanMedico.Text = _plan.Descripcion;
         }
 
     }

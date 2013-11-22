@@ -156,6 +156,7 @@ namespace Clinica_Frba
             if (rol != null)
             {
                 Program.ContextoActual.RegistrarRol(rol);
+                this.tstNombre.Text = "Sin Afiliado/Profesional asociado al usuario";
                 if (rol.Id == 1) //Afiliado
                 {
                     try

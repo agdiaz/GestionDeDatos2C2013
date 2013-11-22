@@ -50,6 +50,7 @@ namespace GestionDomain
                 afiliado.NroPrincipal = afiliadoNuevo.NroPrincipal;
                 afiliado.NroSecundario = afiliado.NroSecundario;
                 afiliado.IdAfiliado = idNuevoAfiliado;
+                resultado.Retorno = afiliado;
             }
             catch (SqlException ex)
             {
