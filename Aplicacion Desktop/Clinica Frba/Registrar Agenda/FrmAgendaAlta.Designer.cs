@@ -52,11 +52,14 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.nudDesdeMinuto = new System.Windows.Forms.NumericUpDown();
+            this.nudHastaMinuto = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHasta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDesde)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDesdeMinuto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHastaMinuto)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -70,15 +73,18 @@
             // 
             // tbProfesional
             // 
+            this.tbProfesional.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tbProfesional.Location = new System.Drawing.Point(81, 29);
             this.tbProfesional.Name = "tbProfesional";
             this.tbProfesional.ReadOnly = true;
-            this.tbProfesional.Size = new System.Drawing.Size(353, 20);
+            this.tbProfesional.Size = new System.Drawing.Size(499, 20);
             this.tbProfesional.TabIndex = 1;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(440, 27);
+            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscar.Location = new System.Drawing.Point(586, 27);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(85, 23);
             this.btnBuscar.TabIndex = 2;
@@ -88,6 +94,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dpFechaHasta);
             this.groupBox1.Controls.Add(this.dpFechaDesde);
             this.groupBox1.Controls.Add(this.label3);
@@ -136,20 +144,17 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnQuitarDia);
-            this.groupBox2.Controls.Add(this.tbHorasSemanales);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.listCronograma);
-            this.groupBox2.Location = new System.Drawing.Point(12, 260);
+            this.groupBox2.Location = new System.Drawing.Point(12, 317);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(677, 178);
+            this.groupBox2.Size = new System.Drawing.Size(677, 126);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Cronograma semanal";
+            this.groupBox2.Text = "Cronograma de excepciones";
             // 
             // btnQuitarDia
             // 
-            this.btnQuitarDia.Location = new System.Drawing.Point(243, 19);
+            this.btnQuitarDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnQuitarDia.Location = new System.Drawing.Point(108, 143);
             this.btnQuitarDia.Name = "btnQuitarDia";
             this.btnQuitarDia.Size = new System.Drawing.Size(75, 23);
             this.btnQuitarDia.TabIndex = 10;
@@ -159,7 +164,8 @@
             // 
             // tbHorasSemanales
             // 
-            this.tbHorasSemanales.Location = new System.Drawing.Point(452, 150);
+            this.tbHorasSemanales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbHorasSemanales.Location = new System.Drawing.Point(561, 172);
             this.tbHorasSemanales.Name = "tbHorasSemanales";
             this.tbHorasSemanales.ReadOnly = true;
             this.tbHorasSemanales.Size = new System.Drawing.Size(100, 20);
@@ -168,8 +174,9 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(333, 153);
+            this.label4.Location = new System.Drawing.Point(442, 175);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 13);
             this.label4.TabIndex = 2;
@@ -177,15 +184,18 @@
             // 
             // listCronograma
             // 
+            this.listCronograma.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.listCronograma.FormattingEnabled = true;
-            this.listCronograma.Location = new System.Drawing.Point(9, 19);
+            this.listCronograma.Location = new System.Drawing.Point(433, 19);
             this.listCronograma.Name = "listCronograma";
             this.listCronograma.Size = new System.Drawing.Size(228, 147);
             this.listCronograma.TabIndex = 9;
             // 
             // btnAgregarDia
             // 
-            this.btnAgregarDia.Location = new System.Drawing.Point(72, 104);
+            this.btnAgregarDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAgregarDia.Location = new System.Drawing.Point(27, 143);
             this.btnAgregarDia.Name = "btnAgregarDia";
             this.btnAgregarDia.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarDia.TabIndex = 8;
@@ -195,6 +205,14 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.tbHorasSemanales);
+            this.groupBox3.Controls.Add(this.btnQuitarDia);
+            this.groupBox3.Controls.Add(this.nudHastaMinuto);
+            this.groupBox3.Controls.Add(this.listCronograma);
+            this.groupBox3.Controls.Add(this.nudDesdeMinuto);
             this.groupBox3.Controls.Add(this.nudHasta);
             this.groupBox3.Controls.Add(this.btnAgregarDia);
             this.groupBox3.Controls.Add(this.nudDesde);
@@ -202,50 +220,51 @@
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(21, 116);
+            this.groupBox3.Location = new System.Drawing.Point(12, 116);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(346, 138);
+            this.groupBox3.Size = new System.Drawing.Size(677, 195);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalle diario";
             // 
             // nudHasta
             // 
-            this.nudHasta.Location = new System.Drawing.Point(52, 78);
+            this.nudHasta.Location = new System.Drawing.Point(58, 109);
             this.nudHasta.Maximum = new decimal(new int[] {
             24,
             0,
             0,
             0});
             this.nudHasta.Name = "nudHasta";
-            this.nudHasta.Size = new System.Drawing.Size(120, 20);
+            this.nudHasta.Size = new System.Drawing.Size(133, 20);
             this.nudHasta.TabIndex = 7;
             // 
             // nudDesde
             // 
-            this.nudDesde.Location = new System.Drawing.Point(52, 52);
+            this.nudDesde.Location = new System.Drawing.Point(58, 83);
             this.nudDesde.Maximum = new decimal(new int[] {
             24,
             0,
             0,
             0});
             this.nudDesde.Name = "nudDesde";
-            this.nudDesde.Size = new System.Drawing.Size(120, 20);
+            this.nudDesde.Size = new System.Drawing.Size(133, 20);
             this.nudDesde.TabIndex = 6;
             // 
             // cbDia
             // 
             this.cbDia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDia.FormattingEnabled = true;
-            this.cbDia.Location = new System.Drawing.Point(52, 24);
+            this.cbDia.Location = new System.Drawing.Point(58, 55);
             this.cbDia.Name = "cbDia";
             this.cbDia.Size = new System.Drawing.Size(133, 21);
             this.cbDia.TabIndex = 5;
+            this.cbDia.SelectedValueChanged += new System.EventHandler(this.cbDia_SelectedValueChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 80);
+            this.label7.Location = new System.Drawing.Point(14, 111);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 2;
@@ -254,7 +273,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 54);
+            this.label6.Location = new System.Drawing.Point(14, 85);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 1;
@@ -263,7 +282,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 27);
+            this.label5.Location = new System.Drawing.Point(24, 58);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(25, 13);
             this.label5.TabIndex = 0;
@@ -271,7 +290,8 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(12, 449);
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.Location = new System.Drawing.Point(452, 449);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 11;
@@ -281,7 +301,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(93, 449);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(533, 449);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 12;
@@ -290,12 +311,37 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(174, 449);
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(614, 449);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 13;
             this.button4.Text = "Cancelar";
             this.button4.UseVisualStyleBackColor = true;
+            // 
+            // nudDesdeMinuto
+            // 
+            this.nudDesdeMinuto.Location = new System.Drawing.Point(198, 83);
+            this.nudDesdeMinuto.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.nudDesdeMinuto.Name = "nudDesdeMinuto";
+            this.nudDesdeMinuto.Size = new System.Drawing.Size(120, 20);
+            this.nudDesdeMinuto.TabIndex = 9;
+            // 
+            // nudHastaMinuto
+            // 
+            this.nudHastaMinuto.Location = new System.Drawing.Point(198, 109);
+            this.nudHastaMinuto.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.nudHastaMinuto.Name = "nudHastaMinuto";
+            this.nudHastaMinuto.Size = new System.Drawing.Size(120, 20);
+            this.nudHastaMinuto.TabIndex = 10;
             // 
             // FrmAgendaAlta
             // 
@@ -313,12 +359,12 @@
             this.Load += new System.EventHandler(this.FrmAgendaAlta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHasta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDesde)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDesdeMinuto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHastaMinuto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -349,5 +395,7 @@
         private System.Windows.Forms.ComboBox cbDia;
         private System.Windows.Forms.DateTimePicker dpFechaHasta;
         private System.Windows.Forms.DateTimePicker dpFechaDesde;
+        private System.Windows.Forms.NumericUpDown nudHastaMinuto;
+        private System.Windows.Forms.NumericUpDown nudDesdeMinuto;
     }
 }

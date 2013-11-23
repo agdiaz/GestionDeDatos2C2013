@@ -223,5 +223,18 @@ namespace Clinica_Frba.Agendas
 
             return nuevaAgenda;
         }
+
+        private void cbDia_SelectedValueChanged(object sender, EventArgs e)
+        {
+            DiaSemana dia = cbDia.SelectedItem as DiaSemana;
+            if (dia != null)
+            {
+                nudDesde.Minimum = dia.HoraDesdeLimite.Hour;
+                nudDesde.Maximum = dia.HoraHastaLimite.Hour;
+
+                nudDesde.Minimum = dia.HoraDesdeLimite.Hour;
+                nudHasta.Maximum = dia.HoraHastaLimite.Hour;
+            }
+        }
     }
 }
