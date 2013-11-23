@@ -76,6 +76,13 @@ namespace Clinica_Frba.Agendas
                 }
                 this.dgvTurnos.DataSource = turnos;
                 this.dgvTurnos.Columns["IdTurno"].Visible = false;
+                this.dgvTurnos.Columns["IdResultadoTurno"].Visible = false;
+                this.dgvTurnos.Columns["IdAfiliado"].Visible = false;
+                this.dgvTurnos.Columns["ConDiagnostico"].HeaderText = "Con diagnostico";
+                this.dgvTurnos.Columns["HoraDesde"].HeaderText = "Inicio turno";
+                this.dgvTurnos.Columns["HoraHasta"].HeaderText = "Fin turno";
+                this.dgvTurnos.Columns["NombreAfiliado"].HeaderText = "Afiliado";
+                this.dgvTurnos.Columns["FechaLLegada"].HeaderText = "Llegada";
                 this.btnAceptar.Enabled = true;
             }
             catch (Exception ex)

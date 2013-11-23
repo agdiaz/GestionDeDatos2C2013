@@ -45,11 +45,11 @@ namespace GestionDAL
             parametros.Add(pNombreDiaSemana);
 
             SqlParameter pHoraDesde = new SqlParameter("@p_hora_desde", System.Data.SqlDbType.DateTime, 8, "p_hora_desde");
-            pHoraDesde.Value = new DateTime(2013,1,1,entidad.HoraDesde,0,0);
+            pHoraDesde.Value = new DateTime(2013,1,1,entidad.HoraDesde, entidad.MinutoDesde, 0);
             parametros.Add(pHoraDesde);
 
             SqlParameter pHoraHasta = new SqlParameter("@p_hora_hasta", System.Data.SqlDbType.DateTime, 8, "p_hora_hasta");
-            pHoraHasta.Value = new DateTime(2013,1,1,entidad.HoraHasta,0,0);
+            pHoraHasta.Value = new DateTime(2013,1,1,entidad.HoraHasta, entidad.MinutoHasta, 0);
             parametros.Add(pHoraHasta);
 
             return parametros;

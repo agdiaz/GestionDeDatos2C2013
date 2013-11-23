@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tbProfesional = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnBuscarAfiliado = new System.Windows.Forms.Button();
             this.tbAfiliado = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnValidar = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbCantMedicamentos = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@
             this.tbBonoFarmacia = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -79,6 +79,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Receta";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(278, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "En esta sección se completa el encabezado de la receta:";
             // 
             // tbProfesional
             // 
@@ -139,6 +148,15 @@
             this.dateTimePicker1.TabIndex = 13;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 112);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(130, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Preescripción de la receta";
+            // 
             // btnAceptar
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -160,15 +178,6 @@
             this.btnValidar.Text = "Validar";
             this.btnValidar.UseVisualStyleBackColor = true;
             this.btnValidar.Click += new System.EventHandler(this.btnValidar_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 112);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Preescripción de la receta";
             // 
             // groupBox2
             // 
@@ -264,6 +273,7 @@
             this.tbMedicamento.ReadOnly = true;
             this.tbMedicamento.Size = new System.Drawing.Size(423, 20);
             this.tbMedicamento.TabIndex = 7;
+            this.tbMedicamento.TextChanged += new System.EventHandler(this.tbMedicamento_TextChanged);
             // 
             // label3
             // 
@@ -347,15 +357,6 @@
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Bono farmacia";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(278, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "En esta sección se completa el encabezado de la receta:";
             // 
             // label9
             // 

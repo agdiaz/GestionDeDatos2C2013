@@ -1647,7 +1647,8 @@ BEGIN
 		id_turno numeric(18,0),
 		id_afiliado numeric(18,0),
 		id_resultado_turno numeric(18,0),
-		fecha_llegada datetime
+		fecha_llegada datetime,
+		nombre_afiliado varchar(255)
 	)
 	DECLARE @horaDesde time
 	DECLARE @horaHasta time
@@ -1667,6 +1668,7 @@ BEGIN
 	DECLARE @id_afiliado numeric(18,0)
 	DECLARE @id_resultado_turno numeric(18,0)
 	declare @fecha_llegada datetime
+	declare @nombre_afiliado varchar(255)
 	
 	WHILE @horaActual < @horaHasta
 	BEGIN
@@ -1684,17 +1686,19 @@ BEGIN
 			AND tur.habilitado = 1
 			)
 		BEGIN
-			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno, fecha_llegada)
-			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 1, null, null, null, null)
+			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno, fecha_llegada, nombre_afiliado)
+			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 1, null, null, null, null, null)
 		END
 		ELSE
 		BEGIN
-			SELECT TOP 1 @id_turno = tur.id_turno , @id_afiliado = tur.id_afiliado, @id_resultado_turno = resTur.id_resultado_turno, @fecha_llegada = tur.fecha_llegada
+			SELECT TOP 1 @id_turno = tur.id_turno , @id_afiliado = tur.id_afiliado, @id_resultado_turno = resTur.id_resultado_turno, @fecha_llegada = tur.fecha_llegada, @nombre_afiliado = A.nombre + ' ' + A.Apellido
 			FROM TOP_4.Turno tur
 			LEFT JOIN TOP_4.Resultado_Turno resTur
 				ON resTur.id_turno = tur.id_turno
 			LEFT JOIN TOP_4.Cancelacion can
 				ON can.id_turno = tur.id_turno
+			INNER JOIN TOP_4.Afiliado A
+				ON tur.id_afiliado = A.id_afiliado
 			WHERE tur.id_profesional = @p_id_profesional
 			AND CAST(tur.fecha_turno as date) = CAST(@p_fecha as date)
 			AND CAST(tur.fecha_turno as time) = @horaActual
@@ -1702,13 +1706,13 @@ BEGIN
 			AND tur.habilitado = 1
 
 			
-			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno, fecha_llegada)
-			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 0, @id_turno, @id_afiliado, @id_resultado_turno, @fecha_llegada )
+			INSERT INTO #tmpTurnos (horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno, fecha_llegada, nombre_afiliado)
+			VALUES (@horaActual, DATEADD(minute, 30, @horaActual), 0, @id_turno, @id_afiliado, @id_resultado_turno, @fecha_llegada, @nombre_afiliado )
 		END
 		set @horaActual = DATEADD(minute, 30, @horaActual)
 	END
 	
-	SELECT horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno, fecha_llegada
+	SELECT horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno, fecha_llegada, nombre_afiliado
 	FROM #tmpTurnos
 	
 	DROP TABLE #tmpTurnos

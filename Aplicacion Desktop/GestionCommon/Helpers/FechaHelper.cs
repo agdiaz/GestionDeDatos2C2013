@@ -15,7 +15,13 @@ namespace GestionCommon.Helpers
                 return AppConfigReader.Get("DateTimeFormatString");
             }
         }
-
+        public static string TimeFormat
+        {
+            get
+            {
+                return AppConfigReader.Get("TimeFormatString");
+            }
+        }
         public static string DateFormat
         {
             get

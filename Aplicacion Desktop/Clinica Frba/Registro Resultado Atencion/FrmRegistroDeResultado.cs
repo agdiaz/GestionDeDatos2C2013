@@ -14,10 +14,12 @@ using Clinica_Frba.Recetas;
 using Clinica_Frba.Agendas;
 using Clinica_Frba.Profesionales;
 using GestionCommon.Helpers;
+using GestionGUIHelper.Formularios;
+using GestionGUIHelper.Validaciones;
 
 namespace Clinica_Frba.ResultadosAtencion
 {
-    public partial class FrmRegistroDeResultado : Form
+    public partial class FrmRegistroDeResultado : FormularioBase
     {
         private Profesional _profesional;
         private Afiliado _afiliado;
@@ -33,6 +35,7 @@ namespace Clinica_Frba.ResultadosAtencion
         }
 
         public FrmRegistroDeResultado()
+            :base()
         {
             _afiliadoDomain = new AfiliadoDomain(Program.ContextoActual.Logger);
             _domain = new TurnoDomain(Program.ContextoActual.Logger);
@@ -153,7 +156,9 @@ namespace Clinica_Frba.ResultadosAtencion
         {
             dpFecha.Value = FechaHelper.Ahora();
             dpFecha.Format = DateTimePickerFormat.Custom;
-            dpFecha.CustomFormat = FechaHelper.DateTimeFormat;  
+            dpFecha.CustomFormat = FechaHelper.DateTimeFormat;
+            this.AgregarValidacion(new ValidadorString(tbDiagnostico, 1, 255));
+            this.AgregarValidacion(new ValidadorString(tbSintomas, 1, 255));
         }
     }
 }

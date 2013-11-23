@@ -10,6 +10,9 @@ namespace GestionCommon.Entidades
         public decimal NroDiaSemana { get; set; }
         public string NombreDiaSemana { get; set; }
         public int HoraDesde { get; set; }
+        public int MinutoDesde { get; set; }
+        
         public int HoraHasta { get; set; }
+        public int MinutoHasta { get; set; }
     }
 }

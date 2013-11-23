@@ -27,7 +27,7 @@ namespace GestionCommon.Enums
 
         public override string ToString()
         {
-            return Nombre + " de " + this.HoraDesde.Hour + " a " + this.HoraHasta.Hour;
+            return string.Format("{0} de {1:00}:{2:00} a {3:00}:{4:00}", Nombre, this.HoraDesde.Hour, this.HoraDesde.Minute, this.HoraHasta.Hour, this.HoraHasta.Minute);
         }
     }
 

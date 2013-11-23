@@ -148,7 +148,7 @@ namespace Clinica_Frba.Recetas
             this.AgregarValidacion(new ValidadorString(tbMedicamento, 1, 255));
             this.dateTimePicker1.Value = FechaHelper.Ahora();
             this.btnAceptar.Enabled = false;
-            this.btnValidar.Enabled = false;
+            
             this.btnAgregar.Enabled = false;
             this.btnQuitar.Enabled = false;
             this.btnBuscar.Enabled = false;
@@ -201,7 +201,7 @@ namespace Clinica_Frba.Recetas
                 MensajePorPantalla.MensajeError(this, "Solo pueden cargarse 5 (cinco) medicamentos por receta. Guarde y cree una nueva receta");
                 this.btnBuscar.Enabled = false;
             }
-            this.btnAceptar.Enabled = lstMedicamentos.Items.Count < 0;
+            this.btnAceptar.Enabled = lstMedicamentos.Items.Count < 6;
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
@@ -241,6 +241,7 @@ namespace Clinica_Frba.Recetas
                 this.btnBuscar.Enabled = true;
                 this.btnAgregar.Enabled = true;
                 this.btnQuitar.Enabled = true;
+                this.dateTimePicker1.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -273,6 +274,18 @@ namespace Clinica_Frba.Recetas
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void tbMedicamento_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tbMedicamento.Text))
+            {
+                this.ndCantidad.Enabled = true;
+            }
+            else
+            {
+                this.ndCantidad.Enabled = false;
+            }
         }
     }
 }

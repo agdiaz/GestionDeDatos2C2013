@@ -43,23 +43,7 @@ namespace Clinica_Frba.RegistrosDeLLegada
             {
                 MensajePorPantalla.MensajeError(this, "Debería haberse presentado por lo menos 15 minutos antes del comienzo del turno");
             }
-        }
-
-        private bool ValidarNroBono()
-        {
-            try
-            {
-                IResultado<BonoConsulta> resultado = _domain.ObtenerBonoConsulta(Convert.ToDecimal(this.tbBonoConsulta.Text));
-                if (!resultado.Correcto)
-                    throw new ResultadoIncorrectoException<BonoConsulta>(resultado);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MensajePorPantalla.MensajeError(this, ex.Message);
-                return false;
-            }
+            this.Close();
         }
 
         private void Registrar()
@@ -92,6 +76,8 @@ namespace Clinica_Frba.RegistrosDeLLegada
                     tbTurno.Text = _turno.ToString();
                     btnBuscarTurno.Enabled = false;
                     this.btnValidarBono.Enabled = true;
+                    this.tbBonoConsulta.Enabled = true;
+                    this.tbBonoConsulta.ReadOnly = false;
                 }
             }
         }
@@ -103,10 +89,12 @@ namespace Clinica_Frba.RegistrosDeLLegada
                 IResultado<BonoConsulta> resultado = _domain.ValidarBonoConsulta(Convert.ToDecimal(tbBonoConsulta.Text), _afiliado.NroPrincipal, _afiliado.IdPlanMedico);
                 if (!resultado.Correcto)
                     throw new ResultadoIncorrectoException<BonoConsulta>(resultado);
-
+                
+                MensajePorPantalla.MensajeInformativo(this, "Bono validado correctamente");
                 this._bono = resultado.Retorno;
                 this.btnValidarBono.Enabled = false;
                 this.btnRegistrar.Enabled = true;
+                this.tbBonoConsulta.ReadOnly = true;
             }
             catch (Exception ex)
             {

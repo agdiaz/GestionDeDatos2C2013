@@ -56,29 +56,36 @@ namespace Clinica_Frba.Agendas
 
         private void AgregarDia_Click(object sender, EventArgs e)
         {
-            if (this.validarCargaHorarioDia())
+            try
             {
-                this.agregarDiaACronograma();
+                if (this.validarCargaHorarioDia())
+                {
+                    this.agregarDiaACronograma();
+                }
+            }
+            catch (Exception)
+            {
+                MensajePorPantalla.MensajeError(this, "Ocurrió un error al cargar el día.");
             }
         }
 
         private void agregarDiaACronograma()
         {
-            if (this.YaExisteElDiaEnElCronograma())
-            {
-                MensajePorPantalla.MensajeInformativo(this,string.Format("Ya se cargo el día {0} en el cronograma.",cbDia.Text));
-            }
-            else {
+            //if (this.YaExisteElDiaEnElCronograma())
+            //{
+            //    MensajePorPantalla.MensajeInformativo(this,string.Format("Ya se cargo el día {0} en el cronograma.",cbDia.Text));
+            //}
+            //else {
                 DiaSemana diaSemana = new DiaSemana();
                 DiaSemana diaSeleccionado = cbDia.SelectedItem as DiaSemana;
                 diaSemana.Id = diaSeleccionado.Id;
                 diaSemana.Nombre = diaSeleccionado.Nombre;
-                diaSemana.HoraDesde = new DateTime(2013, 1, 1, (int)nudDesde.Value, 0, 0);
-                diaSemana.HoraHasta = new DateTime(2013, 1, 1, (int)nudHasta.Value, 0, 0);
+                diaSemana.HoraDesde = new DateTime(2013, 1, 1, (int)nudDesde.Value, (int)nudDesdeMinuto.Value, 0);
+                diaSemana.HoraHasta = new DateTime(2013, 1, 1, (int)nudHasta.Value, (int)nudHastaMinuto.Value, 0);
                 listCronograma.Items.Add(diaSemana);
 
                 this.actualizarTotalHoras();            
-            }
+            //}
         }
 
         private bool YaExisteElDiaEnElCronograma()
@@ -94,10 +101,12 @@ namespace Clinica_Frba.Agendas
 
         private void actualizarTotalHoras()
         {
-            int totalHorasSemanales = 0;
+            double totalHorasSemanales = 0;
             foreach (DiaSemana dia in listCronograma.Items)
             {
-                totalHorasSemanales += dia.HoraHasta.Hour - dia.HoraDesde.Hour;
+                TimeSpan th = new TimeSpan(dia.HoraHasta.Hour, dia.HoraHasta.Minute, 0);
+                TimeSpan td = new TimeSpan(dia.HoraDesde.Hour, dia.HoraDesde.Minute, 0);
+                totalHorasSemanales += th.Subtract(td).TotalHours;
             }
             tbHorasSemanales.Text = totalHorasSemanales.ToString();
         }
@@ -106,21 +115,61 @@ namespace Clinica_Frba.Agendas
         {
             Boolean resultado = true;
             DiaSemana diaSeleccionado = cbDia.SelectedItem as DiaSemana;
-            int horaDesdeSeleccionado = new DateTime(2013, 1, 1, (int)nudDesde.Value, 0, 0).Hour;
-            int horaHastaSeleccionado = new DateTime(2013, 1, 1, (int)nudHasta.Value, 0, 0).Hour;
-
-            if(diaSeleccionado.HoraDesdeLimite.Hour > horaDesdeSeleccionado ||
-                diaSeleccionado.HoraHastaLimite.Hour < horaHastaSeleccionado){
-                    MensajePorPantalla.MensajeInformativo(this,"Carga de horario incorrecta.\nHorario dia "
-                        +diaSeleccionado.Nombre+" de "+diaSeleccionado.HoraDesdeLimite.Hour+"hs a "+diaSeleccionado.HoraHastaLimite.Hour+"hs.");
-                    resultado = false;
-                }
-            else if ((int)nudDesde.Value >= (int)nudHasta.Value)
+            
+            DateTime horaDesdeSeleccionado = new DateTime(2013, 1, 1, (int)nudDesde.Value, (int)nudDesdeMinuto.Value, 0);
+            DateTime horaHastaSeleccionado = new DateTime(2013, 1, 1, (int)nudHasta.Value, (int)nudHastaMinuto.Value, 0);
+            if (horaDesdeSeleccionado == horaHastaSeleccionado)
             {
-                MensajePorPantalla.MensajeError(this, "Carga de horarios incorrecta.");
                 resultado = false;
+                MensajePorPantalla.MensajeError(this, "No puede cargar la misma hora de inicio que de finalización");
+                return resultado;
+            }
+            if (horaDesdeSeleccionado < diaSeleccionado.HoraDesdeLimite)
+            {
+                resultado = false;
+                MensajePorPantalla.MensajeError(this, string.Format("La hora de inicio debe ser mayor o igual que {0}", FechaHelper.Format(diaSeleccionado.HoraDesdeLimite, FechaHelper.TimeFormat)));
+                return resultado;
             }
 
+            if (horaHastaSeleccionado > diaSeleccionado.HoraHastaLimite)
+            {
+                resultado = false;
+                MensajePorPantalla.MensajeError(this, string.Format("La hora de finalización debe ser menor o igual que {0}", FechaHelper.Format(diaSeleccionado.HoraHastaLimite, FechaHelper.TimeFormat)));
+                return resultado;
+            }
+
+            if (horaDesdeSeleccionado > horaHastaSeleccionado)
+            {
+                resultado = false;
+                MensajePorPantalla.MensajeError(this, "La hora de inicio debe ser menor que la hora de finalización");
+                return resultado;
+            }
+
+            if (horaHastaSeleccionado < horaDesdeSeleccionado)
+            {
+                resultado = false;
+                MensajePorPantalla.MensajeError(this, "La hora de finalización debe ser mayor que la hora de inicio");
+                return resultado;
+            }
+
+            List<DiaSemana> otrosDias = listCronograma.Items.Cast<DiaSemana>().Where( s => s.Id == diaSeleccionado.Id).ToList();
+            foreach (DiaSemana otro in otrosDias)
+            {
+                if (horaDesdeSeleccionado >= otro.HoraDesde && horaDesdeSeleccionado <= otro.HoraHasta)
+                {
+                    MensajePorPantalla.MensajeError(this, "Ya existe un horario para ese día en esas horas. Revise la hora de inicio");
+                    resultado = false;
+                    return resultado;
+                }
+                if (horaHastaSeleccionado <= otro.HoraHasta && horaHastaSeleccionado >= otro.HoraDesde)
+                {
+                    MensajePorPantalla.MensajeError(this, "Ya existe un horario para ese día en esas horas. Revise la hora de finalización");
+                    resultado = false;
+                    return resultado;
+                }
+                
+            }
+           
             return resultado;
         }
 
@@ -169,7 +218,8 @@ namespace Clinica_Frba.Agendas
         protected override void AccionAceptar()
         {
             bool cronogramaEstaVacio = this.validarCronogramaEstaVacio(listCronograma);
-            int horas_semanales = Convert.ToInt32(tbHorasSemanales.Text);
+            double horas_semanales = Convert.ToDouble(tbHorasSemanales.Text);
+            
             if (cronogramaEstaVacio){
                 MensajePorPantalla.MensajeInformativo(this, "Agregue días al cronograma.");
             } else if (horas_semanales > 48){
@@ -198,15 +248,21 @@ namespace Clinica_Frba.Agendas
 
         private IList<DiaAgenda> obtenerCronograma()
         {
-            IList<DiaAgenda> retorno = new List<DiaAgenda>();
-            DiaAgenda diaAgenda = new DiaAgenda();
-            foreach(var dia in this.listCronograma.Items)
+            IList<DiaAgenda> retorno = new List<DiaAgenda>(this.listCronograma.Items.Count);
+
+            foreach (DiaSemana diaSemana in this.listCronograma.Items.Cast<DiaSemana>())
             {
-                DiaSemana diaSemana = dia as DiaSemana;
+                DiaAgenda diaAgenda = new DiaAgenda();
+                
                 diaAgenda.NroDiaSemana = diaSemana.Id;
                 diaAgenda.NombreDiaSemana = diaSemana.Nombre;
+                
                 diaAgenda.HoraDesde = diaSemana.HoraDesde.Hour;
+                diaAgenda.MinutoDesde = diaSemana.HoraDesde.Minute;
+
                 diaAgenda.HoraHasta = diaSemana.HoraHasta.Hour;
+                diaAgenda.MinutoHasta = diaSemana.HoraHasta.Minute;
+
                 retorno.Add(diaAgenda);
             }
             return retorno;
@@ -231,10 +287,22 @@ namespace Clinica_Frba.Agendas
             {
                 nudDesde.Minimum = dia.HoraDesdeLimite.Hour;
                 nudDesde.Maximum = dia.HoraHastaLimite.Hour;
+                nudDesde.Value = dia.HoraDesdeLimite.Hour;
 
-                nudDesde.Minimum = dia.HoraDesdeLimite.Hour;
+                nudHasta.Minimum = dia.HoraDesdeLimite.Hour;
                 nudHasta.Maximum = dia.HoraHastaLimite.Hour;
+                nudHasta.Value = nudHasta.Maximum;
             }
+        }
+
+        private void nudDesdeMinuto_ValueChanged(object sender, EventArgs e)
+        {
+            nudHastaMinuto.Value = nudDesdeMinuto.Value;
+        }
+
+        private void nudHastaMinuto_ValueChanged(object sender, EventArgs e)
+        {
+            nudDesdeMinuto.Value = nudHastaMinuto.Value;
         }
     }
 }

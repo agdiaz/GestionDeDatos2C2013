@@ -32,17 +32,19 @@
             this.tbProfesional = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCargarDetalles = new System.Windows.Forms.Button();
             this.dpFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.dpFechaDesde = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnQuitarDia = new System.Windows.Forms.Button();
             this.tbHorasSemanales = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.listCronograma = new System.Windows.Forms.ListBox();
             this.btnAgregarDia = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.nudHastaMinuto = new System.Windows.Forms.NumericUpDown();
+            this.nudDesdeMinuto = new System.Windows.Forms.NumericUpDown();
             this.nudHasta = new System.Windows.Forms.NumericUpDown();
             this.nudDesde = new System.Windows.Forms.NumericUpDown();
             this.cbDia = new System.Windows.Forms.ComboBox();
@@ -52,20 +54,18 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.nudDesdeMinuto = new System.Windows.Forms.NumericUpDown();
-            this.nudHastaMinuto = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHastaMinuto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDesdeMinuto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHasta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDesde)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDesdeMinuto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudHastaMinuto)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 32);
+            this.label1.Location = new System.Drawing.Point(13, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 0;
@@ -96,6 +96,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnCargarDetalles);
             this.groupBox1.Controls.Add(this.dpFechaHasta);
             this.groupBox1.Controls.Add(this.dpFechaDesde);
             this.groupBox1.Controls.Add(this.label3);
@@ -105,14 +106,24 @@
             this.groupBox1.Controls.Add(this.tbProfesional);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(677, 98);
+            this.groupBox1.Size = new System.Drawing.Size(677, 128);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la agenda";
             // 
+            // btnCargarDetalles
+            // 
+            this.btnCargarDetalles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCargarDetalles.Location = new System.Drawing.Point(571, 99);
+            this.btnCargarDetalles.Name = "btnCargarDetalles";
+            this.btnCargarDetalles.Size = new System.Drawing.Size(100, 23);
+            this.btnCargarDetalles.TabIndex = 6;
+            this.btnCargarDetalles.Text = "Cargar detalles";
+            this.btnCargarDetalles.UseVisualStyleBackColor = true;
+            // 
             // dpFechaHasta
             // 
-            this.dpFechaHasta.Location = new System.Drawing.Point(393, 59);
+            this.dpFechaHasta.Location = new System.Drawing.Point(81, 91);
             this.dpFechaHasta.Name = "dpFechaHasta";
             this.dpFechaHasta.Size = new System.Drawing.Size(200, 20);
             this.dpFechaHasta.TabIndex = 4;
@@ -127,7 +138,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(321, 65);
+            this.label3.Location = new System.Drawing.Point(6, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 5;
@@ -142,19 +153,10 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Fecha desde";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Location = new System.Drawing.Point(12, 317);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(677, 126);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Cronograma de excepciones";
-            // 
             // btnQuitarDia
             // 
             this.btnQuitarDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnQuitarDia.Location = new System.Drawing.Point(108, 143);
+            this.btnQuitarDia.Location = new System.Drawing.Point(243, 104);
             this.btnQuitarDia.Name = "btnQuitarDia";
             this.btnQuitarDia.Size = new System.Drawing.Size(75, 23);
             this.btnQuitarDia.TabIndex = 10;
@@ -165,7 +167,7 @@
             // tbHorasSemanales
             // 
             this.tbHorasSemanales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbHorasSemanales.Location = new System.Drawing.Point(561, 172);
+            this.tbHorasSemanales.Location = new System.Drawing.Point(561, 142);
             this.tbHorasSemanales.Name = "tbHorasSemanales";
             this.tbHorasSemanales.ReadOnly = true;
             this.tbHorasSemanales.Size = new System.Drawing.Size(100, 20);
@@ -176,7 +178,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(442, 175);
+            this.label4.Location = new System.Drawing.Point(442, 145);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 13);
             this.label4.TabIndex = 2;
@@ -184,18 +186,19 @@
             // 
             // listCronograma
             // 
-            this.listCronograma.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.listCronograma.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.listCronograma.FormattingEnabled = true;
-            this.listCronograma.Location = new System.Drawing.Point(433, 19);
+            this.listCronograma.Location = new System.Drawing.Point(324, 19);
             this.listCronograma.Name = "listCronograma";
-            this.listCronograma.Size = new System.Drawing.Size(228, 147);
+            this.listCronograma.Size = new System.Drawing.Size(337, 108);
             this.listCronograma.TabIndex = 9;
             // 
             // btnAgregarDia
             // 
             this.btnAgregarDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAgregarDia.Location = new System.Drawing.Point(27, 143);
+            this.btnAgregarDia.Location = new System.Drawing.Point(162, 104);
             this.btnAgregarDia.Name = "btnAgregarDia";
             this.btnAgregarDia.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarDia.TabIndex = 8;
@@ -220,16 +223,42 @@
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(12, 116);
+            this.groupBox3.Location = new System.Drawing.Point(12, 146);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(677, 195);
+            this.groupBox3.Size = new System.Drawing.Size(677, 165);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalle diario";
             // 
+            // nudHastaMinuto
+            // 
+            this.nudHastaMinuto.Location = new System.Drawing.Point(198, 75);
+            this.nudHastaMinuto.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.nudHastaMinuto.Name = "nudHastaMinuto";
+            this.nudHastaMinuto.Size = new System.Drawing.Size(120, 20);
+            this.nudHastaMinuto.TabIndex = 10;
+            this.nudHastaMinuto.ValueChanged += new System.EventHandler(this.nudHastaMinuto_ValueChanged);
+            // 
+            // nudDesdeMinuto
+            // 
+            this.nudDesdeMinuto.Location = new System.Drawing.Point(198, 49);
+            this.nudDesdeMinuto.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.nudDesdeMinuto.Name = "nudDesdeMinuto";
+            this.nudDesdeMinuto.Size = new System.Drawing.Size(120, 20);
+            this.nudDesdeMinuto.TabIndex = 9;
+            this.nudDesdeMinuto.ValueChanged += new System.EventHandler(this.nudDesdeMinuto_ValueChanged);
+            // 
             // nudHasta
             // 
-            this.nudHasta.Location = new System.Drawing.Point(58, 109);
+            this.nudHasta.Location = new System.Drawing.Point(58, 75);
             this.nudHasta.Maximum = new decimal(new int[] {
             24,
             0,
@@ -241,7 +270,7 @@
             // 
             // nudDesde
             // 
-            this.nudDesde.Location = new System.Drawing.Point(58, 83);
+            this.nudDesde.Location = new System.Drawing.Point(58, 49);
             this.nudDesde.Maximum = new decimal(new int[] {
             24,
             0,
@@ -255,16 +284,16 @@
             // 
             this.cbDia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDia.FormattingEnabled = true;
-            this.cbDia.Location = new System.Drawing.Point(58, 55);
+            this.cbDia.Location = new System.Drawing.Point(58, 21);
             this.cbDia.Name = "cbDia";
-            this.cbDia.Size = new System.Drawing.Size(133, 21);
+            this.cbDia.Size = new System.Drawing.Size(260, 21);
             this.cbDia.TabIndex = 5;
             this.cbDia.SelectedValueChanged += new System.EventHandler(this.cbDia_SelectedValueChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 111);
+            this.label7.Location = new System.Drawing.Point(14, 77);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 2;
@@ -273,7 +302,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 85);
+            this.label6.Location = new System.Drawing.Point(14, 51);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 1;
@@ -282,7 +311,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 58);
+            this.label5.Location = new System.Drawing.Point(24, 24);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(25, 13);
             this.label5.TabIndex = 0;
@@ -319,30 +348,6 @@
             this.button4.Text = "Cancelar";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // nudDesdeMinuto
-            // 
-            this.nudDesdeMinuto.Location = new System.Drawing.Point(198, 83);
-            this.nudDesdeMinuto.Maximum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.nudDesdeMinuto.Name = "nudDesdeMinuto";
-            this.nudDesdeMinuto.Size = new System.Drawing.Size(120, 20);
-            this.nudDesdeMinuto.TabIndex = 9;
-            // 
-            // nudHastaMinuto
-            // 
-            this.nudHastaMinuto.Location = new System.Drawing.Point(198, 109);
-            this.nudHastaMinuto.Maximum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.nudHastaMinuto.Name = "nudHastaMinuto";
-            this.nudHastaMinuto.Size = new System.Drawing.Size(120, 20);
-            this.nudHastaMinuto.TabIndex = 10;
-            // 
             // FrmAgendaAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,7 +356,6 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmAgendaAlta";
@@ -361,10 +365,10 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHastaMinuto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDesdeMinuto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHasta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDesde)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDesdeMinuto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudHastaMinuto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -377,7 +381,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox tbHorasSemanales;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -397,5 +400,6 @@
         private System.Windows.Forms.DateTimePicker dpFechaDesde;
         private System.Windows.Forms.NumericUpDown nudHastaMinuto;
         private System.Windows.Forms.NumericUpDown nudDesdeMinuto;
+        private System.Windows.Forms.Button btnCargarDetalles;
     }
 }
