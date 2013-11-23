@@ -52,7 +52,7 @@ namespace Clinica_Frba.Compras
             this._afiliado = af;
             this.tbAfiliado.Text = _afiliado.NombreCompleto;
             this.CargarPlan();
-            this.btnComprar.Enabled = true;
+            //this.btnComprar.Enabled = true;
             this.btnConsulta.Enabled = true;
             this.btnFarmacia.Enabled = true;
             this.btnQuitar.Enabled = true;
@@ -79,6 +79,8 @@ namespace Clinica_Frba.Compras
             Decimal subtotal = Convert.ToDecimal(tbPrecioTotal.Text);
             subtotal += _plan.PrecioBonoConsulta;
             tbPrecioTotal.Text = subtotal.ToString();
+
+            this.btnComprar.Enabled = true;
         }
 
         private void btnFarmacia_Click(object sender, EventArgs e)
@@ -93,6 +95,8 @@ namespace Clinica_Frba.Compras
             Decimal subtotal = Convert.ToDecimal(tbPrecioTotal.Text);
             subtotal += _plan.PrecioBonoFarmacia;
             tbPrecioTotal.Text = subtotal.ToString();
+            
+            this.btnComprar.Enabled = true;
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
@@ -114,7 +118,10 @@ namespace Clinica_Frba.Compras
                     subtotal -= _plan.PrecioBonoFarmacia;
                     tbPrecioTotal.Text = subtotal.ToString();
                 }
+
+                 
             }
+            this.btnComprar.Enabled = (lstBonos.Items.Count > 0);
         }
 
         private void FrmCompraBonos_Load(object sender, EventArgs e)

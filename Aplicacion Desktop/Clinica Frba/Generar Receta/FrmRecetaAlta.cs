@@ -147,6 +147,11 @@ namespace Clinica_Frba.Recetas
 
             this.AgregarValidacion(new ValidadorString(tbMedicamento, 1, 255));
             this.dateTimePicker1.Value = FechaHelper.Ahora();
+            this.btnAceptar.Enabled = false;
+            this.btnValidar.Enabled = false;
+            this.btnAgregar.Enabled = false;
+            this.btnQuitar.Enabled = false;
+            this.btnBuscar.Enabled = false;
             
         }
 
@@ -172,6 +177,7 @@ namespace Clinica_Frba.Recetas
         {
             if (this.Validar() && cantidadMedicamentos < 5)
             {
+                this.btnBuscar.Enabled = true;
                 ItemReceta ir = new ItemReceta();
                 ir.NombreMedicamento = tbMedicamento.Text;
                 ir.CantidadEnLetras = tbCantidad.Text;
@@ -193,7 +199,9 @@ namespace Clinica_Frba.Recetas
             else
             {
                 MensajePorPantalla.MensajeError(this, "Solo pueden cargarse 5 (cinco) medicamentos por receta. Guarde y cree una nueva receta");
+                this.btnBuscar.Enabled = false;
             }
+            this.btnAceptar.Enabled = lstMedicamentos.Items.Count < 0;
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
@@ -205,6 +213,8 @@ namespace Clinica_Frba.Recetas
                 cantidadMedicamentos--;
             }
             tbCantMedicamentos.Text = cantidadMedicamentos.ToString();
+            this.btnBuscar.Enabled = cantidadMedicamentos < 5;
+            this.btnAceptar.Enabled = lstMedicamentos.Items.Count < 0;
         }
 
         protected override void AccionLimpiar()
@@ -227,6 +237,10 @@ namespace Clinica_Frba.Recetas
                 bonoFarmacia = resultado.Retorno;
 
                 groupBox2.Enabled = true;
+                this.tbBonoFarmacia.ReadOnly = true;
+                this.btnBuscar.Enabled = true;
+                this.btnAgregar.Enabled = true;
+                this.btnQuitar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -252,6 +266,13 @@ namespace Clinica_Frba.Recetas
             this._afiliado = afiliado;
             this.tbAfiliado.Text = _afiliado.NombreCompleto;
             this.btnBuscarAfiliado.Enabled = false;
+            this.btnValidar.Enabled = true;
+            this.groupBox3.Enabled = true;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

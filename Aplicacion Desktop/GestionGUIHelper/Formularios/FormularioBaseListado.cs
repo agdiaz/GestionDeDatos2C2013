@@ -15,8 +15,8 @@ namespace GestionGUIHelper.Formularios
         public FormularioBaseListado(bool modoSeleccion)
             :base()
         {
-            ModoSeleccion = modoSeleccion;       
             InitializeComponent();
+            ModoSeleccion = modoSeleccion;
         }
 
         public FormularioBaseListado()
@@ -37,6 +37,9 @@ namespace GestionGUIHelper.Formularios
         private void FormularioBaseListado_Load(object sender, EventArgs e)
         {
             this.btnSeleccionar.Visible = ModoSeleccion;
+            this.btnAlta.Visible = !ModoSeleccion;
+            this.btnModificacion.Visible = !ModoSeleccion;
+            this.btnBaja.Visible = !ModoSeleccion;
 
             this.AccionIniciar();
             //this.Filtrar();

@@ -46,6 +46,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gbResultado.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnConfirmarHorario);
             this.groupBox1.Controls.Add(this.btnBuscarProfesional);
             this.groupBox1.Controls.Add(this.tbProfesional);
@@ -67,25 +69,27 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(528, 131);
+            this.groupBox1.Size = new System.Drawing.Size(645, 131);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Validación de turno";
             // 
             // btnConfirmarHorario
             // 
+            this.btnConfirmarHorario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConfirmarHorario.Enabled = false;
-            this.btnConfirmarHorario.Location = new System.Drawing.Point(347, 100);
+            this.btnConfirmarHorario.Location = new System.Drawing.Point(399, 101);
             this.btnConfirmarHorario.Name = "btnConfirmarHorario";
-            this.btnConfirmarHorario.Size = new System.Drawing.Size(117, 23);
+            this.btnConfirmarHorario.Size = new System.Drawing.Size(114, 23);
             this.btnConfirmarHorario.TabIndex = 7;
-            this.btnConfirmarHorario.Text = "Confirma horario";
+            this.btnConfirmarHorario.Text = "SI confirma horario";
             this.btnConfirmarHorario.UseVisualStyleBackColor = true;
             this.btnConfirmarHorario.Click += new System.EventHandler(this.btnConfirmarHorario_Click);
             // 
             // btnBuscarProfesional
             // 
-            this.btnBuscarProfesional.Location = new System.Drawing.Point(347, 20);
+            this.btnBuscarProfesional.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscarProfesional.Location = new System.Drawing.Point(561, 19);
             this.btnBuscarProfesional.Name = "btnBuscarProfesional";
             this.btnBuscarProfesional.Size = new System.Drawing.Size(75, 23);
             this.btnBuscarProfesional.TabIndex = 2;
@@ -95,10 +99,12 @@
             // 
             // tbProfesional
             // 
-            this.tbProfesional.Location = new System.Drawing.Point(71, 22);
+            this.tbProfesional.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbProfesional.Location = new System.Drawing.Point(75, 21);
             this.tbProfesional.Name = "tbProfesional";
             this.tbProfesional.ReadOnly = true;
-            this.tbProfesional.Size = new System.Drawing.Size(261, 20);
+            this.tbProfesional.Size = new System.Drawing.Size(480, 20);
             this.tbProfesional.TabIndex = 1;
             // 
             // label6
@@ -112,10 +118,12 @@
             // 
             // dpFecha
             // 
+            this.dpFecha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dpFecha.Enabled = false;
-            this.dpFecha.Location = new System.Drawing.Point(61, 100);
+            this.dpFecha.Location = new System.Drawing.Point(75, 100);
             this.dpFecha.Name = "dpFecha";
-            this.dpFecha.Size = new System.Drawing.Size(271, 20);
+            this.dpFecha.Size = new System.Drawing.Size(318, 20);
             this.dpFecha.TabIndex = 6;
             // 
             // label5
@@ -129,10 +137,12 @@
             // 
             // tbAfiliado
             // 
-            this.tbAfiliado.Location = new System.Drawing.Point(61, 74);
+            this.tbAfiliado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAfiliado.Location = new System.Drawing.Point(75, 74);
             this.tbAfiliado.Name = "tbAfiliado";
             this.tbAfiliado.ReadOnly = true;
-            this.tbAfiliado.Size = new System.Drawing.Size(271, 20);
+            this.tbAfiliado.Size = new System.Drawing.Size(561, 20);
             this.tbAfiliado.TabIndex = 5;
             // 
             // label4
@@ -146,8 +156,9 @@
             // 
             // btnBuscarTurno
             // 
+            this.btnBuscarTurno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuscarTurno.Enabled = false;
-            this.btnBuscarTurno.Location = new System.Drawing.Point(347, 46);
+            this.btnBuscarTurno.Location = new System.Drawing.Point(561, 46);
             this.btnBuscarTurno.Name = "btnBuscarTurno";
             this.btnBuscarTurno.Size = new System.Drawing.Size(75, 23);
             this.btnBuscarTurno.TabIndex = 4;
@@ -157,10 +168,12 @@
             // 
             // tbTurno
             // 
-            this.tbTurno.Location = new System.Drawing.Point(61, 48);
+            this.tbTurno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbTurno.Location = new System.Drawing.Point(75, 48);
             this.tbTurno.Name = "tbTurno";
             this.tbTurno.ReadOnly = true;
-            this.tbTurno.Size = new System.Drawing.Size(271, 20);
+            this.tbTurno.Size = new System.Drawing.Size(480, 20);
             this.tbTurno.TabIndex = 3;
             // 
             // label1
@@ -184,7 +197,7 @@
             this.gbResultado.Enabled = false;
             this.gbResultado.Location = new System.Drawing.Point(12, 149);
             this.gbResultado.Name = "gbResultado";
-            this.gbResultado.Size = new System.Drawing.Size(528, 219);
+            this.gbResultado.Size = new System.Drawing.Size(645, 219);
             this.gbResultado.TabIndex = 4;
             this.gbResultado.TabStop = false;
             this.gbResultado.Text = "Resultados de la consulta";
@@ -196,7 +209,7 @@
             this.tbDiagnostico.Location = new System.Drawing.Point(75, 128);
             this.tbDiagnostico.Multiline = true;
             this.tbDiagnostico.Name = "tbDiagnostico";
-            this.tbDiagnostico.Size = new System.Drawing.Size(444, 85);
+            this.tbDiagnostico.Size = new System.Drawing.Size(561, 85);
             this.tbDiagnostico.TabIndex = 9;
             // 
             // tbSintomas
@@ -207,7 +220,7 @@
             this.tbSintomas.Location = new System.Drawing.Point(75, 28);
             this.tbSintomas.Multiline = true;
             this.tbSintomas.Name = "tbSintomas";
-            this.tbSintomas.Size = new System.Drawing.Size(444, 94);
+            this.tbSintomas.Size = new System.Drawing.Size(561, 94);
             this.tbSintomas.TabIndex = 8;
             // 
             // label3
@@ -234,7 +247,7 @@
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAceptar.Enabled = false;
-            this.btnAceptar.Location = new System.Drawing.Point(456, 377);
+            this.btnAceptar.Location = new System.Drawing.Point(582, 377);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 10;
@@ -242,11 +255,22 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(519, 101);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(117, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "NO confirma horario";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FrmRegistroDeResultado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 412);
+            this.ClientSize = new System.Drawing.Size(660, 412);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.gbResultado);
             this.Controls.Add(this.groupBox1);
@@ -281,5 +305,6 @@
         private System.Windows.Forms.Button btnBuscarProfesional;
         private System.Windows.Forms.TextBox tbProfesional;
         private System.Windows.Forms.Button btnConfirmarHorario;
+        private System.Windows.Forms.Button button1;
     }
 }

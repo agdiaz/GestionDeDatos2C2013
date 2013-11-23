@@ -38,14 +38,17 @@
             // 
             // btnBaja
             // 
+            this.btnBaja.Enabled = false;
             this.btnBaja.TabIndex = 7;
             // 
             // btnModificacion
             // 
+            this.btnModificacion.Enabled = false;
             this.btnModificacion.TabIndex = 6;
             // 
             // btnAlta
             // 
+            this.btnAlta.Enabled = false;
             this.btnAlta.TabIndex = 5;
             // 
             // gbFiltros

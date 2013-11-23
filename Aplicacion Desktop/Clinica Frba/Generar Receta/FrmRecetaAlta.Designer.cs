@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbProfesional = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnBuscarAfiliado = new System.Windows.Forms.Button();
             this.tbAfiliado = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,37 +52,57 @@
             this.lstMedicamentos = new System.Windows.Forms.ListBox();
             this.tbBonoFarmacia = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbProfesional = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ndCantidad)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.tbProfesional);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.btnBuscarAfiliado);
             this.groupBox1.Controls.Add(this.tbAfiliado);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.btnAceptar);
-            this.groupBox1.Controls.Add(this.btnValidar);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.tbBonoFarmacia);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(629, 447);
+            this.groupBox1.Size = new System.Drawing.Size(629, 141);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Receta";
             // 
+            // tbProfesional
+            // 
+            this.tbProfesional.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbProfesional.Location = new System.Drawing.Point(97, 55);
+            this.tbProfesional.Name = "tbProfesional";
+            this.tbProfesional.ReadOnly = true;
+            this.tbProfesional.Size = new System.Drawing.Size(442, 20);
+            this.tbProfesional.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 58);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Profesional";
+            // 
             // btnBuscarAfiliado
             // 
-            this.btnBuscarAfiliado.Location = new System.Drawing.Point(536, 19);
+            this.btnBuscarAfiliado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscarAfiliado.Location = new System.Drawing.Point(545, 55);
             this.btnBuscarAfiliado.Name = "btnBuscarAfiliado";
             this.btnBuscarAfiliado.Size = new System.Drawing.Size(75, 23);
             this.btnBuscarAfiliado.TabIndex = 16;
@@ -90,16 +112,18 @@
             // 
             // tbAfiliado
             // 
-            this.tbAfiliado.Location = new System.Drawing.Point(371, 19);
+            this.tbAfiliado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAfiliado.Location = new System.Drawing.Point(97, 81);
             this.tbAfiliado.Name = "tbAfiliado";
             this.tbAfiliado.ReadOnly = true;
-            this.tbAfiliado.Size = new System.Drawing.Size(158, 20);
+            this.tbAfiliado.Size = new System.Drawing.Size(523, 20);
             this.tbAfiliado.TabIndex = 15;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(293, 28);
+            this.label6.Location = new System.Drawing.Point(19, 84);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 13);
             this.label6.TabIndex = 14;
@@ -107,24 +131,29 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(420, 68);
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(155, 110);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(465, 20);
             this.dateTimePicker1.TabIndex = 13;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(530, 411);
+            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAceptar.Location = new System.Drawing.Point(566, 491);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 5;
-            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.Text = "Imprimir";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnValidar
             // 
-            this.btnValidar.Location = new System.Drawing.Point(262, 67);
+            this.btnValidar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnValidar.Location = new System.Drawing.Point(545, 54);
             this.btnValidar.Name = "btnValidar";
             this.btnValidar.Size = new System.Drawing.Size(75, 23);
             this.btnValidar.TabIndex = 6;
@@ -135,14 +164,17 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(343, 72);
+            this.label5.Location = new System.Drawing.Point(19, 112);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 13);
+            this.label5.Size = new System.Drawing.Size(130, 13);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Preescripción";
+            this.label5.Text = "Preescripción de la receta";
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.tbCantMedicamentos);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.tbCantidad);
@@ -155,16 +187,18 @@
             this.groupBox2.Controls.Add(this.btnBuscar);
             this.groupBox2.Controls.Add(this.lstMedicamentos);
             this.groupBox2.Enabled = false;
-            this.groupBox2.Location = new System.Drawing.Point(6, 133);
+            this.groupBox2.Location = new System.Drawing.Point(12, 259);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(605, 272);
+            this.groupBox2.Size = new System.Drawing.Size(629, 204);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Medicamentos";
             // 
             // tbCantMedicamentos
             // 
-            this.tbCantMedicamentos.Location = new System.Drawing.Point(178, 239);
+            this.tbCantMedicamentos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbCantMedicamentos.Location = new System.Drawing.Point(178, 168);
             this.tbCantMedicamentos.Name = "tbCantMedicamentos";
             this.tbCantMedicamentos.ReadOnly = true;
             this.tbCantMedicamentos.Size = new System.Drawing.Size(100, 20);
@@ -172,8 +206,10 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 242);
+            this.label4.Location = new System.Drawing.Point(37, 171);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(135, 13);
             this.label4.TabIndex = 11;
@@ -189,7 +225,8 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(422, 64);
+            this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAgregar.Location = new System.Drawing.Point(545, 93);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 9;
@@ -225,7 +262,7 @@
             this.tbMedicamento.Location = new System.Drawing.Point(116, 21);
             this.tbMedicamento.Name = "tbMedicamento";
             this.tbMedicamento.ReadOnly = true;
-            this.tbMedicamento.Size = new System.Drawing.Size(354, 20);
+            this.tbMedicamento.Size = new System.Drawing.Size(423, 20);
             this.tbMedicamento.TabIndex = 7;
             // 
             // label3
@@ -248,7 +285,8 @@
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(503, 64);
+            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuitar.Location = new System.Drawing.Point(545, 122);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(75, 23);
             this.btnQuitar.TabIndex = 4;
@@ -258,7 +296,8 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(476, 19);
+            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscar.Location = new System.Drawing.Point(545, 19);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 3;
@@ -268,59 +307,84 @@
             // 
             // lstMedicamentos
             // 
+            this.lstMedicamentos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.lstMedicamentos.FormattingEnabled = true;
             this.lstMedicamentos.Location = new System.Drawing.Point(26, 93);
             this.lstMedicamentos.Name = "lstMedicamentos";
-            this.lstMedicamentos.Size = new System.Drawing.Size(573, 134);
+            this.lstMedicamentos.Size = new System.Drawing.Size(513, 69);
             this.lstMedicamentos.TabIndex = 2;
             // 
             // tbBonoFarmacia
             // 
-            this.tbBonoFarmacia.Location = new System.Drawing.Point(97, 71);
+            this.tbBonoFarmacia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbBonoFarmacia.Location = new System.Drawing.Point(137, 56);
             this.tbBonoFarmacia.Name = "tbBonoFarmacia";
-            this.tbBonoFarmacia.Size = new System.Drawing.Size(158, 20);
+            this.tbBonoFarmacia.Size = new System.Drawing.Size(402, 20);
             this.tbBonoFarmacia.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 74);
+            this.label1.Location = new System.Drawing.Point(19, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.Size = new System.Drawing.Size(112, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Bono farmacia";
+            this.label1.Text = "Nro. de bono farmacia";
             // 
-            // label7
+            // groupBox3
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 28);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Profesional";
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.btnValidar);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.tbBonoFarmacia);
+            this.groupBox3.Location = new System.Drawing.Point(12, 159);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(629, 94);
+            this.groupBox3.TabIndex = 19;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Bono farmacia";
             // 
-            // tbProfesional
+            // label8
             // 
-            this.tbProfesional.Location = new System.Drawing.Point(97, 18);
-            this.tbProfesional.Name = "tbProfesional";
-            this.tbProfesional.ReadOnly = true;
-            this.tbProfesional.Size = new System.Drawing.Size(187, 20);
-            this.tbProfesional.TabIndex = 18;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(278, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "En esta sección se completa el encabezado de la receta:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(5, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(279, 13);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Ingrese un bono farmacia para comprobar que sea válido:";
             // 
             // FrmRecetaAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(658, 465);
+            this.ClientSize = new System.Drawing.Size(646, 526);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.groupBox2);
             this.Name = "FrmRecetaAlta";
-            this.Text = "z";
+            this.Text = "ClinicaFrba - Receta médica";
             this.Load += new System.EventHandler(this.FrmRecetaAlta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ndCantidad)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -351,5 +415,8 @@
         private System.Windows.Forms.Button btnBuscarAfiliado;
         private System.Windows.Forms.TextBox tbProfesional;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

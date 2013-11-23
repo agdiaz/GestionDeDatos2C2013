@@ -46,6 +46,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnComprar);
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.tbAfiliado);
@@ -62,8 +65,9 @@
             // 
             // btnComprar
             // 
+            this.btnComprar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnComprar.Enabled = false;
-            this.btnComprar.Location = new System.Drawing.Point(546, 268);
+            this.btnComprar.Location = new System.Drawing.Point(551, 277);
             this.btnComprar.Name = "btnComprar";
             this.btnComprar.Size = new System.Drawing.Size(75, 23);
             this.btnComprar.TabIndex = 8;
@@ -100,23 +104,28 @@
             // 
             // tbPrecioTotal
             // 
-            this.tbPrecioTotal.Location = new System.Drawing.Point(84, 268);
+            this.tbPrecioTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbPrecioTotal.Location = new System.Drawing.Point(90, 280);
             this.tbPrecioTotal.Name = "tbPrecioTotal";
             this.tbPrecioTotal.ReadOnly = true;
-            this.tbPrecioTotal.Size = new System.Drawing.Size(100, 20);
+            this.tbPrecioTotal.Size = new System.Drawing.Size(145, 20);
             this.tbPrecioTotal.TabIndex = 7;
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 271);
+            this.label1.Location = new System.Drawing.Point(15, 282);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Precio total";
+            this.label1.Text = "Precio total $";
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.btnQuitar);
             this.groupBox2.Controls.Add(this.lstBonos);
             this.groupBox2.Controls.Add(this.btnFarmacia);
@@ -130,6 +139,7 @@
             // 
             // btnQuitar
             // 
+            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnQuitar.Enabled = false;
             this.btnQuitar.Location = new System.Drawing.Point(531, 132);
             this.btnQuitar.Name = "btnQuitar";
@@ -141,6 +151,9 @@
             // 
             // lstBonos
             // 
+            this.lstBonos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lstBonos.FormattingEnabled = true;
             this.lstBonos.Location = new System.Drawing.Point(6, 21);
             this.lstBonos.Name = "lstBonos";
@@ -149,6 +162,7 @@
             // 
             // btnFarmacia
             // 
+            this.btnFarmacia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFarmacia.Enabled = false;
             this.btnFarmacia.Location = new System.Drawing.Point(531, 50);
             this.btnFarmacia.Name = "btnFarmacia";
@@ -160,6 +174,7 @@
             // 
             // btnConsulta
             // 
+            this.btnConsulta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConsulta.Enabled = false;
             this.btnConsulta.Location = new System.Drawing.Point(531, 21);
             this.btnConsulta.Name = "btnConsulta";
