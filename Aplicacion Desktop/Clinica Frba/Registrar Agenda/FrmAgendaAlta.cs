@@ -19,17 +19,21 @@ using GestionDomain.Resultados;
 namespace Clinica_Frba.Agendas
 {
     public partial class FrmAgendaAlta : FormularioBaseAlta
-
     {
+        #region Atributos
         private AgendaDomain _agendaDomain;
+        #endregion
 
+        #region Constructor
         public FrmAgendaAlta()
         {
             _agendaDomain = new AgendaDomain(Program.ContextoActual.Logger);
 
             InitializeComponent();
         }
+        #endregion
 
+        #region Load
         private void FrmAgendaAlta_Load(object sender, EventArgs e)
         {
             //this.AccionLimpiar();
@@ -37,13 +41,12 @@ namespace Clinica_Frba.Agendas
             this.AgregarValidacion(new ValidadorCombobox(cbDia));
             this.dpFechaDesde.Value = FechaHelper.Ahora();
             this.dpFechaHasta.Value = FechaHelper.Ahora();
-
+            this.dpExcepcion.Value = FechaHelper.Ahora();
             this.CargarDiasSemana();
-        }
-
-        private bool validarCronogramaEstaVacio(ListBox listCronograma)
-        {
-            return listCronograma.Items.Count == 0 ? true : false;
+            this.gbDatosAgenda.Enabled = true;
+            this.gbDetalleDiario.Enabled = false;
+            this.gbExcepciones.Enabled = false;
+            this.btnGuardar.Enabled = false;
         }
 
         private void CargarDiasSemana()
@@ -53,7 +56,9 @@ namespace Clinica_Frba.Agendas
             this.cbDia.DisplayMember = "Nombre";
             this.cbDia.ValueMember = "Id";
         }
+        #endregion
 
+        #region BtnAgregarDia
         private void AgregarDia_Click(object sender, EventArgs e)
         {
             try
@@ -71,32 +76,15 @@ namespace Clinica_Frba.Agendas
 
         private void agregarDiaACronograma()
         {
-            //if (this.YaExisteElDiaEnElCronograma())
-            //{
-            //    MensajePorPantalla.MensajeInformativo(this,string.Format("Ya se cargo el día {0} en el cronograma.",cbDia.Text));
-            //}
-            //else {
-                DiaSemana diaSemana = new DiaSemana();
-                DiaSemana diaSeleccionado = cbDia.SelectedItem as DiaSemana;
-                diaSemana.Id = diaSeleccionado.Id;
-                diaSemana.Nombre = diaSeleccionado.Nombre;
-                diaSemana.HoraDesde = new DateTime(2013, 1, 1, (int)nudDesde.Value, (int)nudDesdeMinuto.Value, 0);
-                diaSemana.HoraHasta = new DateTime(2013, 1, 1, (int)nudHasta.Value, (int)nudHastaMinuto.Value, 0);
-                listCronograma.Items.Add(diaSemana);
+            DiaSemana diaSemana = new DiaSemana();
+            DiaSemana diaSeleccionado = cbDia.SelectedItem as DiaSemana;
+            diaSemana.Id = diaSeleccionado.Id;
+            diaSemana.Nombre = diaSeleccionado.Nombre;
+            diaSemana.HoraDesde = new DateTime(2013, 1, 1, (int)nudDesde.Value, (int)nudDesdeMinuto.Value, 0);
+            diaSemana.HoraHasta = new DateTime(2013, 1, 1, (int)nudHasta.Value, (int)nudHastaMinuto.Value, 0);
+            listCronograma.Items.Add(diaSemana);
 
-                this.actualizarTotalHoras();            
-            //}
-        }
-
-        private bool YaExisteElDiaEnElCronograma()
-        {
-            bool existe_dia = false;
-            foreach (DiaSemana dia in listCronograma.Items)
-            {
-                if (dia.Nombre == cbDia.Text)
-                    existe_dia = true;
-            }
-            return existe_dia;
+            this.actualizarTotalHoras();            
         }
 
         private void actualizarTotalHoras()
@@ -172,7 +160,9 @@ namespace Clinica_Frba.Agendas
            
             return resultado;
         }
-
+        #endregion
+        
+        #region BtnQuitarDia
         private void btnQuitarDia_Click(object sender, EventArgs e)
         {
             DiaSemana dia = null;
@@ -184,7 +174,9 @@ namespace Clinica_Frba.Agendas
                 this.actualizarTotalHoras();
             }
         }
-
+        #endregion
+        
+        #region BtnBuscar Profesional
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             Profesional profesional = null;
@@ -199,64 +191,47 @@ namespace Clinica_Frba.Agendas
                 tbProfesional.Tag = profesional;
             }
         }
-
+        #endregion
+        
+        #region BtnGuardar
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            bool fechas_validas = this.validacionFechas(dpFechaDesde, dpFechaHasta);
-            if(fechas_validas)
-                base.Aceptar();
-        }
-
-        private bool validacionFechas(DateTimePicker dpFechaDesde, DateTimePicker dpFechaHasta)
-        {
-            bool resultado = new ValidadorDateTimeFrom(dpFechaDesde, FechaHelper.Ahora()).Validar()
-                            & new ValidadorDateTimeUntil(dpFechaHasta, dpFechaDesde.Value.AddDays(120)).Validar()
-                            & new ValidadorDateTimeFrom(dpFechaHasta, dpFechaDesde.Value).Validar();
-            return resultado;
+            base.Aceptar();
         }
 
         protected override void AccionAceptar()
         {
-            bool cronogramaEstaVacio = this.validarCronogramaEstaVacio(listCronograma);
-            double horas_semanales = Convert.ToDouble(tbHorasSemanales.Text);
+            Agenda nuevaAgenda = this.CrearAgenda();
+            IList<DiaAgenda> diasAgenda = this.ObtenerCronograma();
+            IList<FechaExcepcion> excepciones = this.listExcepciones.Items.Cast<FechaExcepcion>().ToList();
             
-            if (cronogramaEstaVacio){
-                MensajePorPantalla.MensajeInformativo(this, "Agregue días al cronograma.");
-            } else if (horas_semanales > 48){
-                MensajePorPantalla.MensajeInformativo(this,"El total de horas laborales no debe pasar las 48hs.\nModifique el cronograma.");
-            } else {
-                Agenda nuevaAgenda = this.CrearAgenda();
-                IList<DiaAgenda> diasAgenda = this.obtenerCronograma();
+            try
+            {
+                IResultado<Agenda> resAgenda = _agendaDomain.Alta(nuevaAgenda, diasAgenda, excepciones);
 
-                try
-                {
-                    IResultado<Agenda> resAgenda = _agendaDomain.Alta(nuevaAgenda, diasAgenda);
+                if (!resAgenda.Correcto)
+                    throw new ResultadoIncorrectoException<Agenda>(resAgenda);
 
-                    if (!resAgenda.Correcto)
-                        throw new ResultadoIncorrectoException<Agenda>(resAgenda);
-
-                    MensajePorPantalla.MensajeInformativo(this, string.Format("Se dió de alta la agenda: (IdAgenda: {0})", nuevaAgenda.Id.ToString()));
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MensajePorPantalla.MensajeError(this, ex.Message);
-                }
+                MensajePorPantalla.MensajeInformativo(this, string.Format("Se dió de alta la agenda: (IdAgenda: {0})", nuevaAgenda.Id.ToString()));
+                this.Close();
             }
-            
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+                this.Close();
+            }
         }
-
-        private IList<DiaAgenda> obtenerCronograma()
+        private IList<DiaAgenda> ObtenerCronograma()
         {
             IList<DiaAgenda> retorno = new List<DiaAgenda>(this.listCronograma.Items.Count);
 
             foreach (DiaSemana diaSemana in this.listCronograma.Items.Cast<DiaSemana>())
             {
                 DiaAgenda diaAgenda = new DiaAgenda();
-                
+
                 diaAgenda.NroDiaSemana = diaSemana.Id;
                 diaAgenda.NombreDiaSemana = diaSemana.Nombre;
-                
+
                 diaAgenda.HoraDesde = diaSemana.HoraDesde.Hour;
                 diaAgenda.MinutoDesde = diaSemana.HoraDesde.Minute;
 
@@ -280,6 +255,9 @@ namespace Clinica_Frba.Agendas
             return nuevaAgenda;
         }
 
+        #endregion
+        
+        #region Dias y horas
         private void cbDia_SelectedValueChanged(object sender, EventArgs e)
         {
             DiaSemana dia = cbDia.SelectedItem as DiaSemana;
@@ -303,6 +281,105 @@ namespace Clinica_Frba.Agendas
         private void nudHastaMinuto_ValueChanged(object sender, EventArgs e)
         {
             nudDesdeMinuto.Value = nudHastaMinuto.Value;
+        }
+        #endregion
+
+        #region btnCargarDetalles
+        private void btnCargarDetalles_Click(object sender, EventArgs e)
+        {
+
+            if (dpFechaDesde.Value >= dpFechaHasta.Value)
+            {
+                MensajePorPantalla.MensajeError(this, "La fecha de inicio no puede ser mayor ni igual que la fecha de fin");
+            }
+            else if (dpFechaHasta.Value <= dpFechaDesde.Value)
+            {
+                MensajePorPantalla.MensajeError(this, "La fecha de fin no puede ser menor ni igual que la fecha de inicio");
+            }
+            else if (validacionFechas(dpFechaDesde, dpFechaHasta))
+            {
+                this.gbDatosAgenda.Enabled = false;
+                this.gbDetalleDiario.Enabled = true;
+                this.dpExcepcion.Value = dpFechaDesde.Value;
+                this.dpExcepcion.MinDate = dpFechaDesde.Value;
+                this.dpExcepcion.MaxDate = dpFechaHasta.Value;
+            }
+
+        }
+        private bool validacionFechas(DateTimePicker dpFechaDesde, DateTimePicker dpFechaHasta)
+        {
+            bool resultado = new ValidadorDateTimeFrom(dpFechaDesde, FechaHelper.Ahora()).Validar()
+                            & new ValidadorDateTimeUntil(dpFechaHasta, dpFechaDesde.Value.AddDays(120)).Validar()
+                            & new ValidadorDateTimeFrom(dpFechaHasta, dpFechaDesde.Value).Validar();
+            return resultado;
+        }
+        #endregion
+        
+        #region btnCargarExc
+        
+        private void btnCargarExc_Click(object sender, EventArgs e)
+        {
+            bool cronogramaEstaVacio = this.validarCronogramaEstaVacio(listCronograma);
+            double horas_semanales = Convert.ToDouble(tbHorasSemanales.Text);
+            
+            if (cronogramaEstaVacio){
+                MensajePorPantalla.MensajeInformativo(this, "Agregue días al cronograma.");
+            }
+            else if (horas_semanales > 48)
+            {
+                MensajePorPantalla.MensajeInformativo(this, "El total de horas laborales no debe pasar las 48hs.\nModifique el cronograma adecuadamente.");
+            }
+            else
+            {
+                this.gbDetalleDiario.Enabled = false;
+                this.gbExcepciones.Enabled = true;
+            }
+        }
+        private bool validarCronogramaEstaVacio(ListBox listCronograma)
+        {
+            return listCronograma.Items.Count == 0 ? true : false;
+        }
+        #endregion
+
+        #region BtnExcepciones
+        private void btnAgregarExc_Click(object sender, EventArgs e)
+        {
+            FechaExcepcion fechaExcepcion = new FechaExcepcion(dpExcepcion.Value);
+            
+            List<FechaExcepcion> otras = listExcepciones.Items.Cast<FechaExcepcion>().ToList();
+            if (otras.Count(d => fechaExcepcion.Equals(d)) > 0)
+            {
+                MensajePorPantalla.MensajeError(this, "No se puede cargar esa fecha porque ya se encuentra cargada");
+            }
+            else
+            {
+                List<int> diasSemanaElegidos = listCronograma.Items.Cast<DiaSemana>().Select(d => d.Id).ToList();
+                if (diasSemanaElegidos.Count(d => d == (int)fechaExcepcion.Dia.DayOfWeek) == 0)
+                {
+                    MensajePorPantalla.MensajeError(this, "Está intentando cargar una excepción a un día que no tiene horas cargadas");
+                }
+                else
+                {
+                    listExcepciones.Items.Add(fechaExcepcion);
+                }
+            }
+        }
+
+        private void btnQuitarExc_Click(object sender, EventArgs e)
+        {
+            if (listExcepciones.SelectedItems.Count > 0)
+            {
+                var item = listExcepciones.SelectedItem as FechaExcepcion;
+                if (item != null)
+                    listExcepciones.Items.Remove(item);
+            }
+        }
+        #endregion
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            this.btnGuardar.Enabled = true;
+            this.gbExcepciones.Enabled = false;
         }
     }
 }

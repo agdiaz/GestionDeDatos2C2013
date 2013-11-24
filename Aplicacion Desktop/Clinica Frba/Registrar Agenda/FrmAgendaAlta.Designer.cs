@@ -31,7 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbProfesional = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbDatosAgenda = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnCargarDetalles = new System.Windows.Forms.Button();
             this.dpFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.dpFechaDesde = new System.Windows.Forms.DateTimePicker();
@@ -42,7 +43,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.listCronograma = new System.Windows.Forms.ListBox();
             this.btnAgregarDia = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbDetalleDiario = new System.Windows.Forms.GroupBox();
+            this.btnCargarExc = new System.Windows.Forms.Button();
             this.nudHastaMinuto = new System.Windows.Forms.NumericUpDown();
             this.nudDesdeMinuto = new System.Windows.Forms.NumericUpDown();
             this.nudHasta = new System.Windows.Forms.NumericUpDown();
@@ -54,18 +56,27 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gbExcepciones = new System.Windows.Forms.GroupBox();
+            this.btnFinalizar = new System.Windows.Forms.Button();
+            this.btnQuitarExc = new System.Windows.Forms.Button();
+            this.btnAgregarExc = new System.Windows.Forms.Button();
+            this.listExcepciones = new System.Windows.Forms.ListBox();
+            this.dpExcepcion = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.gbDatosAgenda.SuspendLayout();
+            this.gbDetalleDiario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHastaMinuto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDesdeMinuto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHasta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDesde)).BeginInit();
+            this.gbExcepciones.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 32);
+            this.label1.Location = new System.Drawing.Point(13, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 0;
@@ -75,16 +86,16 @@
             // 
             this.tbProfesional.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbProfesional.Location = new System.Drawing.Point(81, 29);
+            this.tbProfesional.Location = new System.Drawing.Point(88, 44);
             this.tbProfesional.Name = "tbProfesional";
             this.tbProfesional.ReadOnly = true;
-            this.tbProfesional.Size = new System.Drawing.Size(499, 20);
+            this.tbProfesional.Size = new System.Drawing.Size(492, 20);
             this.tbProfesional.TabIndex = 1;
             // 
             // btnBuscar
             // 
             this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuscar.Location = new System.Drawing.Point(586, 27);
+            this.btnBuscar.Location = new System.Drawing.Point(586, 42);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(85, 23);
             this.btnBuscar.TabIndex = 2;
@@ -92,24 +103,35 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // groupBox1
+            // gbDatosAgenda
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.gbDatosAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btnCargarDetalles);
-            this.groupBox1.Controls.Add(this.dpFechaHasta);
-            this.groupBox1.Controls.Add(this.dpFechaDesde);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnBuscar);
-            this.groupBox1.Controls.Add(this.tbProfesional);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(677, 128);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos de la agenda";
+            this.gbDatosAgenda.Controls.Add(this.label10);
+            this.gbDatosAgenda.Controls.Add(this.btnCargarDetalles);
+            this.gbDatosAgenda.Controls.Add(this.dpFechaHasta);
+            this.gbDatosAgenda.Controls.Add(this.dpFechaDesde);
+            this.gbDatosAgenda.Controls.Add(this.label3);
+            this.gbDatosAgenda.Controls.Add(this.label2);
+            this.gbDatosAgenda.Controls.Add(this.label1);
+            this.gbDatosAgenda.Controls.Add(this.btnBuscar);
+            this.gbDatosAgenda.Controls.Add(this.tbProfesional);
+            this.gbDatosAgenda.Location = new System.Drawing.Point(12, 12);
+            this.gbDatosAgenda.Name = "gbDatosAgenda";
+            this.gbDatosAgenda.Size = new System.Drawing.Size(677, 128);
+            this.gbDatosAgenda.TabIndex = 3;
+            this.gbDatosAgenda.TabStop = false;
+            this.gbDatosAgenda.Text = "Datos de la agenda";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 26);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(623, 13);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "En esta sección debe seleccionar el profesional y el rango de fechas a cargar las" +
+                " horas. Cuando finalice presione \"Cargar detalles\"";
             // 
             // btnCargarDetalles
             // 
@@ -120,17 +142,18 @@
             this.btnCargarDetalles.TabIndex = 6;
             this.btnCargarDetalles.Text = "Cargar detalles";
             this.btnCargarDetalles.UseVisualStyleBackColor = true;
+            this.btnCargarDetalles.Click += new System.EventHandler(this.btnCargarDetalles_Click);
             // 
             // dpFechaHasta
             // 
-            this.dpFechaHasta.Location = new System.Drawing.Point(81, 91);
+            this.dpFechaHasta.Location = new System.Drawing.Point(367, 72);
             this.dpFechaHasta.Name = "dpFechaHasta";
             this.dpFechaHasta.Size = new System.Drawing.Size(200, 20);
             this.dpFechaHasta.TabIndex = 4;
             // 
             // dpFechaDesde
             // 
-            this.dpFechaDesde.Location = new System.Drawing.Point(81, 59);
+            this.dpFechaDesde.Location = new System.Drawing.Point(88, 73);
             this.dpFechaDesde.Name = "dpFechaDesde";
             this.dpFechaDesde.Size = new System.Drawing.Size(200, 20);
             this.dpFechaDesde.TabIndex = 3;
@@ -138,7 +161,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 97);
+            this.label3.Location = new System.Drawing.Point(292, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 5;
@@ -147,7 +170,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 65);
+            this.label2.Location = new System.Drawing.Point(13, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 3;
@@ -155,7 +178,6 @@
             // 
             // btnQuitarDia
             // 
-            this.btnQuitarDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnQuitarDia.Location = new System.Drawing.Point(243, 104);
             this.btnQuitarDia.Name = "btnQuitarDia";
             this.btnQuitarDia.Size = new System.Drawing.Size(75, 23);
@@ -167,7 +189,7 @@
             // tbHorasSemanales
             // 
             this.tbHorasSemanales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbHorasSemanales.Location = new System.Drawing.Point(561, 142);
+            this.tbHorasSemanales.Location = new System.Drawing.Point(561, 107);
             this.tbHorasSemanales.Name = "tbHorasSemanales";
             this.tbHorasSemanales.ReadOnly = true;
             this.tbHorasSemanales.Size = new System.Drawing.Size(100, 20);
@@ -178,7 +200,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(442, 145);
+            this.label4.Location = new System.Drawing.Point(442, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 13);
             this.label4.TabIndex = 2;
@@ -192,12 +214,11 @@
             this.listCronograma.FormattingEnabled = true;
             this.listCronograma.Location = new System.Drawing.Point(324, 19);
             this.listCronograma.Name = "listCronograma";
-            this.listCronograma.Size = new System.Drawing.Size(337, 108);
+            this.listCronograma.Size = new System.Drawing.Size(347, 82);
             this.listCronograma.TabIndex = 9;
             // 
             // btnAgregarDia
             // 
-            this.btnAgregarDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAgregarDia.Location = new System.Drawing.Point(162, 104);
             this.btnAgregarDia.Name = "btnAgregarDia";
             this.btnAgregarDia.Size = new System.Drawing.Size(75, 23);
@@ -206,29 +227,42 @@
             this.btnAgregarDia.UseVisualStyleBackColor = true;
             this.btnAgregarDia.Click += new System.EventHandler(this.AgregarDia_Click);
             // 
-            // groupBox3
+            // gbDetalleDiario
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.gbDetalleDiario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.tbHorasSemanales);
-            this.groupBox3.Controls.Add(this.btnQuitarDia);
-            this.groupBox3.Controls.Add(this.nudHastaMinuto);
-            this.groupBox3.Controls.Add(this.listCronograma);
-            this.groupBox3.Controls.Add(this.nudDesdeMinuto);
-            this.groupBox3.Controls.Add(this.nudHasta);
-            this.groupBox3.Controls.Add(this.btnAgregarDia);
-            this.groupBox3.Controls.Add(this.nudDesde);
-            this.groupBox3.Controls.Add(this.cbDia);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(12, 146);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(677, 165);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Detalle diario";
+            this.gbDetalleDiario.Controls.Add(this.btnCargarExc);
+            this.gbDetalleDiario.Controls.Add(this.label4);
+            this.gbDetalleDiario.Controls.Add(this.tbHorasSemanales);
+            this.gbDetalleDiario.Controls.Add(this.btnQuitarDia);
+            this.gbDetalleDiario.Controls.Add(this.nudHastaMinuto);
+            this.gbDetalleDiario.Controls.Add(this.listCronograma);
+            this.gbDetalleDiario.Controls.Add(this.nudDesdeMinuto);
+            this.gbDetalleDiario.Controls.Add(this.nudHasta);
+            this.gbDetalleDiario.Controls.Add(this.btnAgregarDia);
+            this.gbDetalleDiario.Controls.Add(this.nudDesde);
+            this.gbDetalleDiario.Controls.Add(this.cbDia);
+            this.gbDetalleDiario.Controls.Add(this.label7);
+            this.gbDetalleDiario.Controls.Add(this.label6);
+            this.gbDetalleDiario.Controls.Add(this.label5);
+            this.gbDetalleDiario.Location = new System.Drawing.Point(12, 146);
+            this.gbDetalleDiario.Name = "gbDetalleDiario";
+            this.gbDetalleDiario.Size = new System.Drawing.Size(677, 165);
+            this.gbDetalleDiario.TabIndex = 1;
+            this.gbDetalleDiario.TabStop = false;
+            this.gbDetalleDiario.Text = "Detalle diario";
+            // 
+            // btnCargarExc
+            // 
+            this.btnCargarExc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCargarExc.Location = new System.Drawing.Point(561, 136);
+            this.btnCargarExc.Name = "btnCargarExc";
+            this.btnCargarExc.Size = new System.Drawing.Size(110, 23);
+            this.btnCargarExc.TabIndex = 11;
+            this.btnCargarExc.Text = "Cargar excepciones";
+            this.btnCargarExc.UseVisualStyleBackColor = true;
+            this.btnCargarExc.Click += new System.EventHandler(this.btnCargarExc_Click);
             // 
             // nudHastaMinuto
             // 
@@ -348,27 +382,115 @@
             this.button4.Text = "Cancelar";
             this.button4.UseVisualStyleBackColor = true;
             // 
+            // gbExcepciones
+            // 
+            this.gbExcepciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbExcepciones.Controls.Add(this.btnFinalizar);
+            this.gbExcepciones.Controls.Add(this.btnQuitarExc);
+            this.gbExcepciones.Controls.Add(this.btnAgregarExc);
+            this.gbExcepciones.Controls.Add(this.listExcepciones);
+            this.gbExcepciones.Controls.Add(this.dpExcepcion);
+            this.gbExcepciones.Controls.Add(this.label9);
+            this.gbExcepciones.Controls.Add(this.label8);
+            this.gbExcepciones.Location = new System.Drawing.Point(12, 317);
+            this.gbExcepciones.Name = "gbExcepciones";
+            this.gbExcepciones.Size = new System.Drawing.Size(677, 126);
+            this.gbExcepciones.TabIndex = 14;
+            this.gbExcepciones.TabStop = false;
+            this.gbExcepciones.Text = "Excepciones";
+            // 
+            // btnFinalizar
+            // 
+            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinalizar.Location = new System.Drawing.Point(561, 97);
+            this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.Size = new System.Drawing.Size(110, 23);
+            this.btnFinalizar.TabIndex = 6;
+            this.btnFinalizar.Text = "Finalizar";
+            this.btnFinalizar.UseVisualStyleBackColor = true;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
+            // 
+            // btnQuitarExc
+            // 
+            this.btnQuitarExc.Location = new System.Drawing.Point(264, 71);
+            this.btnQuitarExc.Name = "btnQuitarExc";
+            this.btnQuitarExc.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitarExc.TabIndex = 5;
+            this.btnQuitarExc.Text = "Quitar exc.";
+            this.btnQuitarExc.UseVisualStyleBackColor = true;
+            this.btnQuitarExc.Click += new System.EventHandler(this.btnQuitarExc_Click);
+            // 
+            // btnAgregarExc
+            // 
+            this.btnAgregarExc.Location = new System.Drawing.Point(264, 44);
+            this.btnAgregarExc.Name = "btnAgregarExc";
+            this.btnAgregarExc.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarExc.TabIndex = 4;
+            this.btnAgregarExc.Text = "Agregar exc.";
+            this.btnAgregarExc.UseVisualStyleBackColor = true;
+            this.btnAgregarExc.Click += new System.EventHandler(this.btnAgregarExc_Click);
+            // 
+            // listExcepciones
+            // 
+            this.listExcepciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listExcepciones.FormattingEnabled = true;
+            this.listExcepciones.Location = new System.Drawing.Point(370, 19);
+            this.listExcepciones.Name = "listExcepciones";
+            this.listExcepciones.Size = new System.Drawing.Size(291, 69);
+            this.listExcepciones.TabIndex = 3;
+            // 
+            // dpExcepcion
+            // 
+            this.dpExcepcion.Location = new System.Drawing.Point(58, 47);
+            this.dpExcepcion.Name = "dpExcepcion";
+            this.dpExcepcion.Size = new System.Drawing.Size(200, 20);
+            this.dpExcepcion.TabIndex = 2;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(17, 53);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Fecha";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 26);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(358, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Cargue en esta sección los días dentro del rango que no vendrá a trabajar";
+            // 
             // FrmAgendaAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 484);
+            this.Controls.Add(this.gbExcepciones);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbDetalleDiario);
+            this.Controls.Add(this.gbDatosAgenda);
             this.Name = "FrmAgendaAlta";
             this.Text = "Clinica FRBA - Agenda - Administrar";
             this.Load += new System.EventHandler(this.FrmAgendaAlta_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gbDatosAgenda.ResumeLayout(false);
+            this.gbDatosAgenda.PerformLayout();
+            this.gbDetalleDiario.ResumeLayout(false);
+            this.gbDetalleDiario.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHastaMinuto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDesdeMinuto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHasta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDesde)).EndInit();
+            this.gbExcepciones.ResumeLayout(false);
+            this.gbExcepciones.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -378,12 +500,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbProfesional;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbDatosAgenda;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbHorasSemanales;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbDetalleDiario;
         private System.Windows.Forms.ListBox listCronograma;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button button3;
@@ -401,5 +523,15 @@
         private System.Windows.Forms.NumericUpDown nudHastaMinuto;
         private System.Windows.Forms.NumericUpDown nudDesdeMinuto;
         private System.Windows.Forms.Button btnCargarDetalles;
+        private System.Windows.Forms.GroupBox gbExcepciones;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ListBox listExcepciones;
+        private System.Windows.Forms.DateTimePicker dpExcepcion;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnAgregarExc;
+        private System.Windows.Forms.Button btnQuitarExc;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnCargarExc;
+        private System.Windows.Forms.Button btnFinalizar;
     }
 }

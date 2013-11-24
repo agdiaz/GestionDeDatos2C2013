@@ -736,6 +736,26 @@ INSERT INTO TOP_4.Dia_Agenda
 		GROUP BY p.id_profesional, datepart(weekday,m.Turno_Fecha), datename(weekday, m.Turno_Fecha), ag.id_agenda
 	) agen
 )
+GO
+-- ---------------------------- Dia Agenda Excepcion ----------------------------------
+CREATE TABLE [TOP_4].[Dia_Agenda_Excepcion](
+	[id_fecha_excepcion] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[id_agenda] [numeric](18, 0) NOT NULL,
+	[dia] [datetime] NOT NULL,
+ CONSTRAINT [PK_Dia_Agenda_Excepcion] PRIMARY KEY CLUSTERED 
+(
+	[id_fecha_excepcion] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [TOP_4].[Dia_Agenda_Excepcion]  WITH CHECK ADD  CONSTRAINT [FK_Dia_Agenda_Excepcion_Agenda] FOREIGN KEY([id_agenda])
+REFERENCES [TOP_4].[Agenda] ([id_agenda])
+GO
+
+ALTER TABLE [TOP_4].[Dia_Agenda_Excepcion] CHECK CONSTRAINT [FK_Dia_Agenda_Excepcion_Agenda]
+GO
 
 
 ---------------------------------Afiliado----------------------------------------------

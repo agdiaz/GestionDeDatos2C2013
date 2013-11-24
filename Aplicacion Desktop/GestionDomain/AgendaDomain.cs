@@ -31,15 +31,16 @@ namespace GestionDomain
         }
 
 
-        public IResultado<Agenda> Alta(Agenda nuevaAgenda, IList<DiaAgenda> diasAgenda)
+        public IResultado<Agenda> Alta(Agenda nuevaAgenda, IList<DiaAgenda> diasAgenda, IList<FechaExcepcion> excepciones)
         {
             Resultado<Agenda> resultado = new Resultado<Agenda>();
             try
             {
-                Boolean resul = _dal.AgendaValida(nuevaAgenda);
-                if (!resul)
+                if (!_dal.AgendaValida(nuevaAgenda))
                 {
-                    throw new NotImplementedException("Superposición de días de la agenda.");
+                    resultado.Correcto = false;
+                    resultado.Mensajes.Add("Hay una superposición en los días de la agenda.");
+                    return resultado;
                 }
                                 
                 nuevaAgenda.Id = _domain.Crear(nuevaAgenda);
@@ -48,6 +49,12 @@ namespace GestionDomain
                 {
                     diaAgenda.Id = nuevaAgenda.Id;
                     decimal idDia = _dalDiaAgenda.Crear(diaAgenda); //Asocia la agenda creada con los días.
+                }
+
+                foreach (FechaExcepcion exc in excepciones)
+                {
+                    exc.IdAgenda = nuevaAgenda.Id;
+                    decimal idExcepcion = _dalDiaAgenda.CrearExcepcion(exc);
                 }
 
                 resultado.Retorno = nuevaAgenda;

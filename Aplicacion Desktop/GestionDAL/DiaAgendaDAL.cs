@@ -54,5 +54,26 @@ namespace GestionDAL
 
             return parametros;
         }
+
+        public decimal CrearExcepcion(FechaExcepcion exc)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+            
+            SqlParameter pIdAgenda = new SqlParameter("@p_id_agenda", System.Data.SqlDbType.Decimal, 18, "p_id_agenda");
+            pIdAgenda.Value = exc.IdAgenda;
+            parametros.Add(pIdAgenda);
+
+            SqlParameter pDia = new SqlParameter("@p_dia", System.Data.SqlDbType.DateTime, 8, "p_dia");
+            pDia.Value = exc.Dia.Date;
+            parametros.Add(pDia);
+
+            SqlParameter pIdDiaExcepcion = new SqlParameter("@p_id_dia_excepcion", System.Data.SqlDbType.Decimal, 18, "p_id_dia_excepcion");
+            pIdDiaExcepcion.Direction = System.Data.ParameterDirection.Output;
+            parametros.Add(pIdDiaExcepcion);
+
+            _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_Dia_Agenda_Excepcion_insert]", parametros);
+
+            return (decimal)pIdDiaExcepcion.Value;
+        }
     }
 }

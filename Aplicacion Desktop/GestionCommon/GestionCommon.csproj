@@ -60,6 +60,7 @@
     <Compile Include="Entidades\DiaAgenda.cs" />
     <Compile Include="Entidades\Especialidad.cs" />
     <Compile Include="Entidades\Estadistica.cs" />
+    <Compile Include="Entidades\FechaExcepcion.cs" />
     <Compile Include="Entidades\FechaTurno.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\ItemReceta.cs" />

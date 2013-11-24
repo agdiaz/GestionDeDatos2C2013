@@ -35,6 +35,7 @@
             this.btnTurnos = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.mcDesde = new System.Windows.Forms.MonthCalendar();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,15 +50,18 @@
             // 
             // tbProfesional
             // 
+            this.tbProfesional.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tbProfesional.Location = new System.Drawing.Point(100, 12);
             this.tbProfesional.Name = "tbProfesional";
             this.tbProfesional.ReadOnly = true;
-            this.tbProfesional.Size = new System.Drawing.Size(286, 20);
+            this.tbProfesional.Size = new System.Drawing.Size(523, 20);
             this.tbProfesional.TabIndex = 1;
             // 
             // btnBuscarProfesional
             // 
-            this.btnBuscarProfesional.Location = new System.Drawing.Point(392, 10);
+            this.btnBuscarProfesional.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscarProfesional.Location = new System.Drawing.Point(629, 10);
             this.btnBuscarProfesional.Name = "btnBuscarProfesional";
             this.btnBuscarProfesional.Size = new System.Drawing.Size(75, 23);
             this.btnBuscarProfesional.TabIndex = 2;
@@ -67,6 +71,9 @@
             // 
             // dgvTurnos
             // 
+            this.dgvTurnos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTurnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTurnos.Location = new System.Drawing.Point(24, 213);
             this.dgvTurnos.Name = "dgvTurnos";
@@ -77,7 +84,7 @@
             // btnTurnos
             // 
             this.btnTurnos.Enabled = false;
-            this.btnTurnos.Location = new System.Drawing.Point(600, 175);
+            this.btnTurnos.Location = new System.Drawing.Point(221, 184);
             this.btnTurnos.Name = "btnTurnos";
             this.btnTurnos.Size = new System.Drawing.Size(104, 23);
             this.btnTurnos.TabIndex = 4;
@@ -87,6 +94,7 @@
             // 
             // btnAceptar
             // 
+            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAceptar.Enabled = false;
             this.btnAceptar.Location = new System.Drawing.Point(629, 446);
             this.btnAceptar.Name = "btnAceptar";
@@ -99,16 +107,26 @@
             // mcDesde
             // 
             this.mcDesde.Enabled = false;
-            this.mcDesde.Location = new System.Drawing.Point(479, 10);
+            this.mcDesde.Location = new System.Drawing.Point(24, 44);
             this.mcDesde.MaxSelectionCount = 1;
             this.mcDesde.Name = "mcDesde";
             this.mcDesde.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(222, 55);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(482, 31);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Busque un día en el calendario y con el botón \"Turnos disponibles\" podrá consulta" +
+                "r los turnos para esa fecha";
             // 
             // FrmAgendaConsultar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 472);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.mcDesde);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnTurnos);
@@ -134,5 +152,6 @@
         private System.Windows.Forms.Button btnTurnos;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.MonthCalendar mcDesde;
+        private System.Windows.Forms.Label label2;
     }
 }

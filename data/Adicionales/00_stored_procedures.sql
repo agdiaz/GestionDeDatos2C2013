@@ -1645,6 +1645,7 @@ CREATE PROCEDURE [TOP_4].[sp_turnos_existentes_por_dia]
 )
 AS
 BEGIN
+
 CREATE TABLE #tmpTurnos(
 		horaInicio time,
 		horaFin	time,
@@ -1659,11 +1660,13 @@ DECLARE cursor_horas Cursor FOR
 	SELECT da.*
 	FROM TOP_4.Dia_Agenda da
 	INNER JOIN TOP_4.Agenda ag
-		ON ag.id_agenda = da.id_agenda
+		ON ag.id_agenda = da.id_agenda AND ag.habilitado = 1
+	LEFT JOIN TOP_4.Dia_Agenda_Excepcion dae
+		ON dae.id_agenda = da.id_agenda AND dae.dia = @p_fecha
 	WHERE ag.id_profesional = @p_id_profesional
+	AND dae.id_fecha_excepcion IS NULL
 	AND da.nro_dia_semana = DATEPART(weekday, @p_fecha)
 	AND da.habilitado = 1
-
 
 OPEN cursor_horas 
 DECLARE @v_id_dia_agenda numeric(18)
@@ -1878,5 +1881,19 @@ INSERT INTO [TOP_4].[Item_Receta]
            ,@p_id_medicamento
            ,@p_cantidad
            ,'1')
+END
+GO
+CREATE PROCEDURE [TOP_4].[sp_Dia_Agenda_Excepcion_insert]
+(
+	@p_id_agenda numeric(18),
+	@p_dia datetime,
+	@p_id_dia_excepcion numeric(18) OUTPUT
+)
+AS
+BEGIN
+	INSERT INTO [TOP_4].[Dia_agenda_excepcion](id_agenda, dia)
+	VALUES(@p_id_agenda, @p_dia)
+	
+	SET @p_id_dia_excepcion = SCOPE_IDENTITY()	
 END
 GO
