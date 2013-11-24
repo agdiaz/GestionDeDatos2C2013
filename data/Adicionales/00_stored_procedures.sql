@@ -145,13 +145,13 @@ GO
 GO
 ---------------------------------------------------------------
 CREATE PROCEDURE [TOP_4].[sp_Rol_filter](
-	@p_nombre varchar(255),
-	@p_id_funcionalidad numeric(18))
+	@p_nombre varchar(255) = NULL ,
+	@p_id_funcionalidad numeric(18) = NULL)
 
 AS
 BEGIN
 
-SELECT r.[id_rol]
+SELECT DISTINCT r.[id_rol]
       ,r.[nombre]
       ,r.[activo]
       ,r.[habilitado]
@@ -159,9 +159,9 @@ SELECT r.[id_rol]
   LEFT JOIN [TOP_4].Rol_Funcionalidad rf on rf.id_rol = r.id_rol
   LEFT JOIN [TOP_4].Funcionalidad f on f.id_funcionalidad = rf.id_funcionalidad
   WHERE ((@p_nombre IS NULL)OR (r.nombre like '%'+@p_nombre+'%'))
-AND ((@p_id_funcionalidad IS NULL) OR (f.id_funcionalidad = @p_id_funcionalidad))
-AND f.habilitado = '1'
-AND r.habilitado = '1'
+	AND ((@p_id_funcionalidad IS NULL) OR (f.id_funcionalidad = @p_id_funcionalidad))
+	AND f.habilitado = '1'
+	AND r.habilitado = '1'
 END
 GO
 
