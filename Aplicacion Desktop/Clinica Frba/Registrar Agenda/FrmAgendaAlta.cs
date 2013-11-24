@@ -287,8 +287,11 @@ namespace Clinica_Frba.Agendas
         #region btnCargarDetalles
         private void btnCargarDetalles_Click(object sender, EventArgs e)
         {
-
-            if (dpFechaDesde.Value >= dpFechaHasta.Value)
+            if (string.IsNullOrEmpty(tbProfesional.Text))
+            {
+                MensajePorPantalla.MensajeError(this, "Debe seleccionar al profesional");
+            }
+            else if (dpFechaDesde.Value >= dpFechaHasta.Value)
             {
                 MensajePorPantalla.MensajeError(this, "La fecha de inicio no puede ser mayor ni igual que la fecha de fin");
             }

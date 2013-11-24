@@ -67,7 +67,7 @@ namespace Clinica_Frba.Agendas
                 else if (_opcionGrilla == 3)
                 {
                     //los turnos ocupados que no tienen resultado
-                    turnos = resultado.Retorno.Where(t => t.Disponible == false && t.IdResultadoTurno == 0).ToList();
+                    turnos = resultado.Retorno.Where(t => t.Disponible == false && t.IdResultadoTurno == 0 && t.FechaLLegada.HasValue == true).ToList();
                 }
 
                 if (AfiliadoBuscador != null)

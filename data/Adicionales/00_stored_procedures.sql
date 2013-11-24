@@ -1520,8 +1520,33 @@ BEGIN
 		SET @p_id = SCOPE_IDENTITY()
 
 END
-
 GO
+CREATE PROCEDURE [TOP_4].[sp_Turno_registrar_turno_no_correcto]
+(
+	@p_id_turno numeric(18),
+	@p_fecha_llegada datetime
+)
+AS
+BEGIN
+	UPDATE [TOP_4].Turno
+	SET fecha_llegada = @p_fecha_llegada
+	WHERE id_turno = @p_id_turno
+	
+	INSERT INTO [GD2C2013].[TOP_4].[Resultado_Turno]
+           ([id_turno]
+           ,[sintoma]
+           ,[diagnostico]
+           ,[fecha_diagnostico]
+           ,[habilitado])
+     VALUES
+           (@p_id_turno
+           ,'NO SE PRENSENTA AL TURNO'
+           ,'NO SE PRENSENTA AL TURNO'
+           ,@p_fecha_llegada
+           ,1)
+END
+GO
+
 CREATE PROCEDURE [TOP_4].[sp_ResultadoTurno_insert]
 (
 	@p_id numeric(18) Output
@@ -1893,7 +1918,6 @@ AS
 BEGIN
 	INSERT INTO [TOP_4].[Dia_agenda_excepcion](id_agenda, dia)
 	VALUES(@p_id_agenda, @p_dia)
-	
 	SET @p_id_dia_excepcion = SCOPE_IDENTITY()	
 END
 GO

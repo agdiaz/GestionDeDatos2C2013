@@ -107,5 +107,19 @@ namespace GestionDAL
 
             return lista;
         }
+
+        public void RegistrarTurnoNoCorrecto(Turno t, DateTime fecha)
+        {
+            IList<SqlParameter> parametros = new List<SqlParameter>();
+            SqlParameter pIdTurno = new SqlParameter("@p_id_turno", SqlDbType.Decimal, 18, "p_id_turno");
+            pIdTurno.Value = t.IdTurno;
+            parametros.Add(pIdTurno);
+
+            SqlParameter pFechaLLegada = new SqlParameter("@p_fecha_llegada", SqlDbType.DateTime, 8, "p_fecha_llegada");
+            pFechaLLegada.Value = fecha;
+            parametros.Add(pFechaLLegada);
+
+            _connector.RealizarConsultaAlmacenada("[TOP_4].[sp_Turno_registrar_turno_no_correcto]", parametros);
+        }
     }
 }

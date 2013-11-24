@@ -105,7 +105,9 @@ namespace Clinica_Frba.ResultadosAtencion
                     tbAfiliado.Text = _afiliado.NombreCompleto;
                     
                     this.dpFecha.Enabled = true;
+                    this.dpFecha.Value = _turno.Fecha;
                     this.btnConfirmarHorario.Enabled = true;
+                    this.button1.Enabled = true;
                     
                 }
                 catch (Exception ex)
@@ -141,7 +143,6 @@ namespace Clinica_Frba.ResultadosAtencion
             if (dpFecha.Value <= _turno.HoraInicio)
             {
                 MensajePorPantalla.MensajeInformativo(this, "Fecha confirmada");
-                this._fecha = dpFecha.Value;
                 this.gbResultado.Enabled = true;
                 this.btnAceptar.Enabled = true;
             }
@@ -156,9 +157,34 @@ namespace Clinica_Frba.ResultadosAtencion
         {
             dpFecha.Value = FechaHelper.Ahora();
             dpFecha.Format = DateTimePickerFormat.Custom;
-            dpFecha.CustomFormat = FechaHelper.DateTimeFormat;
+            dpFecha.CustomFormat = "dd/MM/yyyy, hh:mm";
             this.AgregarValidacion(new ValidadorString(tbDiagnostico, 1, 255));
             this.AgregarValidacion(new ValidadorString(tbSintomas, 1, 255));
+            this.btnConfirmarHorario.Enabled = false;
+            this.button1.Enabled = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult confirma = MensajePorPantalla.MensajeInterrogativo(this, "¿Confirma que el paciente no llego al turno?", MessageBoxButtons.YesNo);
+                if (confirma == DialogResult.Yes)
+                {
+                    this._fecha = dpFecha.Value;
+                    IResultado<Turno> resultado = _domain.RegistrarTurnoNoCorrecto(_turno, _fecha);
+                    if (!resultado.Correcto)
+                        throw new ResultadoIncorrectoException<Turno>(resultado);
+
+                    MensajePorPantalla.MensajeInformativo(this, "Se ha guardado registro de que el paciente no ha llegado");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MensajePorPantalla.MensajeError(this, ex.Message);
+            }
+            this.Close();
         }
     }
 }

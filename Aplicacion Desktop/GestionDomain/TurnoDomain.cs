@@ -59,6 +59,23 @@ namespace GestionDomain
             return resultado;
         }
 
+        public IResultado<Turno> RegistrarTurnoNoCorrecto(Turno t, DateTime fecha)
+        {
+            Resultado<Turno> resultado = new Resultado<Turno>();
+            try
+            {
+                _resultadoTurnoDal.RegistrarTurnoNoCorrecto(t, fecha);
+                resultado.Retorno = t;
+            }
+            catch (Exception ex)
+            {
+                resultado.Correcto = false;
+                resultado.Mensajes.Add(ex.Message);
+            }
+
+            return resultado;
+        }
+
         public IResultado<FechaTurno> ObtenerFechasParaTurnos(decimal idProfesional, DateTime hoy)
         {
             Resultado<FechaTurno> resultado = new Resultado<FechaTurno>();
