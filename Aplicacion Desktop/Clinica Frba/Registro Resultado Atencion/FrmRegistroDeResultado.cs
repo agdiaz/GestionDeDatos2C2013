@@ -105,7 +105,6 @@ namespace Clinica_Frba.ResultadosAtencion
                     tbAfiliado.Text = _afiliado.NombreCompleto;
                     
                     this.dpFecha.Enabled = true;
-                    this.dpFecha.Value = _turno.Fecha;
                     this.btnConfirmarHorario.Enabled = true;
                     this.button1.Enabled = true;
                     
@@ -143,8 +142,11 @@ namespace Clinica_Frba.ResultadosAtencion
             if (dpFecha.Value <= _turno.HoraInicio)
             {
                 MensajePorPantalla.MensajeInformativo(this, "Fecha confirmada");
+                this._fecha = dpFecha.Value;
                 this.gbResultado.Enabled = true;
                 this.btnAceptar.Enabled = true;
+                this.btnConfirmarHorario.Enabled = false;
+                this.button1.Enabled = false;
             }
             else
             {
