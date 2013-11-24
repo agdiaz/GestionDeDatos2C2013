@@ -30,8 +30,8 @@
         {
             this.lblRol = new System.Windows.Forms.Label();
             this.tbRol = new System.Windows.Forms.TextBox();
-            this.lblFuncionalidad = new System.Windows.Forms.Label();
             this.cbFuncionalidad = new System.Windows.Forms.ComboBox();
+            this.chFuncionalidad = new System.Windows.Forms.CheckBox();
             this.gbAcciones.SuspendLayout();
             this.gbFiltros.SuspendLayout();
             this.SuspendLayout();
@@ -51,14 +51,14 @@
             // 
             // gbFiltros
             // 
-            this.gbFiltros.Controls.Add(this.lblFuncionalidad);
             this.gbFiltros.Controls.Add(this.tbRol);
             this.gbFiltros.Controls.Add(this.cbFuncionalidad);
             this.gbFiltros.Controls.Add(this.lblRol);
+            this.gbFiltros.Controls.Add(this.chFuncionalidad);
+            this.gbFiltros.Controls.SetChildIndex(this.chFuncionalidad, 0);
             this.gbFiltros.Controls.SetChildIndex(this.lblRol, 0);
             this.gbFiltros.Controls.SetChildIndex(this.cbFuncionalidad, 0);
             this.gbFiltros.Controls.SetChildIndex(this.tbRol, 0);
-            this.gbFiltros.Controls.SetChildIndex(this.lblFuncionalidad, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnFiltrar, 0);
             this.gbFiltros.Controls.SetChildIndex(this.btnLimpiar, 0);
             // 
@@ -73,11 +73,11 @@
             // lblRol
             // 
             this.lblRol.AutoSize = true;
-            this.lblRol.Location = new System.Drawing.Point(75, 19);
+            this.lblRol.Location = new System.Drawing.Point(57, 19);
             this.lblRol.Name = "lblRol";
-            this.lblRol.Size = new System.Drawing.Size(26, 13);
+            this.lblRol.Size = new System.Drawing.Size(44, 13);
             this.lblRol.TabIndex = 2;
-            this.lblRol.Text = "Rol:";
+            this.lblRol.Text = "Nombre";
             // 
             // tbRol
             // 
@@ -85,15 +85,6 @@
             this.tbRol.Name = "tbRol";
             this.tbRol.Size = new System.Drawing.Size(181, 20);
             this.tbRol.TabIndex = 1;
-            // 
-            // lblFuncionalidad
-            // 
-            this.lblFuncionalidad.AutoSize = true;
-            this.lblFuncionalidad.Location = new System.Drawing.Point(27, 49);
-            this.lblFuncionalidad.Name = "lblFuncionalidad";
-            this.lblFuncionalidad.Size = new System.Drawing.Size(76, 13);
-            this.lblFuncionalidad.TabIndex = 4;
-            this.lblFuncionalidad.Text = "Funcionalidad:";
             // 
             // cbFuncionalidad
             // 
@@ -103,6 +94,16 @@
             this.cbFuncionalidad.Name = "cbFuncionalidad";
             this.cbFuncionalidad.Size = new System.Drawing.Size(181, 21);
             this.cbFuncionalidad.TabIndex = 2;
+            // 
+            // chFuncionalidad
+            // 
+            this.chFuncionalidad.AutoSize = true;
+            this.chFuncionalidad.Location = new System.Drawing.Point(9, 51);
+            this.chFuncionalidad.Name = "chFuncionalidad";
+            this.chFuncionalidad.Size = new System.Drawing.Size(92, 17);
+            this.chFuncionalidad.TabIndex = 5;
+            this.chFuncionalidad.Text = "Funcionalidad";
+            this.chFuncionalidad.UseVisualStyleBackColor = true;
             // 
             // FrmRolListado
             // 
@@ -122,8 +123,8 @@
 
         private System.Windows.Forms.TextBox tbRol;
         private System.Windows.Forms.Label lblRol;
-        private System.Windows.Forms.Label lblFuncionalidad;
         private System.Windows.Forms.ComboBox cbFuncionalidad;
+        private System.Windows.Forms.CheckBox chFuncionalidad;
 
     }
 }

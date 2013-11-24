@@ -66,8 +66,10 @@ namespace GestionDAL
             pNombre.Value = filtro.Nombre;
             parametros.Add(pNombre);
 
+            
             SqlParameter pIdFuncionalidad = new SqlParameter("@p_id_funcionalidad", System.Data.SqlDbType.Decimal, 18, "p_id_funcionalidad");
-            pIdFuncionalidad.Value = filtro.IdFuncionalidad;
+            if (filtro.IdFuncionalidad.HasValue)
+                pIdFuncionalidad.Value = filtro.IdFuncionalidad.Value;
             parametros.Add(pIdFuncionalidad);
 
             return parametros;

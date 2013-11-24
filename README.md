@@ -4,7 +4,7 @@
 
   === Ingeniería En Sistemas de Información ===
 
-Cátedra: Gestión de datos Profesor: Ing. Juan Zaffaroni (K3051) - Ing. Enrique Reinosa
+Cátedra: Gestión de datos Profesor: Ing. Juan Zaffaroni (K3071) - Ing. Enrique Reinosa
 
 Nombre del Grupo: TOP_4 Número de Grupo: 14 Integrantes del Grupo:
 

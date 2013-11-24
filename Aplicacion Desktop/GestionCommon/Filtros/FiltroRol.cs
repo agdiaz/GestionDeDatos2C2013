@@ -8,6 +8,6 @@ namespace GestionCommon.Filtros
     public class FiltroRol
     {
         public string Nombre { get; set; }
-        public decimal IdFuncionalidad { get; set; }
+        public decimal? IdFuncionalidad { get; set; }
     }
 }

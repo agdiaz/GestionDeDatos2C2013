@@ -404,7 +404,7 @@ CREATE PROCEDURE [TOP_4].[sp_Especialidad_select_by_profesional]
 (@p_id numeric(18))
 AS
 BEGIN
-	SELECT e.id_especialidad, e.nombre, te.id_tipo_especialidad
+	SELECT e.id_especialidad, e.nombre, te.id_tipo_especialidad, te.nombre as tipo_especialidad_nombre
 	FROM [TOP_4].Especialidad e
 	INNER JOIN [TOP_4].tipo_especialidad te
 		ON e.id_tipo_especialidad = te.id_tipo_especialidad 

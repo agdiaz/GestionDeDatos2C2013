@@ -67,7 +67,7 @@ namespace Clinica_Frba.Roles
             {
                 var filtro = new FiltroRol();
                 var funcionalidad = cbFuncionalidad.SelectedItem as Funcionalidad;
-                if (funcionalidad != null)
+                if (funcionalidad != null && chFuncionalidad.Checked)
                     filtro.IdFuncionalidad = funcionalidad.IdFuncionalidad;
                 filtro.Nombre = tbRol.Text;
 
