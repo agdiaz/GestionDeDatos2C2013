@@ -73,9 +73,6 @@ namespace GestionDAL
                 FechaDesde = Convert.ToDateTime(ds.Tables[0].Rows[0]["fecha_desde"]),
                 FechaHasta = Convert.ToDateTime(ds.Tables[0].Rows[0]["fecha_hasta"]),
             };
-
-
-
         }
 
         public IList<TurnoDisponible> ObtenerHorasParaTurno(decimal idProfesional, DateTime hoy)

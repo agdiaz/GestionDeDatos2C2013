@@ -16,6 +16,7 @@ namespace GestionDAL.Builder
             especialidad.IdEspecialidad = Convert.ToDecimal(row["id_especialidad"]);
             especialidad.Nombre = Convert.ToString(row["nombre"]);
             especialidad.TipoEspecialidad = Convert.ToDecimal(row["id_tipo_especialidad"]);
+            especialidad.NombreEspecialidad = row["tipo_especialidad_nombre"].ToString();
             return especialidad;
         }
 

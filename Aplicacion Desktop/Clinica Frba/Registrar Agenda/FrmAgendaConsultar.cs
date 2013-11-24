@@ -108,6 +108,7 @@ namespace Clinica_Frba.Agendas
             try
             {
                 this._profesional = profesional;
+                this.btnBuscarProfesional.Enabled = false;
                 this.tbProfesional.Text = profesional.NombreCompleto;
                 IResultado<FechaTurno> resultado = _turnoDomain.ObtenerFechasParaTurnos(profesional.IdProfesional, FechaHelper.Ahora());
                 if (!resultado.Correcto)

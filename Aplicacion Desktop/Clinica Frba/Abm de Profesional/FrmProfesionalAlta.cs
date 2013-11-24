@@ -149,7 +149,14 @@ namespace Clinica_Frba.Profesionales
             }
             if (esp != null)
             {
-                lstEspecialidades.Items.Add(esp);
+                if (lstEspecialidades.Items.Cast<Especialidad>().Count(em => em.IdEspecialidad == esp.IdEspecialidad) == 0)
+                {
+                    lstEspecialidades.Items.Add(esp);
+                }
+                else
+                {
+                    MensajePorPantalla.MensajeError(this, "La especialidad " + esp.Nombre + " ya se encuentra agregada.");
+                }
             }
         }
 

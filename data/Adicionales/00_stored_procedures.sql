@@ -7,7 +7,7 @@ BEGIN
       ,[nombre]
       ,[activo]
       ,[habilitado]
-	FROM [GD2C2013].[TOP_4].[Rol]
+	FROM [TOP_4].[Rol]
 	WHERE [habilitado] = '1'
 END
 GO
@@ -187,7 +187,7 @@ BEGIN
       ,[nombre]
       ,[habilitado]
       ,[descripcion]
-	FROM [GD2C2013].[TOP_4].[Funcionalidad]
+	FROM [TOP_4].[Funcionalidad]
 	WHERE [habilitado] = 1
 END
 GO
@@ -219,7 +219,7 @@ SELECT [id_usuario]
       ,[password]
       ,[cant_intentos_fallidos]
       ,[habilitado]
-  FROM [GD2C2013].[TOP_4].[Usuario]
+  FROM [TOP_4].[Usuario]
   WHERE habilitado = '1'
 END
 GO
@@ -278,7 +278,7 @@ CREATE PROCEDURE [TOP_4].[sp_Usuario_Insert](
 )
 AS
 BEGIN
-INSERT INTO [GD2C2013].[TOP_4].[Usuario]
+INSERT INTO [TOP_4].[Usuario]
            ([username]
            ,[password]
            ,[cant_intentos_fallidos]
@@ -367,13 +367,14 @@ END
 
 GO
 CREATE PROCEDURE [TOP_4].[sp_Especialidad_select_all]
-
 AS
 BEGIN
-SELECT [id_especialidad]
-      ,[id_tipo_especialidad]
-      ,[nombre]
-  FROM [TOP_4].[Especialidad]
+SELECT E.[id_especialidad]
+      ,E.[id_tipo_especialidad]
+      ,E.[nombre]
+      ,TE.nombre as tipo_especialidad_nombre
+  FROM [TOP_4].[Especialidad] E
+  INNER JOIN [TOP_4].Tipo_especialidad TE ON E.id_tipo_especialidad = TE.id_tipo_especialidad
   END
 GO
 
@@ -388,6 +389,7 @@ BEGIN
 SELECT 
 	e.[id_especialidad], 
 	e.id_tipo_especialidad, 
+	te.nombre as tipo_especialidad_nombre,
 	e.nombre,
 	ISNULL(te.id_tipo_especialidad, 0)
   FROM [TOP_4].[Especialidad] e
@@ -707,7 +709,7 @@ SELECT [id_afiliado]
       ,[estado_civil]
       ,[fecha_baja]
       ,[habilitado]
-  FROM [GD2C2013].[TOP_4].[Afiliado]
+  FROM [TOP_4].[Afiliado]
   WHERE habilitado = 1
   AND id_afiliado = @p_id
 END
@@ -858,7 +860,7 @@ SELECT TOP 1 [id_profesional]
       ,[sexo]
       ,[matricula]
       ,P.[habilitado]
-  FROM [GD2C2013].[TOP_4].[Profesional] P
+  FROM [TOP_4].[Profesional] P
   INNER JOIN [TOP_4].Usuario U
   ON P.id_usuario = U.id_usuario
   WHERE P.habilitado = '1'
@@ -968,7 +970,7 @@ BEGIN TRY
 	EXECUTE [TOP_4].[sp_Usuario_Insert] @p_username, @p_password, @p_id_usuario OUTPUT
 	EXECUTE [TOP_4].[sp_Rol_asociar_Usuario] @p_id_rol, @p_id_usuario
 	-- Creo el registro del profesional
-	INSERT INTO [GD2C2013].[TOP_4].[Profesional]
+	INSERT INTO [TOP_4].[Profesional]
 			   ([id_usuario]
 			   ,[nombre]
 			   ,[apellido]
@@ -1420,7 +1422,7 @@ BEGIN
 		  ,[id_plan_medico]
 		  ,[fecha_impresion]
 		  ,[habilitado]
-	 FROM [GD2C2013].[TOP_4].[Bono_Consulta]
+	 FROM [TOP_4].[Bono_Consulta]
 	 WHERE id_bono_consulta = @p_id
 	 AND id_turno = NULL
 	 AND habilitado = '1'
@@ -1463,7 +1465,7 @@ BEGIN
       ,[fecha_vencimiento]
       ,[fecha_impresion]
       ,[habilitado]
-  FROM [GD2C2013].[TOP_4].[Bono_Farmacia]
+  FROM [TOP_4].[Bono_Farmacia]
 	 WHERE id_bono_farmacia = @p_id
 	 AND [id_receta] = NULL
 	 AND habilitado = '1'
@@ -1483,7 +1485,7 @@ BEGIN
       ,BF.[fecha_vencimiento]
       ,BF.[fecha_impresion]
       ,BF.[habilitado]
-  FROM [GD2C2013].[TOP_4].[Bono_Farmacia] BF
+  FROM [TOP_4].[Bono_Farmacia] BF
   INNER JOIN [TOP_4].Compra C ON BF.id_compra = C.id_compra
   INNER JOIN [TOP_4].Afiliado A ON C.id_afiliado = A.id_afiliado
   WHERE id_bono_farmacia = @p_id_bono
@@ -1558,6 +1560,7 @@ BEGIN
 		ON pro.id_profesional = ag.id_profesional
 	WHERE pro.id_profesional = @p_id_profesional
 	AND @p_fecha_hoy <= ag.fecha_hasta  
+	AND ag.habilitado = 1
 	ORDER BY ag.fecha_desde DESC
 	
 	IF @fechaDesde > @p_fecha_hoy
@@ -1568,6 +1571,7 @@ BEGIN
 			ON pro.id_profesional = ag.id_profesional
 		WHERE pro.id_profesional = @p_id_profesional
 		AND @p_fecha_hoy <= ag.fecha_hasta 
+		AND ag.habilitado = 1
 		ORDER BY ag.fecha_desde DESC
 	END
 	ELSE
@@ -1578,6 +1582,7 @@ BEGIN
 			ON pro.id_profesional = ag.id_profesional
 		WHERE pro.id_profesional = @p_id_profesional
 		AND @p_fecha_hoy  <= ag.fecha_hasta
+		AND ag.habilitado = 1
 		ORDER BY ag.fecha_desde DESC
 	END
 	
@@ -1640,7 +1645,7 @@ CREATE PROCEDURE [TOP_4].[sp_turnos_existentes_por_dia]
 )
 AS
 BEGIN
-	CREATE TABLE #tmpTurnos(
+CREATE TABLE #tmpTurnos(
 		horaInicio time,
 		horaFin	time,
 		disponible bit,
@@ -1648,21 +1653,37 @@ BEGIN
 		id_afiliado numeric(18,0),
 		id_resultado_turno numeric(18,0),
 		fecha_llegada datetime,
-		nombre_afiliado varchar(255)
-	)
-	DECLARE @horaDesde time
-	DECLARE @horaHasta time
+		nombre_afiliado varchar(255))
 	
-	SELECT @horaDesde = da.hora_desde, @horaHasta = da.hora_hasta
+DECLARE cursor_horas Cursor FOR
+	SELECT da.*
 	FROM TOP_4.Dia_Agenda da
 	INNER JOIN TOP_4.Agenda ag
 		ON ag.id_agenda = da.id_agenda
 	WHERE ag.id_profesional = @p_id_profesional
 	AND da.nro_dia_semana = DATEPART(weekday, @p_fecha)
 	AND da.habilitado = 1
+
+
+OPEN cursor_horas 
+DECLARE @v_id_dia_agenda numeric(18)
+DECLARE @v_id_agenda numeric(18)
+DECLARE @v_nro_dia_semana int
+DECLARE @v_nombre_dia_semana varchar(20)
+DECLARE @v_hora_desde time
+DECLARE @v_hora_hasta time
+DECLARE @v_habilitado bit
+
+FETCH NEXT FROM cursor_horas INTO
+	@v_id_dia_agenda, @v_id_agenda, @v_nro_dia_semana, @v_nombre_dia_semana, @v_hora_desde, @v_hora_hasta, @v_habilitado
 	
+WHILE(@@FETCH_STATUS <> -1)
+BEGIN
+	IF (@@FETCH_STATUS <> -2)
+
+	--------------- CODIGO
 	DECLARE @horaActual time
-	SET @horaActual = @horaDesde
+	SET @horaActual = @v_hora_desde
 	
 	DECLARE @id_turno numeric(18,0)
 	DECLARE @id_afiliado numeric(18,0)
@@ -1670,7 +1691,7 @@ BEGIN
 	declare @fecha_llegada datetime
 	declare @nombre_afiliado varchar(255)
 	
-	WHILE @horaActual < @horaHasta
+	WHILE @horaActual < @v_hora_hasta
 	BEGIN
 		IF NOT EXISTS (
 			SELECT * 
@@ -1679,7 +1700,7 @@ BEGIN
 				ON resTur.id_turno = tur.id_turno
 			LEFT JOIN TOP_4.Cancelacion can
 				ON can.id_turno = tur.id_turno
-			WHERE tur.id_profesional = @p_id_profesional
+			WHERE tur.id_profesional = @p_id_profesional 
 			AND CAST(tur.fecha_turno as date) = CAST(@p_fecha as date)
 			AND CAST(tur.fecha_turno as time) = @horaActual
 			AND can.id_cancelacion IS NULL
@@ -1711,13 +1732,29 @@ BEGIN
 		END
 		set @horaActual = DATEADD(minute, 30, @horaActual)
 	END
+	--------------- FIN CODIGO
 	
-	SELECT horaInicio, horaFin, disponible, id_turno, id_afiliado, id_resultado_turno, fecha_llegada, nombre_afiliado
-	FROM #tmpTurnos
+	FETCH NEXT FROM cursor_horas INTO
+	@v_id_dia_agenda, @v_id_agenda, @v_nro_dia_semana, @v_nombre_dia_semana, @v_hora_desde, @v_hora_hasta, @v_habilitado
+		
+END -- WHILE
+CLOSE cursor_horas
+DEALLOCATE cursor_horas
+
+SELECT horaInicio
+	, horaFin
+	, disponible
+	, id_turno
+	, id_afiliado
+	, id_resultado_turno
+	, fecha_llegada
+	, nombre_afiliado
+FROM #tmpTurnos
 	
-	DROP TABLE #tmpTurnos
-END 
+DROP TABLE #tmpTurnos
+END
 GO
+
 CREATE PROCEDURE [TOP_4].[sp_Medicamento_filter]
 (@p_nombre varchar(255))
 AS
@@ -1739,3 +1776,107 @@ BEGIN
       ,[habilitado]
 	FROM [TOP_4].[Tipo_Cancelacion]
 END
+GO
+
+CREATE PROCEDURE TOP_4.sp_cancelacion(
+	@p_id_tipo_cancelacion numeric(18)
+	,@p_id_turno numeric(18)
+	,@p_fecha datetime
+	,@p_motivo varchar(255)
+	,@p_cancelado_por char
+)
+
+AS
+BEGIN
+
+INSERT INTO [TOP_4].[Cancelacion]
+           ([id_tipo_cancelacion]
+           ,[id_turno]
+           ,[fecha]
+           ,[cancelado_por]
+           ,[motivo]
+           ,[habilitado])
+     VALUES
+           (@p_id_tipo_cancelacion
+           ,@p_id_turno
+           ,@p_fecha
+           ,@p_cancelado_por
+           ,@p_motivo
+           ,'1')  
+
+	UPDATE TOP_4.Bono_Consulta
+	SET id_turno = NULL
+	WHERE id_turno = @p_id_turno
+	
+END
+
+
+GO
+
+GO
+CREATE PROCEDURE TOP_4.sp_cancelacion_buscar_turno(
+	@p_fecha datetime,
+	@p_id_profesional numeric(18)
+)
+
+AS
+BEGIN
+
+SELECT [id_turno]
+      ,[id_afiliado]
+      ,[id_profesional]
+      ,[fecha_turno]
+      ,[fecha_llegada]
+      ,[habilitado]
+  FROM [TOP_4].[Turno]
+WHERE id_profesional = @p_id_profesional
+AND fecha_turno BETWEEN @p_fecha AND dateadd(minute, 59, dateadd(HOUR, 23, @p_fecha))
+AND fecha_llegada IS NULL
+AND habilitado = '1'
+
+END
+GO
+CREATE PROCEDURE [TOP_4].[sp_Receta_insert]
+(	@p_id numeric(18) output
+	,@p_id_resultado_turno numeric(18)
+	,@p_id_bono_farmacia numeric(18)
+	,@p_fecha datetime
+)
+AS
+BEGIN
+INSERT INTO [TOP_4].[Receta]
+           ([id_resultado_turno]
+           ,[habilitado])
+     VALUES
+           (@p_id_resultado_turno
+           ,'1')
+
+SET @p_id = SCOPE_IDENTITY()
+
+UPDATE [TOP_4].Bono_Farmacia
+SET id_receta = @p_id, fecha_prescripcion = @p_fecha
+WHERE id_bono_farmacia = @p_id_bono_farmacia
+END
+
+GO
+
+CREATE PROCEDURE [TOP_4].[sp_ItemReceta_insert]
+(
+	@p_id_receta numeric(18)
+    ,@p_id_medicamento numeric(18)
+    ,@p_cantidad int
+)
+AS
+BEGIN
+INSERT INTO [TOP_4].[Item_Receta]
+           ([id_receta]
+           ,[id_medicamento]
+           ,[cantidad]
+           ,[habilitado])
+     VALUES
+           (@p_id_receta
+           ,@p_id_medicamento
+           ,@p_cantidad
+           ,'1')
+END
+GO

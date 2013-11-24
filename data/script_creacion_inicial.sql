@@ -8,7 +8,6 @@ GO
 
 ---------------------------------Plan Medico---------------------------------------
 
-USE [GD2C2013]
 GO
 
 SET ANSI_NULLS ON
@@ -46,7 +45,7 @@ INSERT INTO [TOP_4].[Plan_medico] (id_plan_medico, descripcion, precio_bono_farm
 
 GO
 ---------------------------------Usuario---------------------------------------
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -85,7 +84,7 @@ ALTER TABLE [TOP_4].[Usuario] ADD  CONSTRAINT [DF_Usuario_cant_intentos_fallidos
 GO
 
 ---------------------------------Rol---------------------------------------
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -372,7 +371,7 @@ INSERT INTO [TOP_4].[Usuario_Rol] ([id_usuario],[id_rol]) VALUES (@identidadRoot
 
 ------------------------------------Profesional------------------------------------------------
 
-USE [GD2C2013]
+
 GO
 SET ANSI_NULLS ON
 GO
@@ -500,7 +499,7 @@ GO
 
 ------------------------------------Tipo_especialidad---------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -542,7 +541,7 @@ INSERT INTO TOP_4.Tipo_especialidad (id_tipo_especialidad, nombre)
 
 SET IDENTITY_INSERT TOP_4.Tipo_especialidad OFF
 ---------------------------------------Especialidad--------------------------------------------------
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -585,7 +584,7 @@ INSERT INTO TOP_4.Especialidad
 SET IDENTITY_INSERT TOP_4.Especialidad OFF
 GO
 ------------------------------------Profesional_especialidad-----------------------------------------------
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -628,7 +627,7 @@ GO
 
 ------------------------------------------Agenda--------------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -681,7 +680,7 @@ GO
 
 ------------------------------------------Dia_Agenda--------------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -742,7 +741,7 @@ INSERT INTO TOP_4.Dia_Agenda
 ---------------------------------Afiliado----------------------------------------------
 
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -969,7 +968,7 @@ GO
 
 ----------------------------------------------TURNO-------------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -1037,7 +1036,7 @@ GO
 
 --------------------------------------------MEDICAMENTO----------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -1079,7 +1078,7 @@ GO
 
 -------------------------------------RESULTADO_TURNO--------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -1136,7 +1135,7 @@ GO
 
 -----------------------------------------RECETA------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -1180,7 +1179,7 @@ INSERT INTO TOP_4.Receta
 
 -----------------------------------------Item_Receta------------------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 /****** Object:  Table [TOP_4].[Item_Receta]    Script Date: 11/03/2013 19:43:37 ******/
@@ -1240,7 +1239,7 @@ GO
 
 ------------------------------------------------------Compra---------------------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -1276,7 +1275,7 @@ GO
 
 -------------------------------------------------Bono_Consulta-----------------------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -1383,7 +1382,7 @@ GO
 
 
 ------------------------------------------------Bono_Farmacia--------------------------------------------------
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -1512,7 +1511,7 @@ CREATE NONCLUSTERED INDEX [compra_id_afiliado] ON [TOP_4].[Compra]
 GO
 
 -----------------------------------------Plan_Historico_Afiliado--------------------------------------------------
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -1556,7 +1555,7 @@ GO
 
 ------------------------------------------------------Tipo_Cancelacion-----------------------------------------------------
 
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON
@@ -1585,6 +1584,10 @@ GO
 
 ALTER TABLE [TOP_4].[Tipo_Cancelacion] ADD  CONSTRAINT [DF_Tipo_Cancelacion_habilitado]  DEFAULT ((1)) FOR [habilitado]
 GO
+INSERT INTO TOP_4.Tipo_Cancelacion
+(nombre_tipo_cancelacion)
+VALUES ('Día no laborable')
+
 
 INSERT INTO TOP_4.Tipo_Cancelacion
 (nombre_tipo_cancelacion)
@@ -1620,7 +1623,7 @@ VALUES ('Otro')
 
 
 -------------------------------------------------------Cancelacion----------------------------------------------------------------
-USE [GD2C2013]
+
 GO
 
 SET ANSI_NULLS ON

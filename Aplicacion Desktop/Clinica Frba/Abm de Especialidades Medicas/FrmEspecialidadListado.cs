@@ -67,6 +67,7 @@ namespace Clinica_Frba.Especialidades
                     throw new ResultadoIncorrectoException<IList<Especialidad>>(filtrar);
 
                 this.dgvBusqueda.DataSource = filtrar.Retorno;
+                this.dgvBusqueda.Columns["TipoEspecialidad"].Visible = false;
             }
             catch (ResultadoIncorrectoException<IList<Especialidad>> ex)
             {
